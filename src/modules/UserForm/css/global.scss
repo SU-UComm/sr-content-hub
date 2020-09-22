@@ -1,0 +1,53 @@
+.form-error {
+    color:     $error;
+    font-size: $fontSizeSmall;
+    margin:    0;
+    padding:   .3rem 0 0;
+
+    .form-errors__list-item & {
+        margin:  0;
+        padding: 0;
+    }
+}
+
+.userForm__field {
+    padding:  0 0 pxToRem(16);
+    position: relative;
+}
+
+.userForm__label {
+    display:     block;
+    font-weight: $fontWeightBold;
+}
+
+.userForm__label--inline {
+    display: inline-block;
+}
+
+.userForm__select,
+.userForm__input {
+    border:    1px solid $darkGray;
+    max-width: pxToRem(320);
+    padding:   .5rem;
+    width:     100%;
+
+    &:focus {
+        background-color: $lightGray;
+    }
+}
+
+.userForm__radio {
+    margin-right: .5rem;
+}
+
+.userForm__button {
+    background-color: $white;
+    border:           1px solid $darkGray;
+    cursor:           pointer;
+    padding:          .5rem 1rem;
+
+    &:hover,
+    &:focus {
+        background-color: $lightGray;
+    }
+}

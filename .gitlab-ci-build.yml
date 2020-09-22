@@ -1,0 +1,40 @@
+image: node:14
+
+stages:
+    - build
+    - deploy
+
+runbuild:
+    stage: build
+    tags:
+        - docker
+    script:
+        - npm ci
+        - npm run build
+    artifacts:
+        paths:
+            - dist
+
+rundeploy:
+    stage: deploy
+    tags:
+        - docker
+    dependencies:
+        - runbuild
+    before_script:
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - ssh-keyscan -t rsa gitlab.squiz.net >> ~/.ssh/known_hosts
+        - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        - chmod 644 ~/.ssh/known_hosts
+        - chmod 600 ~/.ssh/id_rsa
+    script:
+        - git config --global user.name "$GITLAB_USER_NAME"
+        - git config --global user.email "$GITLAB_USER_EMAIL"
+        - cd dist
+        - git init
+        - git add *
+        - git commit -m "Runner build of ${CI_COMMIT_SHA:0:8}  [ci skip]"
+        - git push --force git@gitlab.squiz.net:${CI_PROJECT_PATH} master:deploy/prod
+    only:
+        - master

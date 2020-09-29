@@ -104,7 +104,60 @@ When using VSCode with ESLint and stylelint extensions installed JS/CSS errors s
 * npm run lint:js - will lint js/jsx
 * npm run lint:css - will lint css/scss
 
+## Cypress E2E testing
+You can use (or rather merge in) **feature/cypress** branch for using [Cypress](https://www.cypress.io/) as an E2E testing tool. After merge run
+```
+npm install
+```
+Cypress related files:
+* ./cypress.json - env configuration
+* ./cypress/ - main folder with all tests etc
+
+Out of the box it contains:
+* test that goes through all the steps of the app and check basic elements like form validation, going back and fourth throught the application
+* [A11Y](https://www.a11yproject.com/) valiation with [cypress-axe](https://www.npmjs.com/package/cypress-axe)
+* some helpers in **./cypress/support/tests.js** like **matrixLogin()**
+```
+/**
+ * Matrix login
+ * @param {string} siteUrl site url
+ * @param {string} pageUrl page url that will be appended to siteUrl
+ * @param {string} login login name
+ * @param {string} password password
+ */
+matrixLogin: (siteUrl, pageUrl, login, password) => {
+    if (siteUrl !== Cypress.env('localURL')) {
+        pageUrl = pageUrl === "/" ? "" : pageUrl;
+
+        cy.visit(siteUrl + pageUrl + "/_login", { failOnStatusCode: false });
+
+        cy.get('#SQ_LOGIN_USERNAME').type(login).should("have.value", login);
+        cy.get('#SQ_LOGIN_PASSWORD').type(password).should("have.value", password);
+        cy.get('#login_form_login_prompt').submit();
+
+        pageUrl = pageUrl === "" ? "/" : pageUrl;
+        cy.location("pathname").should("eq", pageUrl);
+    } else {
+        cy.visit(siteUrl + pageUrl);
+    }
+}
+```
+that can be used to test Matrix pages that require login.
+
+To run a localhost test you need to first start the local serve by:
+```
+npm run serve
+```
+then you can run
+```
+npm run cypress:tests
+```
+or for CI you can use
+```
+npm run cypress:ci
+```
+which will run a headless Chrome instance for testing.
+
 ## TO-DO
 * add styled components like [Emotion](https://emotion.sh/docs/introduction)
-* add [cypress](https://www.cypress.io/) for E2E testing
 * add [jest](https://jestjs.io/en/) for unit testing

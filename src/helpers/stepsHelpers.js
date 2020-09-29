@@ -15,12 +15,6 @@ export const stepsData = [
         'name': translations.step03Label,
         'title': translations.step03TopHeadingTitle,
         'description': translations.step03TopHeadingDescription
-    },
-    {
-        'id': 4,
-        'name': translations.step04Label,
-        'title': translations.step04TopHeadingTitle,
-        'description': translations.step04TopHeadingDescription
     }
 ]
 

@@ -33,13 +33,13 @@ describe('Tests - localhost', () => {
             // Check form validation in step 01
             cy.get('.userForm__submit').click();                // Click to check validation errors
             cy.get('.form-errors').should('be.visible');        // Should see global error box
-            cy.get('p.form-error').should('have.length', 12);   // Shoud have 6 error boxes
+            cy.get('p.form-error').should('have.length', 6);    // Shoud have 6 error boxes
 
             // Fill in the form
             cy.get('#title').select('Mr');
             cy.get('#firstName').type('John');
             cy.get('#lastName').type('Doe');
-            cy.get('p.form-error').should('have.length', 6); // Shoud have 6 error boxes
+            cy.get('p.form-error').should('have.length', 3); // Shoud have 6 error boxes
 
             // Check e-mail validation
             cy.get('#email + .form-error').contains('Email is required');

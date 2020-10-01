@@ -7,7 +7,7 @@ It is based on Squiz Boilerplate:
 
 ## Concepts
 
-### Using Contexts and
+### Using Contexts and Reducers
 [Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.
 
 There are two contexts present:
@@ -99,6 +99,30 @@ PrevNext.propTypes = {
 }
 ```
 
+### Styled Components
+[Emotion](https://emotion.sh/docs/introduction) is used for styled components. Example can be found in **./src/helpers/formHelpers.js**. It shows how you can create a styled component using scss variables.
+```
+import React from 'react';
+import styled from '@emotion/styled';
+import cssVars from 'src/styles/imports/variables.scss';
+
+const ErrorText = styled.p`
+    color:     ${cssVars.errorTextColor};
+    font-size: ${cssVars.fontSizeSmall};
+    margin:    0;
+    padding:   .3rem 0 0;
+`;
+
+export const handleFormErrors = (errors, name) => {
+    [...]
+        <ErrorText role="alert">
+            Max length exceeded
+        </ErrorText>
+    [...]
+}
+```
+More info on [styled components](https://styled-components.com/docs/basics).
+
 ### Linting
 When using VSCode with ESLint and stylelint extensions installed JS/CSS errors should be highlighted in the editor. In addition for CI there are two separte commands:
 * npm run lint:js - will lint js/jsx
@@ -159,5 +183,4 @@ npm run cypress:ci
 which will run a headless Chrome instance for testing.
 
 ## TO-DO
-* add styled components like [Emotion](https://emotion.sh/docs/introduction)
 * add [jest](https://jestjs.io/en/) for unit testing

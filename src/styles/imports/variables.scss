@@ -31,3 +31,11 @@ $fontSizeLarge: 1.25rem;
 $fontWeightLight: 300;
 $fontWeightNormal: 400;
 $fontWeightBold: 600;
+
+// Export
+/* stylelint-disable selector-pseudo-class-no-unknown, property-no-unknown, property-case */
+:export {
+    errorTextColor: $error;
+    fontSizeSmall:  $fontSizeSmall;
+}
+/* stylelint-enable */

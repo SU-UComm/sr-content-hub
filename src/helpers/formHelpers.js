@@ -1,4 +1,25 @@
 import React from 'react';
+import styled from '@emotion/styled';
+import cssVars from 'src/styles/imports/variables.scss';
+
+const ErrorListItem = styled.li`
+    margin: 0;
+    padding: 0;
+`;
+
+const ErrorTextTop = styled.p`
+    color:     ${cssVars.errorTextColor};
+    font-size: ${cssVars.fontSizeSmall};
+    margin:    0;
+    padding:   0;
+`;
+
+const ErrorText = styled.p`
+    color:     ${cssVars.errorTextColor};
+    font-size: ${cssVars.fontSizeSmall};
+    margin:    0;
+    padding:   .3rem 0 0;
+`;
 
 /**
  * Display form errors
@@ -14,9 +35,9 @@ export const handleFormErrors = (errors, name) => {
                 {Object.keys(errors).map((key, i) => {
                     if (errors[key].message) {
                         return (
-                            <li key={`error${i}`} className="form-errors__list-item">
-                                <p className="form-error" role="alert">{errors[key].message}</p>
-                            </li>
+                            <ErrorListItem key={`error${i}`}>
+                                <ErrorTextTop role="alert">{errors[key].message}</ErrorTextTop>
+                            </ErrorListItem>
                         )
                     }
                 })}
@@ -26,21 +47,21 @@ export const handleFormErrors = (errors, name) => {
         if (errors.hasOwnProperty(name)) {
             if (errors[name].message) {
                 return (
-                    <p className="form-error" role="alert">
+                    <ErrorText role="alert">
                         {errors[name].message}
-                    </p>
+                    </ErrorText>
                 )
             } else if (errors[name].type === "maxLength") {
                 return (
-                    <p className="form-error" role="alert">
+                    <ErrorText role="alert">
                         Max length exceeded
-                    </p>
+                    </ErrorText>
                 )
             } else if (errors[name].type === "minLength") {
                 return (
-                    <p className="form-error" role="alert">
+                    <ErrorText role="alert">
                         Min length not reached
-                    </p>
+                    </ErrorText>
                 )
             }
         }

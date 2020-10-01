@@ -35,7 +35,7 @@ export const handleFormErrors = (errors, name) => {
                 {Object.keys(errors).map((key, i) => {
                     if (errors[key].message) {
                         return (
-                            <ErrorListItem key={`error${i}`}>
+                            <ErrorListItem className="form-error" key={`error${i}`}>
                                 <ErrorTextTop role="alert">{errors[key].message}</ErrorTextTop>
                             </ErrorListItem>
                         )
@@ -47,19 +47,19 @@ export const handleFormErrors = (errors, name) => {
         if (errors.hasOwnProperty(name)) {
             if (errors[name].message) {
                 return (
-                    <ErrorText role="alert">
+                    <ErrorText className="form-error" role="alert">
                         {errors[name].message}
                     </ErrorText>
                 )
             } else if (errors[name].type === "maxLength") {
                 return (
-                    <ErrorText role="alert">
+                    <ErrorText className="form-error" role="alert">
                         Max length exceeded
                     </ErrorText>
                 )
             } else if (errors[name].type === "minLength") {
                 return (
-                    <ErrorText role="alert">
+                    <ErrorText className="form-error" role="alert">
                         Min length not reached
                     </ErrorText>
                 )

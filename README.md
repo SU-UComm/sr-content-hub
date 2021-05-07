@@ -174,6 +174,10 @@ npm run serve
 ```
 then you can run
 ```
+npm run cypress:install
+```
+to install cypress if you need to and then - **this can take a long time and appear frozen**
+```
 npm run cypress:tests
 ```
 or for CI you can use

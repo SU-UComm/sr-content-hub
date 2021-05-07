@@ -9,7 +9,11 @@
     "serve": "webpack-dev-server --open --config webpack/webpack.dev.js",
     "add-module": "bash scripts/add_module.sh",
     "lint:js": "eslint \"./src/**/*.js\" \"./src/**/*.jsx\"",
-    "lint:css": "stylelint \"./src/**/*.css\" \"./src/**/*.scss\" \"!./src/**/*.min.css\" \"!./src/templates/**/*.scss\""
+    "lint:css": "stylelint \"./src/**/*.css\" \"./src/**/*.scss\" \"!./src/**/*.min.css\" \"!./src/templates/**/*.scss\"",
+    "cypress:install": "npm install -sD axe-core cypress@4.0.1 cypress-axe",
+    "cypress:verify": "cypress verify",
+    "cypress:tests": "npx cypress open",
+    "cypress:ci": "cypress run --browser chrome --headless"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1620738808455" clover="3.2.0">
+  <project timestamp="1620738808455" name="All files">
+    <metrics statements="79" coveredstatements="72" conditionals="55" coveredconditionals="48" methods="15" coveredmethods="14" elements="149" coveredelements="134" complexity="0" loc="79" ncloc="79" packages="4" files="6" classes="6"/>
+    <package name="helpers">
+      <metrics statements="18" coveredstatements="18" conditionals="10" coveredconditionals="10" methods="5" coveredmethods="5"/>
+      <file name="arrayHelpers.js" path="C:\Users\mrek8\GIT\react-starter\src\helpers\arrayHelpers.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="25" type="stmt"/>
+      </file>
+      <file name="formHelpers.js" path="C:\Users\mrek8\GIT\react-starter\src\helpers\formHelpers.js">
+        <metrics statements="14" coveredstatements="14" conditionals="10" coveredconditionals="10" methods="2" coveredmethods="2"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="53" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="36" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="9" type="stmt"/>
+        <line num="47" count="45" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="7" type="stmt"/>
+        <line num="54" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+      </file>
+      <file name="stepsHelpers.js" path="C:\Users\mrek8\GIT\react-starter\src\helpers\stepsHelpers.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="modules.AppState">
+      <metrics statements="30" coveredstatements="25" conditionals="18" coveredconditionals="14" methods="4" coveredmethods="3"/>
+      <file name="AppState.jsx" path="C:\Users\mrek8\GIT\react-starter\src\modules\AppState\AppState.jsx">
+        <metrics statements="30" coveredstatements="25" conditionals="18" coveredconditionals="14" methods="4" coveredmethods="3"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="11" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="19" count="11" type="cond" truecount="8" falsecount="0"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="53" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="74" count="8" type="stmt"/>
+        <line num="76" count="8" type="stmt"/>
+        <line num="83" count="3" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="91" count="3" type="stmt"/>
+        <line num="92" count="7" type="stmt"/>
+        <line num="93" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="96" count="7" type="stmt"/>
+        <line num="99" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="modules.DataState">
+      <metrics statements="22" coveredstatements="20" conditionals="7" coveredconditionals="5" methods="4" coveredmethods="4"/>
+      <file name="DataState.jsx" path="C:\Users\mrek8\GIT\react-starter\src\modules\DataState\DataState.jsx">
+        <metrics statements="22" coveredstatements="20" conditionals="7" coveredconditionals="5" methods="4" coveredmethods="4"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="4" type="cond" truecount="3" falsecount="0"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="35" count="8" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="7" type="stmt"/>
+        <line num="44" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="7" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="7" type="stmt"/>
+        <line num="52" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="7" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="modules.UserForm">
+      <metrics statements="9" coveredstatements="9" conditionals="20" coveredconditionals="19" methods="2" coveredmethods="2"/>
+      <file name="UserForm.jsx" path="C:\Users\mrek8\GIT\react-starter\src\modules\UserForm\UserForm.jsx">
+        <metrics statements="9" coveredstatements="9" conditionals="20" coveredconditionals="19" methods="2" coveredmethods="2"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

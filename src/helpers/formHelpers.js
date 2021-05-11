@@ -8,17 +8,17 @@ const ErrorListItem = styled.li`
 `;
 
 const ErrorTextTop = styled.p`
-    color:     ${cssVars.errorTextColor};
+    color: ${cssVars.errorTextColor};
     font-size: ${cssVars.fontSizeSmall};
-    margin:    0;
-    padding:   0;
+    margin: 0;
+    padding: 0;
 `;
 
 const ErrorText = styled.p`
-    color:     ${cssVars.errorTextColor};
+    color: ${cssVars.errorTextColor};
     font-size: ${cssVars.fontSizeSmall};
-    margin:    0;
-    padding:   .3rem 0 0;
+    margin: 0;
+    padding: 0.3rem 0 0;
 `;
 
 /**
@@ -28,7 +28,7 @@ const ErrorText = styled.p`
  * @param {String} name form element name
  * @returns {JSX} error markup
  */
-export const handleFormErrors = (errors, name) => {
+export const HandleFormErrors = (errors, name) => {
     if (!name) {
         return (
             <ul className="form-errors">
@@ -38,32 +38,32 @@ export const handleFormErrors = (errors, name) => {
                             <ErrorListItem className="form-error" key={`error${i}`}>
                                 <ErrorTextTop role="alert">{errors[key].message}</ErrorTextTop>
                             </ErrorListItem>
-                        )
+                        );
                     }
                 })}
             </ul>
-        )
+        );
     } else {
-        if (errors.hasOwnProperty(name)) {
+        if (Object.prototype.hasOwnProperty.call(errors, name)) {
             if (errors[name].message) {
                 return (
                     <ErrorText className="form-error" role="alert">
                         {errors[name].message}
                     </ErrorText>
-                )
-            } else if (errors[name].type === "maxLength") {
+                );
+            } else if (errors[name].type === 'maxLength') {
                 return (
                     <ErrorText className="form-error" role="alert">
                         Max length exceeded
                     </ErrorText>
-                )
-            } else if (errors[name].type === "minLength") {
+                );
+            } else {
                 return (
                     <ErrorText className="form-error" role="alert">
                         Min length not reached
                     </ErrorText>
-                )
+                );
             }
         }
     }
-}
+};

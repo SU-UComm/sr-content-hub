@@ -1,0 +1,6 @@
+*.md
+scripts/
+node_modules/
+package.json
+*.lock
+*-lock.json

@@ -128,6 +128,19 @@ When using VSCode with ESLint and stylelint extensions installed JS/CSS errors s
 * npm run lint:js - will lint js/jsx
 * npm run lint:css - will lint css/scss
 
+## Jest unit testing
+* Test are located in \_\_tests\_\_ folder.
+* identity-obj-proxy is used to mock scss/css imports of variables used in styled components.
+
+Run
+```
+npm run test
+```
+to run all test
+```
+npm run:coverage
+```
+to see/generate test coverage.
 ## Cypress E2E testing
 You can use (or rather merge in) **feature/cypress** branch for using [Cypress](https://www.cypress.io/) as an E2E testing tool. After merge run
 ```
@@ -187,4 +200,5 @@ npm run cypress:ci
 which will run a headless Chrome instance for testing.
 
 ## TO-DO
-* add [jest](https://jestjs.io/en/) for unit testing
+* add 100% jest test coverage
+

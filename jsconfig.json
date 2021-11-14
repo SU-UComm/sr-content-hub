@@ -1,25 +1,16 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "checkJs": false,
-        "jsx": "react",
-        "baseUrl": "./",
-        "paths": {
-            "src/*": [
-                "src/*"
-            ],
-            "modules/*": [
-                "src/modules/*"
-            ]
-        }
-    },
-    "include": [
-        "./src/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "build",
-        "dist"
-    ]
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "checkJs": false,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"],
+      "modules/*": ["src/modules/*"],
+      "helpers/*": ["src/helpers/*"]
+    }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "build", "dist"]
 }

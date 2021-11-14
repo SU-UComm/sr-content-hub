@@ -1,4 +1,4 @@
-import {dataStateReducer} from '../src/modules/DataState/DataState.jsx';
+import {dataStateReducer} from '../DataState.jsx';
 
 describe('dataStateReducer()', () => {
     it('setPage01', () => {

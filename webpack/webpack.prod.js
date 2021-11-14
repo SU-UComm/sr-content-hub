@@ -2,14 +2,14 @@ const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 const basePath = __dirname;
 
 // Change path for build
-common.output.path = path.resolve(__dirname, '../build')
+common.output.path = path.resolve(__dirname, '../build');
 
-module.exports = env => {
-
+module.exports = (env) => {
     // Environment variables from script command
     const env_minify = env.minify;
     let minimize = false;
@@ -26,26 +26,22 @@ module.exports = env => {
             rules: [
                 {
                     test: /\.scss$/,
-                    use: [
-                        MiniCssExtractPlugin.loader,
-                        "css-loader",
-                        "postcss-loader",
-                        "sass-loader",
-                        "import-glob-loader"
-                    ]
-                }
-            ]
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader', 'import-glob-loader'],
+                },
+            ],
         },
         plugins: [
-            new MiniCssExtractPlugin({
-                filename: "[name].css",
-                chunkFilename: "[name].css",
+            new Dotenv({
+                path: `.env`,
             }),
-            new CleanWebpackPlugin(['build'], { root: basePath + '/' + '..' })
+            new MiniCssExtractPlugin({
+                filename: '[name].css',
+                chunkFilename: '[name].css',
+            }),
+            new CleanWebpackPlugin(['build'], {root: basePath + '/' + '..'}),
         ],
         optimization: {
             minimize: minimize,
-        }
+        },
     });
-
-}
+};

@@ -1,9 +1,10 @@
 // These imports have no CSS output, but provide variables, mixins and helpers to aid in construction of
 // a design cutup.
-@import "imports/variables.scss";
-@import "imports/functions.scss";
-@import "imports/mixins.scss";
-@import "imports/placeholders.scss";
+@import '../../node_modules/normalize.css/normalize.css';
+@import 'imports/variables.scss';
+@import 'imports/functions.scss';
+@import 'imports/mixins.scss';
+@import 'imports/placeholders.scss';
 
 // Box size all the things
 // https://squizmap.squiz.net/imp-bp/6400
@@ -13,8 +14,8 @@
 *::before,
 *::after {
     -webkit-box-sizing: inherit;
-       -moz-box-sizing: inherit;
-            box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
 }
 html {
     @include sq-border-box;
@@ -27,7 +28,7 @@ Utilities
 --------------------
 */
 
-@import "imports/utilities.scss";
+@import 'imports/utilities.scss';
 
 /*
 --------------------
@@ -37,12 +38,12 @@ General
 
 // Taken from HTML 5 BP
 ::-moz-selection {
-    background:  $content-selection-highlight;
+    background: $content-selection-highlight;
     text-shadow: none;
 }
 
 ::selection {
-    background:  $content-selection-highlight;
+    background: $content-selection-highlight;
     text-shadow: none;
 }
 
@@ -52,11 +53,11 @@ body {
 }
 body {
     font-family: 'Lato', sans-serif;
-    font-size:   $base-font-scale + em;
+    font-size: $base-font-scale + em;
     line-height: 1.4;
-    margin:      0;
-    overflow-y:  scroll;
-    padding:     0;
+    margin: 0;
+    overflow-y: scroll;
+    padding: 0;
 }
 
 img {
@@ -69,14 +70,14 @@ button,
 select,
 textarea {
     font-family: inherit;
-    font-size:   inherit;
+    font-size: inherit;
     line-height: inherit;
 }
 
 // IE10 Metro responsive
 // Required for Windows 8 Metro split-screen snapping with IE10
 // Source: http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
-@-ms-viewport{
+@-ms-viewport {
     width: device-width;
 }
 
@@ -91,4 +92,4 @@ textarea {
 Modules
 --------------------
 */
-@import "../modules/*/css/global.scss";
+@import '../modules/*/css/global.scss';

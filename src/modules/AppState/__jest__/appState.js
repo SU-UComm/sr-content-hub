@@ -1,4 +1,4 @@
-import {appStateReducer} from '../src/modules/AppState/AppState.jsx';
+import {appStateReducer} from '../AppState.jsx';
 
 describe('appStateReducer()', () => {
     it('nextStep: 1 to 2', () => {

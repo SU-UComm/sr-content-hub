@@ -1,13 +1,20 @@
-# Readme #
 This repository can be used as a starting point for creating a React Application.
 It is based on Squiz Boilerplate:
 
 * [Read the wiki for more information](https://gitlab.squiz.net/boilerplate/webpack-boilerplate/wikis/home) about installation, example projects, help and contributing.
 * Read the [installation guide](https://gitlab.squiz.net/boilerplate/webpack-boilerplate/wikis/Installation)
 
-## Concepts
 
-### Using Contexts and Reducers
+[[_TOC_]]
+
+## Requirements
+This version is tested under:
+* Node v10.24.1
+* NPM 6.14.12
+
+On Windows 10 and Ubuntu 20.04.
+
+## Using Contexts and Reducers
 [Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.
 
 There are two contexts present:
@@ -59,7 +66,7 @@ export const UserForm = () => {
 }
 ```
 
-### Forms
+## Forms
 [React Hook Form](https://react-hook-form.com/) is used for handling form submissions, validation etc. This is just as an example. You can just as well use [Formik](https://formik.org/) or any other library (or don't use any) - depends on the project.
 One thing worth mentioning is that if you stay with React Hook Form and plan to support IE11 you need to comment this the other way around:
 ```
@@ -68,7 +75,7 @@ import { useForm } from 'react-hook-form';
 ```
 in **/src/modules/UserForm/UserForm.jsx**
 
-### Property validation
+## Property validation
 [prop-types](https://www.npmjs.com/package/prop-types) is used for that. It comes in handy when debuging as is considered good practice overall.
 Example use can be found in **src/modules/Steps/PrevNext.jsx**
 ```
@@ -99,7 +106,7 @@ PrevNext.propTypes = {
 }
 ```
 
-### Styled Components
+## Styled Components
 [Emotion](https://emotion.sh/docs/introduction) is used for styled components. Example can be found in **./src/helpers/formHelpers.js**. It shows how you can create a styled component using scss variables.
 ```
 import React from 'react';
@@ -123,14 +130,20 @@ export const handleFormErrors = (errors, name) => {
 ```
 More info on [styled components](https://styled-components.com/docs/basics).
 
-### Linting
+## Linting
 When using VSCode with ESLint and stylelint extensions installed JS/CSS errors should be highlighted in the editor. In addition for CI there are two separte commands:
 * npm run lint:js - will lint js/jsx
 * npm run lint:css - will lint css/scss
 
+## Prettier
+It is recommended to use prettier. This can be done by running:
+```
+npm run format
+```
+If you are using **VSCode** there is an easier way - install [Prettier  plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
 ## Jest unit testing
-* Test are located in \_\_tests\_\_ folder.
-* identity-obj-proxy is used to mock scss/css imports of variables used in styled components.
+* Test are located in **\_\_tests\_\_** folder and/or **./src/modules/\*\*/\_\_jest\_\_**
+* [identity-obj-proxy](https://jestjs.io/docs/webpack#mocking-css-modules) is used to mock scss/css imports of variables used in styled components.
 
 Run
 ```
@@ -141,15 +154,72 @@ to run all test
 npm run:coverage
 ```
 to see/generate test coverage.
-## Cypress E2E testing
-You can use (or rather merge in) **feature/cypress** branch for using [Cypress](https://www.cypress.io/) as an E2E testing tool. After merge run
-```
-npm install
-```
-Cypress related files:
-* ./cypress.json - env configuration
-* ./cypress/ - main folder with all tests etc
 
+## Env variables
+Environment variables are stored in
+* .env - PROD
+* .env.development - DEV/localhost
+
+Webpack uses **dotenv-webpack** package to access those variables.
+Cypress uses **cypress-dotenv** package to use environment variables.
+
+Those variables can be used in you code as:
+```
+process.env.{VARIABLE_NAME}
+```
+like in **./src/modules/UserForm/UserForm.jsx**
+```
+<p>ENV variable <i>process.env.ENV</i> === <strong>{`${process.env.ENV}`}</strong></p>
+```
+
+## Netlify DEV
+[Netlify DEV](https://cli.netlify.com/netlify-dev/) can be used to
+* proxy requests - example **./netlify_functions/example_node_fetch_POST.js**
+* mock data - example **./netlify_functions/example_mocked_JSON.js**
+
+To start run
+```
+npm run netlify:dev
+```
+which will make functions from **./netlify_functions/{name}.js** available under **127.0.0.1:8888/.netlify/functions/{name}**
+
+**process.env.{VARIABLE_NAME}** can be used - this will use **.env.development** file.
+
+## Cypress E2E testing
+[Cypress](https://www.cypress.io/) is used as an E2E testing tool.
+It is not installed by defualt. To install type:
+```
+npm run cypress:install
+```
+### Commands
+```
+npm run cypress:dev
+```
+runs cypress using cypress.development.json
+```
+npm run cypress:prod
+```
+runs cypress using cypress.json
+```
+npm run cypress:ci
+```
+runs cypress headless using cypress.json
+
+### Cypress related files
+* ./cypress.json - PROD env configuration
+* ./cypress.development.json - DEV env configuration
+* ./cypress/ - main folder
+
+### Test location
+Test are located in **./src/modules/\*\*/\_\_cypress\_\_/*.spec.js**
+
+### Env variables
+Cypress uses **cypress-dotenv** package to use environment variables Example usage of **SITE_URL** variable:
+```
+Cypress.env('SITE_URL')
+```
+
+### Additional info
 Out of the box it contains:
 * test that goes through all the steps of the app and check basic elements like form validation, going back and fourth throught the application
 * [A11Y](https://www.a11yproject.com/) valiation with [cypress-axe](https://www.npmjs.com/package/cypress-axe)
@@ -181,24 +251,9 @@ matrixLogin: (siteUrl, pageUrl, login, password) => {
 ```
 that can be used to test Matrix pages that require login.
 
-To run a localhost test you need to first start the local serve by:
+To run localhost tests you need to first start the webpack serve by:
 ```
 npm run serve
 ```
-then you can run
-```
-npm run cypress:install
-```
-to install cypress if you need to and then - **this can take a long time and appear frozen**
-```
-npm run cypress:tests
-```
-or for CI you can use
-```
-npm run cypress:ci
-```
-which will run a headless Chrome instance for testing.
 
-## TO-DO
-* add 100% jest test coverage
 

@@ -2,9 +2,9 @@ import React from 'react';
 import {unmountComponentAtNode} from 'react-dom';
 import '@testing-library/jest-dom';
 import {render, screen, fireEvent, act} from '@testing-library/react';
-import {UserForm} from '../src/modules/UserForm/UserForm.jsx';
-import {AppStateProvider} from '../src/modules/AppState/AppState.jsx';
-import {DataStateProvider} from '../src/modules/DataState/DataState.jsx';
+import {UserForm} from '../UserForm.jsx';
+import {AppStateProvider} from '../../AppState/AppState.jsx';
+import {DataStateProvider} from '../../DataState/DataState.jsx';
 
 describe('<UserForm />', () => {
     // Mount before each test and unmount after

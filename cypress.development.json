@@ -1,10 +1,10 @@
 {
-  "baseUrl": "https://production.url",
+  "baseUrl": "http://127.0.0.1:3000",
   "integrationFolder": "./src/modules/",
   "testFiles": "**/__cypress__/*.spec.js",
   "blockHosts": ["*fonts.googleapis.com", "*addthis.com"],
   "video": false,
   "env": {
-    "ENVFILE": ".env"
+    "ENVFILE": ".env.development"
   }
 }

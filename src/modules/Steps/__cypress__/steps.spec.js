@@ -1,19 +1,22 @@
-/* globals describe it cy Cypress */
+/* globals cy Cypress */
 // <reference types="cypress" />
 
-import { helpers } from '../support/tests';
-const siteUrl = Cypress.env('localURL');
+import {helpers} from '../../../../cypress/support/tests';
+const siteUrl = Cypress.env('SITE_URL');
 
 // Test A11Y
-describe('Tests - localhost', () => {
+describe(`Steps - ${Cypress.env('ENV')}`, () => {
+    afterEach(() => {
+        helpers.clearAllCookies();
+    });
 
     // For each screen size
     helpers.sizes.forEach((size) => {
-
         it(`Form test ${size}`, () => {
-
             // Set viewport size
-            if (size) { helpers.viewportSize(size); }
+            if (size) {
+                helpers.viewportSize(size);
+            }
 
             // Visit URL
             cy.visit(siteUrl);
@@ -23,7 +26,7 @@ describe('Tests - localhost', () => {
 
             /**
              * Step 01
-            */
+             */
 
             // Check steps navigation
             cy.get('.step__button').eq(0).should('have.class', 'step__button--current');
@@ -31,9 +34,9 @@ describe('Tests - localhost', () => {
             cy.get('.step__button').eq(2).should('be.disabled');
 
             // Check form validation in step 01
-            cy.get('.userForm__submit').click();                // Click to check validation errors
-            cy.get('.form-errors').should('be.visible');        // Should see global error box
-            cy.get('p.form-error').should('have.length', 6);    // Shoud have 6 error boxes
+            cy.get('.userForm__submit').click(); // Click to check validation errors
+            cy.get('.form-errors').should('be.visible'); // Should see global error box
+            cy.get('p.form-error').should('have.length', 6); // Shoud have 6 error boxes
 
             // Fill in the form
             cy.get('#title').select('Mr');
@@ -70,7 +73,6 @@ describe('Tests - localhost', () => {
             // Go to next step
             cy.get('.userForm__submit').click();
 
-
             /**
              * Step 02
              */
@@ -106,8 +108,8 @@ describe('Tests - localhost', () => {
             cy.get('.prevNext__button').eq(1).click();
 
             /**
-            * Step 03
-            */
+             * Step 03
+             */
 
             // Check steps navigation
             cy.get('.step__button').eq(0).should('have.class', 'step__button--finished');
@@ -129,7 +131,7 @@ describe('Tests - localhost', () => {
              * Restart
              */
 
-            cy.get('.prevNext__button').eq(1).click();  // Click restart button
+            cy.get('.prevNext__button').eq(1).click(); // Click restart button
 
             // Check steps navigation
             cy.get('.step__button').eq(0).should('have.class', 'step__button--current');
@@ -147,12 +149,6 @@ describe('Tests - localhost', () => {
 
             // Check A11Y
             cy.wait(500).checkA11y();
-
         });
-
-
-
-
     });
-
 });

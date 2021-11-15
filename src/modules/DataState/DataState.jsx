@@ -1,10 +1,5 @@
 import React from 'react';
-import {any} from 'prop-types';
-
-// Initial data
-let initialData = {
-    page01: {},
-};
+import {any, object} from 'prop-types';
 
 const DataStateContext = React.createContext();
 const DataDispatchContext = React.createContext();
@@ -29,12 +24,14 @@ export const dataStateReducer = (state, action) => {
     }
 };
 
-const DataStateProvider = ({children}) => {
+const DataStateProvider = (props) => {
+    let initialData = props.defaultData;
+
     const [state, dispatch] = React.useReducer(dataStateReducer, initialData);
 
     return (
         <DataStateContext.Provider value={state}>
-            <DataDispatchContext.Provider value={dispatch}>{children}</DataDispatchContext.Provider>
+            <DataDispatchContext.Provider value={dispatch}>{props.children}</DataDispatchContext.Provider>
         </DataStateContext.Provider>
     );
 };
@@ -56,6 +53,7 @@ const useDataDispatch = () => {
 };
 
 DataStateProvider.propTypes = {
+    defaultData: object,
     children: any,
 };
 

@@ -2,17 +2,21 @@ import React from 'react';
 import {unmountComponentAtNode} from 'react-dom';
 import '@testing-library/jest-dom';
 import {render, screen, fireEvent, act} from '@testing-library/react';
-import {UserForm} from '../UserForm.jsx';
-import {AppStateProvider} from '../../AppState/AppState.jsx';
-import {DataStateProvider} from '../../DataState/DataState.jsx';
+import {UserForm} from 'modules/UserForm/UserForm.jsx';
+import {AppStateProvider} from 'modules/AppState/AppState.jsx';
+import {DataStateProvider} from 'modules/DataState/DataState.jsx';
+
+const dataStateDefaultData = require('modules/DataState/dataStateDefaultData.json');
+let appStateDefaultData = require('modules/AppState/appStateDefaultData.json');
+appStateDefaultData.translations = window.translations || {};
 
 describe('<UserForm />', () => {
     // Mount before each test and unmount after
     let wrapper = null;
     beforeEach(() => {
         const {container} = render(
-            <AppStateProvider>
-                <DataStateProvider>
+            <AppStateProvider defaultData={appStateDefaultData}>
+                <DataStateProvider defaultData={dataStateDefaultData}>
                     <UserForm />
                 </DataStateProvider>
             </AppStateProvider>,

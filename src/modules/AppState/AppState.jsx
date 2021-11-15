@@ -1,14 +1,6 @@
 import React from 'react';
-import {any} from 'prop-types';
+import {any, object} from 'prop-types';
 import {arrayHelperRemoveElementByValue} from 'src/helpers/arrayHelpers.js';
-
-// Initial data
-let initialData = {
-    currentStep: 1,
-    finishedSteps: [],
-    blockedSteps: [],
-    translations: window.translations || {},
-};
 
 const AppStateContext = React.createContext();
 const AppDispatchContext = React.createContext();
@@ -70,12 +62,13 @@ export const appStateReducer = (state, action) => {
     }
 };
 
-const AppStateProvider = ({children}) => {
+const AppStateProvider = (props) => {
+    let initialData = props.defaultData;
     const [state, dispatch] = React.useReducer(appStateReducer, initialData);
 
     return (
         <AppStateContext.Provider value={state}>
-            <AppDispatchContext.Provider value={dispatch}>{children}</AppDispatchContext.Provider>
+            <AppDispatchContext.Provider value={dispatch}>{props.children}</AppDispatchContext.Provider>
         </AppStateContext.Provider>
     );
 };
@@ -97,6 +90,7 @@ const useAppDispatch = () => {
 };
 
 AppStateProvider.propTypes = {
+    defaultData: object,
     children: any,
 };
 

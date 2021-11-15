@@ -7,8 +7,11 @@ import Steps from 'modules/Steps/Steps.jsx';
 
 import 'src/styles/global.scss';
 
-// Stateful components
+const dataStateDefaultData = require('modules/DataState/dataStateDefaultData.json');
+let appStateDefaultData = require('modules/AppState/appStateDefaultData.json');
+appStateDefaultData.translations = window.translations || {};
 
+// Stateful components
 export class App extends React.Component {
     constructor(props) {
         super(props);
@@ -17,8 +20,8 @@ export class App extends React.Component {
 
     render() {
         return (
-            <AppStateProvider>
-                <DataStateProvider>
+            <AppStateProvider defaultData={appStateDefaultData}>
+                <DataStateProvider defaultData={dataStateDefaultData}>
                     <div className="container">
                         <Steps />
                         <PageRouter />

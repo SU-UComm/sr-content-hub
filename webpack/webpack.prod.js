@@ -1,24 +1,11 @@
-const path = require('path');
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
-const basePath = __dirname;
-
-// Change path for build
-common.output.path = path.resolve(__dirname, '../build');
+const config = require('./config');
 
 module.exports = (env) => {
-    // Environment variables from script command
-    const env_minify = env.minify;
-    let minimize = false;
-
-    // Conditional minification
-    if (env_minify === 'true') {
-        minimize = true;
-    }
-
     return merge(common, {
         mode: 'production',
         devtool: 'source-map',
@@ -38,10 +25,13 @@ module.exports = (env) => {
                 filename: '[name].css',
                 chunkFilename: '[name].css',
             }),
-            new CleanWebpackPlugin(['build'], {root: basePath + '/' + '..'}),
+            new CleanWebpackPlugin({
+                cleanAfterEveryBuildPatterns: [config.buildFolder],
+                verbose: true,
+            }),
         ],
         optimization: {
-            minimize: minimize,
+            minimize: env.minify === 'true' ? true : false,
         },
     });
 };

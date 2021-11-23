@@ -4,7 +4,6 @@
     "embeddedLanguageFormatting": "auto",
     "htmlWhitespaceSensitivity": "css",
     "insertPragma": false,
-    "jsxBracketSameLine": false,
     "jsxSingleQuote": false,
     "printWidth": 180,
     "proseWrap": "always",
@@ -18,9 +17,16 @@
     "vueIndentScriptAndStyle": false,
     "overrides": [
         {
-            "files": "*.json",
+            "files": "**/*.json",
             "options": {
                 "tabWidth": 2
+            }
+        },
+        {
+            "files": "**/*.scss",
+            "options": {
+                "tabWidth": 2,
+                "singleQuote": false
             }
         }
     ]

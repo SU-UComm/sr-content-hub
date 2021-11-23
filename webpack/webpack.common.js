@@ -1,133 +1,114 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+/* global devServer */
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
-const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const ESLintPlugin = require('eslint-webpack-plugin');
+const config = require('./config');
 
 // Our function that generates our html plugins
 function generateHtmlPlugins(templateDir) {
     // Read files in /html directory
-    const templateFiles = fs
-        .readdirSync(path.resolve(__dirname, templateDir))
-        .filter(function (file) { //ignore folder
-            return file.indexOf('.html') > -1
-        });
+    const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir)).filter(function (file) {
+        //ignore folder
+        return file.indexOf('.html') > -1;
+    });
 
-    return templateFiles.map(item => {
+    return templateFiles.map((item) => {
         // Split names and extension
-        const parts = item.split('.')
-        const name = parts[0]
-        const extension = parts[1]
+        const parts = item.split('.');
+        const name = parts[0];
+        const extension = parts[1];
         // Create new HTMLWebpackPlugin with options
         return new HtmlWebPackPlugin({
-            'filename': `${name}.html`,
-            'template': path.resolve(__dirname, `${templateDir}/${name}.${extension}`)
+            filename: `${name}.html`,
+            template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
+            chunks: ['reactContexts'],
         });
     });
 }
 const htmlPlugins = generateHtmlPlugins('../src/html');
 
-// File arrays
-//let js_files = glob.sync('./src/modules/**/global.js') // Module JS
-let jsx_files = glob.sync('./src/modules/**/*.jsx') // React JSX
+class WatchForHotHTMLChanges {
+    apply(compiler) {
+        compiler.hooks.watchRun.tap('WatchForHotHTMLChanges', (comp) => {
+            if (comp.modifiedFiles) {
+                const changedFiles = Array.from(comp.modifiedFiles, (file) => `\n  ${file}`).join('');
+                console.log('===============================');
+                console.log('FILES CHANGED:', changedFiles);
+                console.log('===============================');
 
-
-function reloadHtml() {
-    const cache = {};
-    const plugin = {
-        name: 'CustomHtmlReloadPlugin'
-    };
-
-    this.hooks.compilation.tap(plugin, compilation => {
-        compilation.hooks.htmlWebpackPluginAfterEmit.tap(plugin, data => {
-            const orig = cache[data.outputName];
-            const html = data.html.source();
-
-            // plugin seems to emit on any unrelated change?
-            if (orig && orig !== html) {
-                devServer.sockWrite(devServer.sockets, 'content-changed')
+                devServer.sendMessage(devServer.webSocketServer.clients, 'content-changed');
             }
-
-            cache[data.outputName] = html
-        })
-    })
+        });
+    }
 }
 
-const copyWebPack = new CopyWebpackPlugin([
-    {
-        from: path.resolve(__dirname, '../src/externals'),
-        to: 'externals'
-    }
-])
+const copyWebPack = new CopyWebpackPlugin({
+    patterns: [
+        {
+            from: path.resolve(__dirname, '../src/externals'),
+            to: 'externals',
+        },
+    ],
+});
 
 module.exports = {
-    entry: {
-        'react-app': jsx_files
-        //'main': ['./src/index.js']
-        //'main': ['./src/index.js'].concat(js_files)
-    },
+    entry: config.entry,
     output: {
-        path: path.resolve(__dirname, '../dist'), // Output folder
-        filename: 'js/[name].js' // JS output path
+        path: path.resolve(__dirname, `../${config.buildFolder}`), // Output folder
+        filename: 'js/[name].js', // JS output path
     },
     resolve: {
-        alias: {
-            NodeModules: path.resolve(__dirname, '../node_modules/'),
-            src: path.resolve(__dirname, '../src/'),
-            modules: path.resolve(__dirname, '../src/modules')
-        }
+        alias: config.alias,
     },
     module: {
         rules: [
-            { // HTML
+            {
+                // HTML
                 test: /\.html$/,
-                use: [{
-                    loader: "html-loader",
-                    options: {
-                        minimize: false,
-                        interpolate: true // allow HTML snippets with commonJs require tags
-                    }
-                }]
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            minimize: false,
+                            interpolate: true, // allow HTML snippets with commonJs require tags
+                        },
+                    },
+                ],
             },
-            { // JavaScript and JSX only (no JSON)
+            {
+                // Inline SVG
+                test: /inline-.+\.svg$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            minimize: true,
+                        },
+                    },
+                ],
+            },
+            {
+                // JavaScript and JSX only (no JSON)
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [
-                    "babel-loader",
-                    "eslint-loader"
-                ]
+                use: ['babel-loader'],
             },
-            { // Images
-                test: /\.(png|svg|jpg|gif)$/,
-                exclude: /inline\-.*\.svg$/,
-                use: {
-                    'loader': 'file-loader',
-                    'options': {
-                        'name': "[name].[ext]",
-                        'outputPath': 'mysource_files/'
-                    }
-                }
-            },
-            // Inline SVG
             {
-                test: /inline\-.*\.svg$/,
-                loader: 'react-svg-loader'
+                // Images & fonts
+                test: /\.(png|svg|jpg|gif|woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+                exclude: /inline-.+\.svg$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: './mysource_files/[name][ext]',
+                },
             },
-            { // Font files
-                test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [{
-                    'loader': 'file-loader',
-                    'options': {
-                        'name': './mysource_files/[name].[ext]'
-                    }
-                }]
-            }
-        ]
+        ],
     },
-    plugins: htmlPlugins.concat(reloadHtml).concat(copyWebPack),
+    plugins: [new ESLintPlugin({extensions: ['js', 'jsx']})].concat(htmlPlugins).concat(new WatchForHotHTMLChanges()).concat(copyWebPack),
     optimization: {
         minimize: false,
         runtimeChunk: false,
-    }
+    },
 };

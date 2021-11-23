@@ -1,3 +1,1 @@
 *.min.js
-src/templates/**/*.js
-src/templates/**/*.jsx

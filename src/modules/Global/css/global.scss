@@ -1,0 +1,56 @@
+/*
+ * Mobile layout
+ */
+.header {
+  background-color: $lightGray;
+  padding: pxToRem(16);
+}
+
+.header-heading {
+  align-items: center;
+  display: flex;
+  font-size: $fontSizeLarge;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.header-logo {
+  height: pxToRem(50);
+  margin-right: 1rem;
+  width: pxToRem(50);
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.footer {
+  border-top: 1px solid $darkGray;
+  margin-top: 1rem;
+  padding: 1rem 0;
+}
+
+/*
+ * Tablet layout
+ */
+
+@media (min-resolution: 2dppx) {
+  body.test {
+    z-index: 2;
+  }
+  ::placeholder {
+    color: gray;
+  }
+}
+
+/*
+ * Desktop layout
+ */
+
+@media screen and (min-width: $desktop) {
+  .container {
+    max-width: pxToRem(1024);
+  }
+}

@@ -1,22 +1,24 @@
-const webpack = require('webpack');
+/* global devServer */
 const Dotenv = require('dotenv-webpack');
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
+const config = require('./config');
 
 module.exports = merge(common, {
     mode: 'development',
-    devtool: 'cheap-eval-source-map',
+    devtool: 'eval-cheap-source-map',
     devServer: {
-        before(app, server) {
-            devServer = server;
-            app.post('*', (req, res) => {
+        onBeforeSetupMiddleware(app) {
+            devServer = app; // eslint-disable-line
+
+            // Redirect POST requests to GET
+            devServer.app.post('*', (req, res) => {
                 res.redirect(req.originalUrl);
             });
         },
-        contentBase: '../dist',
         hot: true,
-        host: '127.0.0.1',
-        port: 3000,
+        host: config.host,
+        port: config.port,
     },
     module: {
         rules: [
@@ -30,6 +32,5 @@ module.exports = merge(common, {
         new Dotenv({
             path: `.env.development`,
         }),
-        new webpack.HotModuleReplacementPlugin(),
     ],
 });

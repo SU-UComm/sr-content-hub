@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:3000",
-  "integrationFolder": "./src/modules/",
+  "integrationFolder": "./src/",
   "testFiles": "**/__cypress__/*.spec.js",
   "blockHosts": ["*fonts.googleapis.com", "*addthis.com"],
   "video": false,

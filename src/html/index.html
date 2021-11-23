@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>React starter</title>
+        ${require('src/html/fragments/head.html')}
+    </head>
 
-<head>
-    <title>React starter</title>
-    ${require('../modules/_global/html/head.html')}
-</head>
+    <body>
+        <div class="page-wrapper">
+            <!--noindex-->
+            ${require('src/html/fragments/global-header.html')}
+            <!--endnoindex-->
 
-<body>
-    <div class="page-wrapper">
-        <!--noindex-->
-        ${require('../modules/_global/html/global-header.html')}
-        <!--endnoindex-->
+            <!--@@ App data JSON @@-->
+            ${require('modules/ReactContexts/AppData/html/appData.html')}
 
-        <!--@@ App data JSON @@-->
-        ${require('../modules/AppData/html/appData.html')}
+            <main class="main" role="main">
+                <div id="react__app-wrapper"></div>
+            </main>
+            <!-- /.main -->
 
-        <main class="main" role="main">
-            <div id="react__app-wrapper"></div>
-        </main><!-- /.main -->
-
-        <!--noindex-->
-        ${require('../modules/_global/html/global-footer.html')}
-        <!--endnoindex-->
-    </div><!-- /.page-wrapper -->
-    <div class="footer-scripts">
-        ${require('../modules/_global/html/scripts.html')}
-    </div>
-</body>
-
+            <!--noindex-->
+            ${require('src/html/fragments/global-footer.html')}
+            <!--endnoindex-->
+        </div>
+        <!-- /.page-wrapper -->
+    </body>
 </html>

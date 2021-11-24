@@ -1,48 +1,33 @@
 import {dataStateReducer} from '../DataState.jsx';
 
 describe('dataStateReducer()', () => {
-    it('setPage01', () => {
+    it('setData', () => {
         const initialState = {
-            page01: {},
-        };
-        const formData = {
-            Title: 'Mr',
-            'First name': 'John',
-            'Last name': 'Doe',
-            Email: 'john@doe.com',
-            'Mobile number': '1234567',
-            Developer: 'Yes',
+            exampleData: 1,
         };
         const expectedState = {
-            page01: formData,
+            exampleData: 2,
         };
-        const updateAction = {type: 'setPage01', data: formData, initialState};
+        const updateAction = {type: 'setData', data: 2};
         const updatedState = dataStateReducer(initialState, updateAction);
         expect(updatedState).toEqual(expectedState);
     });
 
-    it('clearDataState', () => {
+    it('clearData', () => {
         const initialState = {
-            page01: {
-                Title: 'Mr',
-                'First name': 'John',
-                'Last name': 'Doe',
-                Email: 'john@doe.com',
-                'Mobile number': '1234567',
-                Developer: 'Yes',
-            },
+            exampleData: 2,
         };
         const expectedState = {
-            page01: {},
+            exampleData: '',
         };
-        const updateAction = {type: 'clearDataState', initialState};
+        const updateAction = {type: 'clearData'};
         const updatedState = dataStateReducer(initialState, updateAction);
         expect(updatedState).toEqual(expectedState);
     });
 
     it('default', () => {
         const initialState = {
-            page01: {},
+            exampleData: 1,
         };
 
         const updateAction = {type: 'notSupportedType', initialState};

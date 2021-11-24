@@ -1,10 +1,34 @@
 /* global devServer */
+const chalk = require('chalk');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const config = require('./config');
+
+// Print entry points
+console.log(chalk.cyan('==== Entries list ===='));
+Object.keys(config.entry).forEach((entryName, i) => {
+    console.log(`    ${i + 1}.`, chalk.yellow(entryName), ' =>', config.entry[entryName]);
+});
+console.log(chalk.cyan('=======================\n'));
+
+// Pick proper chunks
+function pickChunks(name, configChunks) {
+    let chunks = new Set(configChunks.allPages);
+
+    if (configChunks?.pages?.[name]) {
+        configChunks?.pages?.[name].addChunks.forEach((addChunk) => {
+            chunks.add(addChunk);
+        });
+        configChunks?.pages?.[name].removeChunks.forEach((removeChunk) => {
+            chunks.delete(removeChunk);
+        });
+    }
+
+    return [...chunks];
+}
 
 // Our function that generates our html plugins
 function generateHtmlPlugins(templateDir) {
@@ -14,19 +38,26 @@ function generateHtmlPlugins(templateDir) {
         return file.indexOf('.html') > -1;
     });
 
-    return templateFiles.map((item) => {
+    console.log(chalk.cyan('==== Chunks config ===='));
+    return templateFiles.map((item, i) => {
         // Split names and extension
         const parts = item.split('.');
         const name = parts[0];
         const extension = parts[1];
+
+        // Print chunks config
+        console.log(`    ${i + 1}.`, chalk.yellow(`${name}.html`), ' =>', pickChunks(name, config.chunks));
+        templateFiles.length === i + 1 ? console.log(chalk.cyan('=======================\n')) : '';
+
         // Create new HTMLWebpackPlugin with options
         return new HtmlWebPackPlugin({
             filename: `${name}.html`,
             template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
-            chunks: ['reactContexts'],
+            chunks: pickChunks(name, config.chunks),
         });
     });
 }
+
 const htmlPlugins = generateHtmlPlugins('../src/html');
 
 class WatchForHotHTMLChanges {

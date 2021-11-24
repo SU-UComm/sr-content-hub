@@ -12,9 +12,30 @@ module.exports = {
         helpers: path.resolve(__dirname, '../src/helpers'),
     },
     entry: {
-        reactContexts: './src/modules/ReactContexts/render.jsx',
         global: glob.sync('./src/modules/**/global.js'),
-        //'main': ['./src/index.js']
-        //'main': ['./src/index.js'].concat(js_files)
+        reactContexts: './src/modules/ReactContexts/render.jsx',
+        reactRouter: './src/modules/ReactRouter/render.jsx',
+        reactExamples: './src/modules/ReactExamples/render.jsx',
     },
+    chunks: {
+        allPages: ['global'],
+        pages: {
+            reactContexts: {
+                addChunks: ['reactContexts'],
+                removeChunks: [],
+            },
+            reactRouter: {
+                addChunks: ['reactRouter'],
+                removeChunks: [],
+            },
+            reactExamples: {
+                addChunks: ['reactExamples'],
+                removeChunks: [],
+            },
+        },
+    },
+    rewrites: [
+        {from: /^\/$/, to: '/reactRouter.html'},
+        {from: /./, to: '/reactRouter.html'},
+    ],
 };

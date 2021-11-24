@@ -256,7 +256,7 @@ __webpack_require__(2401);
 __webpack_require__(8722);
 __webpack_require__(2165);
 __webpack_require__(9007);
-__webpack_require__(6066);
+__webpack_require__(2509);
 __webpack_require__(3510);
 __webpack_require__(1840);
 __webpack_require__(6982);
@@ -12604,7 +12604,7 @@ hiddenKeys[HIDDEN] = true;
 
 /***/ }),
 
-/***/ 6066:
+/***/ 2509:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
 var defineWellKnownSymbol = __webpack_require__(7235);
@@ -15404,7 +15404,7 @@ __webpack_require__(2401);
 __webpack_require__(8722);
 __webpack_require__(2165);
 __webpack_require__(9007);
-__webpack_require__(6066);
+__webpack_require__(2509);
 __webpack_require__(3510);
 __webpack_require__(1840);
 __webpack_require__(6982);
@@ -18190,7 +18190,7 @@ if (!global.fetch) {
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"currentStep":1,"finishedSteps":[],"blockedSteps":[],"translations":{}}');
+module.exports = JSON.parse('{"exampleAppData":[]}');
 
 /***/ }),
 
@@ -18198,7 +18198,7 @@ module.exports = JSON.parse('{"currentStep":1,"finishedSteps":[],"blockedSteps":
 /***/ (function(module) {
 
 "use strict";
-module.exports = {"page01":{}};
+module.exports = {"exampleData":1};
 
 /***/ })
 
@@ -18229,6 +18229,18 @@ module.exports = {"page01":{}};
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -18301,20 +18313,8 @@ var es_array_iterator = __webpack_require__(6992);
 var es_string_iterator = __webpack_require__(8783);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__(3948);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(2222);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.set.js
-var es_set = __webpack_require__(189);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
-var es_object_keys = __webpack_require__(7941);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
 var es_array_filter = __webpack_require__(7327);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
-var es_object_get_own_property_descriptor = __webpack_require__(5003);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__(4747);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
-var es_object_get_own_property_descriptors = __webpack_require__(9337);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
 var es_array_from = __webpack_require__(1038);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
@@ -18323,15 +18323,71 @@ var es_array_slice = __webpack_require__(7042);
 var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
 var es_regexp_exec = __webpack_require__(4916);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
+var es_object_keys = __webpack_require__(7941);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
+var es_object_get_own_property_descriptor = __webpack_require__(5003);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
+var web_dom_collections_for_each = __webpack_require__(4747);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
+var es_object_get_own_property_descriptors = __webpack_require__(9337);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(5697);
-;// CONCATENATED MODULE: ./src/helpers/arrayHelpers.js
+var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+;// CONCATENATED MODULE: ./src/helpers/localStorageHelpers.js
+/**
+ * Get data from local storage
+ * @param {string} keyname local storage keyname
+ * @param {string} key optional: key value
+ * @returns {object} data from local storage
+ */
+var getFromStorage = function getFromStorage(keyname, key) {
+  if (key) {
+    return JSON.parse(localStorage.getItem(keyname))[key];
+  }
 
+  return JSON.parse(localStorage.getItem(keyname));
+};
+/**
+ * Set data to local storage
+ * @param {string} keyname local storage keyname
+ * @param {string} key optional: key value to set
+ * @param {any} value value to set - if not provided will set to entire keyname
+ * @returns {object} entire data object
+ */
 
-var arrayHelperRemoveElementByValue = function arrayHelperRemoveElementByValue(itemToBeRemoved, array) {
-  return array.filter(function (item) {
-    return item !== itemToBeRemoved;
-  });
+var setToStorage = function setToStorage(keyname, key, value) {
+  var appState = getFromStorage(keyname) || {};
+
+  if (key) {
+    appState[key] = value;
+  } else {
+    appState = value;
+  }
+
+  localStorage.setItem(keyname, JSON.stringify(appState));
+  return appState;
+};
+;// CONCATENATED MODULE: ./src/modules/ReactContexts/AppState/appStateHelpers.js
+
+/**
+ * Load appState data from local storage
+ * @param {string} key optional: key value
+ * @returns {object} appState data from local storage
+ */
+
+var loadAppState = function loadAppState(key) {
+  return getFromStorage('reactStarterAppState', key);
+};
+/**
+ * Save appState data to local storage
+ * @param {string} key optional: key value to set
+ * @param {any} value value to set - if not provided will set to entire appState
+ * @returns {object} entire appState data object
+ */
+
+var saveAppState = function saveAppState(key, value) {
+  return setToStorage('reactStarterAppState', key, value);
 };
 ;// CONCATENATED MODULE: ./src/modules/ReactContexts/AppState/AppState.jsx
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -18359,7 +18415,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -18373,73 +18433,34 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
 var AppStateContext = /*#__PURE__*/react.createContext();
 var AppDispatchContext = /*#__PURE__*/react.createContext();
 var appStateReducer = function appStateReducer(state, action) {
-  var maxStep = 3;
-  var minStep = 1;
-
   switch (action.type) {
-    case 'nextStep':
+    case 'addExampleAppData':
       {
+        var newExampleAppData = _toConsumableArray(state.exampleAppData);
+
+        newExampleAppData.push(action.data);
+        saveAppState('exampleAppData', newExampleAppData);
         return _objectSpread(_objectSpread({}, state), {}, {
-          currentStep: state.currentStep + 1 <= maxStep ? state.currentStep + 1 : maxStep,
-          finishedSteps: [].concat(_toConsumableArray(state.finishedSteps), [state.currentStep])
+          exampleAppData: newExampleAppData
         });
       }
 
-    case 'previousStep':
+    case 'removeExampleAppData':
       {
-        return _objectSpread(_objectSpread({}, state), {}, {
-          currentStep: state.currentStep - 1 >= minStep ? state.currentStep - 1 : minStep,
-          finishedSteps: arrayHelperRemoveElementByValue(state.currentStep, state.finishedSteps)
-        });
-      }
+        var _newExampleAppData = _toConsumableArray(state.exampleAppData);
 
-    case 'setCurrentStep':
-      {
-        return _objectSpread(_objectSpread({}, state), {}, {
-          currentStep: action.payload
+        _newExampleAppData = _newExampleAppData.filter(function (e) {
+          return e !== action.data;
         });
-      }
-
-    case 'enableFirstStepOnly':
-      {
+        saveAppState('exampleAppData', _newExampleAppData);
         return _objectSpread(_objectSpread({}, state), {}, {
-          finishedSteps: [1]
-        });
-      }
-
-    case 'enableAllSteps':
-      {
-        return _objectSpread(_objectSpread({}, state), {}, {
-          finishedSteps: [1, 2, 3]
-        });
-      }
-
-    case 'blockSteps':
-      {
-        state.blockedSteps.push(action.payload);
-        return _objectSpread(_objectSpread({}, state), {}, {
-          blockedSteps: _toConsumableArray(new Set(state.blockedSteps))
-        });
-      }
-
-    case 'clearAppState':
-      {
-        return _objectSpread(_objectSpread({}, state), {}, {
-          currentStep: 1,
-          finishedSteps: [],
-          blockedSteps: []
+          exampleAppData: _newExampleAppData
         });
       }
 
@@ -18452,6 +18473,15 @@ var appStateReducer = function appStateReducer(state, action) {
 
 var AppStateProvider = function AppStateProvider(props) {
   var initialData = props.defaultData;
+
+  if (!loadAppState()) {
+    // InitialData not present - use props.defaultData
+    saveAppState(null, initialData);
+  } else {
+    // InitialData present - load it
+    initialData = loadAppState();
+    saveAppState(null, initialData);
+  }
 
   var _React$useReducer = react.useReducer(appStateReducer, initialData),
       _React$useReducer2 = _slicedToArray(_React$useReducer, 2),
@@ -18466,7 +18496,7 @@ var AppStateProvider = function AppStateProvider(props) {
 };
 
 var useAppState = function useAppState() {
-  var context = React.useContext(AppStateContext);
+  var context = react.useContext(AppStateContext);
 
   if (context === undefined) {
     throw new Error('useAppState must be used within a AppStateProvider');
@@ -18476,7 +18506,7 @@ var useAppState = function useAppState() {
 };
 
 var useAppDispatch = function useAppDispatch() {
-  var context = React.useContext(AppDispatchContext);
+  var context = react.useContext(AppDispatchContext);
 
   if (context === undefined) {
     throw new Error('useAppDispatch must be used within a AppStateProvider');
@@ -18486,8 +18516,8 @@ var useAppDispatch = function useAppDispatch() {
 };
 
 AppStateProvider.propTypes = {
-  defaultData: prop_types.object,
-  children: prop_types.any
+  defaultData: (prop_types_default()).object,
+  children: (prop_types_default()).any
 };
 
 ;// CONCATENATED MODULE: ./src/modules/ReactContexts/DataState/DataState.jsx
@@ -18532,17 +18562,17 @@ var DataStateContext = /*#__PURE__*/react.createContext();
 var DataDispatchContext = /*#__PURE__*/react.createContext();
 var dataStateReducer = function dataStateReducer(state, action) {
   switch (action.type) {
-    case 'setPage01':
+    case 'setData':
       {
         return DataState_objectSpread(DataState_objectSpread({}, state), {}, {
-          page01: action.data
+          exampleData: action.data
         });
       }
 
-    case 'clearDataState':
+    case 'clearData':
       {
         return DataState_objectSpread(DataState_objectSpread({}, state), {}, {
-          page01: {}
+          exampleData: ''
         });
       }
 
@@ -18569,7 +18599,7 @@ var DataStateProvider = function DataStateProvider(props) {
 };
 
 var useDataState = function useDataState() {
-  var context = React.useContext(DataStateContext);
+  var context = react.useContext(DataStateContext);
 
   if (context === undefined) {
     throw new Error('useDataState must be used within a DataStateProvider');
@@ -18579,7 +18609,7 @@ var useDataState = function useDataState() {
 };
 
 var useDataDispatch = function useDataDispatch() {
-  var context = React.useContext(DataDispatchContext);
+  var context = react.useContext(DataDispatchContext);
 
   if (context === undefined) {
     throw new Error('useDataDispatch must be used within a DataStateProvider');
@@ -18589,30 +18619,145 @@ var useDataDispatch = function useDataDispatch() {
 };
 
 DataStateProvider.propTypes = {
-  defaultData: prop_types.object,
-  children: prop_types.any
+  defaultData: (prop_types_default()).object,
+  children: (prop_types_default()).any
 };
 
-;// CONCATENATED MODULE: ./src/modules/ReactContexts/Header/Header.jsx
+;// CONCATENATED MODULE: ./src/modules/ReactContexts/AppStateExample/AppStateExample.jsx
 
-var Header = function Header() {
-  return /*#__PURE__*/React.createElement("header", {
-    className: "header"
-  }, "This is a header");
+
+
+
+
+
+
+
+
+
+
+
+function AppStateExample_slicedToArray(arr, i) { return AppStateExample_arrayWithHoles(arr) || AppStateExample_iterableToArrayLimit(arr, i) || AppStateExample_unsupportedIterableToArray(arr, i) || AppStateExample_nonIterableRest(); }
+
+function AppStateExample_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function AppStateExample_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return AppStateExample_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return AppStateExample_arrayLikeToArray(o, minLen); }
+
+function AppStateExample_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function AppStateExample_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function AppStateExample_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var AppStateExample = function AppStateExample() {
+  var _useAppState = useAppState(),
+      exampleAppData = _useAppState.exampleAppData;
+
+  var appDispatch = useAppDispatch();
+
+  var _useState = (0,react.useState)(''),
+      _useState2 = AppStateExample_slicedToArray(_useState, 2),
+      newExampleAppData = _useState2[0],
+      setNewExampleAppData = _useState2[1];
+
+  return /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("strong", null, "AppState"), /*#__PURE__*/react.createElement("p", null, "AppState will save to local storage."), /*#__PURE__*/react.createElement("fieldset", null, /*#__PURE__*/react.createElement("input", {
+    type: "text",
+    value: newExampleAppData,
+    onChange: function onChange(e) {
+      setNewExampleAppData(e.target.value);
+    }
+  }), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      appDispatch({
+        type: 'addExampleAppData',
+        data: newExampleAppData
+      });
+      setNewExampleAppData('');
+    }
+  }, "Add to exampleAppData"), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      appDispatch({
+        type: 'removeExampleAppData',
+        data: newExampleAppData
+      });
+      setNewExampleAppData('');
+    }
+  }, "Remove from exampleAppData")), /*#__PURE__*/react.createElement("pre", null, /*#__PURE__*/react.createElement("code", null, "exampleData: ", JSON.stringify(exampleAppData, null, 2))));
+};
+;// CONCATENATED MODULE: ./src/modules/ReactContexts/DataStateExample/DataStateExample.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+function DataStateExample_slicedToArray(arr, i) { return DataStateExample_arrayWithHoles(arr) || DataStateExample_iterableToArrayLimit(arr, i) || DataStateExample_unsupportedIterableToArray(arr, i) || DataStateExample_nonIterableRest(); }
+
+function DataStateExample_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function DataStateExample_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return DataStateExample_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return DataStateExample_arrayLikeToArray(o, minLen); }
+
+function DataStateExample_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function DataStateExample_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function DataStateExample_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var DataStateExample = function DataStateExample() {
+  var _useDataState = useDataState(),
+      exampleData = _useDataState.exampleData;
+
+  var dataDispatch = useDataDispatch();
+
+  var _useState = (0,react.useState)(''),
+      _useState2 = DataStateExample_slicedToArray(_useState, 2),
+      newExampleData = _useState2[0],
+      setNewExampleData = _useState2[1];
+
+  return /*#__PURE__*/react.createElement(react.Fragment, null, ' ', /*#__PURE__*/react.createElement("strong", null, "DataState"), /*#__PURE__*/react.createElement("p", null, "DataState is not saved anywhere."), /*#__PURE__*/react.createElement("fieldset", null, /*#__PURE__*/react.createElement("input", {
+    type: "text",
+    value: newExampleData,
+    onChange: function onChange(e) {
+      setNewExampleData(e.target.value);
+    }
+  }), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      dataDispatch({
+        type: 'setData',
+        data: newExampleData
+      });
+      setNewExampleData('');
+    }
+  }, "Set exampleData"), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      dataDispatch({
+        type: 'clearData'
+      });
+      setNewExampleData('');
+    }
+  }, "Clear exampleData")), /*#__PURE__*/react.createElement("pre", null, /*#__PURE__*/react.createElement("code", null, "exampleData: ", JSON.stringify(exampleData, null, 2))));
 };
 ;// CONCATENATED MODULE: ./src/modules/ReactContexts/Main/Main.jsx
 
+
+
 var Main = function Main() {
   return /*#__PURE__*/react.createElement("div", {
-    className: "main"
-  }, "This is a main content");
-};
-;// CONCATENATED MODULE: ./src/modules/ReactContexts/Footer/Footer.jsx
-
-var Footer = function Footer() {
-  return /*#__PURE__*/React.createElement("div", {
-    className: "footer"
-  }, "This is a footer content");
+    className: "react-contexts"
+  }, /*#__PURE__*/react.createElement("h3", {
+    className: "react-contexts__title"
+  }, "Example: ", /*#__PURE__*/react.createElement("span", {
+    className: "react-contexts__subtitle"
+  }, "React Contexts")), /*#__PURE__*/react.createElement(AppStateExample, null), /*#__PURE__*/react.createElement("hr", null), /*#__PURE__*/react.createElement(DataStateExample, null));
 };
 ;// CONCATENATED MODULE: ./src/modules/ReactContexts/app.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -18653,13 +18798,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
 var dataStateDefaultData = __webpack_require__(55);
 
 var appStateDefaultData = __webpack_require__(3865);
 
-appStateDefaultData.translations = window.translations || {}; // Stateful components
+appStateDefaultData.testWindowVariable = window.testWindowVariable || false; // Stateful components
 
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
@@ -18691,6 +18834,9 @@ var App = /*#__PURE__*/function (_React$Component) {
 
   return App;
 }(react.Component);
+;// CONCATENATED MODULE: ./src/modules/ReactContexts/app.scss
+// extracted by mini-css-extract-plugin
+/* harmony default export */ var app = ({"errorTextColor":"red","fontSizeSmall":".75rem"});
 ;// CONCATENATED MODULE: ./src/modules/ReactContexts/render.jsx
 // Imports
 

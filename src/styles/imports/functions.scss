@@ -12,7 +12,7 @@
 
 // Strip unit taken from foundation
 @function stripUnit($num) {
-  @return $num / ($num * 0 + 1);
+  @return math.div($num, $num * 0 + 1);
 }
 
 // Convert Photoshop Letter spacing to EM

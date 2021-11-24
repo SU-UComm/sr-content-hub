@@ -1,59 +1,28 @@
 import React from 'react';
-import {any, object} from 'prop-types';
-import {arrayHelperRemoveElementByValue} from 'src/helpers/arrayHelpers.js';
+import PropTypes from 'prop-types';
+import {loadAppState, saveAppState} from './appStateHelpers';
 
 const AppStateContext = React.createContext();
 const AppDispatchContext = React.createContext();
 
 export const appStateReducer = (state, action) => {
-    const maxStep = 3;
-    const minStep = 1;
     switch (action.type) {
-        case 'nextStep': {
+        case 'addExampleAppData': {
+            let newExampleAppData = [...state.exampleAppData];
+            newExampleAppData.push(action.data);
+            saveAppState('exampleAppData', newExampleAppData);
             return {
                 ...state,
-                currentStep: state.currentStep + 1 <= maxStep ? state.currentStep + 1 : maxStep,
-                finishedSteps: [...state.finishedSteps, state.currentStep],
+                exampleAppData: newExampleAppData,
             };
         }
-        case 'previousStep': {
+        case 'removeExampleAppData': {
+            let newExampleAppData = [...state.exampleAppData];
+            newExampleAppData = newExampleAppData.filter((e) => e !== action.data);
+            saveAppState('exampleAppData', newExampleAppData);
             return {
                 ...state,
-                currentStep: state.currentStep - 1 >= minStep ? state.currentStep - 1 : minStep,
-                finishedSteps: arrayHelperRemoveElementByValue(state.currentStep, state.finishedSteps),
-            };
-        }
-        case 'setCurrentStep': {
-            return {
-                ...state,
-                currentStep: action.payload,
-            };
-        }
-        case 'enableFirstStepOnly': {
-            return {
-                ...state,
-                finishedSteps: [1],
-            };
-        }
-        case 'enableAllSteps': {
-            return {
-                ...state,
-                finishedSteps: [1, 2, 3],
-            };
-        }
-        case 'blockSteps': {
-            state.blockedSteps.push(action.payload);
-            return {
-                ...state,
-                blockedSteps: [...new Set(state.blockedSteps)],
-            };
-        }
-        case 'clearAppState': {
-            return {
-                ...state,
-                currentStep: 1,
-                finishedSteps: [],
-                blockedSteps: [],
+                exampleAppData: newExampleAppData,
             };
         }
         default: {
@@ -64,6 +33,16 @@ export const appStateReducer = (state, action) => {
 
 const AppStateProvider = (props) => {
     let initialData = props.defaultData;
+
+    if (!loadAppState()) {
+        // InitialData not present - use props.defaultData
+        saveAppState(null, initialData);
+    } else {
+        // InitialData present - load it
+        initialData = loadAppState();
+        saveAppState(null, initialData);
+    }
+
     const [state, dispatch] = React.useReducer(appStateReducer, initialData);
 
     return (
@@ -90,8 +69,8 @@ const useAppDispatch = () => {
 };
 
 AppStateProvider.propTypes = {
-    defaultData: object,
-    children: any,
+    defaultData: PropTypes.object,
+    children: PropTypes.any,
 };
 
 export {AppStateProvider, useAppState, useAppDispatch};

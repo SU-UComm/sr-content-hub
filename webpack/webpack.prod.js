@@ -13,7 +13,20 @@ module.exports = (env) => {
             rules: [
                 {
                     test: /\.scss$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader', 'import-glob-loader'],
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: {
+                                    mode: 'icss',
+                                },
+                            },
+                        },
+                        'postcss-loader',
+                        'sass-loader',
+                        'import-glob-loader',
+                    ],
                 },
             ],
         },

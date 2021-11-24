@@ -1,0 +1,13 @@
+.section {
+  padding: pxToRem(16) 0;
+  margin-bottom: pxToRem(16);
+  border-bottom: 2px dashed $darkGray;
+
+  &__heading {
+    font-size: pxToRem(20);
+  }
+
+  &__subheading {
+    font-size: pxToRem(16);
+  }
+}

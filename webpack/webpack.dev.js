@@ -19,12 +19,28 @@ module.exports = merge(common, {
         hot: true,
         host: config.host,
         port: config.port,
+        historyApiFallback: {
+            rewrites: config.rewrites,
+        },
     },
     module: {
         rules: [
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'import-glob-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'icss',
+                            },
+                        },
+                    },
+                    'postcss-loader',
+                    'sass-loader',
+                    'import-glob-loader',
+                ],
             },
         ],
     },

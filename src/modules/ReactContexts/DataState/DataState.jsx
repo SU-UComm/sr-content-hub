@@ -1,21 +1,21 @@
 import React from 'react';
-import {any, object} from 'prop-types';
+import PropTypes from 'prop-types';
 
 const DataStateContext = React.createContext();
 const DataDispatchContext = React.createContext();
 
 export const dataStateReducer = (state, action) => {
     switch (action.type) {
-        case 'setPage01': {
+        case 'setData': {
             return {
                 ...state,
-                page01: action.data,
+                exampleData: action.data,
             };
         }
-        case 'clearDataState': {
+        case 'clearData': {
             return {
                 ...state,
-                page01: {},
+                exampleData: '',
             };
         }
         default: {
@@ -53,8 +53,8 @@ const useDataDispatch = () => {
 };
 
 DataStateProvider.propTypes = {
-    defaultData: object,
-    children: any,
+    defaultData: PropTypes.object,
+    children: PropTypes.any,
 };
 
 export {DataStateProvider, useDataState, useDataDispatch};

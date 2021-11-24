@@ -1,7 +1,7 @@
 /* globals cy Cypress */
 // <reference types="cypress" />
 
-import {helpers} from '../../../../cypress/support/tests';
+import {helpers} from '../../cypress/support/tests';
 const siteUrl = Cypress.env('SITE_URL');
 
 // Test A11Y

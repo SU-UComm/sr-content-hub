@@ -21,6 +21,18 @@
   width: pxToRem(50);
 }
 
+.header-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -36,12 +48,9 @@
  * Tablet layout
  */
 
-@media (min-resolution: 2dppx) {
-  body.test {
-    z-index: 2;
-  }
-  ::placeholder {
-    color: gray;
+@media screen and (min-width: $tablet) {
+  .container {
+    max-width: pxToRem(stripUnit($tablet));
   }
 }
 
@@ -51,6 +60,6 @@
 
 @media screen and (min-width: $desktop) {
   .container {
-    max-width: pxToRem(1024);
+    max-width: pxToRem(stripUnit($desktop));
   }
 }

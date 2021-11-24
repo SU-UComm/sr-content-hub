@@ -1,134 +1,92 @@
-This repository can be used as a starting point for creating a React Application.
-It is based on Squiz Boilerplate:
-
-* [Read the wiki for more information](https://gitlab.squiz.net/boilerplate/webpack-boilerplate/wikis/home) about installation, example projects, help and contributing.
-* Read the [installation guide](https://gitlab.squiz.net/boilerplate/webpack-boilerplate/wikis/Installation)
-
-
 [[_TOC_]]
 
-## Requirements
-This version is tested under:
-* Node v10.24.1
-* NPM 6.14.12
+# Features
+This boilerplate is based on [Squiz Webpack Boilerplate](https://gitlab.squiz.net/boilerplate/webpack-boilerplate/wikis/home).
+The main differences are:
+* Webpack version upgraded to 5+
+* Most of the dependencies have been upgraded to the latest version
+* You can create multiple, independent React apps within one repo. Each of them will have a separate JS/CSS chunk.
+* Jest unit testing
+* Cypress E2E testing
 
-On Windows 10 and Ubuntu 20.04.
+# ToDo
+* add [code splitting](https://webpack.js.org/guides/code-splitting/) support with examples
+* add more examples to **ReactExamples**
+* add working CI example (in progress)
+* add [husky](https://www.npmjs.com/package/husky) to integrate tests with git flow
+* don't minify CSS on **npm run build** - only on **build-min**
+
+# Requirements
+This version is tested under:
+* Node v16.13.0
+* NPM 8.1.4
+
+# Docs
+
+## Webpack config file
+Some of the webpack options can be configured using **/webpack/config.js**
+* buildFolder - folder to build to using npm run build(-min) commands
+* host - host to run the dev sever on
+* port - dev server port
+* alias - webpack aliases used in imports
+* entry - webpack [entry points](https://webpack.js.org/concepts/entry-points/)
+* chunks - chunks configuration lets you specify which chunks should be used in which html page template
+* rewrites - [rewrites](https://webpack.js.org/configuration/dev-server/#devserverhistoryapifallback) to be used with things like [React Router](https://reactrouter.com/docs/en/v6/getting-started/overview)
+
+## Commands
+* audit - npm audit on production dependencies
+* test - jest tests
+* test:coverage - generate jest tests coverage
+* build - build output files to buildFolder
+* build-min - build output files to buildFolder minified
+* serve - dev server
+* lint - lint css and js
+    * lint:js - lint js only
+    * lint:css - lint css only
+* format - run prettier
+* cypress:verify - verify cypress installation
+* cypress:dev - run cypress tests using .env.development
+* cypress:prod - run cypress tests using .env
+* cypress:ci - run headless cypress tests using .env
+* netlify:dev - run netlify-cli dev proxy
 
 ## Using Contexts and Reducers
 [Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.
 
 There are two contexts present:
-* AppState - this is used to store initial data like translations, application steps etc
+* AppState - this is used to store initial data like translations, application steps etc. This data is stored in localStorage
 * DataState - this is where data input from the user is stored
 
-Example usage:
-* Get data from context **/src/modules/Summary/Summary.jsx**
-```
-[...]
-import { useDataState } from 'modules/DataState/DataState.jsx';
-
-export const Summary = () => {
-    const { page01 } = useDataState();
-
-    return (
-        <>
-            <h2>Summary</h2>
-            <ul>
-                <li>Title: {page01.Title}</li>
-                <li>First name: {page01["First name"]}</li>
-                <li>Last name: {page01["Last name"]}</li>
-                <li>E-mail: {page01.Email}</li>
-                <li>Mobile number: E-mail: {page01["Mobile number"]}</li>
-                <li>Developer: {page01.Developer}</li>
-            </ul>
-
-            [...]
-        </>
-    )
-}
-```
-* Set data to context **/src/modules/UserForm/UserForm.jsx**
-```
-export const UserForm = () => {
-    const { page01 } = useDataState();
-    const appDispatch = useAppDispatch();
-    const dataDispatch = useDataDispatch();
-
-        const onSubmit = (data) => {
-        dataDispatch({
-            type: 'setPage01',
-            data: data
-        });
-        appDispatch({type: 'nextStep'});
-    }
-
-    [...]
-}
-```
-
-## Forms
-[React Hook Form](https://react-hook-form.com/) is used for handling form submissions, validation etc. This is just as an example. You can just as well use [Formik](https://formik.org/) or any other library (or don't use any) - depends on the project.
-One thing worth mentioning is that if you stay with React Hook Form and plan to support IE11 you need to comment this the other way around:
-```
-//import { useForm } from 'react-hook-form/dist/index.ie11';
-import { useForm } from 'react-hook-form';
-```
-in **/src/modules/UserForm/UserForm.jsx**
+Example code can be found in [ReactContexts](http://127.0.0.1:3000/reactContexts.html)
 
 ## Property validation
 [prop-types](https://www.npmjs.com/package/prop-types) is used for that. It comes in handy when debuging as is considered good practice overall.
-Example use can be found in **src/modules/Steps/PrevNext.jsx**
+
 ```
 import React from 'react';
 import PropTypes from 'prop-types';
 [...]
 
-export const PrevNext = (props) => {
+export const SomeModule = (props) => {
     [...]
 
     return (
-        <div className="prevNext">
-            <button
-                className="prevNext__button"
-                disabled={props.prevDisabled}
-                onClick={() => { appDispatch({ type: 'previousStep' }) }}>
-                    {translations.stepsPrev}
-            </button>
+        <div className="someModule">
             [...]
         </div>
     )
 }
 
 PrevNext.propTypes = {
-    nextDisabled:  PropTypes.bool,
-    nextStepReset: PropTypes.bool,
-    prevDisabled:  PropTypes.bool
+    name:  PropTypes.string,
+    status: PropTypes.bool
 }
 ```
 
 ## Styled Components
-[Emotion](https://emotion.sh/docs/introduction) is used for styled components. Example can be found in **./src/helpers/formHelpers.js**. It shows how you can create a styled component using scss variables.
-```
-import React from 'react';
-import styled from '@emotion/styled';
-import cssVars from 'src/styles/imports/variables.scss';
+[Emotion](https://emotion.sh/docs/introduction) is used for styled components.
 
-const ErrorText = styled.p`
-    color:     ${cssVars.errorTextColor};
-    font-size: ${cssVars.fontSizeSmall};
-    margin:    0;
-    padding:   .3rem 0 0;
-`;
-
-export const handleFormErrors = (errors, name) => {
-    [...]
-        <ErrorText role="alert">
-            Max length exceeded
-        </ErrorText>
-    [...]
-}
-```
-More info on [styled components](https://styled-components.com/docs/basics).
+Example can be found in [ReactExamples](http://127.0.0.1:3000/reactExamples.html). It shows how you can create a styled component using scss variables.
 
 ## Linting
 When using VSCode with ESLint and stylelint extensions installed JS/CSS errors should be highlighted in the editor. In addition for CI there are two separte commands:
@@ -141,19 +99,6 @@ It is recommended to use prettier. This can be done by running:
 npm run format
 ```
 If you are using **VSCode** there is an easier way - install [Prettier  plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
-## Jest unit testing
-* Test are located in **\_\_tests\_\_** folder and/or **./src/modules/\*\*/\_\_jest\_\_**
-* [identity-obj-proxy](https://jestjs.io/docs/webpack#mocking-css-modules) is used to mock scss/css imports of variables used in styled components.
-
-Run
-```
-npm run test
-```
-to run all test
-```
-npm run:coverage
-```
-to see/generate test coverage.
 
 ## Env variables
 Environment variables are stored in
@@ -163,14 +108,7 @@ Environment variables are stored in
 Webpack uses **dotenv-webpack** package to access those variables.
 Cypress uses **cypress-dotenv** package to use environment variables.
 
-Those variables can be used in you code as:
-```
-process.env.{VARIABLE_NAME}
-```
-like in **./src/modules/UserForm/UserForm.jsx**
-```
-<p>ENV variable <i>process.env.ENV</i> === <strong>{`${process.env.ENV}`}</strong></p>
-```
+Example can be found in **ReactExamples**
 
 ## Netlify DEV
 [Netlify DEV](https://cli.netlify.com/netlify-dev/) can be used to
@@ -185,12 +123,23 @@ which will make functions from **./netlify_functions/{name}.js** available under
 
 **process.env.{VARIABLE_NAME}** can be used - this will use **.env.development** file.
 
-## Cypress E2E testing
+## Jest - Unit testing
+* Test are located in **\_\_tests\_\_** folder and/or **./src/modules/\*\*/\_\_jest\_\_**
+* [identity-obj-proxy](https://jestjs.io/docs/webpack#mocking-css-modules) is used to mock scss/css imports of variables used in styled components.
+
+Run
+```
+npm run test
+```
+to run all test
+```
+npm run:coverage
+```
+to see/generate test coverage.
+
+## Cypress - E2E testing
 [Cypress](https://www.cypress.io/) is used as an E2E testing tool.
-It is not installed by defualt. To install type:
-```
-npm run cypress:install
-```
+
 ### Commands
 ```
 npm run cypress:dev
@@ -219,41 +168,8 @@ Cypress uses **cypress-dotenv** package to use environment variables Example usa
 Cypress.env('SITE_URL')
 ```
 
-### Additional info
-Out of the box it contains:
-* test that goes through all the steps of the app and check basic elements like form validation, going back and fourth throught the application
-* [A11Y](https://www.a11yproject.com/) valiation with [cypress-axe](https://www.npmjs.com/package/cypress-axe)
-* some helpers in **./cypress/support/tests.js** like **matrixLogin()**
-```
-/**
- * Matrix login
- * @param {string} siteUrl site url
- * @param {string} pageUrl page url that will be appended to siteUrl
- * @param {string} login login name
- * @param {string} password password
- */
-matrixLogin: (siteUrl, pageUrl, login, password) => {
-    if (siteUrl !== Cypress.env('localURL')) {
-        pageUrl = pageUrl === "/" ? "" : pageUrl;
-
-        cy.visit(siteUrl + pageUrl + "/_login", { failOnStatusCode: false });
-
-        cy.get('#SQ_LOGIN_USERNAME').type(login).should("have.value", login);
-        cy.get('#SQ_LOGIN_PASSWORD').type(password).should("have.value", password);
-        cy.get('#login_form_login_prompt').submit();
-
-        pageUrl = pageUrl === "" ? "/" : pageUrl;
-        cy.location("pathname").should("eq", pageUrl);
-    } else {
-        cy.visit(siteUrl + pageUrl);
-    }
-}
-```
-that can be used to test Matrix pages that require login.
-
-To run localhost tests you need to first start the webpack serve by:
-```
-npm run serve
-```
-
+## VSCode useful plugins
+* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - to highlight js/jsx errors
+* [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - to apply proper formating on save
+* [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - to highlight SCSS/CSS errors
 

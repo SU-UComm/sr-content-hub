@@ -1,4 +1,4 @@
-image: node:14
+image: node:14.18.1
 
 stages:
     - build
@@ -10,10 +10,15 @@ runbuild:
         - docker
     script:
         - npm ci
-        - npm run build
+        - npm run lint
+        - npm run test
+        - npm run build-min
     artifacts:
         paths:
-            - dist
+            - build
+    only:
+        - master
+        - develop
 
 rundeploy:
     stage: deploy
@@ -22,19 +27,22 @@ rundeploy:
     dependencies:
         - runbuild
     before_script:
+        - eval $(ssh-agent -s)
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
         - mkdir -p ~/.ssh
         - chmod 700 ~/.ssh
-        - ssh-keyscan -t rsa gitlab.squiz.net >> ~/.ssh/known_hosts
+        - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
         - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         - chmod 644 ~/.ssh/known_hosts
         - chmod 600 ~/.ssh/id_rsa
     script:
-        - git config --global user.name "$GITLAB_USER_NAME"
+        - git config --global user.name "$GITLAB_USER_LOGIN"
         - git config --global user.email "$GITLAB_USER_EMAIL"
-        - cd dist
+        - cd build
         - git init
         - git add *
-        - git commit -m "Runner build of ${CI_COMMIT_SHA:0:8}  [ci skip]"
-        - git push --force git@gitlab.squiz.net:${CI_PROJECT_PATH} master:deploy/prod
+        - git commit -m "Runner build of ${CI_COMMIT_SHA:0:8}" -m "Original message:"  -m "$CI_COMMIT_MESSAGE"
+        - git push --force "$BUILD_REPOSITORY" HEAD:"$CI_COMMIT_REF_NAME"
     only:
         - master
+        - develop

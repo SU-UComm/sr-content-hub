@@ -12,14 +12,15 @@ The main differences are:
 # ToDo
 * add [code splitting](https://webpack.js.org/guides/code-splitting/) support with examples
 * add more examples to **ReactExamples**
-* add working CI example (in progress)
 * add [husky](https://www.npmjs.com/package/husky) to integrate tests with git flow
 * don't minify CSS on **npm run build** - only on **build-min**
 
 # Requirements
 This version is tested under:
-* Node v16.13.0
-* NPM 8.1.4
+* Node v14.18.1
+* NPM 6.14.15
+
+It will also work on Node v16 but v14 is preferred due to the fact that it runs much faster on Gitlab CI.
 
 # Docs
 
@@ -173,3 +174,25 @@ Cypress.env('SITE_URL')
 * [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - to apply proper formating on save
 * [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) - to highlight SCSS/CSS errors
 
+## Gitabl CI
+Gitlab continuous integration flow consists of two stages:
+* build - in this stage npm packages are being installed, lint and jest tests run and after that build-min creates the deploy folder
+* deploy - deploy folder is being pushed to a separate repository to be used in Matrix via GitBridge
+
+Additional configuration needs to be done on GitLab side under **Settings => CI/CD => Variables**:
+* BUILD_REPOSITORY
+```
+git@gitlab.squiz.net:XXX/YYY/ZZZ.git
+```
+* SSH_KNOWN_HOSTS
+```
+# gitlab.squiz.net:22 SSH-2.0-OpenSSH_5.3
+gitlab.squiz.net ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAt4E9aVQ/yd31Su8zW1RrlJ/lP81wldfF7hILuOBuUQ5SUZPPOiKAnT71k98V6W+PyLKjJJEYaQEUdOMsXijP3PfuZtx24XDVFHGh5V8w/RLf+0Df68wCEWNVCWPw2Lc6tB2iJyYlb1dJW3ZauzRyoA79stS+q0DOH3C+ogu6CdlAmrYAlen5pUEmB8wQFxGmsUu8VreeEss64NR6LiLHeRg6k6CfNWx1LfV6aQO0DG4nE6G9VB4n1QRtSTKSlGTBAM+gNiAj0RmZ8q+N0TDwK2tU9Wv7TSgPSeSfn0PaZRhvh1EN1qhl2B/NgOMKu1kTFaWxBk7SSK4IA+GxQ5GoYw==
+# gitlab.squiz.net:22 SSH-2.0-OpenSSH_5.3
+```
+* SSH_PRIVATE_KEY
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+{KEY FOR BUILD_REPOSITORY GOES HERE}
+-----END OPENSSH PRIVATE KEY-----
+```

@@ -5,6 +5,10 @@ module.exports = {
     buildFolder: 'build',
     host: '127.0.0.1',
     port: 3000,
+    devServerClient: {
+        logging: 'info',
+        overlay: {errors: true, warnings: false},
+    },
     alias: {
         cypress: path.resolve(__dirname, '../cypress/'),
         nodeModules: path.resolve(__dirname, '../node_modules/'),

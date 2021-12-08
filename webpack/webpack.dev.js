@@ -17,6 +17,7 @@ module.exports = merge(common, {
             });
         },
         hot: true,
+        client: config.devServerClient,
         host: config.host,
         port: config.port,
         historyApiFallback: {

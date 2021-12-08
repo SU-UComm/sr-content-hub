@@ -11,7 +11,7 @@
     "build-min": "webpack --config webpack/webpack.prod.js --env minify=true",
     "serve": "webpack-dev-server --open --config webpack/webpack.dev.js",
     "lint": "npm-run-all lint:js lint:css",
-    "lint:js": "eslint -f codeframe \"./src/**/*.js\" \"./src/**/*.jsx\"",
+    "lint:js": "eslint -f codeframe \"./src/**/*.js\" \"./src/**/*.jsx\" --no-error-on-unmatched-pattern",
     "lint:css": "stylelint \"./src/**/*.css\" \"./src/**/*.scss\" \"!./src/**/*.min.css\" \"!./src/templates/**/*.scss\"",
     "format": "prettier --ignore-path .prettierignore --write \"./src/modules/**/*.+(js|jsx|json)\"",
     "cypress:verify": "cypress verify",

@@ -6,6 +6,7 @@ module.exports = {
     host: '127.0.0.1',
     port: 3000,
     alias: {
+        cypress: path.resolve(__dirname, '../cypress/'),
         nodeModules: path.resolve(__dirname, '../node_modules/'),
         src: path.resolve(__dirname, '../src/'),
         modules: path.resolve(__dirname, '../src/modules'),

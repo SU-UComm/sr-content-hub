@@ -12,10 +12,14 @@
 // the project's config changing)
 const dotenvPlugin = require('cypress-dotenv');
 const webpackPreprocessor = require('@cypress/webpack-preprocessor');
+const webpackConfig = require('./aliases');
 
 module.exports = (on, config) => {
     // Add webpath aliases
-    on('file:preprocessor', webpackPreprocessor({webpackOptions: require('../../webpack/webpack.common.js')}));
+    const webpackPreprocessorConfig = {
+        webpackOptions: webpackConfig,
+    };
+    on('file:preprocessor', webpackPreprocessor(webpackPreprocessorConfig));
 
     // Handle env files
     console.log(`Cypress env file: ${config.env.ENVFILE}`);

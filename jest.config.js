@@ -6,5 +6,6 @@ module.exports = {
     moduleDirectories: ['node_modules', path.join(__dirname, 'src/modules'), './src', './'],
     moduleNameMapper: {
         '\\.(s?css|less)$': 'identity-obj-proxy',
+        '^.+\\.svg$': '<rootDir>/jest/svgTransform.js',
     },
 };

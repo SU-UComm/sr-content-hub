@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "audit": "npm audit --production",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:coverage": "jest --coverage",
+    "test:all": "npm-run-all test cypress:ci:dev ",
     "build": "webpack --config webpack/webpack.prod.js --env minify=false",
     "build-min": "webpack --config webpack/webpack.prod.js --env minify=true",
     "serve": "webpack-dev-server --open --config webpack/webpack.dev.js",
@@ -17,6 +18,7 @@
     "cypress:verify": "cypress verify",
     "cypress:dev": "npx cypress open --config-file cypress.development.json",
     "cypress:prod": "npx cypress open --config-file cypress.json",
+    "cypress:ci:dev": "cypress run --browser chrome --headless --config-file cypress.development.json",
     "cypress:ci": "cypress run --browser chrome --headless --config-file cypress.json",
     "netlify:dev": "npx netlify dev"
   },

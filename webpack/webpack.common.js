@@ -14,18 +14,27 @@ Object.keys(config.entry).forEach((entryName, i) => {
 });
 console.log(chalk.cyan('=======================\n'));
 
+// Print aliases
+console.log(chalk.cyan('==== Alias list ===='));
+Object.keys(config.alias).forEach((aliasName, i) => {
+    console.log(`    ${i + 1}.`, chalk.yellow(aliasName), ' =>', config.alias[aliasName]);
+});
+console.log(chalk.cyan('=======================\n'));
+
 // Pick proper chunks
 function pickChunks(name, configChunks) {
     let chunks = new Set(configChunks.allPages);
 
-    if (configChunks?.pages?.[name]) {
-        configChunks?.pages?.[name].addChunks.forEach((addChunk) => {
-            chunks.add(addChunk);
-        });
-        configChunks?.pages?.[name].removeChunks.forEach((removeChunk) => {
-            chunks.delete(removeChunk);
-        });
-    }
+    configChunks.pages.forEach((item) => {
+        if (item?.pages.indexOf(name) !== -1) {
+            item.addChunks.forEach((chunk) => {
+                chunks.add(chunk);
+            });
+            item.removeChunks.forEach((chunk) => {
+                chunks.delete(chunk);
+            });
+        }
+    });
 
     return [...chunks];
 }

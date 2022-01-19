@@ -24,20 +24,23 @@ module.exports = {
     },
     chunks: {
         allPages: ['global'],
-        pages: {
-            reactContexts: {
+        pages: [
+            {
+                pages: ['reactContexts'],
                 addChunks: ['reactContexts'],
                 removeChunks: [],
             },
-            reactRouter: {
+            {
+                pages: ['reactRouter'],
                 addChunks: ['reactRouter'],
                 removeChunks: [],
             },
-            reactExamples: {
+            {
+                pages: ['reactExamples'],
                 addChunks: ['reactExamples'],
                 removeChunks: [],
             },
-        },
+        ],
     },
     rewrites: [
         {from: /^\/$/, to: '/reactRouter.html'},

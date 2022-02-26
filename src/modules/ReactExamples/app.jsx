@@ -1,5 +1,6 @@
 // Imports
 import React from 'react';
+import {LocoFetch} from './LocoFetch/LocoFetch.jsx';
 import {Images} from './Images/Images.jsx';
 import {StyledComponents} from './StyledComponents/StyledComponents.jsx';
 import {EnvVariables} from './EnvVariables/EnvVariables.jsx';
@@ -14,6 +15,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="container">
+                <LocoFetch apiURL="http://127.0.0.1:8888/return_json" />
                 <Images />
                 <StyledComponents />
                 <EnvVariables />

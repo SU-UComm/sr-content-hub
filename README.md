@@ -49,7 +49,7 @@ Some of the webpack options can be configured using **/webpack/config.js**
 * cypress:dev - run cypress tests using .env.development
 * cypress:prod - run cypress tests using .env
 * cypress:ci - run headless cypress tests using .env
-* netlify:dev - run netlify-cli dev proxy
+* loco - run loco dev proxy
 
 ## Using Contexts and Reducers
 [Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.
@@ -111,18 +111,16 @@ Cypress uses **cypress-dotenv** package to use environment variables.
 
 Example can be found in **ReactExamples**
 
-## Netlify DEV
-[Netlify DEV](https://cli.netlify.com/netlify-dev/) can be used to
-* proxy requests - example **./netlify_functions/example_node_fetch_POST.js**
-* mock data - example **./netlify_functions/example_mocked_JSON.js**
+## Loco
+[Loco](https://www.npmjs.com/package/loco-server) can be used to
+* proxy requests - example **./loco_functions/return_json.js**
+* mock data - example **./loco_functions/scaffold.js**
 
 To start run
 ```
-npm run netlify:dev
+npm run loco
 ```
-which will make functions from **./netlify_functions/{name}.js** available under **127.0.0.1:8888/.netlify/functions/{name}**
-
-**process.env.{VARIABLE_NAME}** can be used - this will use **.env.development** file.
+which will make functions from **./loco_functions/{name}.js** available under **127.0.0.1:8888/{name}**
 
 ## Jest - Unit testing
 * Test are located in **\_\_tests\_\_** folder and/or **./src/modules/\*\*/\_\_jest\_\_**

@@ -77,8 +77,6 @@ class WatchForHotHTMLChanges {
                 console.log('===============================');
                 console.log('FILES CHANGED:', changedFiles);
                 console.log('===============================');
-
-                devServer.sendMessage(devServer.webSocketServer.clients, 'content-changed');
             }
         });
     }

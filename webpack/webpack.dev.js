@@ -1,4 +1,4 @@
-/* global devServer */
+/* global */
 const Dotenv = require('dotenv-webpack');
 const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
@@ -8,14 +8,15 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'eval-cheap-source-map',
     devServer: {
-        onBeforeSetupMiddleware(app) {
-            devServer = app; // eslint-disable-line
-
+        setupMiddlewares: (middlewares, devServer) => {
             // Redirect POST requests to GET
             devServer.app.post('*', (req, res) => {
                 res.redirect(req.originalUrl);
             });
+
+            return middlewares;
         },
+
         hot: true,
         client: config.devServerClient,
         host: config.host,

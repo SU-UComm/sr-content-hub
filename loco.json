@@ -3,5 +3,11 @@
   "appHost": "127.0.0.1",
   "functionsDir": "loco_functions",
   "readdirSyncOptions": {},
-  "envFile": ".env"
+  "envFile": ".env",
+  "optionsRequestHeaders": {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "*"
+  },
+  "optionsRequestStatusCode": 200
 }

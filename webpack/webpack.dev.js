@@ -16,7 +16,7 @@ module.exports = merge(common, {
 
             return middlewares;
         },
-
+        watchFiles: config.watchFiles,
         hot: true,
         client: config.devServerClient,
         host: config.host,

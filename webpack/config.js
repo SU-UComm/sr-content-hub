@@ -5,6 +5,7 @@ module.exports = {
     buildFolder: 'build',
     host: '127.0.0.1',
     port: 3000,
+    watchFiles: ['./src/**/*.*'],
     devServerClient: {
         logging: 'info',
         overlay: {errors: true, warnings: false},

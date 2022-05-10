@@ -1,9 +1,9 @@
 {
   "appPort": 8888,
   "appHost": "127.0.0.1",
-  "functionsDir": "loco_functions",
+  "functionsPath": ["loco_functions/*.js"],
   "readdirSyncOptions": {},
-  "envFile": ".env",
+  "envFile": ".env.development",
   "optionsRequestHeaders": {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",

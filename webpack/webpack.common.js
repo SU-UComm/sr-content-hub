@@ -88,6 +88,10 @@ const copyWebPack = new CopyWebpackPlugin({
             from: path.resolve(__dirname, '../src/externals'),
             to: 'externals',
         },
+        {
+            from: 'src/modules/**/inline-*.svg',
+            to: 'svg/[name][ext]',
+        },
     ],
 });
 

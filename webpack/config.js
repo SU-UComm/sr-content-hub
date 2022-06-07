@@ -16,29 +16,18 @@ module.exports = {
         src: path.resolve(__dirname, '../src/'),
         modules: path.resolve(__dirname, '../src/modules'),
         helpers: path.resolve(__dirname, '../src/helpers'),
+        images: path.resolve(__dirname, '../src/images'),
     },
     entry: {
         global: glob.sync('./src/modules/**/global.js'),
-        reactContexts: './src/modules/ReactContexts/render.jsx',
-        reactRouter: './src/modules/ReactRouter/render.jsx',
-        reactExamples: './src/modules/ReactExamples/render.jsx',
+        reactApp: glob.sync('./src/modules/_ReactApp/render.jsx'),
     },
     chunks: {
         allPages: ['global'],
         pages: [
             {
-                pages: ['reactContexts'],
-                addChunks: ['reactContexts'],
-                removeChunks: [],
-            },
-            {
-                pages: ['reactRouter'],
-                addChunks: ['reactRouter'],
-                removeChunks: [],
-            },
-            {
-                pages: ['reactExamples'],
-                addChunks: ['reactExamples'],
+                pages: ['reactApp'],
+                addChunks: ['reactApp'],
                 removeChunks: [],
             },
         ],

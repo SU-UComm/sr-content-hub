@@ -1,6 +1,6 @@
 {
   "name": "react-starter",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "React app starter made on Squiz Boilerplate",
   "main": "index.js",
   "scripts": {

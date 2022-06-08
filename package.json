@@ -1,6 +1,6 @@
 {
   "name": "react-starter",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "React app starter made on Squiz Boilerplate",
   "main": "index.js",
   "scripts": {
@@ -15,9 +15,11 @@
     "lint:js": "eslint -f codeframe \"./src/**/*.js\" \"./src/**/*.jsx\" --no-error-on-unmatched-pattern",
     "lint:css": "stylelint \"./src/**/*.css\" \"./src/**/*.scss\" \"!./src/**/*.min.css\" \"!./src/templates/**/*.scss\"",
     "format": "prettier --ignore-path .prettierignore --write \"./src/modules/**/*.+(js|jsx|json)\"",
+    "cypress:install": "npm install cypress@10.0.3 --no-save",
+    "cypress:install:save": "npm install -sD cypress@10.0.3",
     "cypress:verify": "cypress verify",
-    "cypress:dev": "npx cypress open --config-file cypress.development.json",
-    "cypress:prod": "npx cypress open --config-file cypress.json",
+    "cypress:dev": "npx cypress open --config-file cypress.development.config.js",
+    "cypress:prod": "npx cypress open --config-file cypress.production.config.js",
     "cypress:ci:dev": "cypress run --browser chrome --headless --config-file cypress.development.json",
     "cypress:ci": "cypress run --browser chrome --headless --config-file cypress.json",
     "loco": "loco loco.json"
@@ -44,7 +46,6 @@
     "copy-webpack-plugin": "^9.1.0",
     "core-js": "^3.19.1",
     "css-loader": "^6.5.1",
-    "cypress": "^8.7.0",
     "cypress-axe": "^0.13.0",
     "cypress-dotenv": "^2.0.0",
     "dotenv": "^10.0.0",

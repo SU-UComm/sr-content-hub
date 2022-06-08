@@ -45,6 +45,8 @@ Some of the webpack options can be configured using **/webpack/config.js**
     * lint:js - lint js only
     * lint:css - lint css only
 * format - run prettier
+* cypress:install - install cypress localy
+* cypress:install:save - install cypress and save it in package.json if you wanna run CI tests
 * cypress:verify - verify cypress installation
 * cypress:dev - run cypress tests using .env.development
 * cypress:prod - run cypress tests using .env
@@ -139,6 +141,18 @@ to see/generate test coverage.
 ## Cypress - E2E testing
 [Cypress](https://www.cypress.io/) is used as an E2E testing tool.
 
+Run
+```
+npm run cypress:install
+```
+
+or
+
+```
+npm run cypress:install:save
+```
+
+or install globaly before use.
 ### Commands
 ```
 npm run cypress:dev

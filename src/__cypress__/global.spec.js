@@ -1,7 +1,7 @@
 /* globals cy Cypress */
 // <reference types="cypress" />
 
-import {helpers} from '../../cypress/support/tests';
+import {helpers, tests} from 'cypress/support/tests';
 const siteUrl = Cypress.env('SITE_URL');
 
 // Test A11Y
@@ -20,6 +20,9 @@ describe(`Global - ${Cypress.env('ENV')}`, () => {
 
             // Visit URL
             cy.visit(siteUrl);
+
+            // A11
+            tests.a11test();
         });
     });
 });

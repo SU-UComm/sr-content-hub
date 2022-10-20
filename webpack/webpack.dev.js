@@ -8,11 +8,12 @@ module.exports = merge(common, {
     mode: 'development',
     devtool: 'eval-cheap-source-map',
     devServer: {
+        proxy: config.proxy,
         setupMiddlewares: (middlewares, devServer) => {
-            // Redirect POST requests to GET
-            devServer.app.post('*', (req, res) => {
-                res.redirect(req.originalUrl);
-            });
+            // // Redirect POST requests to GET
+            // devServer.app.post('*', (req, res) => {
+            //     res.redirect(req.originalUrl);
+            // });
 
             return middlewares;
         },

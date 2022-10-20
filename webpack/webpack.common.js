@@ -100,6 +100,7 @@ const copyWebPack = new CopyWebpackPlugin({
 module.exports = {
     entry: config.entry,
     output: {
+        publicPath: config.publicPath,
         path: path.resolve(__dirname, `../${config.buildFolder}`), // Output folder
         filename: 'js/[name].js', // JS output path
     },

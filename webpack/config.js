@@ -10,6 +10,13 @@ module.exports = {
         logging: 'info',
         overlay: {errors: true, warnings: false},
     },
+    publicPath: '/',
+    proxy: {
+        // '/api': {
+        //     target: 'https://domain.tld:80',
+        //     changeOrigin: true
+        // }
+    },
     alias: {
         cypress: path.resolve(__dirname, '../cypress/'),
         nodeModules: path.resolve(__dirname, '../node_modules/'),

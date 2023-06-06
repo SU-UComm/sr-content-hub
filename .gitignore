@@ -3,6 +3,7 @@ dist/
 build/
 __sandbox/
 .sshkey/
+*-lock.json
 
 # OS generated files #
 ######################

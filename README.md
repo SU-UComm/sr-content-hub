@@ -10,15 +10,12 @@ The main differences are:
 * Cypress E2E testing
 
 # ToDo
-* add [code splitting](https://webpack.js.org/guides/code-splitting/) support with examples
-* add more examples to **ReactExamples**
 * add [husky](https://www.npmjs.com/package/husky) to integrate tests with git flow
-* don't minify CSS on **npm run build** - only on **build-min**
 
 # Requirements
 This version is tested under:
-* Node v14.18.1
-* NPM 6.14.15
+* Node v18
+* NPM 9
 
 It will also work on Node v16 but v14 is preferred due to the fact that it runs much faster on Gitlab CI.
 
@@ -29,6 +26,10 @@ Some of the webpack options can be configured using **/webpack/config.js**
 * buildFolder - folder to build to using npm run build(-min) commands
 * host - host to run the dev sever on
 * port - dev server port
+* watchFiles - array of files to watch by devServer
+* purgeCssPath - glob used by PurgeCSSPlugin in prod build - it is commented out by default as it can break React apps css without proper config
+* devServerClient - devServer client configuration
+* publicPath - webpack [Public Path](https://webpack.js.org/guides/public-path/)
 * alias - webpack aliases used in imports
 * entry - webpack [entry points](https://webpack.js.org/concepts/entry-points/)
 * chunks - chunks configuration lets you specify which chunks should be used in which html page template
@@ -52,6 +53,10 @@ Some of the webpack options can be configured using **/webpack/config.js**
 * cypress:prod - run cypress tests using .env
 * cypress:ci - run headless cypress tests using .env
 * loco - run loco dev proxy
+
+## Additional webpack plugins
+* [css-mqpacker](https://www.npmjs.com/package/css-mqpacker) - enabled in prod build by default - combines all repearing media queries. This is 5 years old and no longer maintained but works well.
+* [purgecss-webpack-plugin](https://www.npmjs.com/package/purgecss-webpack-plugin) - removes unused CSS rules - commented out by defualt
 
 ## Using Contexts and Reducers
 [Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.

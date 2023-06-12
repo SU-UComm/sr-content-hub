@@ -15,7 +15,7 @@ module.exports = (env) => {
         module: {
             rules: [
                 {
-                    test: /\.scss$/,
+                    test: /\.(scss|css)$/,
                     use: [
                         MiniCssExtractPlugin.loader,
                         {

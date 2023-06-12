@@ -1,8 +1,13 @@
 module.exports = {
-    extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
+    extends: ['stylelint-config-standard', 'stylelint-config-standard-scss', 'stylelint-config-tailwindcss'],
     plugins: ['stylelint-scss'],
     rules: {
-        'at-rule-no-unknown': null,
+        'at-rule-no-unknown': [
+            true,
+            {
+                ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'extend', 'use', 'function', 'return', 'include'],
+            },
+        ],
         'block-opening-brace-newline-after': null,
         'block-opening-brace-space-before': null,
         'declaration-colon-space-after': null,
@@ -17,11 +22,17 @@ module.exports = {
         'number-leading-zero': null,
         'rule-empty-line-before': null,
         'no-invalid-position-at-import-rule': null,
-        'scss/at-rule-no-unknown': true,
+        'scss/at-rule-no-unknown': [
+            true,
+            {
+                ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'extend', 'use', 'function', 'return', 'include'],
+            },
+        ],
         'scss/at-import-partial-extension': null,
         'scss/dollar-variable-colon-space-after': null,
         'scss/dollar-variable-empty-line-before': null,
         'scss/dollar-variable-pattern': null,
         'scss/at-function-pattern': null,
     },
+    ignoreFiles: ['./build/**/*.css'],
 };

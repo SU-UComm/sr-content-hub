@@ -28,10 +28,11 @@ module.exports = {
     },
     entry: {
         global: glob.sync('./src/modules/**/global.js'),
+        tailwind: glob.sync('./src/js/tailwind.js'),
         reactApp: glob.sync('./src/modules/_ReactApp/render.jsx'),
     },
     chunks: {
-        allPages: ['global'],
+        allPages: ['global', 'tailwind'],
         pages: [
             {
                 pages: ['reactApp'],

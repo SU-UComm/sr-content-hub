@@ -58,6 +58,12 @@ Some of the webpack options can be configured using **/webpack/config.js**
 * [css-mqpacker](https://www.npmjs.com/package/css-mqpacker) - enabled in prod build by default - combines all repearing media queries. This is 5 years old and no longer maintained but works well.
 * [purgecss-webpack-plugin](https://www.npmjs.com/package/purgecss-webpack-plugin) - removes unused CSS rules - commented out by defualt
 
+## Tailwind
+Tailwind css is added to all pages. This can be changed in webpack/config.js.
+Entry file is located in src/js/tailwind.js which just imports src/css/input.css.
+Some portions of the defauls tailwind includes are commented out as this would duplicate the global styles.
+Main configuration file can be found in the root directory - tailwind.config.js
+
 ## Using Contexts and Reducers
 [Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.
 

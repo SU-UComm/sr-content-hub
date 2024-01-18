@@ -43,10 +43,37 @@ const AppStateProvider = (props) => {
         saveAppState(null, initialData);
     }
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch(
+                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+            );
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            // const req0Url = response['info']['url'];
+            // const resp0Code = response['info']['http_code'];
+            // const resp0Body = response.body;
+
+            // const output = showAllContent.init(resp0Code, resp0Body, mtxCfg);
+            // print(output);
+
+            console.log(result);
+            return result;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    let data = fetchData();
+
+    console.log('state', state);
+
     const [state, dispatch] = React.useReducer(appStateReducer, initialData);
 
     return (
-        <AppStateContext.Provider value={state}>
+        <AppStateContext.Provider value={data}>
             <AppDispatchContext.Provider value={dispatch}>{props.children}</AppDispatchContext.Provider>
         </AppStateContext.Provider>
     );

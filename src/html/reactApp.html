@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>React starter - React Contexts</title>
+        <title>Search: All</title>
         ${require('src/html/fragments/head.html')}
     </head>
 
-    <body>
-        <div class="page-wrapper">
-            <!--noindex-->
-            ${require('src/html/fragments/global-header.html')}
-            <!--endnoindex-->
+    <body class="su-relative">
+        <!--noindex-->
+        ${require('src/html/fragments/global-header.html')}
+        <!--endnoindex-->
 
-            <!--@@ App data JSON @@-->
-            ${require('modules/_ReactApp/AppData/html/appData.html')}
+        <!--@@ App data JSON @@-->
+        ${require('modules/_ReactApp/AppData/html/appData.html')}
 
-            <main class="main" role="main">
-                <div id="react__app-wrapper"></div>
-            </main>
-            <!-- /.main -->
+        <div id="react__app-wrapper"></div>
+        <!-- /.main -->
 
-            <!--noindex-->
-            ${require('src/html/fragments/global-footer.html')}
-            <!--endnoindex-->
-        </div>
+        <!--noindex-->
+        ${require('src/html/fragments/global-footer.html')}
+        <!--endnoindex-->
+
         <!-- /.page-wrapper -->
     </body>
 </html>

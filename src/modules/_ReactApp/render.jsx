@@ -13,9 +13,9 @@ var react_app_wrapper = document.querySelector('#react__app-wrapper');
 // Don't run on a non-React page
 if (react_app_wrapper !== null) {
     ReactDOM.render(
-        <div className="react__app-content">
-            <App />
-        </div>,
+        // <div className="react__app-content">
+        <App />,
+        // </div>,
         react_app_wrapper,
     );
 }

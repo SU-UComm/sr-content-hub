@@ -15,7 +15,7 @@ export const StatusFilter = (props) => {
     const [facets, setFacets] = useState(props.facets);
     const [listViewHtml, setlistView] = useState('');
     const [optionsListHtml, setOptionsList] = useState('');
-    const [selected, setSelected] = useState('');
+    // const [selected, setSelected] = useState('');
     const [currentLabel, setCurrentLabel] = useState('');
 
     const optionsView = (facet, cfg) => {
@@ -132,7 +132,7 @@ export const StatusFilter = (props) => {
 
         // Get Currently selected date range
         let currentlySelected = getCurrentStatus(facetsOutput);
-        setSelected(currentlySelected);
+        // setSelected(currentlySelected);
 
         // Currently selected Label
         let currentLabel = currentlySelected.name;
@@ -191,7 +191,6 @@ export const StatusFilter = (props) => {
 
     return (
         <div className="su-flex-[calc(100%/3)_1_1]">
-            <hr />
             <button onClick={() => getFormattedFacet(props.facets)}>check</button>
             <label htmlFor="status-filter" className="su-block su-text-18 su-font-bold su-leading-[2] su-mb-10">
                 {props.cfg.statusFilterLabel}

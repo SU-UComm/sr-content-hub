@@ -29,20 +29,14 @@ module.exports = {
     entry: {
         global: glob.sync('./src/modules/**/global.js'),
         tailwind: glob.sync('./src/js/tailwind.js'),
-        reactApp: glob.sync('./src/modules/_ReactApp/render.jsx'),
+        contentHub: glob.sync('./src/modules/render.jsx'),
     },
     chunks: {
-        allPages: ['global', 'tailwind'],
-        pages: [
-            {
-                pages: ['reactApp'],
-                addChunks: ['reactApp'],
-                removeChunks: [],
-            },
-        ],
+        allPages: ['global', 'tailwind', 'contentHub'],
+        pages: [],
     },
     rewrites: [
-        {from: /^\/$/, to: '/reactRouter.html'},
-        {from: /./, to: '/reactRouter.html'},
+        {from: /^\/$/, to: '/'},
+        {from: /./, to: '/'},
     ],
 };

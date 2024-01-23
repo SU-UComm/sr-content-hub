@@ -2,7 +2,7 @@ import React from 'react';
 import * as DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
 
-export const HomeHeading = ({headingText, subHeadingText}) => {
+export const PageHeading = ({headingText, subHeadingText}) => {
     return (
         <section className="su-text-center su-mt-60 su-mb-50 md:su-mt-120 md:su-mb-100">
             <h1 className="su-font-serif su-mb-12">{DOMPurify.sanitize(headingText)}</h1>
@@ -11,7 +11,7 @@ export const HomeHeading = ({headingText, subHeadingText}) => {
     );
 };
 
-HomeHeading.propTypes = {
+PageHeading.propTypes = {
     headingText: PropTypes.string,
     subHeadingText: PropTypes.string,
 };

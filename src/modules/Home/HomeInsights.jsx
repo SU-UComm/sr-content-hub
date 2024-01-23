@@ -1,7 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {InsightsCard} from './InsightsCard.jsx';
 
 export const HomeInsights = () => {
+    const insightsData = [
+        {title: 'Insights placeholder', value: '4,635', percentage: '80%', isPositive: true},
+        {title: 'Insights placeholder', value: '3.05', percentage: '80%', isPositive: true},
+        {title: 'Insights placeholder', value: '949', percentage: '9%', isPositive: false},
+    ];
+
     return (
         <section className="su-mb-90">
             <div className="su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs">
@@ -15,38 +22,9 @@ export const HomeInsights = () => {
             </div>
 
             <div className="su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs">
-                <div className="su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40 lg:su-max-h-[182px]">
-                    <div className="su-flex su-items-center su-justify-between su-mb-30">
-                        <p className="su-text-16 su-mb-0">Insights placeholder</p>
-                        <div className="su-text-green su-text-14 su-font-semibold su-bg-green/10 su-flex su-items-center su-px-10 su-py-8 su-rounded">
-                            <img className="su-inline su-mt-1 su-mr-5" src={require('images/chevron-up.svg')} alt="" />
-                            <span>80%</span>
-                        </div>
-                    </div>
-                    <p className="su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold">4,635</p>
-                </div>
-
-                <div className="su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40 lg:su-max-h-[182px]">
-                    <div className="su-flex su-items-center su-justify-between su-mb-30">
-                        <p className="su-text-16 su-mb-0">Insights placeholder</p>
-                        <div className="su-text-green su-text-14 su-font-semibold su-bg-green/10 su-flex su-items-center su-px-10 su-py-8 su-rounded">
-                            <img className="su-inline su-mt-1 su-mr-5" src={require('images/chevron-up.svg')} alt="" />
-                            <span>80%</span>
-                        </div>
-                    </div>
-                    <p className="su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold">3.05</p>
-                </div>
-
-                <div className="su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40">
-                    <div className="su-flex su-items-center su-justify-between su-mb-30">
-                        <p className="su-text-16 su-mb-0">Insights placeholder</p>
-                        <div className="su-text-red-dark su-text-14 su-font-semibold su-bg-red-dark/10 su-flex su-items-center su-px-10 su-py-8 su-rounded">
-                            <img className="su-inline su-mt-1 su-mr-5" src={require('images/chevron-down.svg')} alt="" />
-                            <span>9%</span>
-                        </div>
-                    </div>
-                    <p className="su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold">949</p>
-                </div>
+                {insightsData.map((insight, index) => (
+                    <InsightsCard key={index} {...insight} />
+                ))}
             </div>
         </section>
     );

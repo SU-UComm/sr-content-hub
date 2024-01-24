@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {PageHeading} from './Heading.jsx';
+import {PageHeading} from './PageHeading.jsx';
 import {HomeInsights} from './HomeInsights.jsx';
 import {ContentRegion} from './ContentRegion.jsx';
 

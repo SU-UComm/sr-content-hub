@@ -7,13 +7,63 @@ export const StatusFilter = (facets) => {
     const [statusOptions, setStatusOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
-    // let statusOptions = [
-    //     {value: '', label: 'All'},
-    //     {value: 'submitted', label: 'Submitted'},
-    //     {value: 'reviewed', label: 'Reviewed'},
-    //     {value: 'sent-to-sr', label: 'Publishing soon on Stanford Report'},
-    //     {value: 'published', label: 'Published on Stanford Report'},
-    // ];
+    const getFormattedFacet = (facets) => {
+        // Loop through facets :: And find CP Facet
+        const statusFacetArr = facets.filter((el) => {
+            const facetName = el.name;
+            if (facetName === 'hubStatus') {
+                return true;
+            }
+            return false;
+        });
+
+        if (statusFacetArr.length === 0) {
+            return false;
+        }
+        const statusFacet = statusFacetArr[0];
+
+        // Labels map with friendly names
+        const labelsMap = {
+            submitted: 'Submitted',
+            'sent-to-sr': 'Publishing soon on Stanford Report',
+            published: 'Published on Stanford Report',
+            reviewed: 'Reviewed',
+        };
+
+        // Get formatted version of Content Partners Facet :: without selected values
+        const facetsOutput = [];
+        for (let i in statusFacet.allValues) {
+            const thisFacet = statusFacet.allValues[i];
+
+            // Fix Toggle URL
+            let thisToggle = thisFacet.toggleUrl.split('&profile=')[0];
+            thisToggle = decodeURI(thisToggle);
+            thisToggle = thisToggle.split('f.hubStatus|hubStatus=')[1];
+            thisToggle = 'f.hubStatus|hubStatus=' + thisToggle;
+
+            if (thisToggle.indexOf('?') > -1) {
+                thisToggle = '&' + thisToggle;
+            } else {
+                thisToggle = '?' + thisToggle;
+            }
+
+            // Map label name
+            const thisLabel = thisFacet.label;
+            const mappedLabel = labelsMap[thisLabel] || thisLabel;
+
+            facetsOutput.push({
+                label: mappedLabel,
+                count: thisFacet.count,
+                toggleUrl: thisToggle,
+                selected: thisFacet.selected,
+            });
+        }
+
+        console.log('FORMATTED facetsOutput', facetsOutput);
+        // setFacets(facetsOutput);
+
+        return facetsOutput;
+    };
 
     const handleStatusChange = (value) => {
         setSelectedStatus(value);
@@ -29,11 +79,7 @@ export const StatusFilter = (facets) => {
                 handleClose();
             }
         };
-
-        // Attach the event listener when the component mounts
         document.addEventListener('click', handleClickOutside);
-
-        // Detach the event listener when the component unmounts
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -43,11 +89,25 @@ export const StatusFilter = (facets) => {
         if (facets) {
             setStatusOptions(facets.facets);
             setIsLoading(false);
+            getFormattedFacet(facets.facets);
         } else {
             setIsLoading(true);
         }
-        console.log('FSCETS', facets.facets);
     }, [facets]);
+
+    const getLabel = (value) => {
+        let label = value;
+        if (value == 'sent-to-sr') {
+            label = 'Publishing soon on Stanford Report';
+        } else if (value == 'published') {
+            label = 'Published on Stanford Report';
+        } else if (value == '') {
+            label = 'All';
+        } else {
+            label = value[0].toUpperCase() + value.substring(1);
+        }
+        return label;
+    };
 
     return (
         !isLoading && (
@@ -65,7 +125,7 @@ export const StatusFilter = (facets) => {
                     >
                         {statusOptions.map((option) => (
                             <option key={option.value} value={option.value}>
-                                {option.label}
+                                {getLabel(option.label)}
                             </option>
                         ))}
                     </select>
@@ -76,20 +136,7 @@ export const StatusFilter = (facets) => {
                             onClick={handleOpen}
                         >
                             <span className="su-mr-10">{selectedStatus ? statusOptions.find((opt) => opt.value === selectedStatus)?.label : 'All'}</span>
-                            <svg className="su-inline group-[.open]:su-rotate-180" xmlns="http://www.w3.org/2000/svg" width="11" height="7" viewBox="0 0 12 8" fill="none">
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M6.41416 7.54297L11.7071 2.25007C12.0976 1.85954 12.0976 1.22638 11.7071 0.835856L11.6213 0.750069C11.2307 0.359544 10.5976 0.359545 10.207 0.75007L4.91416 6.04297L6.41416 7.54297Z"
-                                    fill="#E50808"
-                                ></path>
-                                <path
-                                    fillRule="evenodd"
-                                    clipRule="evenodd"
-                                    d="M6.41416 7.54297L7.91416 6.04297L2.62126 0.750069C2.23074 0.359544 1.59757 0.359545 1.20705 0.75007L1.12126 0.835857C0.730738 1.22638 0.730738 1.85955 1.12126 2.25007L6.41416 7.54297Z"
-                                    fill="#E50808"
-                                ></path>
-                            </svg>
+                            <img className="su-inline su-ml-6" alt="" src={require('images/chevron-down.svg')} />
                         </button>
                         <div className="su-z-10 su-hidden group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full">
                             <ul className="su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none">
@@ -104,7 +151,7 @@ export const StatusFilter = (facets) => {
                                         tabIndex="-1"
                                         onClick={() => handleStatusChange(option.value)}
                                     >
-                                        {option.label}
+                                        {getLabel(option.label)}
                                     </li>
                                 ))}
                             </ul>

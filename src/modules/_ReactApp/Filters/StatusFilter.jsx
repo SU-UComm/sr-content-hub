@@ -124,29 +124,29 @@ export const StatusFilter = (props) => {
         console.log('facetsOutput', facetsOutput);
         setFacets(facetsOutput);
 
-        let optionsList = optionsView(facetsOutput, props.cfg);
-        setOptionsList(optionsList);
+        // let optionsList = optionsView(facetsOutput, props.cfg);
+        // setOptionsList(optionsList);
 
-        let listV = listView(facetsOutput, props.cfg);
-        setlistView(listV);
+        // let listV = listView(facetsOutput, props.cfg);
+        // setlistView(listV);
 
         // Get Currently selected date range
-        let currentlySelected = getCurrentStatus(facetsOutput);
-        // setSelected(currentlySelected);
+        // let currentlySelected = getCurrentStatus(facetsOutput);
+        // // setSelected(currentlySelected);
 
-        // Currently selected Label
-        let currentLabel = currentlySelected.name;
-        if (currentLabel === '') {
-            currentLabel = props.cfg.statusFilterDefault;
-        }
+        // // Currently selected Label
+        // let currentLabel = currentlySelected.name;
+        // if (currentLabel === '') {
+        //     currentLabel = props.cfg.statusFilterDefault;
+        // }
 
-        setCurrentLabel(currentLabel);
+        // setCurrentLabel(currentLabel);
 
-        // Return selected items
-        if (facetsOutput === false) {
-            return showNoResults(props.cfg, 'propswrapperClass');
-            // return "<!-- Filters: No filter information available -->";
-        }
+        // // Return selected items
+        // if (facetsOutput === false) {
+        //     return showNoResults(props.cfg, 'propswrapperClass');
+        //     // return "<!-- Filters: No filter information available -->";
+        // }
 
         return facetsOutput;
     };

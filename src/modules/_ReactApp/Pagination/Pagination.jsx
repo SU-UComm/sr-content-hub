@@ -1,26 +1,26 @@
 import React, {useState, useEffect} from 'react';
 
-export const Pagination = (summary) => {
+export const Pagination = (props) => {
     const [summaryData, setSummaryData] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
     useEffect(() => {
-        if (summary) {
-            setSummaryData(summary.summary);
+        if (props.summary) {
+            setSummaryData(props.summary);
             setIsLoading(false);
-            console.log('SUMMARY', summary.summary);
+            console.log('SUMMARY', props.summary);
         } else {
             setIsLoading(true);
         }
-    }, [summary]);
+    }, [props.summary]);
 
     const baseUrl = 'https://sug-web.matrix.squiz.cloud/content/all-content?start_rank=';
 
     const generateButton = (pageNumber, index) => (
         <li key={index} className={`su-border-r-0 su-mb-0 su-border su-text-16 su-font-semibold su-border-gray su-bg-white hover:su-bg-gray-light hover:su-cursor-pointer`}>
             <button
-                href={`${baseUrl}${index * summary.numRanks + 1}`}
-                data-rank={index * summary.numRanks + 1}
+                href={`${baseUrl}${index * props.summary.numRanks + 1}`}
+                data-rank={index * props.summary.numRanks + 1}
                 className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40 su-border-none"
             >
                 {pageNumber}
@@ -32,6 +32,29 @@ export const Pagination = (summary) => {
         !isLoading && (
             <nav aria-label="Pagination" className="su-flex su-justify-center">
                 <ul className="su-flex su-p-0 su-m-0 su-list-none">
+                    <li className="su-mb-0 su-rounded-l su-border su-border-r-0 su-border-gray su-bg-white hover:su-bg-gray-light">
+                        <button
+                            href="https://sug-web.matrix.squiz.cloud/_designs/paint-layouts/content-hub-related/listings/content-hub-all-content/tools/search-testing-2?site=4451&amp;start_rank=1"
+                            data-rank="1"
+                            className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
+                        >
+                            <span className="sr-only">Previous</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M0.5 5.58579L5.7929 10.8787C6.18342 11.2692 6.81659 11.2692 7.20711 10.8787L7.2929 10.7929C7.68342 10.4024 7.68342 9.7692 7.2929 9.37868L2 4.08579L0.5 5.58579Z"
+                                    fill="#E50808"
+                                ></path>
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M0.5 5.58579L2 7.08579L7.2929 1.79289C7.68342 1.40237 7.68342 0.769205 7.2929 0.37868L7.20711 0.292893C6.81659 -0.097631 6.18342 -0.0976305 5.7929 0.292893L0.5 5.58579Z"
+                                    fill="#E50808"
+                                ></path>
+                            </svg>
+                        </button>
+                    </li>
                     {[1, 2, '...', 15, 16].map((pageNumber, index) => {
                         if (pageNumber === '...') {
                             return (

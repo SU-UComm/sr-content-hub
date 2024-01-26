@@ -1,15 +1,17 @@
 import React, {useState, useRef, useEffect} from 'react';
 
-export const CPFilter = (facets) => {
+export const CPFilter = (props) => {
     const [selectedPartner, setSelectedPartner] = useState('');
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
     const [statusOptions, setStatusOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
-    const handleChange = (value) => {
+    const handleChange = (value, partner) => {
         setSelectedPartner(value);
         handleClose();
+        // console.log('CP FILTER partner: ', partner.toggleUrl);
+        props.onChange('CP', partner.toggleUrl);
     };
 
     const handleOpen = () => setOpen(true);
@@ -28,13 +30,13 @@ export const CPFilter = (facets) => {
     }, []);
 
     useEffect(() => {
-        if (facets) {
-            setStatusOptions(facets.facets);
+        if (props.facets) {
+            setStatusOptions(props.facets);
             setIsLoading(false);
         } else {
             setIsLoading(true);
         }
-    }, [facets]);
+    }, [props.facets]);
 
     return (
         !isLoading && (
@@ -44,7 +46,7 @@ export const CPFilter = (facets) => {
                     name="f.contentPartner%7CtaxonomyContentPartnerText"
                     id="cp-filter"
                     value={selectedPartner}
-                    onChange={(e) => handleChange(e.target.value)}
+                    // onChange={(e) => handleChange(e.target.value, e)}
                 >
                     <option value="">-- Choose Content Partner --</option>
                     {statusOptions.map((partner) => (
@@ -80,7 +82,7 @@ export const CPFilter = (facets) => {
                                     role="button"
                                     className="su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-py-8 su-pl-15 su-pr-20 hover:su-cursor-pointer hover:su-bg-gray-light"
                                     tabIndex="0"
-                                    onClick={() => handleChange(partner.label)}
+                                    onClick={(e) => handleChange(partner.label, partner)}
                                 >
                                     {partner.label}
                                 </li>

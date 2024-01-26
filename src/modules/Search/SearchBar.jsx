@@ -1,27 +1,20 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {getSearchData} from '../Helpers/requests';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
-export const SearchBar = (pageName) => {
+export const SearchBar = (props) => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [data, setData] = useState([]); // data from endpoint
 
     const handleInputChange = (event) => {
         setSearchQuery(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log('click', pageName.pageName);
-        let page = pageName.pageName;
-        // You can perform any additional logic here before calling onSearch
-
-        let res = getSearchData(page, searchQuery);
-        setData(res);
-        console.log('Search bar data on submit:', res);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.onChange('search', searchQuery);
     };
 
     return (
-        <form id="all-content" className="su-flex su-justify-center su-items-center su-gap-xs su-mb-80" action="?" method="get" onSubmit={handleSubmit}>
+        <form id="all-content" className="su-flex su-justify-center su-items-center su-gap-xs su-mb-80" action="?" method="get" onSubmit={(e) => handleSubmit(e)}>
             <input
                 type="text"
                 name="query"
@@ -30,7 +23,7 @@ export const SearchBar = (pageName) => {
                 className="su-w-full su-max-w-[540px] su-text-18 sm:su-text-22 md:su-text-25 su-bg-transparent su-leading-display su-px-20 su-pt-12 su-pb-18 su-text-gray-dark su-border-2 su-border-transparent su-border-b-2 su-border-b-gray focus:su-ring-0 focus:su-border-gray focus:su-shadow-none su-shadow-transparent focus:su-outline-none"
                 autoComplete="off"
                 value={searchQuery}
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e)}
                 aria-label="content search"
             />
 
@@ -40,4 +33,8 @@ export const SearchBar = (pageName) => {
             </button>
         </form>
     );
+};
+
+SearchBar.PropTypes = {
+    onChange: PropTypes.func,
 };

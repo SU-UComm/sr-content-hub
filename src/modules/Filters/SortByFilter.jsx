@@ -1,13 +1,16 @@
 import React, {useState, useRef, useEffect} from 'react';
 
-export const SortByFilter = () => {
+export const SortByFilter = (props) => {
     const [selectedRange, setSelectedRange] = useState('');
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
 
-    const handleChange = (value) => {
+    const handleChange = (value, e) => {
         setSelectedRange(value);
         handleClose();
+        // console.log('SORT BY FilTER', e.target.value);
+        let type = e.target.value == 1 ? 'dmetamtxCreated' : 'metamtxCreated';
+        props.onChange('sortBy', type);
     };
 
     const handleOpen = () => setOpen(true);
@@ -36,7 +39,7 @@ export const SortByFilter = () => {
                     name="sort"
                     id="sort-by-filter"
                     value={selectedRange}
-                    onChange={(e) => handleChange(e.target.value)}
+                    onChange={(e) => handleChange(e.target.value, e)}
                 >
                     <option value="dmetamtxCreated">Newest to Oldest</option>
                     <option value="metamtxCreated">Oldest to Newest</option>
@@ -57,18 +60,20 @@ export const SortByFilter = () => {
                     >
                         <li
                             role="button"
+                            value={1}
                             data-value="dmetamtxCreated"
                             className="su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-px-15 hover:su-cursor-pointer hover:su-bg-gray-light"
-                            onClick={() => handleChange('Newest to Oldest')}
+                            onClick={(e) => handleChange('Newest to Oldest', e)}
                         >
                             Newest to Oldest
                         </li>
 
                         <li
                             role="button"
+                            value={2}
                             data-value="metamtxCreated"
                             className="su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-px-15 hover:su-cursor-pointer hover:su-bg-gray-light"
-                            onClick={() => handleChange('Oldest to Newest')}
+                            onClick={(e) => handleChange('Oldest to Newest', e)}
                         >
                             Oldest to Newest
                         </li>

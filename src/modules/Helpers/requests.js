@@ -27,6 +27,22 @@ export const fetchFBData = async (url) => {
     }
 };
 
+const assetId = 128334;
+const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetId}?data=attributes,metadata`;
+const requestOptions = {
+    headers: {
+        Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+    },
+};
+// mock data from matrix
+// fetch(requestUrl, requestOptions)
+//     .then((response) => {
+//         return response.json();
+//     })
+//     .then((body) => {
+//         console.log(body);
+//     });
+
 /**
  * GET USER Data
  * @param {string} url endpoint URL
@@ -89,4 +105,40 @@ export const postData = async (url, queryString = '', requestData = {}) => {
     });
 
     return response;
+};
+
+// if needed - replaced with toggleUrl
+const createQuery = (name, value) => {
+    let url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?collection=sug~sp-stanford-university-content-hub&';
+    const params = {
+        profile: 'search',
+        num_ranks: 10,
+        start_rank: 1,
+        query: '',
+        'f.hubStatus%7ChubStatus': '',
+        sort: '',
+        date: '',
+    };
+
+    switch (name) {
+        case 'status':
+            params.hubStatus += value;
+            break;
+        case 'sortBy':
+            params.sortBy += value;
+            break;
+        case 'date':
+            params.date += value;
+            break;
+        case 'search':
+            params.query = value === '' ? '!nullquery' : `${value}`;
+            break;
+        default:
+            break;
+    }
+
+    url += Object.entries(params)
+        .map(([key, val]) => (val !== '' ? `${key}=${val}` : ''))
+        .join('&');
+    console.log('URL createQuery', url);
 };

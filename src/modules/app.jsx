@@ -9,6 +9,14 @@ import {Insights} from './Insights/Insights.jsx';
 import {Footer} from './Footer/Footer.jsx';
 
 export const App = () => {
+    const userData = {
+        loggedIn: true,
+        id: '4474',
+        firstName: 'Rajoshi',
+        lastName: 'Chakravarty [Squiz]',
+        userType: 'UCOMM',
+    };
+
     return (
         <HashRouter>
             <Header />

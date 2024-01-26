@@ -1,15 +1,16 @@
 import React, {useState, useRef, useEffect} from 'react';
 
-export const DateRangeFilter = (facets) => {
+export const DateRangeFilter = (props) => {
     const [selectedRange, setSelectedRange] = useState('');
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
     const [statusOptions, setStatusOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
-    const handleRangeChange = (value) => {
+    const handleRangeChange = (value, option) => {
         setSelectedRange(value);
         handleClose();
+        props.onChange('date', option.toggleUrl);
     };
 
     const handleOpen = () => setOpen(true);
@@ -29,14 +30,14 @@ export const DateRangeFilter = (facets) => {
     }, []);
 
     useEffect(() => {
-        if (facets) {
-            setStatusOptions(facets.facets);
+        if (props.facets) {
+            setStatusOptions(props.facets);
             setIsLoading(false);
-            console.log('DATE OPTIONS', facets.facets);
+            console.log('DATE OPTIONS', props.facets);
         } else {
             setIsLoading(true);
         }
-    }, [facets]);
+    }, [props.facets]);
 
     return (
         !isLoading && (
@@ -50,7 +51,7 @@ export const DateRangeFilter = (facets) => {
                         name="f.date|d"
                         id="date-filter"
                         value={selectedRange}
-                        onChange={(e) => handleRangeChange(e.target.value)}
+                        // onChange={(e) => handleRangeChange(e.target.value)}
                     >
                         {statusOptions.map((option) => (
                             <option key={option.label} value={option.label}>
@@ -78,7 +79,7 @@ export const DateRangeFilter = (facets) => {
                                             option.label === selectedRange ? 'su-bg-gray-light' : ''
                                         }`}
                                         tabIndex="-1"
-                                        onClick={() => handleRangeChange(option.label)}
+                                        onClick={() => handleRangeChange(option.label, option)}
                                     >
                                         {option.label}
                                     </li>

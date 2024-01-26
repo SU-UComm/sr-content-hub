@@ -7,11 +7,10 @@ export const StatusFilter = (props) => {
     const [statusOptions, setStatusOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
-    const handleStatusChange = (label, value, e) => {
-        console.log(e);
+    const handleStatusChange = (label, option) => {
         setSelectedStatus(label);
         handleClose();
-        props.onSelectChange('status', value);
+        props.onChange('status', option.toggleUrl);
     };
 
     const handleOpen = () => setOpen(true);
@@ -94,7 +93,7 @@ export const StatusFilter = (props) => {
                                             getLabel(option.label) === selectedStatus ? 'su-bg-gray-light' : ''
                                         }`}
                                         tabIndex="-1"
-                                        onClick={(e) => handleStatusChange(getLabel(option.label), option.data, option)}
+                                        onClick={(e) => handleStatusChange(getLabel(option.label), option)}
                                     >
                                         {getLabel(option.label)}
                                     </li>

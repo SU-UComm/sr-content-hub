@@ -8,6 +8,7 @@ export const Pagination = (props) => {
         if (props.summary) {
             setSummaryData(props.summary);
             setIsLoading(false);
+            console.log('DATA @ PAGINATION:', props.data);
             console.log('SUMMARY', props.summary);
         } else {
             setIsLoading(true);

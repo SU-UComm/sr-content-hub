@@ -4,9 +4,10 @@ import {CardButtons} from './CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers.js';
 
 export const Card = ({title, listMetadata}) => {
-    // const [data, setData] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false); // Loader flag
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
+
     // useEffect(() => {
     //     if (listMetadata) {
     //         setData(listMetadata);
@@ -17,6 +18,7 @@ export const Card = ({title, listMetadata}) => {
     //     }
     // }, [listMetadata]);
     return (
+        // !isLoading &&
         listMetadata && (
             <li
                 className="su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]"

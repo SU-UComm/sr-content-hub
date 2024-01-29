@@ -69,7 +69,7 @@ export const AllContent = () => {
     const onChange = (name, value) => {
         console.log('ON CHANGE: ', name, ' || ', value);
         let url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json' + value;
-        // fetchData(url);
+        fetchData(url);
     };
 
     return (

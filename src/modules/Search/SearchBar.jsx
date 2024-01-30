@@ -35,6 +35,6 @@ export const SearchBar = (props) => {
     );
 };
 
-SearchBar.PropTypes = {
+SearchBar.propTypes = {
     onChange: PropTypes.func,
 };

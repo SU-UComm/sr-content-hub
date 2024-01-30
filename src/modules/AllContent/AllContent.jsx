@@ -9,17 +9,19 @@ import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
 import {SearchBar} from '../Search/SearchBar.jsx';
 import {getSearchData} from '../Helpers/requests.js';
+import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 
 export const AllContent = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [data, setData] = useState([]); // data from endpoint
     const [userData, setUserData] = useState([]); // user data from endpoint
     const [CPLabel, setCPLabel] = useState([]);
+    const [facets, setFacets] = useState([]);
     const [statusLabel, setStatusLabels] = useState([]);
     const [dateLabel, setDateLabels] = useState([]);
     const [resultsSummary, setResultsSummary] = useState([]);
     const [results, setResults] = useState([]); // data from endpoint
-    const [searchQuery, setSearchQuery] = useState('');
+    const [queryString, setQueryString] = useState('');
     const url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
 
     const fetchData = async (url) => {
@@ -32,6 +34,7 @@ export const AllContent = () => {
             setStatusLabels(labels);
             setCPLabel(d.response.facets[2].allValues);
             setDateLabels(d.response.facets[0].allValues);
+            setFacets(d.response.facets);
             setData(d);
             setResults(d.response.resultPacket.results);
             setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -68,6 +71,10 @@ export const AllContent = () => {
 
     const onChange = (name, value) => {
         console.log('ON CHANGE: ', name, ' || ', value);
+        if (name == 'search') {
+            value = queryString + '&query=' + value;
+        }
+        setQueryString(value);
         let url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json' + value;
         fetchData(url);
     };
@@ -93,6 +100,7 @@ export const AllContent = () => {
                             <StatusFilter facets={statusLabel} onChange={onChange} />
                             <DateRangeFilter facets={dateLabel} onChange={onChange} />
                         </div>
+                        <SelectedFacets onChange={onChange} facets={facets} />
                     </div>
                     {/* Total Results and Sort By Filter */}
                     <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">

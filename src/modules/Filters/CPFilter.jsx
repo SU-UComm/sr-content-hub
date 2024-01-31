@@ -6,12 +6,20 @@ export const CPFilter = (props) => {
     const wrapperRef = useRef(null);
     const [statusOptions, setStatusOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
+    const [searchInput, setSearchInput] = useState('');
 
     const handleChange = (value, partner) => {
         setSelectedPartner(value);
         handleClose();
         // console.log('CP FILTER partner: ', partner.toggleUrl);
         props.onChange('CP', partner.toggleUrl);
+    };
+
+    const onInputChange = (e) => {
+        const inputValue = e.target.value;
+        setSearchInput(inputValue);
+        const filteredOptions = props.facets.filter((partner) => partner.label.replace(/&amp;/g, '&').toLowerCase().includes(inputValue.toLowerCase()));
+        setStatusOptions(filteredOptions);
     };
 
     const handleOpen = () => setOpen(true);
@@ -72,6 +80,8 @@ export const CPFilter = (props) => {
                                 type="text"
                                 name="cp-search"
                                 id="cp-search"
+                                value={searchInput}
+                                onChange={onInputChange}
                             />
                         </div>
                         <ul className="su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none">
@@ -84,7 +94,7 @@ export const CPFilter = (props) => {
                                     tabIndex="0"
                                     onClick={(e) => handleChange(partner.label, partner)}
                                 >
-                                    {partner.label}
+                                    {partner.label.replace(/&amp;/g, '&')}
                                 </li>
                             ))}
                         </ul>

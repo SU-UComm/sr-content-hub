@@ -10,6 +10,7 @@ import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
 import {SearchBar} from '../Search/SearchBar.jsx';
 import {getSearchData} from '../Helpers/requests.js';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
+import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 
 export const AllContent = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
@@ -21,8 +22,9 @@ export const AllContent = () => {
     const [dateLabel, setDateLabels] = useState([]);
     const [resultsSummary, setResultsSummary] = useState([]);
     const [results, setResults] = useState([]); // data from endpoint
-    const [queryString, setQueryString] = useState('');
-    const url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
+    const [queryParams, setQueryParams] = useState([]);
+    const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
+    const [lastFetchedUrl, setLastFetchedUrl] = useState('');
 
     const fetchData = async (url) => {
         setIsLoading(true);
@@ -38,6 +40,10 @@ export const AllContent = () => {
             setData(d);
             setResults(d.response.resultPacket.results);
             setResultsSummary(d.response.resultPacket.resultsSummary);
+            let params = getQueryStringParams(url);
+            setQueryParams(params);
+            setLastFetchedUrl(url);
+
             console.log('REQUEST FUNCTION data in all content: ', d);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -72,11 +78,37 @@ export const AllContent = () => {
     const onChange = (name, value) => {
         console.log('ON CHANGE: ', name, ' || ', value);
         if (name == 'search') {
-            value = queryString + '&query=' + value;
+            let newParams = queryParams;
+            const queryParam = newParams.find((param) => param.name === 'query');
+            if (queryParam) {
+                if (value == '' || value.length < 1) {
+                    queryParam.value = '!nullquery';
+                } else {
+                    queryParam.value = value;
+                }
+            } else {
+                newParams.push({name: 'query', value: value});
+            }
+            setQueryParams(newParams);
+            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
+            console.log('CREATED URL: ', fetchUrl);
+            fetchData(fetchUrl);
+        } else if (name == 'pagination') {
+            let newParams = queryParams;
+            const hasStartRank = newParams.find((entry) => entry.name === 'start_rank');
+            if (!hasStartRank) {
+                queryParams.push({name: 'start_rank', value});
+            } else {
+                hasStartRank.value = value;
+            }
+            setQueryParams(newParams);
+            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
+            console.log('CREATED URL: ', fetchUrl);
+            fetchData(fetchUrl);
+        } else {
+            let fetchUrl = baseUrl + value;
+            fetchData(fetchUrl);
         }
-        setQueryString(value);
-        let url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json' + value;
-        fetchData(url);
     };
 
     return (
@@ -119,7 +151,7 @@ export const AllContent = () => {
                     </ul>
                     {/* Cards end */}
                     {/* Pagination */}
-                    <Pagination data={data} summary={resultsSummary} onChange={onChange} />
+                    <Pagination baseUrl={lastFetchedUrl} data={data} summary={resultsSummary} onChange={onChange} />
                 </section>
             </div>
         )

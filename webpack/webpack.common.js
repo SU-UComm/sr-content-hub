@@ -146,7 +146,7 @@ module.exports = {
                 exclude: /inline-.+\.svg$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: './mysource_files/[name][ext]',
+                    filename: 'mysource_files/[name][ext]',
                 },
             },
         ],

@@ -12,7 +12,7 @@ module.exports = {
         overlay: {errors: true, warnings: false},
     },
     publicPath: '/',
-    publicPathProd: '/__data/assets/git_bridge/0029/128747/build',
+    publicPathProd: '/__data/assets/git_bridge/0029/128747/build/',
     proxy: {
         // '/api': {
         //     target: 'https://domain.tld:80',

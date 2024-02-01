@@ -38,10 +38,10 @@ export const ContentRegion = () => {
             <div className="su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs">
                 <h2 className="su-text-h4 md:su-text-h3 su-font-serif su-mb-0">Latest content for review</h2>
                 <div>
-                    <Link to="newcontent" className="su-flex su-items-center su-text-[18px] hover:su-underline">
+                    <a href={window.globalData.pageHrefs.newContent} className="su-flex su-items-center su-text-[18px] hover:su-underline">
                         View all New Content
                         <img className="su-inline su-ml-6" src={require('images/arrow-right.svg')} />
-                    </Link>
+                    </a>
                 </div>
             </div>
 

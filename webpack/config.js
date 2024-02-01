@@ -29,11 +29,35 @@ module.exports = {
     entry: {
         global: glob.sync('./src/modules/**/global.js'),
         tailwind: glob.sync('./src/js/tailwind.js'),
-        contentHub: glob.sync('./src/modules/render.jsx'),
+        chHome: glob.sync('./src/modules/Home.jsx'),
+        chNewContent: glob.sync('./src/modules/NewContent.jsx'),
+        chAllContent: glob.sync('./src/modules/AllContent.jsx'),
+        chInsights: glob.sync('./src/modules/Insights.jsx'),
     },
     chunks: {
-        allPages: ['global', 'tailwind', 'contentHub'],
-        pages: [],
+        allPages: ['global', 'tailwind'],
+        pages: [
+            {
+                pages: ['index'],
+                addChunks: ['chHome'],
+                removeChunks: [],
+            },
+            {
+                pages: ['newContent'],
+                addChunks: ['chNewContent'],
+                removeChunks: [],
+            },
+            {
+                pages: ['allContent'],
+                addChunks: ['chAllContent'],
+                removeChunks: [],
+            },
+            {
+                pages: ['insights'],
+                addChunks: ['chInsights'],
+                removeChunks: [],
+            },
+        ],
     },
     rewrites: [
         {from: /^\/$/, to: '/'},

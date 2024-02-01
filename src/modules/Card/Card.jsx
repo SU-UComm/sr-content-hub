@@ -7,7 +7,7 @@ export const Card = ({title, listMetadata}) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
-    let desc = listMetadata.descriptionPlain[0];
+    let desc = listMetadata?.descriptionPlain?.[0] || '';
     desc = desc.trim();
 
     // useEffect(() => {

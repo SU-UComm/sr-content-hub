@@ -1,7 +1,6 @@
 import React from 'react';
 import * as DOMPurify from 'dompurify';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 export const PageHeading = ({headingText, subHeadingText, homeButton}) => {
     return (
@@ -9,7 +8,7 @@ export const PageHeading = ({headingText, subHeadingText, homeButton}) => {
             {/* Back to home button */}
             {homeButton == true && (
                 <div className="su-absolute su-top-0 su-left-0 lg:su-left-[-64px]">
-                    <Link to="/" className="su-flex su-items-center su-text-[18px] hover:su-underline">
+                    <a href={window.globalData.pageHrefs.home} className="su-flex su-items-center su-text-[18px] hover:su-underline">
                         <svg className="su-mr-6" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path
                                 d="M8.33333 15.8337L2.5 10.0003M2.5 10.0003L8.33334 4.16699M2.5 10.0003L17.5 10.0003"
@@ -20,7 +19,7 @@ export const PageHeading = ({headingText, subHeadingText, homeButton}) => {
                             ></path>
                         </svg>
                         Back to Home
-                    </Link>
+                    </a>
                 </div>
             )}
 

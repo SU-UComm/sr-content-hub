@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Content Hub</title>
+        <title>Content Hub | Content Hub</title>
         ${require('src/html/fragments/head.html')}
     </head>
 
@@ -32,6 +32,8 @@
                 },
             };
         </script>
-        <div id="content-hub"></div>
+        ${require('src/html/fragments/global-header.html')}
+        <main id="content-hub--home" class="su-centered-container su-pt-95 su-bg-gray-bg su-grid su-grid-cols-12 su-pb-120"></main>
+        ${require('src/html/fragments/global-footer.html')}
     </body>
 </html>

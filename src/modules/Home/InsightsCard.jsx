@@ -1,4 +1,5 @@
 import React from 'react';
+import {PropTypes} from 'prop-types';
 
 export const InsightsCard = ({title, value, percentage, isPositive}) => {
     const colorClass = isPositive ? 'su-text-green' : 'su-text-red-dark';
@@ -16,4 +17,11 @@ export const InsightsCard = ({title, value, percentage, isPositive}) => {
             <p className="su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold">{value}</p>
         </div>
     );
+};
+
+InsightsCard.propTypes = {
+    title: PropTypes.array,
+    value: PropTypes.array,
+    percentage: PropTypes.string,
+    isPositive: PropTypes.array,
 };

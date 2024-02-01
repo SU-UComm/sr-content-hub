@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {Oval} from 'react-loader-spinner';
+import {PropTypes} from 'prop-types';
 
 export const Pagination = (props) => {
     const [summaryData, setSummaryData] = useState([]);
@@ -72,7 +74,6 @@ export const Pagination = (props) => {
                 addPage(pagesOutput, '', '...', false, false);
             }
         }
-        // getSingleItem: (mainUrl, itemRank, label, className, isLast)
         // If we're on N Page :: we need to print previous page
         if (currentPage === numberOfPages) {
             let pageToPrint = numberOfPages - 1;
@@ -120,98 +121,104 @@ export const Pagination = (props) => {
         setPagesData(pagesOutput);
     };
 
-    return props.summary.numRanks > props.summary.totalMatching
-        ? null
-        : !isLoading && (
-              <nav aria-label="Pagination" className="su-flex su-justify-center">
-                  <ul className="su-flex su-p-0 su-m-0 su-list-none">
-                      {props.summary.prevStart && (
-                          <li className="su-mb-0 su-rounded-l su-border su-border-r-0 su-border-gray su-bg-white hover:su-bg-gray-light">
-                              <button
-                                  onClick={(e) => onButtonClick(e)}
-                                  data-rank={props.summary.prevStart}
-                                  value={props.summary.prevStart}
-                                  className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
-                              >
-                                  <span className="sr-only">Previous</span>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
-                                      <path
-                                          fillRule="evenodd"
-                                          clipRule="evenodd"
-                                          d="M0.5 5.58579L5.7929 10.8787C6.18342 11.2692 6.81659 11.2692 7.20711 10.8787L7.2929 10.7929C7.68342 10.4024 7.68342 9.7692 7.2929 9.37868L2 4.08579L0.5 5.58579Z"
-                                          fill="#E50808"
-                                      ></path>
-                                      <path
-                                          fillRule="evenodd"
-                                          clipRule="evenodd"
-                                          d="M0.5 5.58579L2 7.08579L7.2929 1.79289C7.68342 1.40237 7.68342 0.769205 7.2929 0.37868L7.20711 0.292893C6.81659 -0.097631 6.18342 -0.0976305 5.7929 0.292893L0.5 5.58579Z"
-                                          fill="#E50808"
-                                      ></path>
-                                  </svg>
-                              </button>
-                          </li>
-                      )}
-                      {pagesData &&
-                          pagesData.map((item, index) => {
-                              if (item.label === '...') {
-                                  return (
-                                      <li
-                                          key={index}
-                                          className="sep-2 sep su-mb-0 su-border su-border-r-0 su-text-16 su-font-semibold su-border-gray su-bg-white hover:su-bg-gray-light hover:su-cursor-pointer"
-                                      >
-                                          <a href="#" className="js-inactive su-flex su-items-center su-justify-center su-w-40 su-h-40">
-                                              ...
-                                          </a>
-                                      </li>
-                                  );
-                              } else {
-                                  return (
-                                      <li
-                                          key={index}
-                                          className={`${
-                                              item.isActive ? 'pagination-active' : ''
-                                          } su-mb-0 su-border su-text-16 su-font-semibold su-border-gray su-bg-white hover:su-bg-gray-light hover:su-cursor-pointer`}
-                                      >
-                                          <button
-                                              value={item.itemRank}
-                                              onClick={(e) => onButtonClick(e)}
-                                              data-rank={item.itemRank}
-                                              className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40 su-border-none"
-                                          >
-                                              {item.label}
-                                          </button>
-                                      </li>
-                                  );
-                              }
-                          })}
+    return props.summary.numRanks > props.summary.totalMatching ? null : isLoading ? (
+        <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
+    ) : (
+        <nav aria-label="Pagination" className="su-flex su-justify-center">
+            <ul className="su-flex su-p-0 su-m-0 su-list-none">
+                {props.summary.prevStart && (
+                    <li className="su-mb-0 su-rounded-l su-border su-border-r-0 su-border-gray su-bg-white hover:su-bg-gray-light">
+                        <button
+                            onClick={(e) => onButtonClick(e)}
+                            data-rank={props.summary.prevStart}
+                            value={props.summary.prevStart}
+                            className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
+                        >
+                            <span className="sr-only">Previous</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M0.5 5.58579L5.7929 10.8787C6.18342 11.2692 6.81659 11.2692 7.20711 10.8787L7.2929 10.7929C7.68342 10.4024 7.68342 9.7692 7.2929 9.37868L2 4.08579L0.5 5.58579Z"
+                                    fill="#E50808"
+                                ></path>
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M0.5 5.58579L2 7.08579L7.2929 1.79289C7.68342 1.40237 7.68342 0.769205 7.2929 0.37868L7.20711 0.292893C6.81659 -0.097631 6.18342 -0.0976305 5.7929 0.292893L0.5 5.58579Z"
+                                    fill="#E50808"
+                                ></path>
+                            </svg>
+                        </button>
+                    </li>
+                )}
+                {pagesData &&
+                    pagesData.map((item, index) => {
+                        if (item.label === '...') {
+                            return (
+                                <li
+                                    key={index}
+                                    className="sep-2 sep su-mb-0 su-border su-border-r-0 su-text-16 su-font-semibold su-border-gray su-bg-white hover:su-bg-gray-light hover:su-cursor-pointer"
+                                >
+                                    <a href="#" className="js-inactive su-flex su-items-center su-justify-center su-w-40 su-h-40">
+                                        ...
+                                    </a>
+                                </li>
+                            );
+                        } else {
+                            return (
+                                <li
+                                    key={index}
+                                    className={`${
+                                        item.isActive ? 'pagination-active' : ''
+                                    } su-mb-0 su-border su-text-16 su-font-semibold su-border-gray su-bg-white hover:su-bg-gray-light hover:su-cursor-pointer`}
+                                >
+                                    <button
+                                        value={item.itemRank}
+                                        onClick={(e) => onButtonClick(e)}
+                                        data-rank={item.itemRank}
+                                        className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40 su-border-none"
+                                    >
+                                        {item.label}
+                                    </button>
+                                </li>
+                            );
+                        }
+                    })}
 
-                      {props.summary.nextStart && (
-                          <li className="su-mb-0 su-rounded-r su-border su-border-gray su-bg-white hover:su-bg-gray-light">
-                              <button
-                                  onClick={(e) => onButtonClick(e)}
-                                  data-rank={props.summary.nextStart}
-                                  value={props.summary.nextStart}
-                                  className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
-                              >
-                                  <span className="sr-only">Next</span>
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
-                                      <path
-                                          fillRule="evenodd"
-                                          clipRule="evenodd"
-                                          d="M7.58594 5.5856L2.29304 0.292705C1.90251 -0.097819 1.26935 -0.0978181 0.878825 0.292706L0.793037 0.378493C0.402513 0.769018 0.402513 1.40218 0.793038 1.79271L6.08594 7.0856L7.58594 5.5856Z"
-                                          fill="#E50808"
-                                      ></path>
-                                      <path
-                                          fillRule="evenodd"
-                                          clipRule="evenodd"
-                                          d="M7.58594 5.5856L6.08594 4.0856L0.793038 9.37849C0.402513 9.76902 0.402513 10.4022 0.793038 10.7927L0.878826 10.8785C1.26935 11.269 1.90251 11.269 2.29304 10.8785L7.58594 5.5856Z"
-                                          fill="#E50808"
-                                      ></path>
-                                  </svg>
-                              </button>
-                          </li>
-                      )}
-                  </ul>
-              </nav>
-          );
+                {props.summary.nextStart && (
+                    <li className="su-mb-0 su-rounded-r su-border su-border-gray su-bg-white hover:su-bg-gray-light">
+                        <button
+                            onClick={(e) => onButtonClick(e)}
+                            data-rank={props.summary.nextStart}
+                            value={props.summary.nextStart}
+                            className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
+                        >
+                            <span className="sr-only">Next</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M7.58594 5.5856L2.29304 0.292705C1.90251 -0.097819 1.26935 -0.0978181 0.878825 0.292706L0.793037 0.378493C0.402513 0.769018 0.402513 1.40218 0.793038 1.79271L6.08594 7.0856L7.58594 5.5856Z"
+                                    fill="#E50808"
+                                ></path>
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M7.58594 5.5856L6.08594 4.0856L0.793038 9.37849C0.402513 9.76902 0.402513 10.4022 0.793038 10.7927L0.878826 10.8785C1.26935 11.269 1.90251 11.269 2.29304 10.8785L7.58594 5.5856Z"
+                                    fill="#E50808"
+                                ></path>
+                            </svg>
+                        </button>
+                    </li>
+                )}
+            </ul>
+        </nav>
+    );
+};
+
+Pagination.propTypes = {
+    data: PropTypes.array,
+    summary: PropTypes.array,
+    onChange: PropTypes.func,
 };

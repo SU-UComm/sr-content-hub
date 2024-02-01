@@ -7,6 +7,8 @@ export const Card = ({title, listMetadata}) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
+    let desc = listMetadata.descriptionPlain[0];
+    desc = desc.trim();
 
     // useEffect(() => {
     //     if (listMetadata) {
@@ -43,7 +45,7 @@ export const Card = ({title, listMetadata}) => {
                         </a>
                     </h3>
 
-                    <p className="su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]">{listMetadata.descriptionPlain}</p>
+                    <p className="su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]">{desc}</p>
                     <p className="su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto">
                         Submitted on {reformatDate(listMetadata.mtxCreated)} | First published on {reformatDate(listMetadata.srcPublishedDate)}
                     </p>

@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {PropTypes} from 'prop-types';
 
 export const DateRangeFilter = (props) => {
     const [selectedRange, setSelectedRange] = useState('');
@@ -91,4 +92,9 @@ export const DateRangeFilter = (props) => {
             </div>
         )
     );
+};
+
+DateRangeFilter.propTypes = {
+    facets: PropTypes.array,
+    onChange: PropTypes.func,
 };

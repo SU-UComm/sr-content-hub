@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {PropTypes} from 'prop-types';
 
 export const SortByFilter = (props) => {
     const [selectedRange, setSelectedRange] = useState('');
@@ -82,4 +83,8 @@ export const SortByFilter = (props) => {
             </div>
         </div>
     );
+};
+
+SortByFilter.propTypes = {
+    onChange: PropTypes.func,
 };

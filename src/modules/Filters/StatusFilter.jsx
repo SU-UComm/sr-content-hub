@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {PropTypes} from 'prop-types';
 
 export const StatusFilter = (props) => {
     const [selectedStatus, setSelectedStatus] = useState('All');
@@ -107,53 +108,7 @@ export const StatusFilter = (props) => {
     );
 };
 
-// const getFormattedFacet = (facets) => {
-//     // Loop through facets :: And find CP Facet
-//     const statusFacetArr = facets.filter((el) => {
-//         const facetName = el.name;
-//         if (facetName === 'hubStatus') {
-//             return true;
-//         }
-//         return false;
-//     });
-
-//     if (statusFacetArr.length === 0) {
-//         return false;
-//     }
-//     const statusFacet = statusFacetArr[0];
-
-//     // Labels map with friendly names
-//     const labelsMap = contentHubGlobals.defaultValues.statuses;
-
-//     // Get formatted version of Content Partners Facet :: without selected values
-//     const facetsOutput = [];
-//     for (let i in statusFacet.allValues) {
-//         const thisFacet = statusFacet.allValues[i];
-
-//         // Fix Toggle URL
-//         let thisToggle = thisFacet.toggleUrl.split('&profile=')[0];
-//         thisToggle = decodeURI(thisToggle);
-//         thisToggle = thisToggle.split('f.hubStatus|hubStatus=')[1];
-//         thisToggle = 'f.hubStatus|hubStatus=' + thisToggle;
-
-//         if (thisToggle.indexOf('?') > -1) {
-//             thisToggle = '&' + thisToggle;
-//         } else {
-//             thisToggle = '?' + thisToggle;
-//         }
-
-//         // Map label name
-//         const thisLabel = thisFacet.label;
-//         const mappedLabel = labelsMap[thisLabel] || thisLabel;
-
-//         facetsOutput.push({
-//             label: mappedLabel,
-//             count: thisFacet.count,
-//             toggleUrl: thisToggle,
-//             selected: thisFacet.selected,
-//         });
-//     }
-
-//     // Return selected items
-//     return facetsOutput;
-// };
+StatusFilter.propTypes = {
+    facets: PropTypes.array,
+    onChange: PropTypes.func,
+};

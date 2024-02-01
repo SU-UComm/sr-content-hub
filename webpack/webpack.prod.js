@@ -10,6 +10,9 @@ const config = require('./config');
 
 module.exports = (env) => {
     return merge(common, {
+        output: {
+            publicPath: config.publicPathProd,
+        },
         mode: 'production',
         devtool: 'source-map',
         module: {

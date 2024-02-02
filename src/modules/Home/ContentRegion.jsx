@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {Card} from '../Card/Card.jsx';
-import {fetchFBData} from '../Helpers/requests.js';
+import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 
@@ -32,9 +32,14 @@ export const ContentRegion = () => {
     };
 
     useEffect(() => {
-        let url = window?.contentHubAPI?.newContent
-            ? window?.contentHubAPI?.search?.newContent
-            : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery';
+        let url = window?.data?.contentHubAPI?.search?.newContent;
+        if (url) {
+            getSearchData('newContent', '');
+        } else {
+            fetchData(
+                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+            );
+        }
         fetchData(url);
     }, []);
 

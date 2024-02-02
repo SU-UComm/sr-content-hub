@@ -1008,9 +1008,10 @@ var getLabel = function getLabel(value) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Im: function() { return /* binding */ getSearchData; },
 /* harmony export */   gV: function() { return /* binding */ fetchFBData; }
 /* harmony export */ });
-/* unused harmony exports getUserData, getSearchData, postData */
+/* unused harmony exports getUserData, postData */
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1539);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8674);
@@ -1223,7 +1224,7 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
  * @returns {object} JSON object
  */
 
-var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
+var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 441 == __webpack_require__.j ? (function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(pageName) {
     var queryString,
         url,
@@ -1263,7 +1264,7 @@ var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && 
   return function getSearchData(_x2) {
     return _ref3.apply(this, arguments);
   };
-}()));
+}()) : null);
 /**
  * POST Data
  * @param {string} url endpoint URL

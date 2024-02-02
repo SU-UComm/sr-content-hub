@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PageHeading} from '../Home/PageHeading.jsx';
 import {CPFilter} from '../Filters/CPFilter.jsx';
-import {fetchFBData} from '../Helpers/requests.js';
+import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
@@ -17,7 +17,6 @@ export const NewContent = () => {
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
-    const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
 
     const fetchData = async (url) => {
         setIsLoading(true);
@@ -40,13 +39,27 @@ export const NewContent = () => {
     };
 
     useEffect(() => {
-        fetchData(
-            'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
-        );
+        let user = window?.data?.user?.userType;
+        let url = window?.data?.contentHubAPI?.search;
+        if (url) {
+            if (user == 'CP') {
+                getSearchData('myContent', '');
+            } else {
+                getSearchData('newContent', '');
+            }
+        } else {
+            fetchData(
+                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+            );
+        }
+        fetchData(url);
     }, []);
 
     const onChange = (name, value) => {
         console.log('ON CHANGE: ', name, ' || ', value);
+        let baseUrl = window?.data?.contentHubAPI?.search?.newContent
+            ? window?.data?.contentHubAPI?.search?.newContent
+            : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');

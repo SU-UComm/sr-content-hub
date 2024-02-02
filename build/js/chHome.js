@@ -116,7 +116,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ContentRegion = function ContentRegion() {
-  var _window2, _window2$data, _window2$data$user, _window3, _window3$data, _window3$data$user;
+  var _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -213,7 +213,10 @@ var ContentRegion = function ContentRegion() {
   }, []);
 
   var onChange = function onChange(name, value) {
+    var _window2, _window2$data, _window2$data$content, _window2$data$content2, _window3, _window3$data, _window3$data$content, _window3$data$content2;
+
     console.log('ON CHANGE: ', name, ' || ', value);
+    var baseUrl = (_window2 = window) !== null && _window2 !== void 0 && (_window2$data = _window2.data) !== null && _window2$data !== void 0 && (_window2$data$content = _window2$data.contentHubAPI) !== null && _window2$data$content !== void 0 && (_window2$data$content2 = _window2$data$content.search) !== null && _window2$data$content2 !== void 0 && _window2$data$content2.newContent ? (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : (_window3$data$content2 = _window3$data$content.search) === null || _window3$data$content2 === void 0 ? void 0 : _window3$data$content2.newContent : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
     var fetchUrl = baseUrl + value;
     fetchData(fetchUrl);
   };
@@ -229,20 +232,20 @@ var ContentRegion = function ContentRegion() {
     className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
-  }, ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
+  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
     href: window.globalData.pageHrefs.newContent,
     className: "su-flex su-items-center su-text-[18px] hover:su-underline"
-  }, "View all ", ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
+  }, "View all ", ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(7142)
-  })))), /*#__PURE__*/react.createElement("div", {
+  })))), ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'CP' ? /*#__PURE__*/react.createElement("div", {
     className: "su-mb-60"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"
   }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
     facets: statusLabel,
     onChange: onChange
-  }), ' ')), /*#__PURE__*/react.createElement("p", {
+  }), ' ')) : null, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
   }, "1-5 of ", resultsSummary.totalMatching, " results waiting for review"), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",

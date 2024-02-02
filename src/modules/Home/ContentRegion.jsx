@@ -45,6 +45,9 @@ export const ContentRegion = () => {
 
     const onChange = (name, value) => {
         console.log('ON CHANGE: ', name, ' || ', value);
+        let baseUrl = window?.data?.contentHubAPI?.search?.newContent
+            ? window?.data?.contentHubAPI?.search?.newContent
+            : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
 
         let fetchUrl = baseUrl + value;
         fetchData(fetchUrl);
@@ -63,11 +66,13 @@ export const ContentRegion = () => {
                     </a>
                 </div>
             </div>
-            <div className="su-mb-60">
-                <div className="su-w-full md:su-w-1/2">
-                    <StatusFilter facets={statusLabel} onChange={onChange} />{' '}
+            {window?.data?.user?.userType === 'CP' ? (
+                <div className="su-mb-60">
+                    <div className="su-w-full md:su-w-1/2">
+                        <StatusFilter facets={statusLabel} onChange={onChange} />{' '}
+                    </div>
                 </div>
-            </div>
+            ) : null}
 
             <p className="su-leading-[2] su-mb-20">1-5 of {resultsSummary.totalMatching} results waiting for review</p>
 

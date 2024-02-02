@@ -17,24 +17,44 @@ export const NewContent = () => {
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
+    const [dataLocation, setDataLocation] = useState('');
+    const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
 
-    const fetchData = async (url) => {
+    const fetchData = async (url, func) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
-        try {
-            const d = await fetchFBData(url);
-            setFacets(d.response.facets);
-            setCPLabels(d.response.facets[2].allValues);
-            setData(d);
-            setResults(d.response.resultPacket.results);
-            setResultsSummary(d.response.resultPacket.resultsSummary);
-            let params = getQueryStringParams(url);
-            setQueryParams(params);
-            console.log('REQUEST FUNCTION data in all content: ', d);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            setIsLoading(false);
+        if (func == 'fb') {
+            try {
+                const d = await fetchFBData(url);
+                setFacets(d.response.facets);
+                setCPLabels(d.response.facets[2].allValues);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                let params = getQueryStringParams(url);
+                setQueryParams(params);
+                console.log('REQUEST FUNCTION data in all content: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            try {
+                const d = await getSearchData(url, '');
+                setFacets(d.response.facets);
+                setCPLabels(d.response.facets[2].allValues);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                let params = getQueryStringParams(url);
+                setQueryParams(params);
+                console.log('REQUEST FUNCTION data in all content: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -43,22 +63,25 @@ export const NewContent = () => {
         let url = window?.data?.contentHubAPI?.search;
         if (url) {
             if (user == 'CP') {
-                getSearchData('myContent', '');
+                fetchData('myContent', 'matrix');
+                // getSearchData('myContent', '');
             } else {
-                getSearchData('newContent', '');
+                fetchData('newContent', 'matrix');
+                // getSearchData('newContent', '');
             }
+            setDataLocation('matrix');
+            setUrl(url);
         } else {
             fetchData(
                 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                'fb',
             );
+            setDataLocation('fb');
         }
     }, []);
 
     const onChange = (name, value) => {
         console.log('ON CHANGE: ', name, ' || ', value);
-        let baseUrl = window?.data?.contentHubAPI?.search?.newContent
-            ? window?.data?.contentHubAPI?.search?.newContent
-            : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -74,7 +97,7 @@ export const NewContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else if (name == 'pagination') {
             let newParams = queryParams;
             const hasStartRank = newParams.find((entry) => entry.name === 'start_rank');
@@ -86,10 +109,10 @@ export const NewContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else {
             let fetchUrl = baseUrl + value;
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         }
     };
 

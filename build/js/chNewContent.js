@@ -294,7 +294,7 @@ function NewContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var NewContent = function NewContent() {
-  var _window5, _window5$data, _window5$data$texts, _window5$data$texts$n, _window6, _window6$data, _window6$data$texts, _window6$data$texts$n;
+  var _window3, _window3$data, _window3$data$texts, _window3$data$texts$n, _window4, _window4$data, _window4$data$texts, _window4$data$texts$n;
 
   var _useState = (0,react.useState)([]),
       _useState2 = NewContent_slicedToArray(_useState, 2),
@@ -334,20 +334,36 @@ var NewContent = function NewContent() {
       facets = _useState14[0],
       setFacets = _useState14[1];
 
+  var _useState15 = (0,react.useState)(''),
+      _useState16 = NewContent_slicedToArray(_useState15, 2),
+      dataLocation = _useState16[0],
+      setDataLocation = _useState16[1];
+
+  var _useState17 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+      _useState18 = NewContent_slicedToArray(_useState17, 2),
+      baseUrl = _useState18[0],
+      setUrl = _useState18[1];
+
   var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
-      var d, params;
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
+      var d, params, _d2, _params;
+
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
 
-              _context.prev = 1;
-              _context.next = 4;
+              if (!(func == 'fb')) {
+                _context.next = 24;
+                break;
+              }
+
+              _context.prev = 2;
+              _context.next = 5;
               return (0,requests/* fetchFBData */.gV)(url);
 
-            case 4:
+            case 5:
               d = _context.sent;
               setFacets(d.response.facets);
               setCPLabels(d.response.facets[2].allValues);
@@ -357,28 +373,60 @@ var NewContent = function NewContent() {
               params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(params);
               console.log('REQUEST FUNCTION data in all content: ', d);
-              _context.next = 18;
+              _context.next = 19;
               break;
 
-            case 15:
-              _context.prev = 15;
-              _context.t0 = _context["catch"](1);
+            case 16:
+              _context.prev = 16;
+              _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               setIsLoading(false);
-              return _context.finish(18);
+              return _context.finish(19);
 
-            case 21:
+            case 22:
+              _context.next = 44;
+              break;
+
+            case 24:
+              _context.prev = 24;
+              _context.next = 27;
+              return (0,requests/* getSearchData */.Im)(url, '');
+
+            case 27:
+              _d2 = _context.sent;
+              setFacets(_d2.response.facets);
+              setCPLabels(_d2.response.facets[2].allValues);
+              setData(_d2);
+              setResults(_d2.response.resultPacket.results);
+              setResultsSummary(_d2.response.resultPacket.resultsSummary);
+              _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
+              setQueryParams(_params);
+              console.log('REQUEST FUNCTION data in all content: ', _d2);
+              _context.next = 41;
+              break;
+
+            case 38:
+              _context.prev = 38;
+              _context.t1 = _context["catch"](24);
+              console.error('Error fetching data:', _context.t1);
+
+            case 41:
+              _context.prev = 41;
+              setIsLoading(false);
+              return _context.finish(41);
+
+            case 44:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 15, 18, 21]]);
+      }, _callee, null, [[2, 16, 19, 22], [24, 38, 41, 44]]);
     }));
 
-    return function fetchData(_x) {
+    return function fetchData(_x, _x2) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -391,20 +439,21 @@ var NewContent = function NewContent() {
 
     if (url) {
       if (user == 'CP') {
-        (0,requests/* getSearchData */.Im)('myContent', '');
+        fetchData('myContent', 'matrix'); // getSearchData('myContent', '');
       } else {
-        (0,requests/* getSearchData */.Im)('newContent', '');
+        fetchData('newContent', 'matrix'); // getSearchData('newContent', '');
       }
+
+      setDataLocation('matrix');
+      setUrl(url);
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery', 'fb');
+      setDataLocation('fb');
     }
   }, []);
 
   var onChange = function onChange(name, value) {
-    var _window3, _window3$data, _window3$data$content, _window3$data$content2, _window4, _window4$data, _window4$data$content, _window4$data$content2;
-
     console.log('ON CHANGE: ', name, ' || ', value);
-    var baseUrl = (_window3 = window) !== null && _window3 !== void 0 && (_window3$data = _window3.data) !== null && _window3$data !== void 0 && (_window3$data$content = _window3$data.contentHubAPI) !== null && _window3$data$content !== void 0 && (_window3$data$content2 = _window3$data$content.search) !== null && _window3$data$content2 !== void 0 && _window3$data$content2.newContent ? (_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$content = _window4$data.contentHubAPI) === null || _window4$data$content === void 0 ? void 0 : (_window4$data$content2 = _window4$data$content.search) === null || _window4$data$content2 === void 0 ? void 0 : _window4$data$content2.newContent : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
 
     if (name == 'search') {
       var newParams = queryParams;
@@ -428,7 +477,7 @@ var NewContent = function NewContent() {
       setQueryParams(newParams);
       var fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
       console.log('CREATED URL: ', fetchUrl);
-      fetchData(fetchUrl);
+      fetchData(fetchUrl, dataLocation);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
 
@@ -450,11 +499,11 @@ var NewContent = function NewContent() {
       var _fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
 
       console.log('CREATED URL: ', _fetchUrl);
-      fetchData(_fetchUrl);
+      fetchData(_fetchUrl, dataLocation);
     } else {
       var _fetchUrl2 = baseUrl + value;
 
-      fetchData(_fetchUrl2);
+      fetchData(_fetchUrl2, dataLocation);
     }
   };
 
@@ -468,8 +517,8 @@ var NewContent = function NewContent() {
   }) : /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
-    headingText: (_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$texts = _window5$data.texts) === null || _window5$data$texts === void 0 ? void 0 : (_window5$data$texts$n = _window5$data$texts.newcontent) === null || _window5$data$texts$n === void 0 ? void 0 : _window5$data$texts$n.headingText,
-    subHeadingText: (_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$texts = _window6$data.texts) === null || _window6$data$texts === void 0 ? void 0 : (_window6$data$texts$n = _window6$data$texts.newcontent) === null || _window6$data$texts$n === void 0 ? void 0 : _window6$data$texts$n.subHeadingText,
+    headingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.headingText,
+    subHeadingText: (_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$texts = _window4$data.texts) === null || _window4$data$texts === void 0 ? void 0 : (_window4$data$texts$n = _window4$data$texts.newcontent) === null || _window4$data$texts$n === void 0 ? void 0 : _window4$data$texts$n.subHeadingText,
     homeButton: true
   }), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("div", {
     className: "su-mb-20"

@@ -25,50 +25,64 @@ export const AllContent = () => {
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
+    const [dataLocation, setDataLocation] = useState('');
 
-    const fetchData = async (url) => {
+    const fetchData = async (url, func) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
-        try {
-            const d = await fetchFBData(url);
-            setStatusLabels(d.response.facets[1].allValues);
-            setCPLabels(d.response.facets[2].allValues);
-            setDateLabels(d.response.facets[0].allValues);
-            setFacets(d.response.facets);
-            setData(d);
-            setResults(d.response.resultPacket.results);
-            setResultsSummary(d.response.resultPacket.resultsSummary);
-            let params = getQueryStringParams(url);
-            setQueryParams(params);
-            console.log('REQUEST FUNCTION data in all content: ', d);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchData(
-            'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
-        );
-    }, []);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            setIsLoading(true);
+        if (func == 'fb') {
             try {
-                const user = await fetchUserData();
-
-                console.log('USER DATA: ', user);
-                setUserData(user);
+                const d = await fetchFBData(url);
+                setStatusLabels(d.response.facets[1].allValues);
+                setCPLabels(d.response.facets[2].allValues);
+                setDateLabels(d.response.facets[0].allValues);
+                setFacets(d.response.facets);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                let params = getQueryStringParams(url);
+                setQueryParams(params);
+                console.log('REQUEST FUNCTION data in all content: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
                 setIsLoading(false);
             }
-        };
-        fetchUserData();
+        } else {
+            try {
+                const d = await getSearchData(url, '');
+                setStatusLabels(d.response.facets[1].allValues);
+                setCPLabels(d.response.facets[2].allValues);
+                setDateLabels(d.response.facets[0].allValues);
+                setFacets(d.response.facets);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                let params = getQueryStringParams(url);
+                setQueryParams(params);
+                console.log('REQUEST FUNCTION data in all content matrix: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    };
+
+    useEffect(() => {
+        let url = window?.data?.contentHubAPI?.search;
+        if (url) {
+            fetchData('allContent', 'matrix');
+            // getSearchData('newContent', '');
+            setDataLocation('matrix');
+            setUrl(url);
+        } else {
+            fetchData(
+                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                'fb',
+            );
+            setDataLocation('fb');
+        }
     }, []);
 
     const onChange = (name, value) => {
@@ -88,7 +102,7 @@ export const AllContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else if (name == 'pagination') {
             let newParams = queryParams;
             const hasStartRank = newParams.find((entry) => entry.name === 'start_rank');
@@ -100,10 +114,10 @@ export const AllContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else {
             let fetchUrl = baseUrl + value;
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         }
     };
 

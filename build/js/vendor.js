@@ -1224,7 +1224,7 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
  * @returns {object} JSON object
  */
 
-var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|825)$/.test(__webpack_require__.j) ? (function () {
+var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ !/^(172|906)$/.test(__webpack_require__.j) ? (function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(pageName) {
     var queryString,
         url,

@@ -13,34 +13,50 @@ export const ContentRegion = () => {
     const [statusLabel, setStatusLabels] = useState([]);
     const [facets, setFacets] = useState([]);
 
-    const fetchData = async (url) => {
+    const fetchData = async (url, func) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
-        try {
-            const d = await fetchFBData(url);
-            setStatusLabels(d.response.facets[1].allValues);
-            setFacets(d.response.facets);
-            setData(d);
-            setResults(d.response.resultPacket.results);
-            setResultsSummary(d.response.resultPacket.resultsSummary);
-            console.log('REQUEST FUNCTION data in all content: ', d);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            setIsLoading(false);
+        if (func == 'fb') {
+            try {
+                const d = await fetchFBData(url);
+                setStatusLabels(d.response.facets[1].allValues);
+                setFacets(d.response.facets);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                console.log('REQUEST FUNCTION data in all content: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            try {
+                const d = await getSearchData(url, '');
+                setStatusLabels(d.response.facets[1].allValues);
+                setFacets(d.response.facets);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                console.log('REQUEST FUNCTION data in all content: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
     useEffect(() => {
         let url = window?.data?.contentHubAPI?.search?.newContent;
         if (url) {
-            getSearchData('newContent', '');
+            fetchData('newContent', 'matrix');
         } else {
             fetchData(
                 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                'fb',
             );
         }
-        fetchData(url);
     }, []);
 
     const onChange = (name, value) => {
@@ -74,7 +90,9 @@ export const ContentRegion = () => {
                 </div>
             ) : null}
 
-            <p className="su-leading-[2] su-mb-20">1-5 of {resultsSummary.totalMatching} results waiting for review</p>
+            <p className="su-leading-[2] su-mb-20">
+                1-5 of {resultsSummary.totalMatching} {window?.data?.user?.userType === 'UCOMM' ? 'results waiting for review' : ''}
+            </p>
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
                 {results.slice(0, 5).map((contentItem, index) => (

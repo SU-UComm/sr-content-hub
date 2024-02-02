@@ -116,7 +116,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ContentRegion = function ContentRegion() {
-  var _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
+  var _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window7$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -152,19 +152,25 @@ var ContentRegion = function ContentRegion() {
       setFacets = _useState12[1];
 
   var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
-      var d;
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
+      var d, _d2;
+
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
 
-              _context.prev = 1;
-              _context.next = 4;
+              if (!(func == 'fb')) {
+                _context.next = 22;
+                break;
+              }
+
+              _context.prev = 2;
+              _context.next = 5;
               return (0,requests/* fetchFBData */.gV)(url);
 
-            case 4:
+            case 5:
               d = _context.sent;
               setStatusLabels(d.response.facets[1].allValues);
               setFacets(d.response.facets);
@@ -172,28 +178,58 @@ var ContentRegion = function ContentRegion() {
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
               console.log('REQUEST FUNCTION data in all content: ', d);
-              _context.next = 16;
+              _context.next = 17;
               break;
 
-            case 13:
-              _context.prev = 13;
-              _context.t0 = _context["catch"](1);
+            case 14:
+              _context.prev = 14;
+              _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 16:
-              _context.prev = 16;
+            case 17:
+              _context.prev = 17;
               setIsLoading(false);
-              return _context.finish(16);
+              return _context.finish(17);
 
-            case 19:
+            case 20:
+              _context.next = 40;
+              break;
+
+            case 22:
+              _context.prev = 22;
+              _context.next = 25;
+              return (0,requests/* getSearchData */.Im)(url, '');
+
+            case 25:
+              _d2 = _context.sent;
+              setStatusLabels(_d2.response.facets[1].allValues);
+              setFacets(_d2.response.facets);
+              setData(_d2);
+              setResults(_d2.response.resultPacket.results);
+              setResultsSummary(_d2.response.resultPacket.resultsSummary);
+              console.log('REQUEST FUNCTION data in all content: ', _d2);
+              _context.next = 37;
+              break;
+
+            case 34:
+              _context.prev = 34;
+              _context.t1 = _context["catch"](22);
+              console.error('Error fetching data:', _context.t1);
+
+            case 37:
+              _context.prev = 37;
+              setIsLoading(false);
+              return _context.finish(37);
+
+            case 40:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 13, 16, 19]]);
+      }, _callee, null, [[2, 14, 17, 20], [22, 34, 37, 40]]);
     }));
 
-    return function fetchData(_x) {
+    return function fetchData(_x, _x2) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -204,12 +240,10 @@ var ContentRegion = function ContentRegion() {
     var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : (_window$data$contentH2 = _window$data$contentH.search) === null || _window$data$contentH2 === void 0 ? void 0 : _window$data$contentH2.newContent;
 
     if (url) {
-      (0,requests/* getSearchData */.Im)('newContent', '');
+      fetchData('newContent', 'matrix');
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery', 'fb');
     }
-
-    fetchData(url);
   }, []);
 
   var onChange = function onChange(name, value) {
@@ -247,7 +281,7 @@ var ContentRegion = function ContentRegion() {
     onChange: onChange
   }), ' ')) : null, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
-  }, "1-5 of ", resultsSummary.totalMatching, " results waiting for review"), /*#__PURE__*/react.createElement("ul", {
+  }, "1-5 of ", resultsSummary.totalMatching, " ", ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? 'results waiting for review' : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
   }, results.slice(0, 5).map(function (contentItem, index) {

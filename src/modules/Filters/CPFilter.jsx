@@ -72,7 +72,11 @@ export const CPFilter = (props) => {
                         <span className="su-mr-10 su-line-clamp-1">{selectedPartner || '-- Choose Content Partner --'}</span>
                         <img className="su-inline su-ml-6" alt="" src={require('images/chevron-down.svg')} />
                     </button>
-                    <div className="su-z-10 su-hidden group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full">
+                    <div
+                        className={`u-z-10 ${
+                            open ? 'su-block' : 'su-hidden'
+                        } group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full`}
+                    >
                         <div className="su-leading-[3.6rem] su-px-8 su-pt-4 su-pb-8">
                             <input
                                 className="su-w-full su-rounded su-border-gray su-text-18 su-py-8 focus:su-border-red focus:su-ring-red"

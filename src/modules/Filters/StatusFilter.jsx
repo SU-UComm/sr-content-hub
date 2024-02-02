@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {PropTypes} from 'prop-types';
+import {getLabel} from '../Helpers/helperFunctions';
 
 export const StatusFilter = (props) => {
     const [selectedStatus, setSelectedStatus] = useState('All');
@@ -39,20 +40,6 @@ export const StatusFilter = (props) => {
         }
     }, [props.facets]);
 
-    const getLabel = (value) => {
-        let label = value;
-        if (value == 'sent-to-sr') {
-            label = 'Publishing soon on Stanford Report';
-        } else if (value == 'published') {
-            label = 'Published on Stanford Report';
-        } else if (value == '') {
-            label = 'All';
-        } else {
-            label = value[0].toUpperCase() + value.substring(1);
-        }
-        return label;
-    };
-
     return (
         !isLoading && (
             <div className="su-flex-[calc(100%/3)_1_1]">
@@ -82,7 +69,11 @@ export const StatusFilter = (props) => {
                             <span className="su-mr-10">{selectedStatus}</span>
                             <img className="su-inline su-ml-6" alt="" src={require('images/chevron-down.svg')} />
                         </button>
-                        <div className="su-z-10 su-hidden group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full">
+                        <div
+                            className={`su-z-10 ${
+                                open ? 'su-block' : 'su-hidden'
+                            }  group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full`}
+                        >
                             <ul className="su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none">
                                 {statusOptions.map((option) => (
                                     <li

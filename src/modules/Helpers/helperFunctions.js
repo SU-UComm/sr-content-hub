@@ -29,3 +29,17 @@ export const createUrl = (queryParams) => {
     const queryString = queryStringArray.join('&');
     return queryString;
 };
+
+export const getLabel = (value) => {
+    let label = value;
+    if (value.toLowerCase() == 'sent-to-sr') {
+        label = 'Publishing soon on Stanford Report';
+    } else if (value == 'published') {
+        label = 'Published on Stanford Report';
+    } else if (value == '') {
+        label = 'All';
+    } else {
+        label = value[0].toUpperCase() + value.substring(1);
+    }
+    return label;
+};

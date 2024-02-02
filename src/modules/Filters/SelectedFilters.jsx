@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {PropTypes} from 'prop-types';
+import {getLabel} from '../Helpers/helperFunctions';
 
 export const SelectedFacets = (props) => {
     const [facets, setFacets] = useState([]);
@@ -80,7 +81,7 @@ export const SelectedFacets = (props) => {
                                     <path d="M1 1.5L8 8.5" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                                 </svg>
                             </span>
-                            {facet.displayName} ({facet.count})
+                            {getLabel(facet.displayName)} ({facet.count})
                         </button>
                     ))}
             </div>

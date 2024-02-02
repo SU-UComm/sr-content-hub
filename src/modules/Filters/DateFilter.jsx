@@ -69,7 +69,11 @@ export const DateRangeFilter = (props) => {
                             <span className="su-mr-10">{selectedRange ? statusOptions.find((opt) => opt.label === selectedRange)?.label : 'All'}</span>
                             <img className="su-inline su-ml-6" alt="" src={require('images/chevron-down.svg')} />
                         </button>
-                        <div className="su-z-10 su-hidden group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full">
+                        <div
+                            className={`su-z-10 ${
+                                open ? 'su-block' : 'su-hidden'
+                            } su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full`}
+                        >
                             <ul className="su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none">
                                 {statusOptions.map((option) => (
                                     <li

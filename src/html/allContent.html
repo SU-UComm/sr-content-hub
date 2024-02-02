@@ -8,8 +8,13 @@
     <body>
         <script>
             window.data = {
-                userName: 'John Doe [Squiz]',
-                userid: 123,
+                user: {
+                    loggedIn: true,
+                    id: '1234',
+                    firstName: 'John',
+                    lastName: 'Doe [Squiz]',
+                    userType: 'CP',
+                },
                 texts: {
                     home: {
                         headingText: 'Welcome to Content Hub',
@@ -18,6 +23,10 @@
                     },
                     newcontent: {
                         headingText: 'New Content for Review',
+                        subHeadingText: '',
+                    },
+                    mycontent: {
+                        headingText: 'My Content',
                         subHeadingText: '',
                     },
                     allcontent: {

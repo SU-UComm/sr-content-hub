@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 
-export const CardButtons = () => {
+export const CardButtons = (listMetadata) => {
     const [isSendDialogOpen, setSendDialogOpen] = useState(false);
     const [isDeclineDialogOpen, setDeclineDialogOpen] = useState(false);
-    const openSendDialog = () => setSendDialogOpen(true);
+
+    const openSendDialog = () => {
+        setSendDialogOpen(true);
+        document.body.style.background = 'grey';
+    };
+
     const closeSendDialog = () => setSendDialogOpen(false);
     const openDeclineDialog = () => setDeclineDialogOpen(true);
     const closeDeclineDialog = () => setDeclineDialogOpen(false);
@@ -33,46 +38,52 @@ export const CardButtons = () => {
             </button>
 
             {isSendDialogOpen && (
-                <div
-                    id="approve-dialog"
-                    data-id="127999"
-                    className="c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
-                    aria=""
-                    aria-labelledby="dialogTitle-127999-approve"
-                    style={{position: 'absolute'}}
-                >
-                    <button
-                        onClick={closeSendDialog}
-                        className="su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent"
-                        aria-label="close"
+                <>
+                    <dialog
+                        data-id={listMetadata.assetId}
+                        role="dialog"
+                        open="true"
+                        className="c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
+                        aria=""
+                        aria-labelledby={`dialogTitle-${listMetadata.assetId}-approve`}
+                        style={{position: 'absolute'}}
                     >
-                        <svg className="" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none">
-                            <path d="M12.0554 1.9502L1.94434 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                            <path d="M1.94434 1.9502L12.0554 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                        </svg>
-                    </button>
-                    <div className="c-dialog-body su-p-30 sm:su-p-60">
-                        <h3 id="dialogTitle-127999-approve" className="su-mb-0 su-font-serif su-text-center su-tracking-normal">
-                            You are accepting this story for publication on Stanford Report
-                        </h3>
-                        <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
-                            <button onClick={handleSendTeaser} aria-label="Send Teaser" className="button-green js-send-teaser">
-                                Send Teaser
-                            </button>
-                            <button onClick={handleSendFullContent} aria-label="Send Full Content" className="button-green js-send-content">
-                                Send Full Content
-                            </button>
-                            <button onClick={closeSendDialog} aria-label="Cancel" className="js-decline">
-                                Cancel
-                            </button>
+                        <button
+                            onClick={closeSendDialog}
+                            className="su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent"
+                            aria-label="close"
+                        >
+                            <svg className="" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none">
+                                <path d="M12.0554 1.9502L1.94434 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                <path d="M1.94434 1.9502L12.0554 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            </svg>
+                        </button>
+                        <div className="c-dialog-body su-p-30 sm:su-p-60">
+                            <h3 id={`dialogTitle-${listMetadata.assetId}-approve`} className="su-mb-0 su-font-serif su-text-center su-tracking-normal">
+                                You are accepting this story for publication on Stanford Report
+                            </h3>
+                            <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
+                                <button onClick={handleSendTeaser} aria-label="Send Teaser" className="button-green js-send-teaser">
+                                    Send Teaser
+                                </button>
+                                <button onClick={handleSendFullContent} aria-label="Send Full Content" className="button-green js-send-content">
+                                    Send Full Content
+                                </button>
+                                <button onClick={closeSendDialog} aria-label="Cancel" className="js-decline">
+                                    Cancel
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </dialog>
+                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
             )}
 
             {isDeclineDialogOpen && (
-                <div
-                    id="decline-dialog"
+                <dialog
+                    role="dialog"
+                    open="true"
+                    data-id={listMetadata.assetId}
                     className="c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
                     style={{position: 'absolute'}}
                 >
@@ -87,7 +98,7 @@ export const CardButtons = () => {
                         </svg>
                     </button>
                     <div className="c-dialog-body su-p-30 sm:su-p-60">
-                        <h3 id="dialogTitle-128070-decline" className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">
+                        <h3 id={`dialogTitle-${listMetadata.assetId}-approve`} className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">
                             You are declining this story
                         </h3>
                         <p id="dialogDescription-128070-decline" className="su-mb-10 su-leading-[125%] su-text-center">
@@ -113,7 +124,7 @@ export const CardButtons = () => {
                             </button>
                         </div>
                     </div>
-                </div>
+                </dialog>
             )}
         </div>
     );

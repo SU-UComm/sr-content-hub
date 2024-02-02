@@ -132,9 +132,9 @@ export const Pagination = (props) => {
                             onClick={(e) => onButtonClick(e)}
                             data-rank={props.summary.prevStart}
                             value={props.summary.prevStart}
+                            aria-label="Previous"
                             className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
                         >
-                            <span className="sr-only">Previous</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
                                 <path
                                     fillRule="evenodd"
@@ -192,9 +192,9 @@ export const Pagination = (props) => {
                             onClick={(e) => onButtonClick(e)}
                             data-rank={props.summary.nextStart}
                             value={props.summary.nextStart}
+                            aria-label="Next"
                             className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40"
                         >
-                            <span className="sr-only">Next</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="7" height="11" fill="none">
                                 <path
                                     fillRule="evenodd"

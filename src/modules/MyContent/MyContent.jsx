@@ -1,29 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {PageHeading} from '../Home/PageHeading.jsx';
-import {StatusFilter} from '../Filters/StatusFilter.jsx';
-import {DateRangeFilter} from '../Filters/DateFilter.jsx';
 import {CPFilter} from '../Filters/CPFilter.jsx';
 import {fetchFBData} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
-import {SearchBar} from '../Search/SearchBar.jsx';
-import {getSearchData} from '../Helpers/requests.js';
-import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
+import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
+import {StatusFilter} from '../Filters/StatusFilter.jsx';
 
-export const AllContent = () => {
-    const [isLoading, setIsLoading] = useState(false); // Loader flag
-    const [data, setData] = useState([]); // data from endpoint
-    const [userData, setUserData] = useState([]); // user data from endpoint
-    const [CPLabels, setCPLabels] = useState([]);
-    const [facets, setFacets] = useState([]);
+export const MyContent = () => {
     const [statusLabel, setStatusLabels] = useState([]);
-    const [dateLabel, setDateLabels] = useState([]);
+    const [data, setData] = useState([]); // data from endpoint
+    const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [resultsSummary, setResultsSummary] = useState([]);
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
+    const [facets, setFacets] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
 
     const fetchData = async (url) => {
@@ -31,10 +25,8 @@ export const AllContent = () => {
         // replace with getSearchData from requests.js with blank query once CORS is resolved
         try {
             const d = await fetchFBData(url);
-            setStatusLabels(d.response.facets[1].allValues);
-            setCPLabels(d.response.facets[2].allValues);
-            setDateLabels(d.response.facets[0].allValues);
             setFacets(d.response.facets);
+            setStatusLabels(d.response.facets[1].allValues);
             setData(d);
             setResults(d.response.resultPacket.results);
             setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -52,23 +44,6 @@ export const AllContent = () => {
         fetchData(
             'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
         );
-    }, []);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            setIsLoading(true);
-            try {
-                const user = await fetchUserData();
-
-                console.log('USER DATA: ', user);
-                setUserData(user);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchUserData();
     }, []);
 
     const onChange = (name, value) => {
@@ -111,43 +86,32 @@ export const AllContent = () => {
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10">
-            <PageHeading headingText={window?.data?.texts?.allcontent?.headingText} subHeadingText={window?.data?.texts?.newcontent?.subHeadingText} homeButton={true} />
-            <SearchBar onChange={onChange} />
+            <PageHeading headingText={window?.data?.texts?.mycontent?.headingText} subHeadingText={window?.data?.texts?.mycontent?.subHeadingText} homeButton={true} />
             <section>
                 <div className="su-mb-20">
-                    <div className="su-flex su-flex-col lg:su-flex-row su-gap-xs">
-                        {/* CP Filter */}
-                        <div className="su-flex-[calc(100%/3)_1_1]">
-                            <label htmlFor="cp-filter" className="su-block su-text-18 su-font-bold su-leading-[2] su-mb-10">
-                                Content partners
-                            </label>
-                            <div className="undefined">
-                                <CPFilter facets={CPLabels} onChange={onChange} />
-                            </div>
-                        </div>
-                        {/* CP Filter */}
-                        <StatusFilter facets={statusLabel} onChange={onChange} />
-                        <DateRangeFilter facets={dateLabel} onChange={onChange} />
+                    <div className="su-w-full md:su-w-1/2">
+                        <StatusFilter onChange={onChange} facets={statusLabel} />
                     </div>
-                    <SelectedFacets onChange={onChange} facets={facets} />
                 </div>
-                {/* Total Results and Sort By Filter */}
+                <SelectedFacets onChange={onChange} facets={facets} />
+
                 <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
                     <p className="su-leading-[2] su-mb-0">
                         {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
                     </p>
-                    <div className="su-flex su-shrink-0 su-gap-xs su-items-center">
-                        <SortByFilter onChange={onChange} />
-                    </div>
+
+                    <SortByFilter onChange={onChange} />
                 </div>
-                {/* Cards */}
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results.map((contentItem, index) => (
-                        <Card key={index} {...contentItem} />
-                    ))}
+                    {results ? (
+                        results.map((contentItem, index) => <Card key={index} {...contentItem} />)
+                    ) : (
+                        <div className="su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center">
+                            <h2 className="su-mb-12">No results found</h2>
+                            <p>Please search again using different keywords and filters.</p>
+                        </div>
+                    )}
                 </ul>
-                {/* Cards end */}
-                {/* Pagination */}
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>
         </div>

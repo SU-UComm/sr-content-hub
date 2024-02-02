@@ -77,11 +77,12 @@ export const getSearchData = async (pageName, queryString = '') => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: '',
+            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
         },
     }).then((res) => {
         return (res = res.json());
     });
+    console.log('getSearchDATA resp: ', response);
 
     return response;
 };

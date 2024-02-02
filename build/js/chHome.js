@@ -14,6 +14,10 @@ var client = __webpack_require__(745);
 var PageHeading = __webpack_require__(7774);
 // EXTERNAL MODULE: ./src/modules/Home/HomeInsights.jsx + 1 modules
 var HomeInsights = __webpack_require__(792);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
+var es_regexp_exec = __webpack_require__(4916);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
+var es_string_search = __webpack_require__(4765);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
@@ -36,8 +40,6 @@ var web_dom_collections_iterator = __webpack_require__(3948);
 var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
 var es_array_from = __webpack_require__(1038);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__(4916);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
 var es_promise = __webpack_require__(8674);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.async-iterator.js
@@ -66,6 +68,7 @@ var StatusFilter = __webpack_require__(1948);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 
 
 
@@ -196,9 +199,9 @@ var ContentRegion = function ContentRegion() {
   }();
 
   (0,react.useEffect)(function () {
-    var _window, _window$contentHubAPI, _window2, _window2$contentHubAP;
+    var _window, _window$contentHubAPI, _window2, _window2$contentHubAP, _window2$contentHubAP2;
 
-    var url = (_window = window) !== null && _window !== void 0 && (_window$contentHubAPI = _window.contentHubAPI) !== null && _window$contentHubAPI !== void 0 && _window$contentHubAPI.newContent ? (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$contentHubAP = _window2.contentHubAPI) === null || _window2$contentHubAP === void 0 ? void 0 : _window2$contentHubAP.newContent : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery';
+    var url = (_window = window) !== null && _window !== void 0 && (_window$contentHubAPI = _window.contentHubAPI) !== null && _window$contentHubAPI !== void 0 && _window$contentHubAPI.newContent ? (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$contentHubAP = _window2.contentHubAPI) === null || _window2$contentHubAP === void 0 ? void 0 : (_window2$contentHubAP2 = _window2$contentHubAP.search) === null || _window2$contentHubAP2 === void 0 ? void 0 : _window2$contentHubAP2.newContent : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery';
     fetchData(url);
   }, []);
 

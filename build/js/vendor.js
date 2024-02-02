@@ -1241,7 +1241,7 @@ var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && 
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: ''
+                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
               }
             }).then(function (res) {
               return res = res.json();
@@ -1249,9 +1249,10 @@ var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && 
 
           case 5:
             response = _context3.sent;
+            console.log('getSearchDATA resp: ', response);
             return _context3.abrupt("return", response);
 
-          case 7:
+          case 8:
           case "end":
             return _context3.stop();
         }
@@ -5063,6 +5064,20 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ 1150:
+/***/ (function(module) {
+
+// `SameValue` abstract operation
+// https://tc39.es/ecma262/#sec-samevalue
+// eslint-disable-next-line es-x/no-object-is -- safe
+module.exports = Object.is || function is(x, y) {
+  // eslint-disable-next-line no-self-compare -- NaN check
+  return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
+};
+
+
+/***/ }),
+
 /***/ 6340:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -6994,6 +7009,51 @@ fixRegExpWellKnownSymbolLogic('replace', function (_, nativeReplace, maybeCallNa
     }
   ];
 }, !REPLACE_SUPPORTS_NAMED_GROUPS || !REPLACE_KEEPS_$0 || REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE);
+
+
+/***/ }),
+
+/***/ 4765:
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var call = __webpack_require__(6916);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(7007);
+var anObject = __webpack_require__(9670);
+var requireObjectCoercible = __webpack_require__(4488);
+var sameValue = __webpack_require__(1150);
+var toString = __webpack_require__(1340);
+var getMethod = __webpack_require__(8173);
+var regExpExec = __webpack_require__(7651);
+
+// @@search logic
+fixRegExpWellKnownSymbolLogic('search', function (SEARCH, nativeSearch, maybeCallNative) {
+  return [
+    // `String.prototype.search` method
+    // https://tc39.es/ecma262/#sec-string.prototype.search
+    function search(regexp) {
+      var O = requireObjectCoercible(this);
+      var searcher = regexp == undefined ? undefined : getMethod(regexp, SEARCH);
+      return searcher ? call(searcher, regexp, O) : new RegExp(regexp)[SEARCH](toString(O));
+    },
+    // `RegExp.prototype[@@search]` method
+    // https://tc39.es/ecma262/#sec-regexp.prototype-@@search
+    function (string) {
+      var rx = anObject(this);
+      var S = toString(string);
+      var res = maybeCallNative(nativeSearch, rx, S);
+
+      if (res.done) return res.value;
+
+      var previousLastIndex = rx.lastIndex;
+      if (!sameValue(previousLastIndex, 0)) rx.lastIndex = 0;
+      var result = regExpExec(rx, S);
+      if (!sameValue(rx.lastIndex, previousLastIndex)) rx.lastIndex = previousLastIndex;
+      return result === null ? -1 : result.index;
+    }
+  ];
+});
 
 
 /***/ }),

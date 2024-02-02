@@ -60,6 +60,8 @@ var Card = __webpack_require__(9214);
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
 var dist_module = __webpack_require__(6665);
+// EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
+var StatusFilter = __webpack_require__(1948);
 ;// CONCATENATED MODULE: ./src/modules/Home/ContentRegion.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -109,8 +111,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ContentRegion = function ContentRegion() {
-  var _window, _window$data, _window$data$user, _window2, _window2$data, _window2$data$user;
+  var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -135,53 +138,76 @@ var ContentRegion = function ContentRegion() {
       resultsSummary = _useState8[0],
       setResultsSummary = _useState8[1];
 
-  (0,react.useEffect)(function () {
-    var fetchData = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var d;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                setIsLoading(true);
-                _context.prev = 1;
-                _context.next = 4;
-                return (0,requests/* fetchFBData */.gV)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+  var _useState9 = (0,react.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      statusLabel = _useState10[0],
+      setStatusLabels = _useState10[1];
 
-              case 4:
-                d = _context.sent;
-                setData(d);
-                setResults(d.response.resultPacket.results);
-                setResultsSummary(d.response.resultPacket.resultsSummary);
-                console.log('REQUEST FUNCTION data in home: ', d);
-                _context.next = 14;
-                break;
+  var _useState11 = (0,react.useState)([]),
+      _useState12 = _slicedToArray(_useState11, 2),
+      facets = _useState12[0],
+      setFacets = _useState12[1];
 
-              case 11:
-                _context.prev = 11;
-                _context.t0 = _context["catch"](1);
-                console.error('Error fetching data:', _context.t0);
+  var fetchData = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
+      var d;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
 
-              case 14:
-                _context.prev = 14;
-                setIsLoading(false);
-                return _context.finish(14);
+              _context.prev = 1;
+              _context.next = 4;
+              return (0,requests/* fetchFBData */.gV)(url);
 
-              case 17:
-              case "end":
-                return _context.stop();
-            }
+            case 4:
+              d = _context.sent;
+              setStatusLabels(d.response.facets[1].allValues);
+              setFacets(d.response.facets);
+              setData(d);
+              setResults(d.response.resultPacket.results);
+              setResultsSummary(d.response.resultPacket.resultsSummary);
+              console.log('REQUEST FUNCTION data in all content: ', d);
+              _context.next = 16;
+              break;
+
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](1);
+              console.error('Error fetching data:', _context.t0);
+
+            case 16:
+              _context.prev = 16;
+              setIsLoading(false);
+              return _context.finish(16);
+
+            case 19:
+            case "end":
+              return _context.stop();
           }
-        }, _callee, null, [[1, 11, 14, 17]]);
-      }));
+        }
+      }, _callee, null, [[1, 13, 16, 19]]);
+    }));
 
-      return function fetchData() {
-        return _ref.apply(this, arguments);
-      };
-    }();
+    return function fetchData(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
 
-    fetchData();
+  (0,react.useEffect)(function () {
+    var _window, _window$contentHubAPI, _window2, _window2$contentHubAP;
+
+    var url = (_window = window) !== null && _window !== void 0 && (_window$contentHubAPI = _window.contentHubAPI) !== null && _window$contentHubAPI !== void 0 && _window$contentHubAPI.newContent ? (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$contentHubAP = _window2.contentHubAPI) === null || _window2$contentHubAP === void 0 ? void 0 : _window2$contentHubAP.newContent : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery';
+    fetchData(url);
   }, []);
+
+  var onChange = function onChange(name, value) {
+    console.log('ON CHANGE: ', name, ' || ', value);
+    var fetchUrl = baseUrl + value;
+    fetchData(fetchUrl);
+  };
+
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
     visible: true,
     height: "80",
@@ -193,13 +219,20 @@ var ContentRegion = function ContentRegion() {
     className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
-  }, ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
+  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
     href: window.globalData.pageHrefs.newContent,
     className: "su-flex su-items-center su-text-[18px] hover:su-underline"
-  }, "View all ", ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
+  }, "View all ", ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(7142)
-  })))), /*#__PURE__*/react.createElement("p", {
+  })))), /*#__PURE__*/react.createElement("div", {
+    className: "su-mb-60"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-w-full md:su-w-1/2"
+  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
+    facets: statusLabel,
+    onChange: onChange
+  }), ' ')), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
   }, "1-5 of ", resultsSummary.totalMatching, " results waiting for review"), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",

@@ -32,9 +32,10 @@ export const ContentRegion = () => {
     };
 
     useEffect(() => {
-        fetchData(
-            'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
-        );
+        let url = window?.contentHubAPI?.newContent
+            ? window?.contentHubAPI?.newContent
+            : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery';
+        fetchData(url);
     }, []);
 
     const onChange = (name, value) => {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {CardButtons} from './CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers.js';
 import * as DOMPurify from 'dompurify';
+import {useNavigate} from 'react-router-dom';
 
 export const Card = ({title, listMetadata}) => {
     const [data, setData] = useState([]);
@@ -10,6 +11,13 @@ export const Card = ({title, listMetadata}) => {
     let url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
     let desc = listMetadata?.descriptionPlain?.[0] || '';
     desc = desc.trim();
+    // const navigate = useNavigate();
+
+    // const routeChange = () => {
+    //     console.log('path change');
+    //     let path = 'story';
+    //     navigate(`/story`);
+    // };
 
     // useEffect(() => {
     //     if (listMetadata) {
@@ -21,7 +29,7 @@ export const Card = ({title, listMetadata}) => {
     //     }
     // }, [listMetadata]);
     return (
-        // !isLoading &&
+        // !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
         listMetadata && (
             <li
                 className="su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]"

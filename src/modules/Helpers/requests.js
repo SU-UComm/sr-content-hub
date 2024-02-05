@@ -65,8 +65,31 @@ export const getUserData = async () => {
 };
 
 /**
- * GET Data
- * @param {string} url endpoint URL
+ * GET ContentAPI Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
+export const getAPIData = async (assetID) => {
+    const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata`;
+    console.log('URL,', requestUrl);
+    const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+        },
+    }).then((res) => {
+        return (res = res.json());
+    });
+    console.log('getAPIDATA resp: ', response);
+
+    return response;
+};
+
+/**
+ * GET Search Data
+ * @param {string} pageName to get endpoint URL
  * @param {string} queryString request query string
  * @returns {object} JSON object
  */

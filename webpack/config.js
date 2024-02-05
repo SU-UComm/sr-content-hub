@@ -34,6 +34,7 @@ module.exports = {
         chNewContent: glob.sync('./src/modules/NewContent.jsx'),
         chAllContent: glob.sync('./src/modules/AllContent.jsx'),
         chInsights: glob.sync('./src/modules/Insights.jsx'),
+        chStory: glob.sync('./src/modules/StoryView.jsx'),
     },
     chunks: {
         allPages: ['global', 'tailwind'],
@@ -56,6 +57,11 @@ module.exports = {
             {
                 pages: ['insights'],
                 addChunks: ['chInsights'],
+                removeChunks: [],
+            },
+            {
+                pages: ['story'],
+                addChunks: ['chStory'],
                 removeChunks: [],
             },
         ],

@@ -260,6 +260,8 @@ var reformatDate = function reformatDate(ts) {
 
   return "".concat(month, " ").concat(day, ", ").concat(year);
 };
+// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
+var purify = __webpack_require__(7856);
 ;// CONCATENATED MODULE: ./src/modules/Card/Card.jsx
 
 
@@ -290,6 +292,8 @@ function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Card = function Card(_ref) {
   var _listMetadata$descrip, _window, _window$data, _window$data$user;
 
@@ -309,7 +313,13 @@ var Card = function Card(_ref) {
 
   var url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
   var desc = (listMetadata === null || listMetadata === void 0 ? void 0 : (_listMetadata$descrip = listMetadata.descriptionPlain) === null || _listMetadata$descrip === void 0 ? void 0 : _listMetadata$descrip[0]) || '';
-  desc = desc.trim(); // useEffect(() => {
+  desc = desc.trim(); // const navigate = useNavigate();
+  // const routeChange = () => {
+  //     console.log('path change');
+  //     let path = 'story';
+  //     navigate(`/story`);
+  // };
+  // useEffect(() => {
   //     if (listMetadata) {
   //         setData(listMetadata);
   //         setIsLoading(false);
@@ -319,12 +329,11 @@ var Card = function Card(_ref) {
   //     }
   // }, [listMetadata]);
 
-  return (// !isLoading &&
+  return (// !isLoading && href={url + listMetadata.assetId}
     listMetadata && /*#__PURE__*/react.createElement("li", {
       className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
       "data-id": listMetadata.assetId
     }, /*#__PURE__*/react.createElement("a", {
-      href: url + listMetadata.assetId,
       className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
     }, /*#__PURE__*/react.createElement("img", {
       className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
@@ -337,7 +346,6 @@ var Card = function Card(_ref) {
     }, listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react.createElement("h3", {
       className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
     }, /*#__PURE__*/react.createElement("a", {
-      href: url + listMetadata.assetId,
       title: "View ".concat(title),
       className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
     }, title)), /*#__PURE__*/react.createElement("p", {
@@ -1113,7 +1121,7 @@ var contentHubAPI = {
     contentApi: 'https://sug-web.matrix.squiz.cloud/__api'
   }
 };
-var fetchFBData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ !/^(172|906)$/.test(__webpack_require__.j) ? (function () {
+var fetchFBData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
     var response, res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -1224,7 +1232,7 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
  * @returns {object} JSON object
  */
 
-var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ !/^(172|906)$/.test(__webpack_require__.j) ? (function () {
+var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(pageName) {
     var queryString,
         url,
@@ -14375,10 +14383,10 @@ var LAYER = '@layer'
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   O: function() { return /* binding */ prefix; }
 /* harmony export */ });
-if (!/^(172|906)$/.test(__webpack_require__.j)) {
+if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var _Enum_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7563);
 }
-if (!/^(172|906)$/.test(__webpack_require__.j)) {
+if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var _Utility_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6686);
 }
 
@@ -14538,10 +14546,10 @@ function prefix (value, length, children) {
 /* harmony export */   P: function() { return /* binding */ stringify; },
 /* harmony export */   q: function() { return /* binding */ serialize; }
 /* harmony export */ });
-if (!/^(172|906)$/.test(__webpack_require__.j)) {
+if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var _Enum_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7563);
 }
-if (!/^(172|906)$/.test(__webpack_require__.j)) {
+if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var _Utility_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6686);
 }
 
@@ -14605,7 +14613,7 @@ function stringify (element, index, children, callback) {
 /* harmony export */   xb: function() { return /* binding */ lift; }
 /* harmony export */ });
 /* unused harmony exports line, column, length, position, character, characters, slice, token, tokenize, tokenizer, delimiter */
-if (!/^(172|906)$/.test(__webpack_require__.j)) {
+if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var _Utility_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6686);
 }
 

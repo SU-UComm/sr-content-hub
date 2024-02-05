@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 1380:
+/***/ 2909:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -553,6 +553,22 @@ var NewContent = function NewContent() {
 };
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
 var StatusFilter = __webpack_require__(1948);
+// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
+var purify = __webpack_require__(7856);
+;// CONCATENATED MODULE: ./src/modules/NoContent/NoContent.jsx
+
+
+
+var NoContent = function NoContent(_ref) {
+  var headingText = _ref.headingText,
+      subHeadingText = _ref.subHeadingText,
+      homeButton = _ref.homeButton;
+  return /*#__PURE__*/react.createElement("div", {
+    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
+  }, /*#__PURE__*/react.createElement("h2", {
+    className: "su-mb-12"
+  }, "No results found"), /*#__PURE__*/react.createElement("p", null, "Please search again using different keywords and filters."));
+};
 ;// CONCATENATED MODULE: ./src/modules/MyContent/MyContent.jsx
 function MyContent_typeof(obj) { "@babel/helpers - typeof"; return MyContent_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, MyContent_typeof(obj); }
 
@@ -597,6 +613,7 @@ function MyContent_arrayLikeToArray(arr, len) { if (len == null || len > arr.len
 function MyContent_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function MyContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -798,11 +815,7 @@ var MyContent = function MyContent() {
     return /*#__PURE__*/react.createElement(Card/* Card */.Z, MyContent_extends({
       key: index
     }, contentItem));
-  }) : /*#__PURE__*/react.createElement("div", {
-    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
-  }, /*#__PURE__*/react.createElement("h2", {
-    className: "su-mb-12"
-  }, "No results found"), /*#__PURE__*/react.createElement("p", null, "Please search again using different keywords and filters."))), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
+  }) : /*#__PURE__*/react.createElement(NoContent, null)), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,
     onChange: onChange
@@ -1004,7 +1017,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(1380); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(2909); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

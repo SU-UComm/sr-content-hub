@@ -752,6 +752,12 @@ var AllContent = function AllContent() {
     }
   };
 
+  var routeChange = function routeChange() {
+    console.log('route chaneg');
+    var path = "story";
+    history.push(path);
+  };
+
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
     visible: true,
     height: "80",

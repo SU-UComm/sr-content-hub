@@ -9,6 +9,7 @@ import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
+import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const MyContent = () => {
     const [statusLabel, setStatusLabels] = useState([]);
@@ -103,14 +104,7 @@ export const MyContent = () => {
                     <SortByFilter onChange={onChange} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results ? (
-                        results.map((contentItem, index) => <Card key={index} {...contentItem} />)
-                    ) : (
-                        <div className="su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center">
-                            <h2 className="su-mb-12">No results found</h2>
-                            <p>Please search again using different keywords and filters.</p>
-                        </div>
-                    )}
+                    {results ? results.map((contentItem, index) => <Card key={index} {...contentItem} />) : <NoContent />}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>

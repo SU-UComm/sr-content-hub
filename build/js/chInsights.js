@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 3434:
+/***/ 2767:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -33,8 +33,6 @@ var Insights = function Insights() {
 };
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__(8309);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.sub.js
-var es_string_sub = __webpack_require__(86);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -79,9 +77,139 @@ var dist_module = __webpack_require__(6665);
 var Card_CardButtons = __webpack_require__(9993);
 // EXTERNAL MODULE: ./src/modules/Helpers/dateHelpers.js
 var dateHelpers = __webpack_require__(9113);
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
+var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+;// CONCATENATED MODULE: ./src/modules/Story/FullStory.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var FullStory_FullStory = function FullStory(props) {
+  var _useState = (0,react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isOpen = _useState2[0],
+      setIsOpen = _useState2[1];
+
+  var toggleFullStory = function toggleFullStory() {
+    setIsOpen(!isOpen);
+  };
+
+  return /*#__PURE__*/react.createElement("section", {
+    id: "full-story",
+    className: "su-group full-width-bg su-relative ".concat(isOpen ? 'su-pb-120 open' : '', "  su-bg-gray-bg before:su-bg-gray-bg after:su-bg-gray-bg")
+  }, /*#__PURE__*/react.createElement("div", {
+    id: "full-story-toggle",
+    onClick: toggleFullStory,
+    className: "su-pb-60 su-pt-80 su-flex su-justify-between su-items-center su-border-gray hover:su-cursor-pointer group-[.open]:su-border-b"
+  }, /*#__PURE__*/react.createElement("h2", {
+    className: "su-font-serif su-mb-0"
+  }, "Full Story"), /*#__PURE__*/react.createElement("button", {
+    className: "su-w-50 su-border-none su-bg-transparent hover:su-bg-transparent"
+  }, /*#__PURE__*/react.createElement("svg", {
+    className: "su-inline ".concat(isOpen ? 'su-rotate-180' : ''),
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "20",
+    height: "13",
+    viewBox: "0 0 12 8",
+    fill: "none"
+  }, /*#__PURE__*/react.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M6.41416 7.54297L11.7071 2.25007C12.0976 1.85954 12.0976 1.22638 11.7071 0.835856L11.6213 0.750069C11.2307 0.359544 10.5976 0.359545 10.207 0.75007L4.91416 6.04297L6.41416 7.54297Z",
+    fill: "#E50808"
+  }), /*#__PURE__*/react.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M6.41416 7.54297L7.91416 6.04297L2.62126 0.750069C2.23074 0.359544 1.59757 0.359545 1.20705 0.75007L1.12126 0.835857C0.730738 1.22638 0.730738 1.85955 1.12126 2.25007L6.41416 7.54297Z",
+    fill: "#E50808"
+  })))), /*#__PURE__*/react.createElement("div", {
+    className: "".concat(isOpen ? 'su-flex' : 'su-hidden', " su-mt-45 su-flex-col su-gap-[30px]")
+  }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
+    className: "small-heading"
+  }, "Author"), /*#__PURE__*/react.createElement("p", {
+    className: "su-py-20 su-mb-0"
+  }, props.data.bylineAuthor ? props.data.bylineAuthor : 'NA')), /*#__PURE__*/react.createElement("div", {
+    className: "su-pb-45  su-border-b su-border-gray "
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "small-heading"
+  }, "Story"), /*#__PURE__*/react.createElement("div", {
+    className: "su-py-20 [&>p:last-child]:su-mb-0"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-py-20 [&>p:last-child]:su-mb-0"
+  }, typeof contentHubAPI !== 'undefined' ? /*#__PURE__*/react.createElement("iframe", {
+    id: "story-content-iframe",
+    src: "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast?SQ_DESIGN_NAME=content_only",
+    "data-src": "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast",
+    style: "width: 100%; height: 750px; border-color: rgb(201, 201, 201); border-width: 1px; border-style: solid;"
+  }) : null))), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
+    className: "small-heading su-mb-30"
+  }, "Media"), /*#__PURE__*/react.createElement("div", {
+    className: "su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]"
+  }, /*#__PURE__*/react.createElement("img", {
+    src: "https://sug-web.matrix.squiz.cloud/_media/images/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast2.jpg",
+    alt: "",
+    className: "su-aspect-[3/2] su-object-cover"
+  })), /*#__PURE__*/react.createElement("ul", {
+    className: "su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1"
+  }, /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Credit"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Alternative Text"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  })), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Captions"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Dimensions"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, "750x500")))))));
+};
+FullStory_FullStory.propTypes = {
+  data: prop_types_default().shape({
+    bylineAuthor: (prop_types_default()).string,
+    name: (prop_types_default()).string
+  })
+};
 ;// CONCATENATED MODULE: ./src/modules/Story/StoryView.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 
 
 
@@ -108,17 +236,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function StoryView_slicedToArray(arr, i) { return StoryView_arrayWithHoles(arr) || StoryView_iterableToArrayLimit(arr, i) || StoryView_unsupportedIterableToArray(arr, i) || StoryView_nonIterableRest(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function StoryView_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function StoryView_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return StoryView_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return StoryView_arrayLikeToArray(o, minLen); }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function StoryView_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function StoryView_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -239,13 +368,13 @@ var dataObj = {
 };
 var StoryView = function StoryView(id) {
   var _useState = useState(dataObj),
-      _useState2 = _slicedToArray(_useState, 2),
+      _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
 
 
   var _useState3 = useState(false),
-      _useState4 = _slicedToArray(_useState3, 2),
+      _useState4 = StoryView_slicedToArray(_useState3, 2),
       isLoading = _useState4[0],
       setIsLoading = _useState4[1]; // Loader flag
 
@@ -364,7 +493,7 @@ var StoryView = function StoryView(id) {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Submitted on"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.sub)), /*#__PURE__*/React.createElement("li", {
+  }, data.created.date)), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
@@ -441,84 +570,9 @@ var StoryView = function StoryView(id) {
     fill: "currentColor"
   }))))), /*#__PURE__*/React.createElement("div", {
     className: "su-flex su-flex-col su-gap-[10px]"
-  })), /*#__PURE__*/React.createElement("section", {
-    id: "full-story",
-    className: "su-group full-width-bg su-relative [&[class~='open']]:su-pb-120 su-bg-gray-bg before:su-bg-gray-bg after:su-bg-gray-bg"
-  }, /*#__PURE__*/React.createElement("div", {
-    id: "full-story-toggle",
-    className: "su-pb-60 su-pt-80 su-flex su-justify-between su-items-center su-border-gray hover:su-cursor-pointer group-[.open]:su-border-b"
-  }, /*#__PURE__*/React.createElement("h2", {
-    className: "su-font-serif su-mb-0"
-  }, "Full Story"), /*#__PURE__*/React.createElement("button", {
-    className: "su-w-50 su-border-none su-bg-transparent hover:su-bg-transparent"
-  }, /*#__PURE__*/React.createElement("svg", {
-    className: "su-inline group-[.open]:su-rotate-180",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "20",
-    height: "13",
-    viewBox: "0 0 12 8",
-    fill: "none"
-  }, /*#__PURE__*/React.createElement("path", {
-    fillRule: "evenodd",
-    clipRule: "evenodd",
-    d: "M6.41416 7.54297L11.7071 2.25007C12.0976 1.85954 12.0976 1.22638 11.7071 0.835856L11.6213 0.750069C11.2307 0.359544 10.5976 0.359545 10.207 0.75007L4.91416 6.04297L6.41416 7.54297Z",
-    fill: "#E50808"
-  }), /*#__PURE__*/React.createElement("path", {
-    fillRule: "evenodd",
-    clipRule: "evenodd",
-    d: "M6.41416 7.54297L7.91416 6.04297L2.62126 0.750069C2.23074 0.359544 1.59757 0.359545 1.20705 0.75007L1.12126 0.835857C0.730738 1.22638 0.730738 1.85955 1.12126 2.25007L6.41416 7.54297Z",
-    fill: "#E50808"
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "su-hidden group-[.open]:su-flex su-mt-45 su-flex-col su-gap-[30px]"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
-    className: "small-heading"
-  }, "Author"), /*#__PURE__*/React.createElement("p", {
-    className: "su-py-20 su-mb-0"
-  }, "Tom Abate")), /*#__PURE__*/React.createElement("div", {
-    className: "su-pb-45  su-border-b su-border-gray "
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "small-heading"
-  }, "Story"), /*#__PURE__*/React.createElement("div", {
-    className: "su-py-20 [&>p:last-child]:su-mb-0"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "su-py-20 [&>p:last-child]:su-mb-0"
-  }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
-    className: "small-heading su-mb-30"
-  }, "Media"), /*#__PURE__*/React.createElement("div", {
-    className: "su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "https://sug-web.matrix.squiz.cloud/_media/images/content-partners/stanford-engineering/worker-cells.jpg",
-    alt: "",
-    className: "su-aspect-[3/2] su-object-cover"
-  })), /*#__PURE__*/React.createElement("ul", {
-    className: "su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1"
-  }, /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Credit"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, "N/A"))), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Alternative Text"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, "The synthetic mesh (in gold) can change the behavior of neurons shown here.\xA0| Ella Maru Studio and Yoon Seok Kim/Jia Liu, Deisseroth/Bao Labs)")), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Captions"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, "N/A"))), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Dimensions"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, "2012x946"))))))));
+  })), /*#__PURE__*/React.createElement(FullStory, {
+    data: data
+  }));
 };
 ;// CONCATENATED MODULE: ./src/modules/Insights.jsx
 // Imports
@@ -714,7 +768,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(3434); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(2767); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

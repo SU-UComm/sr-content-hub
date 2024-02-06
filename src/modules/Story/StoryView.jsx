@@ -4,6 +4,7 @@ import {BackToPageButton} from '../Home/BackToPageButton.jsx';
 import {Oval} from 'react-loader-spinner';
 import {CardButtons} from '../Card/CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers';
+import {FullStory} from './FullStory.jsx';
 
 const dataObj = {
     id: '128334',
@@ -195,7 +196,7 @@ export const StoryView = (id) => {
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Submitted on</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.sub}</p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{data.created.date}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Other Topics</p>
@@ -289,94 +290,7 @@ export const StoryView = (id) => {
                 <div className="su-flex su-flex-col su-gap-[10px]"></div>
             </section>
 
-            <section id="full-story" className="su-group full-width-bg su-relative [&amp;[class~='open']]:su-pb-120 su-bg-gray-bg before:su-bg-gray-bg after:su-bg-gray-bg">
-                <div
-                    id="full-story-toggle"
-                    className="su-pb-60 su-pt-80 su-flex su-justify-between su-items-center su-border-gray hover:su-cursor-pointer group-[.open]:su-border-b"
-                >
-                    <h2 className="su-font-serif su-mb-0">Full Story</h2>
-                    <button className="su-w-50 su-border-none su-bg-transparent hover:su-bg-transparent">
-                        <svg className="su-inline group-[.open]:su-rotate-180" xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 12 8" fill="none">
-                            <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M6.41416 7.54297L11.7071 2.25007C12.0976 1.85954 12.0976 1.22638 11.7071 0.835856L11.6213 0.750069C11.2307 0.359544 10.5976 0.359545 10.207 0.75007L4.91416 6.04297L6.41416 7.54297Z"
-                                fill="#E50808"
-                            ></path>
-                            <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M6.41416 7.54297L7.91416 6.04297L2.62126 0.750069C2.23074 0.359544 1.59757 0.359545 1.20705 0.75007L1.12126 0.835857C0.730738 1.22638 0.730738 1.85955 1.12126 2.25007L6.41416 7.54297Z"
-                                fill="#E50808"
-                            ></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <div className="su-hidden group-[.open]:su-flex su-mt-45 su-flex-col su-gap-[30px]">
-                    <div>
-                        <p className="small-heading">Author</p>
-                        <p className="su-py-20 su-mb-0">Tom Abate</p>
-                    </div>
-                    <div
-                        className="su-pb-45 
-                                    su-border-b su-border-gray
-                "
-                    >
-                        <p className="small-heading">Story</p>
-
-                        <div className="su-py-20 [&amp;>p:last-child]:su-mb-0">
-                            <div className="su-py-20 [&amp;>p:last-child]:su-mb-0">
-                                {/* <iframe
-                                    id="story-content-iframe"
-                                    src="https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-engineering/a-team-of-scientists-invent-a-method-to-modify-the-behavior-of-cells?SQ_DESIGN_NAME=content_only"
-                                    data-src="https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-engineering/a-team-of-scientists-invent-a-method-to-modify-the-behavior-of-cells"
-                                    style="width: 100%; height: 750px; border-color: rgb(201, 201, 201); border-width: 1px; border-style: solid;"
-                                ></iframe> */}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p className="small-heading su-mb-30">Media</p>
-                        <div className="su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl">
-                            <div className="su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]">
-                                <img
-                                    src="https://sug-web.matrix.squiz.cloud/_media/images/content-partners/stanford-engineering/worker-cells.jpg"
-                                    alt=""
-                                    className="su-aspect-[3/2] su-object-cover"
-                                />
-                            </div>
-
-                            <ul className="su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1">
-                                <li className="mb-0">
-                                    <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Credit</p>
-                                    <p className="su-leading-[3.6rem] su-mb-0">
-                                        <em>N/A</em>
-                                    </p>
-                                </li>
-                                <li className="mb-0">
-                                    <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Alternative Text</p>
-                                    <p className="su-leading-[3.6rem] su-mb-0">
-                                        The synthetic mesh (in gold) can change the behavior of neurons shown here.&nbsp;| Ella Maru Studio and Yoon Seok Kim/Jia Liu,
-                                        Deisseroth/Bao Labs)
-                                    </p>
-                                </li>
-                                <li className="mb-0">
-                                    <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Captions</p>
-                                    <p className="su-leading-[3.6rem] su-mb-0">
-                                        <em>N/A</em>
-                                    </p>
-                                </li>
-                                <li className="mb-0">
-                                    <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Dimensions</p>
-                                    <p className="su-leading-[3.6rem] su-mb-0">2012x946</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <FullStory data={data} />
         </div>
     );
 };

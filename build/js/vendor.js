@@ -2530,28 +2530,6 @@ module.exports = !fails(function () {
 
 /***/ }),
 
-/***/ 4230:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var uncurryThis = __webpack_require__(1702);
-var requireObjectCoercible = __webpack_require__(4488);
-var toString = __webpack_require__(1340);
-
-var quot = /"/g;
-var replace = uncurryThis(''.replace);
-
-// `CreateHTML` abstract operation
-// https://tc39.es/ecma262/#sec-createhtml
-module.exports = function (string, tag, attribute, value) {
-  var S = toString(requireObjectCoercible(string));
-  var p1 = '<' + tag;
-  if (attribute !== '') p1 += ' ' + attribute + '="' + replace(toString(value), quot, '&quot;') + '"';
-  return p1 + '>' + S + '</' + tag + '>';
-};
-
-
-/***/ }),
-
 /***/ 4994:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -5331,23 +5309,6 @@ module.exports = function (O, defaultConstructor) {
 
 /***/ }),
 
-/***/ 3429:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var fails = __webpack_require__(7293);
-
-// check the existence of a method, lowercase
-// of a tag and escaping quotes in arguments
-module.exports = function (METHOD_NAME) {
-  return fails(function () {
-    var test = ''[METHOD_NAME]('"');
-    return test !== test.toLowerCase() || test.split('"').length > 3;
-  });
-};
-
-
-/***/ }),
-
 /***/ 8710:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -7374,26 +7335,6 @@ fixRegExpWellKnownSymbolLogic('split', function (SPLIT, nativeSplit, maybeCallNa
     }
   ];
 }, !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC, UNSUPPORTED_Y);
-
-
-/***/ }),
-
-/***/ 86:
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(2109);
-var createHTML = __webpack_require__(4230);
-var forcedStringHTMLMethod = __webpack_require__(3429);
-
-// `String.prototype.sub` method
-// https://tc39.es/ecma262/#sec-string.prototype.sub
-$({ target: 'String', proto: true, forced: forcedStringHTMLMethod('sub') }, {
-  sub: function sub() {
-    return createHTML(this, 'sub', '', '');
-  }
-});
 
 
 /***/ }),

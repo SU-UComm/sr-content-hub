@@ -159,7 +159,18 @@ var FullStory_FullStory = function FullStory(props) {
     className: "su-py-20 [&>p:last-child]:su-mb-0"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-py-20 [&>p:last-child]:su-mb-0"
-  }))), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
+  }, /*#__PURE__*/react.createElement("iframe", {
+    id: "story-content-iframe",
+    src: "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast?SQ_DESIGN_NAME=content_only",
+    "data-src": "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast",
+    style: {
+      width: '100%',
+      height: '750px',
+      borderColor: 'rgb(201, 201, 201)',
+      borderWidth: '1px',
+      borderStyle: 'solid'
+    }
+  })))), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-mb-30"
   }, "Media"), /*#__PURE__*/react.createElement("div", {
     className: "su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl"

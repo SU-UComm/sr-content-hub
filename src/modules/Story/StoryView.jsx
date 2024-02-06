@@ -1,128 +1,131 @@
 import React, {useState, useEffect} from 'react';
 import {getAPIData} from '../Helpers/requests';
 import {BackToPageButton} from '../Home/BackToPageButton.jsx';
+import {Oval} from 'react-loader-spinner';
+import {CardButtons} from '../Card/CardButtons.jsx';
+import {reformatDate} from '../Helpers/dateHelpers';
+
+const dataObj = {
+    id: '128334',
+    type: 'page_standard',
+    type_name: 'Standard Page',
+    version: '0.0.7',
+    name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+    short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+    status: {
+        id: 2,
+        code: 'under_construction',
+        name: 'Under Construction',
+    },
+    created: {
+        date: '2024-01-23T13:56:10-08:00',
+        user_id: '6004',
+    },
+    updated: {
+        date: '2024-01-25T02:46:43-08:00',
+        user_id: '57',
+    },
+    published: {
+        date: null,
+        user_id: null,
+    },
+    status_changed: {
+        date: '2024-01-23T13:56:10-08:00',
+        user_id: '6004',
+    },
+    attributes: {
+        short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+        name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+    },
+    metadata: {
+        hubStatus: ['submitted'],
+        hubStatusDescription: [],
+        hubVersionHistory: ['[{"date":1706054817693,"message":"New version of story pushed from source"}]'],
+        hubReviewMsg: [],
+        seoTitle: ['SLS Relaunches ‘Stanford Legal’ Podcast'],
+        canonicalUrl: ['https://law.stanford.edu/press/sls-relaunches-stanford-legal-podcast/'],
+        seoDescription: [],
+        seoKeywords: ['Stanford Legal, SLS News and Announcements, Yes, Public'],
+        robots: ['index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'],
+        publishedDate: ['2023-12-18 01:42:35'],
+        modifiedDate: ['2023-12-18 01:48:01'],
+        srAudience: [],
+        srMessage: [],
+        srContentType: [],
+        srFeaturedUnit: [],
+        srContentCategory: [],
+        srContentMainTopic: [],
+        srContentTopic: [],
+        srContentSubtopic: [],
+        embargoFlag: [],
+        embargoPublishDate: ['2024-01-01 00:00:00'],
+        pageType: ['story'],
+        teaser: [
+            '<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>',
+        ],
+        featuredImage: ['128338'],
+        featuredVideo: [],
+        mediaContacts: [],
+        featuredMediaOrientation: ['vertical'],
+        storyLayout: ['Basic'],
+        bannerImg: [],
+        bannerCaption: [],
+        bannerImgType: ['normal'],
+        summary: [
+            '<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>',
+        ],
+        storyFormat: ['standard'],
+        mediaAttachments: ['128338'],
+        featuredImageTwitter: [],
+        featuredImageOg: [],
+        hideSocialMedia: [],
+        hideBottomBox: [],
+        contributorsAuthors: [],
+        contributorsProducers: [],
+        contributorsWriters: [],
+        contributorsEditors: [],
+        contributorsVideographers: [],
+        contributorsPhotographyDirector: [],
+        contributorsMediaContacts: [],
+        bylineAuthor: ['Monica Schreiber'],
+        bylineText: [],
+        bylineUrl: [],
+        ogLocale: ['en_US'],
+        ogType: ['article'],
+        twitterCard: ['summary_large_image'],
+        authorId: [],
+        authorName: [],
+        srcOrigin: ['law.stanford.edu'],
+        srcOriginType: ['Wordpress'],
+        srcContentSource: ['Stanford Law School'],
+        srcTitle: ['SLS Relaunches ‘Stanford Legal’ Podcast'],
+        srcSummary: [
+            '<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>',
+        ],
+        srcPublishedDate: ['2023-12-18 01:42:35'],
+        srcFeaturedImage: [],
+        slug: ['sls-relaunches-stanford-legal-podcast'],
+        srcKeywords: ['Stanford Legal, SLS News and Announcements, Yes, Public'],
+        srcPostId: ['458351'],
+        srcUrl: ['https://law.stanford.edu/press/sls-relaunches-stanford-legal-podcast/'],
+        srcStatus: ['publish'],
+        debugFeedUrl: ['https://law.stanford.edu/wp-json/wp/v2/news/458351'],
+        debugPushTs: ['1706054760164'],
+        debugBlueprintId: ['128334'],
+        storyType: ['5981'],
+        sections: [],
+        topics: [],
+        messages: [],
+        feeds: [],
+        contentPartners: ['5859'],
+        storyAudience: [],
+        debug: [],
+    },
+};
 
 export const StoryView = (id) => {
-    const [data, setData] = useState([]); // data from endpoint
+    const [data, setData] = useState(dataObj); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
-
-    let dataObj = {
-        id: '128334',
-        type: 'page_standard',
-        type_name: 'Standard Page',
-        version: '0.0.7',
-        name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-        short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-        status: {
-            id: 2,
-            code: 'under_construction',
-            name: 'Under Construction',
-        },
-        created: {
-            date: '2024-01-23T13:56:10-08:00',
-            user_id: '6004',
-        },
-        updated: {
-            date: '2024-01-25T02:46:43-08:00',
-            user_id: '57',
-        },
-        published: {
-            date: null,
-            user_id: null,
-        },
-        status_changed: {
-            date: '2024-01-23T13:56:10-08:00',
-            user_id: '6004',
-        },
-        attributes: {
-            short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-            name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-        },
-        metadata: {
-            hubStatus: ['submitted'],
-            hubStatusDescription: [],
-            hubVersionHistory: ['[{"date":1706054817693,"message":"New version of story pushed from source"}]'],
-            hubReviewMsg: [],
-            seoTitle: ['SLS Relaunches ‘Stanford Legal’ Podcast'],
-            canonicalUrl: ['https://law.stanford.edu/press/sls-relaunches-stanford-legal-podcast/'],
-            seoDescription: [],
-            seoKeywords: ['Stanford Legal, SLS News and Announcements, Yes, Public'],
-            robots: ['index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'],
-            publishedDate: ['2023-12-18 01:42:35'],
-            modifiedDate: ['2023-12-18 01:48:01'],
-            srAudience: [],
-            srMessage: [],
-            srContentType: [],
-            srFeaturedUnit: [],
-            srContentCategory: [],
-            srContentMainTopic: [],
-            srContentTopic: [],
-            srContentSubtopic: [],
-            embargoFlag: [],
-            embargoPublishDate: ['2024-01-01 00:00:00'],
-            pageType: ['story'],
-            teaser: [
-                '<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>',
-            ],
-            featuredImage: ['128338'],
-            featuredVideo: [],
-            mediaContacts: [],
-            featuredMediaOrientation: ['vertical'],
-            storyLayout: ['Basic'],
-            bannerImg: [],
-            bannerCaption: [],
-            bannerImgType: ['normal'],
-            summary: [
-                '<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>',
-            ],
-            storyFormat: ['standard'],
-            mediaAttachments: ['128338'],
-            featuredImageTwitter: [],
-            featuredImageOg: [],
-            hideSocialMedia: [],
-            hideBottomBox: [],
-            contributorsAuthors: [],
-            contributorsProducers: [],
-            contributorsWriters: [],
-            contributorsEditors: [],
-            contributorsVideographers: [],
-            contributorsPhotographyDirector: [],
-            contributorsMediaContacts: [],
-            bylineAuthor: ['Monica Schreiber'],
-            bylineText: [],
-            bylineUrl: [],
-            ogLocale: ['en_US'],
-            ogType: ['article'],
-            twitterCard: ['summary_large_image'],
-            authorId: [],
-            authorName: [],
-            srcOrigin: ['law.stanford.edu'],
-            srcOriginType: ['Wordpress'],
-            srcContentSource: ['Stanford Law School'],
-            srcTitle: ['SLS Relaunches ‘Stanford Legal’ Podcast'],
-            srcSummary: [
-                '<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>',
-            ],
-            srcPublishedDate: ['2023-12-18 01:42:35'],
-            srcFeaturedImage: [],
-            slug: ['sls-relaunches-stanford-legal-podcast'],
-            srcKeywords: ['Stanford Legal, SLS News and Announcements, Yes, Public'],
-            srcPostId: ['458351'],
-            srcUrl: ['https://law.stanford.edu/press/sls-relaunches-stanford-legal-podcast/'],
-            srcStatus: ['publish'],
-            debugFeedUrl: ['https://law.stanford.edu/wp-json/wp/v2/news/458351'],
-            debugPushTs: ['1706054760164'],
-            debugBlueprintId: ['128334'],
-            storyType: ['5981'],
-            sections: [],
-            topics: [],
-            messages: [],
-            feeds: [],
-            contentPartners: ['5859'],
-            storyAudience: [],
-            debug: [],
-        },
-    };
 
     const fetchData = async (id) => {
         setIsLoading(true);
@@ -141,13 +144,17 @@ export const StoryView = (id) => {
         let url = window?.data?.contentHubAPI?.module;
         if (url) {
             fetchData(id);
+            console.log('story fetch url: ', url);
         } else {
-            setData(dataObj);
+            // setData(dataObj);
+            console.log('story data: ', data);
         }
     }, []);
 
-    return (
-        <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10" id="view-story" data-id="128004">
+    return isLoading ? (
+        <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
+    ) : (
+        <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10" id="view-story" data-id={data.id}>
             <section className="su-relative su-border-b su-border-gray su-mt-60 su-mb-50 su-pb-[5.5rem] su-pt-60 md:su-mt-45 md:su-pt-70">
                 <BackToPageButton page="home" />
 
@@ -155,67 +162,7 @@ export const StoryView = (id) => {
                     <h2 className="su-font-serif su-mb-0">View Story</h2>
 
                     <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">
-                        <button className="button-green js-action--send-to-sr c-button-send">Send to Stanford Report</button>{' '}
-                        <button className="c-button-decline js-action--decline">Decline</button>
-                        <dialog data-id="128004" className="c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]">
-                            <button
-                                aria-label="close"
-                                className="su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent"
-                            >
-                                <svg className="" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none">
-                                    <path d="M12.0554 1.9502L1.94434 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                    <path d="M1.94434 1.9502L12.0554 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                </svg>
-                            </button>
-                            <div className="c-dialog-body su-p-30 sm:su-p-60">
-                                <h3 className="su-mb-0 su-font-serif su-text-center su-tracking-normal">You are accepting this story for publication on Stanford Report</h3>
-
-                                <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
-                                    <button aria-label="Send teaser" className="button-green js-send-teaser">
-                                        Send Teaser
-                                    </button>
-                                    <button aria-label="Send full content" className="button-green js-send-content">
-                                        Send Full Content
-                                    </button>
-                                    <button aria-label="cancel" className="js-decline">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </dialog>
-                        <dialog data-id="128004" className="c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]">
-                            <button
-                                aria-label="close"
-                                className="su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent"
-                            >
-                                <svg className="" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none">
-                                    <path d="M12.0554 1.9502L1.94434 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                    <path d="M1.94434 1.9502L12.0554 11.0502" stroke="#E50808" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                </svg>
-                            </button>
-
-                            <div className="c-dialog-body su-p-30 sm:su-p-60">
-                                <h3 className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">You are declining this story</h3>
-                                <p className="su-mb-10 su-leading-[125%] su-text-center">Add optional note (viewable by content partner)</p>
-                                <textarea
-                                    className="su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h-[100px]"
-                                    name="message-128004"
-                                    id=""
-                                    rows="5"
-                                    autoComplete="off"
-                                    aria-label="Optional note (viewable by content partner)"
-                                ></textarea>
-                                <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
-                                    <button aria-label="confirm decline" className="button-green js-decline-true">
-                                        Yes, Decline
-                                    </button>
-                                    <button aria-label="cancel" className="js-decline-false">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        </dialog>{' '}
-                        <span id="js-story-reviewing" data-value="true"></span>
+                        <CardButtons assetId={data.id} />
                     </div>
                 </div>
             </section>
@@ -223,14 +170,11 @@ export const StoryView = (id) => {
             <section className="su-flex su-flex-col su-gap-[30px] su-mb-80">
                 <div>
                     <p className="small-heading">Headline</p>
-                    <h2 className="su-py-20 su-mb-0">A team of scientists invent a method to modify the behavior of cells</h2>
+                    <h2 className="su-py-20 su-mb-0">{data.name}</h2>
                 </div>
                 <div>
                     <p className="small-heading">Summary</p>
-                    <p className="su-mb-0 su-py-20 su-leading-normal">
-                        To demonstrate the new technique, researchers genetically reprogrammed neurons to cover themselves with an artificial mesh that changed their
-                        electrochemical functions.
-                    </p>
+                    <p className="su-mb-0 su-py-20 su-leading-normal">{data.metadata.summary}</p>
                 </div>
 
                 <div>
@@ -238,35 +182,33 @@ export const StoryView = (id) => {
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Main Category</p>
                             <p className="su-leading-[3.6rem] su-mb-0">
-                                <em>N/A</em>
+                                <em>{data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'}</em>
                             </p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Submitted by</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">School of Engineering</p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.srcContentSource}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Byline</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">Tom Abate</p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.bylineAuthor}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Submitted on</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">January 15, 2024</p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.sub}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Other Topics</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">
-                                <em>N/A</em>
-                            </p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.topics.length > 0 ? data.metadata.topics : 'NA'}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">First Published</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">March 24, 2020</p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.publishedDate}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Other keywords</p>
                             <p className="su-leading-[3.6rem] su-mb-0">
-                                <em>N/A</em>
+                                <em>{data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : 'NA'}</em>
                             </p>
                         </li>
                     </ul>

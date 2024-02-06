@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const CardButtons = (listMetadata) => {
+export const CardButtons = (props) => {
     const [isSendDialogOpen, setSendDialogOpen] = useState(false);
     const [isDeclineDialogOpen, setDeclineDialogOpen] = useState(false);
 
@@ -40,12 +40,12 @@ export const CardButtons = (listMetadata) => {
             {isSendDialogOpen && (
                 <>
                     <dialog
-                        data-id={listMetadata.assetId}
+                        data-id={props.assetId}
                         role="dialog"
                         open="true"
                         className="c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
                         aria=""
-                        aria-labelledby={`dialogTitle-${listMetadata.assetId}-approve`}
+                        aria-labelledby={`dialogTitle-${props.assetId}-approve`}
                         style={{position: 'absolute'}}
                     >
                         <button
@@ -59,7 +59,7 @@ export const CardButtons = (listMetadata) => {
                             </svg>
                         </button>
                         <div className="c-dialog-body su-p-30 sm:su-p-60">
-                            <h3 id={`dialogTitle-${listMetadata.assetId}-approve`} className="su-mb-0 su-font-serif su-text-center su-tracking-normal">
+                            <h3 id={`dialogTitle-${props.assetId}-approve`} className="su-mb-0 su-font-serif su-text-center su-tracking-normal">
                                 You are accepting this story for publication on Stanford Report
                             </h3>
                             <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
@@ -83,7 +83,7 @@ export const CardButtons = (listMetadata) => {
                 <dialog
                     role="dialog"
                     open="true"
-                    data-id={listMetadata.assetId}
+                    data-id={props.assetId}
                     className="c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
                     style={{position: 'absolute'}}
                 >
@@ -98,7 +98,7 @@ export const CardButtons = (listMetadata) => {
                         </svg>
                     </button>
                     <div className="c-dialog-body su-p-30 sm:su-p-60">
-                        <h3 id={`dialogTitle-${listMetadata.assetId}-approve`} className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">
+                        <h3 id={`dialogTitle-${props.assetId}-approve`} className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">
                             You are declining this story
                         </h3>
                         <p id="dialogDescription-128070-decline" className="su-mb-10 su-leading-[125%] su-text-center">

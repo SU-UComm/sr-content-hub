@@ -121,12 +121,6 @@ export const AllContent = () => {
         }
     };
 
-    const routeChange = () => {
-        console.log('route chaneg');
-        let path = `story`;
-        history.push(path);
-    };
-
     return isLoading ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (

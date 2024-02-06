@@ -376,8 +376,8 @@ var CPFilter = function CPFilter(props) {
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 2 modules
-var Card = __webpack_require__(9214);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
+var Card = __webpack_require__(8649);
 // EXTERNAL MODULE: ./src/modules/_ReactApp/Pagination/Pagination.jsx
 var Pagination = __webpack_require__(5569);
 ;// CONCATENATED MODULE: ./src/modules/Search/SearchBar.jsx
@@ -750,12 +750,6 @@ var AllContent = function AllContent() {
 
       fetchData(_fetchUrl2, dataLocation);
     }
-  };
-
-  var routeChange = function routeChange() {
-    console.log('route chaneg');
-    var path = "story";
-    history.push(path);
   };
 
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {

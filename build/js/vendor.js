@@ -1,45 +1,44 @@
 (self["webpackChunkreact_starter"] = self["webpackChunkreact_starter"] || []).push([[736],{
 
-/***/ 9214:
+/***/ 8649:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: function() { return /* binding */ Card; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_string_trim_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3210);
+/* harmony import */ var core_js_modules_es_string_trim_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_trim_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2526);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1817);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1539);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2165);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6992);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8783);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3948);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7042);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8309);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1038);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(4916);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7294);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _CardButtons_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9993);
+/* harmony import */ var _Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(9113);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(7856);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_15__);
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  Z: function() { return /* binding */ Card; }
-});
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.trim.js
-var es_string_trim = __webpack_require__(3210);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
-var es_symbol = __webpack_require__(2526);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
-var es_symbol_description = __webpack_require__(1817);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
-var es_object_to_string = __webpack_require__(1539);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
-var es_symbol_iterator = __webpack_require__(2165);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
-var es_array_iterator = __webpack_require__(6992);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
-var es_string_iterator = __webpack_require__(8783);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__(3948);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __webpack_require__(7042);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
-var es_array_from = __webpack_require__(1038);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__(4916);
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(5697);
-var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
-;// CONCATENATED MODULE: ./src/modules/Card/CardButtons.jsx
 
 
 
@@ -65,13 +64,157 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var CardButtons = function CardButtons(listMetadata) {
-  var _useState = (0,react.useState)(false),
+
+
+
+
+
+var Card = function Card(_ref) {
+  var _listMetadata$descrip, _window, _window$data, _window$data$user;
+
+  var title = _ref.title,
+      listMetadata = _ref.listMetadata;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isLoading = _useState4[0],
+      setIsLoading = _useState4[1]; // Loader flag
+
+
+  var url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
+  var desc = (listMetadata === null || listMetadata === void 0 ? void 0 : (_listMetadata$descrip = listMetadata.descriptionPlain) === null || _listMetadata$descrip === void 0 ? void 0 : _listMetadata$descrip[0]) || '';
+  desc = desc.trim(); // const navigate = useNavigate();
+  // const routeChange = () => {
+  //     console.log('path change');
+  //     let path = 'story';
+  //     navigate(`/story`);
+  // };
+  // useEffect(() => {
+  //     if (listMetadata) {
+  //         setData(listMetadata);
+  //         setIsLoading(false);
+  //         console.log(listMetadata);
+  //     } else {
+  //         setIsLoading(true);
+  //     }
+  // }, [listMetadata]);
+
+  return (// !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
+    listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("li", {
+      className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
+      "data-id": listMetadata.assetId
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("a", {
+      href: url + listMetadata.assetId,
+      className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("img", {
+      className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
+      src: listMetadata.relatedImageURL,
+      alt: title + ' image'
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+      className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+      className: "su-text-16 su-mb-0 su-leading-none su-text-red-darker"
+    }, listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
+      className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("a", {
+      href: url + listMetadata.assetId,
+      title: "View ".concat(title),
+      className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
+    }, title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+      className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
+    }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+      className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
+    }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_14__/* .reformatDate */ .b)(listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_14__/* .reformatDate */ .b)(listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_13__/* .CardButtons */ .G, {
+      listMetadata: listMetadata
+    }) : null))
+  );
+};
+Card.propTypes = {
+  imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+  title: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+  description: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+  date: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().number),
+  listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_16___default().shape({
+    canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+    relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+    srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+    taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+    descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+    mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+    srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+    assetId: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
+  })
+};
+
+/***/ }),
+
+/***/ 9993:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   G: function() { return /* binding */ CardButtons; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2526);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1817);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1539);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2165);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6992);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8783);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3948);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7042);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8309);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1038);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4916);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7294);
+
+
+
+
+
+
+
+
+
+
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var CardButtons = function CardButtons(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isSendDialogOpen = _useState2[0],
       setSendDialogOpen = _useState2[1];
 
-  var _useState3 = (0,react.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       isDeclineDialogOpen = _useState4[0],
       setDeclineDialogOpen = _useState4[1];
@@ -108,270 +251,126 @@ var CardButtons = function CardButtons(listMetadata) {
     closeDeclineDialog();
   };
 
-  return /*#__PURE__*/react.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
-  }, /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: openSendDialog
-  }, "Send to Stanford Report"), /*#__PURE__*/react.createElement("button", {
+  }, "Send to Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     className: "js-action--decline c-button-decline",
     onClick: openDeclineDialog
-  }, "Decline"), isSendDialogOpen && /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("dialog", {
-    "data-id": listMetadata.assetId,
+  }, "Decline"), isSendDialogOpen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(react__WEBPACK_IMPORTED_MODULE_11__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("dialog", {
+    "data-id": props.assetId,
     role: "dialog",
     open: "true",
     className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
     aria: "",
-    "aria-labelledby": "dialogTitle-".concat(listMetadata.assetId, "-approve"),
+    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-approve"),
     style: {
       position: 'absolute'
     }
-  }, /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: closeSendDialog,
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
-  }, /*#__PURE__*/react.createElement("svg", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("svg", {
     className: "",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13",
     height: "13",
     fill: "none"
-  }, /*#__PURE__*/react.createElement("path", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
     d: "M12.0554 1.9502L1.94434 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), /*#__PURE__*/react.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
     d: "M1.94434 1.9502L12.0554 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), /*#__PURE__*/react.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react.createElement("h3", {
-    id: "dialogTitle-".concat(listMetadata.assetId, "-approve"),
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("h3", {
+    id: "dialogTitle-".concat(props.assetId, "-approve"),
     className: "su-mb-0 su-font-serif su-text-center su-tracking-normal"
-  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react.createElement("div", {
+  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: handleSendTeaser,
     "aria-label": "Send Teaser",
     className: "button-green js-send-teaser"
-  }, "Send Teaser"), /*#__PURE__*/react.createElement("button", {
+  }, "Send Teaser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: handleSendFullContent,
     "aria-label": "Send Full Content",
     className: "button-green js-send-content"
-  }, "Send Full Content"), /*#__PURE__*/react.createElement("button", {
+  }, "Send Full Content"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: closeSendDialog,
     "aria-label": "Cancel",
     className: "js-decline"
-  }, "Cancel")))), /*#__PURE__*/react.createElement("div", {
+  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     className: "opacity-25 fixed inset-0 z-40 bg-black"
-  })), isDeclineDialogOpen && /*#__PURE__*/react.createElement("dialog", {
+  })), isDeclineDialogOpen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("dialog", {
     role: "dialog",
     open: "true",
-    "data-id": listMetadata.assetId,
+    "data-id": props.assetId,
     className: "c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
     style: {
       position: 'absolute'
     }
-  }, /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: closeDeclineDialog,
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
-  }, /*#__PURE__*/react.createElement("svg", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("svg", {
     className: "",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13",
     height: "13",
     fill: "none"
-  }, /*#__PURE__*/react.createElement("path", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
     d: "M12.0554 1.9502L1.94434 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), /*#__PURE__*/react.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
     d: "M1.94434 1.9502L12.0554 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), /*#__PURE__*/react.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react.createElement("h3", {
-    id: "dialogTitle-".concat(listMetadata.assetId, "-approve"),
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("h3", {
+    id: "dialogTitle-".concat(props.assetId, "-approve"),
     className: "su-mb-10 su-font-serif su-leading-[125%] su-text-center"
-  }, "You are declining this story"), /*#__PURE__*/react.createElement("p", {
+  }, "You are declining this story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
     id: "dialogDescription-128070-decline",
     className: "su-mb-10 su-leading-[125%] su-text-center"
-  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react.createElement("label", {
+  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("label", {
     className: "sr-only",
     htmlFor: "message-textarea-128070-decline"
-  }, "Optional note"), /*#__PURE__*/react.createElement("textarea", {
+  }, "Optional note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("textarea", {
     className: "su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]",
     name: "message-128070",
     rows: "5",
     autoComplete: "off",
     "aria-label": "Optional note",
     id: "message-textarea-128070-decline"
-  }), /*#__PURE__*/react.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: handleDecline,
     "aria-label": "Decline",
     className: "button-green js-decline-true"
-  }, "Yes, Decline"), /*#__PURE__*/react.createElement("button", {
+  }, "Yes, Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: closeDeclineDialog,
     "aria-label": "Cancel",
     className: "js-decline-false"
   }, "Cancel")))));
-};
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(2222);
-;// CONCATENATED MODULE: ./src/modules/Helpers/dateHelpers.js
-
-var reformatDate = function reformatDate(ts) {
-  // Validate date
-  if (ts === undefined) {
-    return '';
-  }
-
-  ts = parseInt(ts, 10);
-
-  if (isNaN(ts) === true) {
-    return '';
-  } // Multiply date by 1000 to convert PHP vs JS date format (between seconds and miliseconds)
-
-
-  ts = ts * 1000;
-  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var tsDate = new Date(ts); // Format: "April 30, 2023"
-
-  var month = monthNames[tsDate.getMonth()];
-  var day = tsDate.getDate();
-  var year = tsDate.getFullYear(); // If provided year is not accurate :: means invalid date or no date was provided :: return placeholder
-
-  if (year === 1970) {
-    return 'N/A';
-  }
-
-  return "".concat(month, " ").concat(day, ", ").concat(year);
-};
-// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(7856);
-;// CONCATENATED MODULE: ./src/modules/Card/Card.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-function Card_slicedToArray(arr, i) { return Card_arrayWithHoles(arr) || Card_iterableToArrayLimit(arr, i) || Card_unsupportedIterableToArray(arr, i) || Card_nonIterableRest(); }
-
-function Card_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Card_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Card_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Card_arrayLikeToArray(o, minLen); }
-
-function Card_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Card_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-var Card = function Card(_ref) {
-  var _listMetadata$descrip, _window, _window$data, _window$data$user;
-
-  var title = _ref.title,
-      listMetadata = _ref.listMetadata;
-
-  var _useState = (0,react.useState)([]),
-      _useState2 = Card_slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
-
-  var _useState3 = (0,react.useState)(false),
-      _useState4 = Card_slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1]; // Loader flag
-
-
-  var url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
-  var desc = (listMetadata === null || listMetadata === void 0 ? void 0 : (_listMetadata$descrip = listMetadata.descriptionPlain) === null || _listMetadata$descrip === void 0 ? void 0 : _listMetadata$descrip[0]) || '';
-  desc = desc.trim(); // const navigate = useNavigate();
-  // const routeChange = () => {
-  //     console.log('path change');
-  //     let path = 'story';
-  //     navigate(`/story`);
-  // };
-  // useEffect(() => {
-  //     if (listMetadata) {
-  //         setData(listMetadata);
-  //         setIsLoading(false);
-  //         console.log(listMetadata);
-  //     } else {
-  //         setIsLoading(true);
-  //     }
-  // }, [listMetadata]);
-
-  return (// !isLoading && href={url + listMetadata.assetId}
-    listMetadata && /*#__PURE__*/react.createElement("li", {
-      className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
-      "data-id": listMetadata.assetId
-    }, /*#__PURE__*/react.createElement("a", {
-      className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
-    }, /*#__PURE__*/react.createElement("img", {
-      className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
-      src: listMetadata.relatedImageURL,
-      alt: title + ' image'
-    })), /*#__PURE__*/react.createElement("div", {
-      className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"
-    }, /*#__PURE__*/react.createElement("p", {
-      className: "su-text-16 su-mb-0 su-leading-none su-text-red-darker"
-    }, listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react.createElement("h3", {
-      className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
-    }, /*#__PURE__*/react.createElement("a", {
-      title: "View ".concat(title),
-      className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
-    }, title)), /*#__PURE__*/react.createElement("p", {
-      className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
-    }, desc), /*#__PURE__*/react.createElement("p", {
-      className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
-    }, "Submitted on ", reformatDate(listMetadata.mtxCreated), " | First published on ", reformatDate(listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(CardButtons, {
-      listMetadata: listMetadata
-    }) : null))
-  );
-};
-Card.propTypes = {
-  imageUrl: (prop_types_default()).string,
-  title: (prop_types_default()).string,
-  description: (prop_types_default()).string,
-  date: (prop_types_default()).number,
-  listMetadata: prop_types_default().shape({
-    canonicalUrl: (prop_types_default()).array,
-    relatedImageURL: (prop_types_default()).array,
-    srcFeaturedImageUrl: (prop_types_default()).string,
-    taxonomyContentPartnerText: (prop_types_default()).array,
-    descriptionPlain: (prop_types_default()).array,
-    mtxCreated: (prop_types_default()).array,
-    srcPublishedDate: (prop_types_default()).array,
-    assetId: (prop_types_default()).array
-  })
 };
 
 /***/ }),
@@ -889,6 +888,46 @@ StatusFilter.propTypes = {
 
 /***/ }),
 
+/***/ 9113:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   b: function() { return /* binding */ reformatDate; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2222);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
+
+var reformatDate = function reformatDate(ts) {
+  // Validate date
+  if (ts === undefined) {
+    return '';
+  }
+
+  ts = parseInt(ts, 10);
+
+  if (isNaN(ts) === true) {
+    return '';
+  } // Multiply date by 1000 to convert PHP vs JS date format (between seconds and miliseconds)
+
+
+  ts = ts * 1000;
+  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var tsDate = new Date(ts); // Format: "April 30, 2023"
+
+  var month = monthNames[tsDate.getMonth()];
+  var day = tsDate.getDate();
+  var year = tsDate.getFullYear(); // If provided year is not accurate :: means invalid date or no date was provided :: return placeholder
+
+  if (year === 1970) {
+    return 'N/A';
+  }
+
+  return "".concat(month, " ").concat(day, ", ").concat(year);
+};
+
+/***/ }),
+
 /***/ 6859:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -1017,6 +1056,7 @@ var getLabel = function getLabel(value) {
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Im: function() { return /* binding */ getSearchData; },
+/* harmony export */   fP: function() { return /* binding */ getAPIData; },
 /* harmony export */   gV: function() { return /* binding */ fetchFBData; }
 /* harmony export */ });
 /* unused harmony exports getUserData, postData */
@@ -1226,26 +1266,70 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
   };
 }()));
 /**
- * GET Data
- * @param {string} url endpoint URL
+ * GET ContentAPI Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
+
+var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 202 == __webpack_require__.j ? (function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(assetID) {
+    var requestUrl, response;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata");
+            console.log('URL,', requestUrl);
+            _context3.next = 4;
+            return fetch(requestUrl, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
+              }
+            }).then(function (res) {
+              return res = res.json();
+            });
+
+          case 4:
+            response = _context3.sent;
+            console.log('getAPIDATA resp: ', response);
+            return _context3.abrupt("return", response);
+
+          case 7:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function getAPIData(_x2) {
+    return _ref3.apply(this, arguments);
+  };
+}()) : null);
+/**
+ * GET Search Data
+ * @param {string} pageName to get endpoint URL
  * @param {string} queryString request query string
  * @returns {object} JSON object
  */
 
 var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(pageName) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(pageName) {
     var queryString,
         url,
         response,
-        _args3 = arguments;
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        _args4 = arguments;
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            queryString = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : '';
+            queryString = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : '';
             url = contentHubAPI.search[pageName];
             console.log('URL,', url);
-            _context3.next = 5;
+            _context4.next = 5;
             return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
               method: 'GET',
               headers: {
@@ -1257,20 +1341,20 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
             });
 
           case 5:
-            response = _context3.sent;
+            response = _context4.sent;
             console.log('getSearchDATA resp: ', response);
-            return _context3.abrupt("return", response);
+            return _context4.abrupt("return", response);
 
           case 8:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   }));
 
-  return function getSearchData(_x2) {
-    return _ref3.apply(this, arguments);
+  return function getSearchData(_x3) {
+    return _ref4.apply(this, arguments);
   };
 }()) : null);
 /**
@@ -1282,18 +1366,18 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
  */
 
 var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(url) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(url) {
     var queryString,
         requestData,
         response,
-        _args4 = arguments;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        _args5 = arguments;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            queryString = _args4.length > 1 && _args4[1] !== undefined ? _args4[1] : '';
-            requestData = _args4.length > 2 && _args4[2] !== undefined ? _args4[2] : {};
-            _context4.next = 4;
+            queryString = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : '';
+            requestData = _args5.length > 2 && _args5[2] !== undefined ? _args5[2] : {};
+            _context5.next = 4;
             return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
               method: 'POST',
               headers: {
@@ -1305,19 +1389,19 @@ var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (func
             });
 
           case 4:
-            response = _context4.sent;
-            return _context4.abrupt("return", response);
+            response = _context5.sent;
+            return _context5.abrupt("return", response);
 
           case 6:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
 
-  return function postData(_x3) {
-    return _ref4.apply(this, arguments);
+  return function postData(_x4) {
+    return _ref5.apply(this, arguments);
   };
 }())); // if needed - replaced with toggleUrl
 
@@ -1354,14 +1438,52 @@ var createQuery = function createQuery(name, value) {
       break;
   }
 
-  url += Object.entries(params).map(function (_ref5) {
-    var _ref6 = _slicedToArray(_ref5, 2),
-        key = _ref6[0],
-        val = _ref6[1];
+  url += Object.entries(params).map(function (_ref6) {
+    var _ref7 = _slicedToArray(_ref6, 2),
+        key = _ref7[0],
+        val = _ref7[1];
 
     return val !== '' ? "".concat(key, "=").concat(val) : '';
   }).join('&');
   console.log('URL createQuery', url);
+};
+
+/***/ }),
+
+/***/ 8220:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   G: function() { return /* binding */ BackToPageButton; }
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7042);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7294);
+
+
+var BackToPageButton = function BackToPageButton(props) {
+  var page = props.page;
+  var title = page.charAt(0).toUpperCase() + page.slice(1);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+    className: "su-absolute su-top-0 su-left-0 lg:su-left-[-64px]"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
+    href: window.globalData.pageHrefs[page],
+    className: "su-flex su-items-center su-text-[18px] hover:su-underline"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("svg", {
+    className: "su-mr-6",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 20 20",
+    fill: "none"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("path", {
+    d: "M8.33333 15.8337L2.5 10.0003M2.5 10.0003L8.33334 4.16699M2.5 10.0003L17.5 10.0003",
+    stroke: "#E50808",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  })), "Back to ", title));
 };
 
 /***/ }),
@@ -1477,8 +1599,10 @@ var HomeInsights = function HomeInsights() {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7856);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _BackToPageButton_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8220);
+
 
 
 
@@ -1488,33 +1612,17 @@ var PageHeading = function PageHeading(_ref) {
       homeButton = _ref.homeButton;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
     className: "su-relative su-text-center su-mt-60 su-mb-50 su-pt-60 md:su-mt-45 md:su-pt-70 md:su-mb-62"
-  }, homeButton == true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "su-absolute su-top-0 su-left-0 lg:su-left-[-64px]"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: window.globalData.pageHrefs.home,
-    className: "su-flex su-items-center su-text-[18px] hover:su-underline"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
-    className: "su-mr-6",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "20",
-    height: "20",
-    viewBox: "0 0 20 20",
-    fill: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    d: "M8.33333 15.8337L2.5 10.0003M2.5 10.0003L8.33334 4.16699M2.5 10.0003L17.5 10.0003",
-    stroke: "#E50808",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  })), "Back to Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+  }, homeButton == true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_BackToPageButton_jsx__WEBPACK_IMPORTED_MODULE_2__/* .BackToPageButton */ .G, {
+    page: "home"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "su-font-serif su-mb-12"
   }, dompurify__WEBPACK_IMPORTED_MODULE_1__.sanitize(headingText)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
     className: "su-text-21 su-leading-display lg:su-px-[20%]"
   }, dompurify__WEBPACK_IMPORTED_MODULE_1__.sanitize(subHeadingText)));
 };
 PageHeading.propTypes = {
-  headingText: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string),
-  subHeadingText: (prop_types__WEBPACK_IMPORTED_MODULE_2___default().string)
+  headingText: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+  subHeadingText: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)
 };
 
 /***/ }),
@@ -2418,6 +2526,28 @@ module.exports = !fails(function () {
   // eslint-disable-next-line es-x/no-object-getprototypeof -- required for testing
   return Object.getPrototypeOf(new F()) !== F.prototype;
 });
+
+
+/***/ }),
+
+/***/ 4230:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var uncurryThis = __webpack_require__(1702);
+var requireObjectCoercible = __webpack_require__(4488);
+var toString = __webpack_require__(1340);
+
+var quot = /"/g;
+var replace = uncurryThis(''.replace);
+
+// `CreateHTML` abstract operation
+// https://tc39.es/ecma262/#sec-createhtml
+module.exports = function (string, tag, attribute, value) {
+  var S = toString(requireObjectCoercible(string));
+  var p1 = '<' + tag;
+  if (attribute !== '') p1 += ' ' + attribute + '="' + replace(toString(value), quot, '&quot;') + '"';
+  return p1 + '>' + S + '</' + tag + '>';
+};
 
 
 /***/ }),
@@ -5201,6 +5331,23 @@ module.exports = function (O, defaultConstructor) {
 
 /***/ }),
 
+/***/ 3429:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+var fails = __webpack_require__(7293);
+
+// check the existence of a method, lowercase
+// of a tag and escaping quotes in arguments
+module.exports = function (METHOD_NAME) {
+  return fails(function () {
+    var test = ''[METHOD_NAME]('"');
+    return test !== test.toLowerCase() || test.split('"').length > 3;
+  });
+};
+
+
+/***/ }),
+
 /***/ 8710:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -7227,6 +7374,26 @@ fixRegExpWellKnownSymbolLogic('split', function (SPLIT, nativeSplit, maybeCallNa
     }
   ];
 }, !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC, UNSUPPORTED_Y);
+
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(2109);
+var createHTML = __webpack_require__(4230);
+var forcedStringHTMLMethod = __webpack_require__(3429);
+
+// `String.prototype.sub` method
+// https://tc39.es/ecma262/#sec-string.prototype.sub
+$({ target: 'String', proto: true, forced: forcedStringHTMLMethod('sub') }, {
+  sub: function sub() {
+    return createHTML(this, 'sub', '', '');
+  }
+});
 
 
 /***/ }),
@@ -14383,10 +14550,10 @@ var LAYER = '@layer'
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   O: function() { return /* binding */ prefix; }
 /* harmony export */ });
-if (/^(441|690|825)$/.test(__webpack_require__.j)) {
+if (172 != __webpack_require__.j) {
 	/* harmony import */ var _Enum_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7563);
 }
-if (/^(441|690|825)$/.test(__webpack_require__.j)) {
+if (172 != __webpack_require__.j) {
 	/* harmony import */ var _Utility_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6686);
 }
 
@@ -14546,10 +14713,10 @@ function prefix (value, length, children) {
 /* harmony export */   P: function() { return /* binding */ stringify; },
 /* harmony export */   q: function() { return /* binding */ serialize; }
 /* harmony export */ });
-if (/^(441|690|825)$/.test(__webpack_require__.j)) {
+if (172 != __webpack_require__.j) {
 	/* harmony import */ var _Enum_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7563);
 }
-if (/^(441|690|825)$/.test(__webpack_require__.j)) {
+if (172 != __webpack_require__.j) {
 	/* harmony import */ var _Utility_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6686);
 }
 
@@ -14613,7 +14780,7 @@ function stringify (element, index, children, callback) {
 /* harmony export */   xb: function() { return /* binding */ lift; }
 /* harmony export */ });
 /* unused harmony exports line, column, length, position, character, characters, slice, token, tokenize, tokenizer, delimiter */
-if (/^(441|690|825)$/.test(__webpack_require__.j)) {
+if (172 != __webpack_require__.j) {
 	/* harmony import */ var _Utility_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6686);
 }
 

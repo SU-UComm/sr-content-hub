@@ -56,8 +56,8 @@ var es_object_get_prototype_of = __webpack_require__(489);
 var web_dom_collections_for_each = __webpack_require__(4747);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
 var es_object_assign = __webpack_require__(9601);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 2 modules
-var Card = __webpack_require__(9214);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
+var Card = __webpack_require__(8649);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules

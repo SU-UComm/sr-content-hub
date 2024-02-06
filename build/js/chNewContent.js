@@ -227,8 +227,8 @@ var CPFilter = function CPFilter(props) {
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 2 modules
-var Card = __webpack_require__(9214);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
+var Card = __webpack_require__(8649);
 // EXTERNAL MODULE: ./src/modules/_ReactApp/Pagination/Pagination.jsx
 var Pagination = __webpack_require__(5569);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
@@ -553,16 +553,9 @@ var NewContent = function NewContent() {
 };
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
 var StatusFilter = __webpack_require__(1948);
-// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(7856);
 ;// CONCATENATED MODULE: ./src/modules/NoContent/NoContent.jsx
 
-
-
-var NoContent = function NoContent(_ref) {
-  var headingText = _ref.headingText,
-      subHeadingText = _ref.subHeadingText,
-      homeButton = _ref.homeButton;
+var NoContent = function NoContent() {
   return /*#__PURE__*/react.createElement("div", {
     className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
   }, /*#__PURE__*/react.createElement("h2", {

@@ -160,31 +160,34 @@ Card.propTypes = {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   G: function() { return /* binding */ CardButtons; }
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2526);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1817);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1539);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2165);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6992);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8783);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3948);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7042);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8309);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1038);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4916);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2222);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2526);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1817);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1539);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2165);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6992);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8783);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3948);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7042);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8309);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1038);
+/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(4916);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7294);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_13__);
+
 
 
 
@@ -212,179 +215,348 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var CardButtons = function CardButtons(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isSendDialogOpen = _useState2[0],
       setSendDialogOpen = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       isDeclineDialogOpen = _useState4[0],
       setDeclineDialogOpen = _useState4[1];
 
-  var openSendDialog = function openSendDialog() {
+  var sendDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(null);
+  var declineDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(null); // useEffect(() => {
+  //     const handleClickOutside = (event) => {
+  //         if (sendDialogRef.current && !sendDialogRef.current.contains(event.target)) {
+  //             closeSendDialog(event.target.getAttribute('data-id'));
+  //         }
+  //         if (declineDialogRef.current && !declineDialogRef.current.contains(event.target)) {
+  //             closeDeclineDialog(event.target.getAttribute('data-id'));
+  //         }
+  //     };
+  //     document.addEventListener('click', handleClickOutside);
+  //     return () => {
+  //         document.removeEventListener('click', handleClickOutside);
+  //     };
+  // }, []);
+
+  var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
-    document.body.style.background = 'grey';
+    var dialog = document.getElementById(id);
+    dialog.showModal();
   };
 
-  var closeSendDialog = function closeSendDialog() {
-    return setSendDialogOpen(false);
+  var closeSendDialog = function closeSendDialog(id) {
+    setSendDialogOpen(false);
+    var dialog = document.getElementById(id);
+    dialog.close();
   };
 
-  var openDeclineDialog = function openDeclineDialog() {
-    return setDeclineDialogOpen(true);
+  var openDeclineDialog = function openDeclineDialog(id) {
+    setDeclineDialogOpen(true);
+    var dialog = document.getElementById(id);
+    dialog.showModal();
   };
 
-  var closeDeclineDialog = function closeDeclineDialog() {
-    return setDeclineDialogOpen(false);
+  var closeDeclineDialog = function closeDeclineDialog(id) {
+    setDeclineDialogOpen(false);
+    var dialog = document.getElementById(id);
+    dialog.close();
   };
 
-  var handleSendTeaser = function handleSendTeaser() {
+  var handleSendTeaser = function handleSendTeaser(id) {
     // Handle sending teaser
-    closeSendDialog();
-  };
+    closeSendDialog(id);
+  }; // const start = (btnEl, pageType) => {
+  //     // Get ID of the Asset
+  //     const dialogEl = btnEl.closest('.c-dialog-send');
+  //     const storyId = dialogEl.getAttribute('data-id') || '';
+  //     if (storyId === '') {
+  //         return false;
+  //     }
+  //     // Get current metadata of the asset first
+  //     jsApi.getMetadata({
+  //         asset_id: storyId,
+  //         dataCallback: (resp) => {
+  //             // As a callback :: Prepare an update for the asset
+  //             approveStory.;
+  //         },
+  //     });
+  // }
 
-  var handleSendFullContent = function handleSendFullContent() {
-    // Handle sending full content
-    closeSendDialog();
-  };
 
-  var handleDecline = function handleDecline() {
-    // Handle sending decline info
-    closeDeclineDialog();
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
-    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
-  }, props.listMetadata.hubStatusDescription ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-    className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.listMetadata.hubStatusDescription) : props.listMetadata.hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-    className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-    className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(react__WEBPACK_IMPORTED_MODULE_11__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    className: "js-action--send-to-sr button-green c-button-send",
-    onClick: openSendDialog
-  }, "Send to Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    className: "js-action--decline c-button-decline",
-    onClick: openDeclineDialog
-  }, "Decline"), isSendDialogOpen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(react__WEBPACK_IMPORTED_MODULE_11__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("dialog", {
-    "data-id": props.listMetadata.assetId,
-    role: "dialog",
-    open: "true",
-    className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
-    aria: "",
-    "aria-labelledby": "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
-    style: {
-      position: 'absolute'
+  var chCfg = {
+    metaFields: {
+      hubStatusDescription: 31823,
+      hubStatus: 31822,
+      hubVersionHistory: 31825,
+      hubReviewMsg: 32284,
+      pageType: 4857
+    },
+    hubStatuses: {
+      reviewed: 'reviewed',
+      approved: 'sent-to-sr'
+    },
+    pageTypes: {
+      story: 'story',
+      teaser: 'teaser'
+    },
+    badges: {
+      reviewed: "<p class=\"su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Reviewed</p>",
+      approved: "<p class=\"su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Publishing soon on Stanford Report</p>"
+    },
+    endpoints: {
+      beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
+      loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: closeSendDialog,
+  };
+
+  var prepareUpdate = function prepareUpdate(btnEl, storyId, pageType, currentState) {
+    // Define Metadata Fields Actions Object
+    var fieldsActions = {}; // Action #1: Status Update:
+
+    var statusField = chCfg.metaFields.hubStatus;
+    var statusFieldValue = chCfg.hubStatuses.approved;
+    fieldsActions[statusField] = statusFieldValue; // Action #2: Clear Decline message :: In case it was there before
+
+    var msgField = chCfg.metaFields.hubReviewMsg;
+    fieldsActions[msgField] = ''; // Action #3: Update Version History
+
+    var currentHistory = getHistoryState(currentState); // Generate date and decline message
+
+    var thisDate = new Date().getTime();
+    var userEl = document.querySelector('#user-status');
+    var userDetails = userEl.getAttribute('data-fullname');
+    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
+    var newEntry = {
+      date: thisDate,
+      message: historyMessage
+    };
+    currentHistory.unshift(newEntry);
+    var currentHistoryStr = JSON.stringify(currentHistory);
+    var historyField = chCfg.metaFields.hubVersionHistory;
+    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
+
+    var descField = chCfg.metaFields.hubStatusDescription;
+    fieldsActions[descField] = ''; // Action #5: Set page type
+
+    var pageTypeField = chCfg.metaFields.pageType;
+    var pageTypeValue = pageType;
+    fieldsActions[pageTypeField] = pageTypeValue; // Get Published Date from Metadata :: Needed for publishing on SR
+
+    var pubDate = currentState.publishedDate || ''; // Create Asset Details to pass to callback
+
+    var thisStory = {
+      id: storyId,
+      pageType: pageType,
+      pubDate: pubDate
+    }; // return approveStory.updateUi(btnEl, "");
+    // All fields in place :: Update metadata
+
+    jsApi.setMetadataAllFields({
+      asset_id: storyId,
+      field_info: fieldsActions,
+      dataCallback: function dataCallback(resp) {
+        updateUi(btnEl, thisStory, resp);
+      }
+    });
+  };
+
+  var updateUi = function updateUi(btnEl, storyObj, resp) {
+    // Finalize publishing process with additional functions :: Depending from the page type
+    storyObj.pageType = storyObj.pageType || 'story';
+
+    if (storyObj.pageType === 'teaser') {
+      sendAsTeaser(storyObj);
+    } else {
+      sendAsStory(storyObj);
+    } // We need to update the Button on the front-end :: and remove actions
+
+
+    var dialogEl = btnEl.closest('.c-dialog-send');
+    var buttonsCont = dialogEl.closest('.su-flex'); // Add Reviwed Badge to the list
+
+    buttonsCont.innerHTML = chCfg.badges.approved; // Check if this is Home Page and Latest News
+
+    var latestNewsEl = document.querySelector('#latest-content'); // IF it is then we need to trigger loading one additional result instead of current item
+
+    if (latestNewsEl !== null) {
+      var currentItem = buttonsCont.closest('li');
+      loadNextStory.init(currentItem);
+    }
+  };
+
+  var sendAsStory = function sendAsStory(storyObj) {
+    console.log("Published as story: ".concat(JSON.stringify(storyObj)));
+  };
+
+  var sendAsTeaser = function sendAsTeaser(storyObj) {
+    console.log("Published as teaser: ".concat(JSON.stringify(storyObj)));
+  };
+
+  var handleSendFullContent = function handleSendFullContent(id) {
+    // Handle sending full content
+    //  let btn =   document.querySelector('#latest-content');
+    // start(btn, 'story');
+    // btn.setAttribute('disabled', 'true');
+    // start(btn, 'teaser');
+    closeSendDialog(id);
+  };
+
+  var handleDecline = function handleDecline(id) {
+    // Handle sending decline info
+    closeDeclineDialog(id);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
+  }, props.listMetadata.hubStatusDescription ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+    className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, props.listMetadata.hubStatusDescription) : props.listMetadata.hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+    className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+    className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Publishing soon on Stanford Report") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    "data-id": "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
+    className: "js-action--send-to-sr button-green c-button-send",
+    onClick: function onClick() {
+      return openSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    }
+  }, "Send to Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    "data-id": "dialogTitle-".concat(props.listMetadata.assetId, "-decline"),
+    className: "js-action--decline c-button-decline",
+    onClick: function onClick() {
+      return openDeclineDialog("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+    }
+  }, "Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("dialog", {
+    ref: sendDialogRef,
+    "data-id": props.listMetadata.assetId,
+    id: "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
+    role: "dialog",
+    open: isSendDialogOpen,
+    className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
+    "aria-labelledby": "dialogTitle-".concat(props.listMetadata.assetId, "-approve")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    },
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("svg", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("svg", {
     className: "",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13",
     height: "13",
     fill: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
     d: "M12.0554 1.9502L1.94434 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
     d: "M1.94434 1.9502L12.0554 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("h3", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
     id: "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
     className: "su-mb-0 su-font-serif su-text-center su-tracking-normal"
-  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: handleSendTeaser,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return handleSendTeaser("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    },
     "aria-label": "Send Teaser",
     className: "button-green js-send-teaser"
-  }, "Send Teaser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: handleSendFullContent,
+  }, "Send Teaser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return handleSendFullContent("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    },
     "aria-label": "Send Full Content",
     className: "button-green js-send-content"
-  }, "Send Full Content"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: closeSendDialog,
+  }, "Send Full Content"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    },
     "aria-label": "Cancel",
     className: "js-decline"
-  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
-    className: "opacity-25 fixed inset-0 z-40 bg-black"
-  })), isDeclineDialogOpen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("dialog", {
+  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("dialog", {
+    ref: declineDialogRef,
     role: "dialog",
-    open: "true",
+    open: isDeclineDialogOpen,
     "data-id": props.listMetadata.assetId,
     className: "c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
-    style: {
-      position: 'absolute'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: closeDeclineDialog,
+    "aria-labelledby": "dialogTitle-".concat(props.listMetadata.assetId, "-decline"),
+    id: "dialogTitle-".concat(props.listMetadata.assetId, "-decline")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return closeDeclineDialog("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+    },
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("svg", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("svg", {
     className: "",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13",
     height: "13",
     fill: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
     d: "M12.0554 1.9502L1.94434 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
     d: "M1.94434 1.9502L12.0554 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("h3", {
-    id: "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
+    id: "dialogTitle-".concat(props.listMetadata.assetId, "-decline"),
     className: "su-mb-10 su-font-serif su-leading-[125%] su-text-center"
-  }, "You are declining this story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-    id: "dialogDescription-128070-decline",
+  }, "You are declining this story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+    id: "dialogDescription-".concat(props.listMetadata.assetId, "-decline"),
     className: "su-mb-10 su-leading-[125%] su-text-center"
-  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("label", {
+  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("label", {
     className: "sr-only",
-    htmlFor: "message-textarea-128070-decline"
-  }, "Optional note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("textarea", {
+    htmlFor: "message-textarea-".concat(props.listMetadata.assetId, "-decline")
+  }, "Optional note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("textarea", {
     className: "su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]",
-    name: "message-128070",
+    name: "message-".concat(props.listMetadata.assetId),
     rows: "5",
     autoComplete: "off",
     "aria-label": "Optional note",
-    id: "message-textarea-128070-decline"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+    id: "message-textarea-".concat(props.listMetadata.assetId, "-decline")
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: handleDecline,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return handleDecline("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+    },
     "aria-label": "Decline",
     className: "button-green js-decline-true"
-  }, "Yes, Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
-    onClick: closeDeclineDialog,
+  }, "Yes, Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+    onClick: function onClick() {
+      return closeDeclineDialog("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+    },
     "aria-label": "Cancel",
     className: "js-decline-false"
   }, "Cancel"))))));
 };
 CardButtons.propTypes = {
-  listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_12___default().shape({
-    hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().array),
-    hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().array)
+  listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_13___default().shape({
+    hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
+    hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
+    assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array)
   })
 };
 

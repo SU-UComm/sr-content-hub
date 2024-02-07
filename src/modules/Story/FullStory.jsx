@@ -48,7 +48,6 @@ export const FullStory = (props) => {
 
                     <div className="su-py-20 [&>p:last-child]:su-mb-0">
                         <div className="su-py-20 [&>p:last-child]:su-mb-0">
-                            {/* {typeof contentHubAPI !== 'undefined' ? ( */}
                             <iframe
                                 id="story-content-iframe"
                                 src="https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast?SQ_DESIGN_NAME=content_only"
@@ -61,7 +60,6 @@ export const FullStory = (props) => {
                                     borderStyle: 'solid',
                                 }}
                             />
-                            {/* ) : null} */}
                         </div>
                     </div>
                 </div>

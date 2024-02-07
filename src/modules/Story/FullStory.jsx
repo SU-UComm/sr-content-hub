@@ -48,10 +48,10 @@ export const FullStory = (props) => {
     };
 
     useEffect(() => {
-        let url = window?.data?.contentHubAPI?.module;
+        let url = window?.data?.contentHubAPI;
         if (url) {
             fetchData(props.id);
-            console.log('full story fetch media: ', url);
+            console.log('full story fetchED media: ', url);
         } else {
             // setData(dataObj);
             console.log('full story data: ', data);
@@ -123,7 +123,7 @@ export const FullStory = (props) => {
                 <div>
                     <p className="small-heading su-mb-30">Media</p>
                     {data &&
-                        data.map((item, index) => {
+                        data.map((item, index) => (
                             <div key={index} className="su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl">
                                 <div className="su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]">
                                     <img
@@ -153,8 +153,8 @@ export const FullStory = (props) => {
                                         </p>
                                     </li>
                                 </ul>
-                            </div>;
-                        })}
+                            </div>
+                        ))}
                 </div>
             </div>
         </section>

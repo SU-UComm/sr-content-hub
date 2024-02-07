@@ -189,13 +189,13 @@ var FullStory = function FullStory(props) {
   }();
 
   (0,react.useEffect)(function () {
-    var _window, _window$data, _window$data$contentH;
+    var _window, _window$data;
 
-    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.module;
+    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.contentHubAPI;
 
     if (url) {
       fetchData(props.id);
-      console.log('full story fetch media: ', url);
+      console.log('full story fetchED media: ', url);
     } else {
       // setData(dataObj);
       console.log('full story data: ', data);
@@ -269,8 +269,7 @@ var FullStory = function FullStory(props) {
   })))), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-mb-30"
   }, "Media"), data && data.map(function (item, index) {
-    /*#__PURE__*/
-    react.createElement("div", {
+    return /*#__PURE__*/react.createElement("div", {
       key: index,
       className: "su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl"
     }, /*#__PURE__*/react.createElement("div", {

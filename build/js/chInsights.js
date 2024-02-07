@@ -182,7 +182,7 @@ var FullStory_FullStory = function FullStory(props) {
             case 4:
               d = _context.sent;
               setData(d);
-              console.log('Story data: ', d);
+              console.log('FULL Story data: ', d);
               _context.next = 12;
               break;
 
@@ -215,11 +215,11 @@ var FullStory_FullStory = function FullStory(props) {
     var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.module;
 
     if (url) {
-      fetchData(id);
-      console.log('story fetch url: ', url);
+      fetchData(props.id);
+      console.log('full story fetch media: ', url);
     } else {
       // setData(dataObj);
-      console.log('story data: ', data);
+      console.log('full story data: ', data);
     }
   }, []);
 
@@ -297,7 +297,7 @@ var FullStory_FullStory = function FullStory(props) {
     }, /*#__PURE__*/react.createElement("div", {
       className: "su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]"
     }, /*#__PURE__*/react.createElement("img", {
-      src: item.url,
+      src: item.url ? item.url : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
       alt: item.title,
       className: "su-aspect-[3/2] su-object-cover"
     })), /*#__PURE__*/react.createElement("ul", {

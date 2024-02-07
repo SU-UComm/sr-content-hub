@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 export const FullStory = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+
     const toggleFullStory = () => {
         setIsOpen(!isOpen);
     };
@@ -36,7 +37,7 @@ export const FullStory = (props) => {
             <div className={`${isOpen ? 'su-flex' : 'su-hidden'} su-mt-45 su-flex-col su-gap-[30px]`}>
                 <div>
                     <p className="small-heading">Author</p>
-                    <p className="su-py-20 su-mb-0">{props.data.bylineAuthor ? props.data.bylineAuthor : 'NA'}</p>
+                    <p className="su-py-20 su-mb-0">{props.data.metadata.bylineAuthor ? props.data.metadata.bylineAuthor : 'NA'}</p>
                 </div>
                 <div
                     className="su-pb-45 

@@ -38,7 +38,11 @@ export const Card = ({title, listMetadata}) => {
                 <a href={url + listMetadata.assetId} className="su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]">
                     <img
                         className="su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center"
-                        src={listMetadata.relatedImageURL}
+                        src={
+                            listMetadata.relatedImageURL
+                                ? listMetadata.relatedImageURL
+                                : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png'
+                        }
                         alt={title + ' image'}
                     />
                 </a>

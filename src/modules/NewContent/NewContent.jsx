@@ -73,7 +73,7 @@ export const NewContent = () => {
             setUrl(url);
         } else {
             fetchData(
-                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated',
                 'fb',
             );
             setDataLocation('fb');
@@ -132,7 +132,7 @@ export const NewContent = () => {
                     </div>
                     {/* CP Filter */}
                 </div>
-                <SelectedFacets onChange={onChange} facets={facets} />
+                <SelectedFacets onChange={onChange} facets={facets} page="newContent" />
 
                 <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
                     <p className="su-leading-[2] su-mb-0">

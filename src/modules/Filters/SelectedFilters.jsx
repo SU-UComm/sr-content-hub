@@ -13,7 +13,7 @@ export const SelectedFacets = (props) => {
     };
     const getSelected = (facets) => {
         // Generate output object
-        const selectedItems = [];
+        let selectedItems = [];
 
         // Loop through all defined facets
         for (let n in facets) {
@@ -45,6 +45,10 @@ export const SelectedFacets = (props) => {
                 } // For selected
             } // If selected
         } // For facets
+
+        if (props.page == 'newContent') {
+            selectedItems = selectedItems.filter((entry) => entry.name == 'hubStatus');
+        }
 
         return selectedItems;
     };

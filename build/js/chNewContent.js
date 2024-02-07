@@ -447,7 +447,7 @@ var NewContent = function NewContent() {
       setDataLocation('matrix');
       setUrl(url);
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery', 'fb');
+      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
       setDataLocation('fb');
     }
   }, []);
@@ -532,7 +532,8 @@ var NewContent = function NewContent() {
     onChange: onChange
   }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
     onChange: onChange,
-    facets: facets
+    facets: facets,
+    page: "newContent"
   }), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20"
   }, /*#__PURE__*/react.createElement("p", {

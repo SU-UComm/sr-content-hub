@@ -162,9 +162,7 @@ export const StoryView = (id) => {
                 <div className="su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center">
                     <h2 className="su-font-serif su-mb-0">View Story</h2>
 
-                    <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">
-                        <CardButtons assetId={data.id} />
-                    </div>
+                    <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">{/* <CardButtons assetId={data.id} /> */}</div>
                 </div>
             </section>
 

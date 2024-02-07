@@ -130,7 +130,7 @@ var FullStory = function FullStory(props) {
     className: "small-heading"
   }, "Author"), /*#__PURE__*/react.createElement("p", {
     className: "su-py-20 su-mb-0"
-  }, props.data.bylineAuthor ? props.data.bylineAuthor : 'NA')), /*#__PURE__*/react.createElement("div", {
+  }, props.data.metadata.bylineAuthor ? props.data.metadata.bylineAuthor : 'NA')), /*#__PURE__*/react.createElement("div", {
     className: "su-pb-45  su-border-b su-border-gray "
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
@@ -440,9 +440,7 @@ var StoryView = function StoryView(id) {
     className: "su-font-serif su-mb-0"
   }, "View Story"), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
-  }, /*#__PURE__*/react.createElement(CardButtons/* CardButtons */.G, {
-    assetId: data.id
-  })))), /*#__PURE__*/react.createElement("section", {
+  }))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"

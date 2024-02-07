@@ -1,14 +1,70 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {Oval} from 'react-loader-spinner';
+import {getMedia} from '../Helpers/requests';
+
+const dataObj = [
+    {
+        id: '26353',
+        url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih.png',
+        name: 'Nih.png',
+        title: 'Nih.png',
+        alt: 'NIH logo',
+        caption: '',
+        height: '969',
+        width: '969',
+        mediaCredit: '',
+    },
+    {
+        id: '26354',
+        url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih_0.png',
+        name: 'Nih_0.png',
+        title: 'nih_0.png',
+        alt: '',
+        caption: '',
+        height: '480',
+        width: '480',
+        mediaCredit: '',
+    },
+];
 
 export const FullStory = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [data, setData] = useState(dataObj); // data from endpoint
+    const [isLoading, setIsLoading] = useState(false); // Loader flag
+
+    const fetchData = async (id) => {
+        setIsLoading(true);
+        // replace with getSearchData from requests.js with blank query once CORS is resolved
+        try {
+            const d = await getMedia(id);
+            setData(d);
+            console.log('Story data: ', d);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        let url = window?.data?.contentHubAPI?.module;
+        if (url) {
+            fetchData(id);
+            console.log('story fetch url: ', url);
+        } else {
+            // setData(dataObj);
+            console.log('story data: ', data);
+        }
+    }, []);
 
     const toggleFullStory = () => {
         setIsOpen(!isOpen);
     };
 
-    return (
+    return isLoading ? (
+        <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
+    ) : (
         <section id="full-story" className={`su-group full-width-bg su-relative ${isOpen ? 'su-pb-120 open' : ''}  su-bg-gray-bg before:su-bg-gray-bg after:su-bg-gray-bg`}>
             <div
                 id="full-story-toggle"
@@ -66,38 +122,35 @@ export const FullStory = (props) => {
 
                 <div>
                     <p className="small-heading su-mb-30">Media</p>
-                    <div className="su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl">
-                        <div className="su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]">
-                            <img
-                                src="https://sug-web.matrix.squiz.cloud/_media/images/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast2.jpg"
-                                alt=""
-                                className="su-aspect-[3/2] su-object-cover"
-                            />
-                        </div>
+                    {data &&
+                        data.map((item, index) => {
+                            <div key={index} className="su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl">
+                                <div className="su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]">
+                                    <img src={item.url} alt={item.title} className="su-aspect-[3/2] su-object-cover" />
+                                </div>
 
-                        <ul className="su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1">
-                            <li className="mb-0">
-                                <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Credit</p>
-                                <p className="su-leading-[3.6rem] su-mb-0">
-                                    <em>N/A</em>
-                                </p>
-                            </li>
-                            <li className="mb-0">
-                                <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Alternative Text</p>
-                                <p className="su-leading-[3.6rem] su-mb-0"></p>
-                            </li>
-                            <li className="mb-0">
-                                <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Captions</p>
-                                <p className="su-leading-[3.6rem] su-mb-0">
-                                    <em>N/A</em>
-                                </p>
-                            </li>
-                            <li className="mb-0">
-                                <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Dimensions</p>
-                                <p className="su-leading-[3.6rem] su-mb-0">750x500</p>
-                            </li>
-                        </ul>
-                    </div>
+                                <ul className="su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1">
+                                    <li className="mb-0">
+                                        <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Credit</p>
+                                        <p className="su-leading-[3.6rem] su-mb-0">{item.mediaCredit ? item.mediaCredit : <em>N/A</em>}</p>
+                                    </li>
+                                    <li className="mb-0">
+                                        <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Alternative Text</p>
+                                        <p className="su-leading-[3.6rem] su-mb-0">{item.alt ? item.alt : <em>N/A</em>}</p>
+                                    </li>
+                                    <li className="mb-0">
+                                        <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Captions</p>
+                                        <p className="su-leading-[3.6rem] su-mb-0">{item.caption ? item.caption : <em>N/A</em>}</p>
+                                    </li>
+                                    <li className="mb-0">
+                                        <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Dimensions</p>
+                                        <p className="su-leading-[3.6rem] su-mb-0">
+                                            {item.width} x {item.height}
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>;
+                        })}
                 </div>
             </div>
         </section>

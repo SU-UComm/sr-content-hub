@@ -10,6 +10,7 @@ const contentHubAPI = {
         userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
         hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
         contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
+        relatedMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
     },
 };
 
@@ -60,6 +61,29 @@ export const getUserData = async () => {
     }).then((res) => {
         return (res = res.json());
     });
+
+    return response;
+};
+
+/**
+ * GET relatedMedia Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
+export const getMedia = async (assetID) => {
+    const requestUrl = `${contentHubAPI.modules.relatedMedia}${assetID}`;
+    console.log('URL,', requestUrl);
+    const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+        },
+    }).then((res) => {
+        return (res = res.json());
+    });
+    console.log('getMedia resp: ', response);
 
     return response;
 };

@@ -1768,7 +1768,7 @@ var InsightsCard = function InsightsCard(_ref) {
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-text-16 su-mb-0"
   }, title), /*#__PURE__*/react.createElement("div", {
-    className: "".concat(colorClass, " su-text-14 su-font-semibold su-bg-").concat(isPositive ? 'green/10' : 'red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
+    className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
   }, /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-mt-1 su-mr-5",
     src: __webpack_require__(6303)("./".concat(arrowImage)),

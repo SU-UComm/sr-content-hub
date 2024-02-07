@@ -182,7 +182,7 @@ var FullStory_FullStory = function FullStory(props) {
             case 4:
               d = _context.sent;
               setData(d);
-              console.log('FULL Story data: ', d);
+              console.log('full story fetched media: ', d);
               _context.next = 12;
               break;
 
@@ -215,8 +215,7 @@ var FullStory_FullStory = function FullStory(props) {
     var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.contentHubAPI;
 
     if (url) {
-      fetchData(props.id);
-      console.log('full story fetchED media: ', url);
+      fetchData(props.data.id);
     } else {
       // setData(dataObj);
       console.log('full story data: ', data);
@@ -331,7 +330,8 @@ var FullStory_FullStory = function FullStory(props) {
 FullStory_FullStory.propTypes = {
   data: prop_types_default().shape({
     bylineAuthor: (prop_types_default()).string,
-    name: (prop_types_default()).string
+    name: (prop_types_default()).string,
+    id: (prop_types_default()).string
   })
 };
 ;// CONCATENATED MODULE: ./src/modules/Story/StoryView.jsx

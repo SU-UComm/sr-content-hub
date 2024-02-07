@@ -39,7 +39,7 @@ export const FullStory = (props) => {
         try {
             const d = await getMedia(id);
             setData(d);
-            console.log('FULL Story data: ', d);
+            console.log('full story fetched media: ', d);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -50,8 +50,7 @@ export const FullStory = (props) => {
     useEffect(() => {
         let url = window?.data?.contentHubAPI;
         if (url) {
-            fetchData(props.id);
-            console.log('full story fetchED media: ', url);
+            fetchData(props.data.id);
         } else {
             // setData(dataObj);
             console.log('full story data: ', data);
@@ -165,5 +164,6 @@ FullStory.propTypes = {
     data: PropTypes.shape({
         bylineAuthor: PropTypes.string,
         name: PropTypes.string,
+        id: PropTypes.string,
     }),
 };

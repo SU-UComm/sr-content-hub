@@ -20,6 +20,7 @@ export const NewContent = () => {
     const [facets, setFacets] = useState([]);
     const [dataLocation, setDataLocation] = useState('');
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
+    const [sortBySelected, setSortBySelected] = useState('Select an option');
 
     const fetchData = async (url, func) => {
         setIsLoading(true);
@@ -111,6 +112,20 @@ export const NewContent = () => {
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
+        } else if (name == 'sortBy') {
+            let newParams = queryParams;
+            let selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
+            setSortBySelected(selected);
+            const sortBy = newParams.find((entry) => entry.name === 'sort');
+            if (!sortBy) {
+                queryParams.push({name: 'sort', value});
+            } else {
+                sortBy.value = value;
+            }
+            setQueryParams(newParams);
+            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
+            console.log('CREATED URL sort: ', fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else {
             let fetchUrl = baseUrl + value;
             fetchData(fetchUrl, dataLocation);
@@ -140,7 +155,7 @@ export const NewContent = () => {
                         {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
                     </p>
 
-                    <SortByFilter onChange={onChange} />
+                    <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                     {results.map((contentItem, index) => (

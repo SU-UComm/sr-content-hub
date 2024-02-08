@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import {PropTypes} from 'prop-types';
 
 export const SortByFilter = (props) => {
-    const [selectedRange, setSelectedRange] = useState('');
+    const [selectedRange, setSelectedRange] = useState(props.selectedValue);
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
 
@@ -51,7 +51,7 @@ export const SortByFilter = (props) => {
                         aria-expanded={open}
                         onClick={handleOpen}
                     >
-                        <span className="su-mr-10 su-line-clamp-1">{selectedRange || 'Select an option'}</span>
+                        <span className="su-mr-10 su-line-clamp-1">{selectedRange}</span>
                         <img className="su-inline su-ml-6" alt="" src={require('images/chevron-down.svg')} />
                     </button>
                     <ul
@@ -87,4 +87,5 @@ export const SortByFilter = (props) => {
 
 SortByFilter.propTypes = {
     onChange: PropTypes.func,
+    selectedValue: PropTypes.func,
 };

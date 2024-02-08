@@ -30,14 +30,13 @@
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4916);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(9993);
 /* harmony import */ var _Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9113);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(7856);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(6974);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(9342);
 /* harmony import */ var _Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(6859);
 
 
@@ -93,27 +92,22 @@ var Card = function Card(props) {
     console.log('path change'); // history('/story.html', {state: {data: props.data}});
 
     window.reload();
-  };
+  }; // useEffect(() => {
+  //     if (props) {
+  //         setData(props.listMetadata);
+  //         setIsLoading(false);
+  //         console.log(props);
+  //     } else {
+  //         setIsLoading(true);
+  //     }
+  // }, [props]);
 
-  (0,react__WEBPACK_IMPORTED_MODULE_11__.useEffect)(function () {
-    if (props) {
-      // setData(listMetadata);
-      // setIsLoading(false);
-      console.log(props);
-    } else {
-      setIsLoading(true);
-    }
-  }, [props]);
+
   return (// !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
-    props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__/* .Link */ .rU, {
-      onClick: function onClick() {
-        return routeChange();
-      },
-      to: "/story.html",
-      state: {
-        data: props.data
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
+    props.data.listMetadata &&
+    /*#__PURE__*/
+    // <Link onClick={() => routeChange()} to="/story.html" state={{data: props.data}}>
+    react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
       className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
       "data-id": props.data.listMetadata.assetId // onClick={() => routeChange()}
 
@@ -140,24 +134,25 @@ var Card = function Card(props) {
       className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
     }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
       listMetadata: props.data.listMetadata
-    }) : null)))
+    }) : null)) // </Link>
+
   );
 };
 Card.propTypes = {
-  data: prop_types__WEBPACK_IMPORTED_MODULE_18___default().shape({
-    imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().string),
-    title: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().string),
-    description: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().string),
-    date: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().number),
-    listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_18___default().shape({
-      canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array),
-      relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array),
-      srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().string),
-      taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array),
-      descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array),
-      mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array),
-      srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array),
-      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_18___default().array)
+  data: prop_types__WEBPACK_IMPORTED_MODULE_17___default().shape({
+    imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
+    title: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
+    description: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
+    date: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().number),
+    listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_17___default().shape({
+      canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
+      relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
+      srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
+      taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
+      descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
+      mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
+      srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
+      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array)
     })
   })
 };
@@ -820,7 +815,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var SortByFilter = function SortByFilter(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(''),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(props.selectedValue),
       _useState2 = _slicedToArray(_useState, 2),
       selectedRange = _useState2[0],
       setSelectedRange = _useState2[1];
@@ -888,7 +883,7 @@ var SortByFilter = function SortByFilter(props) {
     onClick: handleOpen
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("span", {
     className: "su-mr-10 su-line-clamp-1"
-  }, selectedRange || 'Select an option'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("img", {
+  }, selectedRange), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("img", {
     className: "su-inline su-ml-6",
     alt: "",
     src: __webpack_require__(1466)
@@ -913,7 +908,8 @@ var SortByFilter = function SortByFilter(props) {
   }, "Oldest to Newest")))));
 };
 SortByFilter.propTypes = {
-  onChange: prop_types__WEBPACK_IMPORTED_MODULE_12__.PropTypes.func
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_12__.PropTypes.func,
+  selectedValue: prop_types__WEBPACK_IMPORTED_MODULE_12__.PropTypes.func
 };
 
 /***/ }),
@@ -982,7 +978,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var StatusFilter = function StatusFilter(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)('All'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.selectedValue),
       _useState2 = _slicedToArray(_useState, 2),
       selectedStatus = _useState2[0],
       setSelectedStatus = _useState2[1];
@@ -1008,7 +1004,7 @@ var StatusFilter = function StatusFilter(props) {
   var handleStatusChange = function handleStatusChange(label, option) {
     setSelectedStatus(label);
     handleClose();
-    props.onChange('status', option.toggleUrl);
+    props.onChange('status', option.toggleUrl, label);
   };
 
   var handleOpen = function handleOpen() {
@@ -2229,16 +2225,15 @@ var Pagination = function Pagination(props) {
       setPagesData = _useState6[1];
 
   var onButtonClick = function onButtonClick(e) {
-    console.log('PAGINATION:', e.target.value);
     props.onChange('pagination', e.target.value);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_12__.useEffect)(function () {
     if (props.summary) {
       setSummaryData(props.summary);
-      setIsLoading(false);
-      console.log('DATA @ PAGINATION:', props.data);
-      console.log('SUMMARY', props.summary);
+      setIsLoading(false); // console.log('DATA @ PAGINATION:', props.data);
+      // console.log('SUMMARY', props.summary);
+
       getPages(props.summary);
     } else {
       setIsLoading(true);
@@ -2277,9 +2272,9 @@ var Pagination = function Pagination(props) {
         var isLast = pageToPrint === numberOfPages ? true : false;
         addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
         pageToPrint = pageToPrint + 1;
-      }
+      } // console.log('getPAGES: ', pagesOutput);
 
-      console.log('getPAGES: ', pagesOutput);
+
       setPagesData(pagesOutput);
     } // ========= If there's more pages :: Generate more complex pagination =========
     // For Page 3: Show 1st page as well
@@ -10111,12 +10106,11 @@ handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Ep: function() { return /* binding */ createPath; },
 /* harmony export */   aU: function() { return /* binding */ Action; },
 /* harmony export */   cP: function() { return /* binding */ parsePath; },
 /* harmony export */   lX: function() { return /* binding */ createBrowserHistory; }
 /* harmony export */ });
-/* unused harmony exports createHashHistory, createMemoryHistory */
+/* unused harmony exports createHashHistory, createMemoryHistory, createPath */
 if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7462);
 }
@@ -15731,10 +15725,9 @@ const $1e82ee682f5b64b8$export$f3c41beb83007357 = ({ visible: visible = true, wi
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   VK: function() { return /* binding */ BrowserRouter; },
-/* harmony export */   rU: function() { return /* binding */ Link; }
+/* harmony export */   VK: function() { return /* binding */ BrowserRouter; }
 /* harmony export */ });
-/* unused harmony exports HashRouter, NavLink, createSearchParams, unstable_HistoryRouter, useLinkClickHandler, useSearchParams */
+/* unused harmony exports HashRouter, Link, NavLink, createSearchParams, unstable_HistoryRouter, useLinkClickHandler, useSearchParams */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5648);
@@ -15790,7 +15783,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 
-const _excluded = (/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (["onClick", "reloadDocument", "replace", "state", "target", "to"]) : null),
+const _excluded = (/* unused pure expression or super */ null && (["onClick", "reloadDocument", "replace", "state", "target", "to"])),
       _excluded2 = (/* unused pure expression or super */ null && (["aria-current", "caseSensitive", "className", "end", "style", "to", "children"]));
 
 function warning(cond, message) {
@@ -15911,7 +15904,7 @@ function isModifiedEvent(event) {
 /**
  * The public API for rendering a history-aware <a>.
  */
-const Link = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? ((0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function LinkWithRef(_ref4, ref) {
+const Link = /*#__PURE__*/(/* unused pure expression or super */ null && (forwardRef(function LinkWithRef(_ref4, ref) {
   let {
     onClick,
     reloadDocument,
@@ -15922,7 +15915,7 @@ const Link = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(4
   } = _ref4,
       rest = _objectWithoutPropertiesLoose(_ref4, _excluded);
 
-  let href = (0,react_router__WEBPACK_IMPORTED_MODULE_2__/* .useHref */ .oQ)(to);
+  let href = useHref(to);
   let internalOnClick = useLinkClickHandler(to, {
     replace,
     state,
@@ -15940,14 +15933,14 @@ const Link = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(4
   return (
     /*#__PURE__*/
     // eslint-disable-next-line jsx-a11y/anchor-has-content
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", _extends({}, rest, {
+    createElement("a", _extends({}, rest, {
       href: href,
       onClick: handleClick,
       ref: ref,
       target: target
     }))
   );
-})) : null);
+})));
 
 if (false) {}
 
@@ -16024,10 +16017,10 @@ function useLinkClickHandler(to, _temp) {
     replace: replaceProp,
     state
   } = _temp === void 0 ? {} : _temp;
-  let navigate = (0,react_router__WEBPACK_IMPORTED_MODULE_2__/* .useNavigate */ .s0)();
-  let location = (0,react_router__WEBPACK_IMPORTED_MODULE_2__/* .useLocation */ .TH)();
-  let path = (0,react_router__WEBPACK_IMPORTED_MODULE_2__/* .useResolvedPath */ .WU)(to);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(event => {
+  let navigate = useNavigate();
+  let location = useLocation();
+  let path = useResolvedPath(to);
+  return useCallback(event => {
     if (event.button === 0 && ( // Ignore everything but left clicks
     !target || target === "_self") && // Let browser handle "target=_blank" etc.
     !isModifiedEvent(event) // Ignore clicks with modifier keys
@@ -16035,7 +16028,7 @@ function useLinkClickHandler(to, _temp) {
       event.preventDefault(); // If the URL hasn't changed, a regular <a> will do a replace instead of
       // a push, so do the same here.
 
-      let replace = !!replaceProp || (0,history__WEBPACK_IMPORTED_MODULE_1__/* .createPath */ .Ep)(location) === (0,history__WEBPACK_IMPORTED_MODULE_1__/* .createPath */ .Ep)(path);
+      let replace = !!replaceProp || createPath(location) === createPath(path);
       navigate(to, {
         replace,
         state
@@ -16116,12 +16109,9 @@ function createSearchParams(init) {
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   F0: function() { return /* binding */ Router; },
-/* harmony export */   TH: function() { return /* binding */ useLocation; },
-/* harmony export */   WU: function() { return /* binding */ useResolvedPath; },
-/* harmony export */   oQ: function() { return /* binding */ useHref; },
 /* harmony export */   s0: function() { return /* binding */ useNavigate; }
 /* harmony export */ });
-/* unused harmony exports MemoryRouter, Navigate, Outlet, Route, Routes, UNSAFE_LocationContext, UNSAFE_NavigationContext, UNSAFE_RouteContext, createRoutesFromChildren, generatePath, matchPath, matchRoutes, renderMatches, resolvePath, useInRouterContext, useMatch, useNavigationType, useOutlet, useOutletContext, useParams, useRoutes */
+/* unused harmony exports MemoryRouter, Navigate, Outlet, Route, Routes, UNSAFE_LocationContext, UNSAFE_NavigationContext, UNSAFE_RouteContext, createRoutesFromChildren, generatePath, matchPath, matchRoutes, renderMatches, resolvePath, useHref, useInRouterContext, useLocation, useMatch, useNavigationType, useOutlet, useOutletContext, useParams, useResolvedPath, useRoutes */
 if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5648);
 }
@@ -16528,7 +16518,7 @@ function resolveTo(toArg, routePathnames, locationPathname) {
 }
 function getToPathname(to) {
   // Empty strings should be treated the same as / paths
-  return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? (0,history__WEBPACK_IMPORTED_MODULE_1__/* .parsePath */ .cP)(to).pathname : to.pathname;
+  return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? parsePath(to).pathname : to.pathname;
 }
 function stripBasename(pathname, basename) {
   if (basename === "/") return pathname;
@@ -16565,7 +16555,7 @@ function useHref(to) {
   let {
     basename,
     navigator
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(NavigationContext);
+  } = useContext(NavigationContext);
   let {
     hash,
     pathname,
@@ -16735,12 +16725,12 @@ function useParams() {
 function useResolvedPath(to) {
   let {
     matches
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(RouteContext);
+  } = useContext(RouteContext);
   let {
     pathname: locationPathname
   } = useLocation();
   let routePathnamesJson = JSON.stringify(matches.map(match => match.pathnameBase));
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname), [to, routePathnamesJson, locationPathname]);
+  return useMemo(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname), [to, routePathnamesJson, locationPathname]);
 }
 /**
  * Returns the element of the route that matched the current location, prepared

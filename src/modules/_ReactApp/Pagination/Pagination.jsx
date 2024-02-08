@@ -8,15 +8,14 @@ export const Pagination = (props) => {
     const [pagesData, setPagesData] = useState([]);
 
     const onButtonClick = (e) => {
-        console.log('PAGINATION:', e.target.value);
         props.onChange('pagination', e.target.value);
     };
     useEffect(() => {
         if (props.summary) {
             setSummaryData(props.summary);
             setIsLoading(false);
-            console.log('DATA @ PAGINATION:', props.data);
-            console.log('SUMMARY', props.summary);
+            // console.log('DATA @ PAGINATION:', props.data);
+            // console.log('SUMMARY', props.summary);
             getPages(props.summary);
         } else {
             setIsLoading(true);
@@ -55,7 +54,7 @@ export const Pagination = (props) => {
 
                 pageToPrint = pageToPrint + 1;
             }
-            console.log('getPAGES: ', pagesOutput);
+            // console.log('getPAGES: ', pagesOutput);
             setPagesData(pagesOutput);
         }
 

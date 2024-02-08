@@ -342,6 +342,11 @@ var NewContent = function NewContent() {
       baseUrl = _useState18[0],
       setUrl = _useState18[1];
 
+  var _useState19 = (0,react.useState)('Select an option'),
+      _useState20 = NewContent_slicedToArray(_useState19, 2),
+      sortBySelected = _useState20[0],
+      setSortBySelected = _useState20[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
       var d, params, _d2, _params;
@@ -498,10 +503,34 @@ var NewContent = function NewContent() {
 
       console.log('CREATED URL: ', _fetchUrl);
       fetchData(_fetchUrl, dataLocation);
-    } else {
-      var _fetchUrl2 = baseUrl + value;
+    } else if (name == 'sortBy') {
+      var _newParams2 = queryParams;
+      var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
+      setSortBySelected(selected);
 
+      var sortBy = _newParams2.find(function (entry) {
+        return entry.name === 'sort';
+      });
+
+      if (!sortBy) {
+        queryParams.push({
+          name: 'sort',
+          value: value
+        });
+      } else {
+        sortBy.value = value;
+      }
+
+      setQueryParams(_newParams2);
+
+      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+
+      console.log('CREATED URL sort: ', _fetchUrl2);
       fetchData(_fetchUrl2, dataLocation);
+    } else {
+      var _fetchUrl3 = baseUrl + value;
+
+      fetchData(_fetchUrl3, dataLocation);
     }
   };
 
@@ -537,7 +566,8 @@ var NewContent = function NewContent() {
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-0"
   }, resultsSummary.currStart, "-", resultsSummary.currEnd, " of ", resultsSummary.totalMatching, " results"), /*#__PURE__*/react.createElement(SortByFilter/* SortByFilter */.S, {
-    onChange: onChange
+    onChange: onChange,
+    selectedValue: sortBySelected
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {
@@ -665,6 +695,16 @@ var MyContent = function MyContent() {
       baseUrl = _useState16[0],
       setUrl = _useState16[1];
 
+  var _useState17 = (0,react.useState)('Select an option'),
+      _useState18 = MyContent_slicedToArray(_useState17, 2),
+      sortBySelected = _useState18[0],
+      setSortBySelected = _useState18[1];
+
+  var _useState19 = (0,react.useState)('All'),
+      _useState20 = MyContent_slicedToArray(_useState19, 2),
+      statusSelected = _useState20[0],
+      setStatusSelected = _useState20[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(url) {
       var d, params;
@@ -718,7 +758,7 @@ var MyContent = function MyContent() {
     fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
   }, []);
 
-  var onChange = function onChange(name, value) {
+  var onChange = function onChange(name, value, selectedVal) {
     console.log('ON CHANGE: ', name, ' || ', value);
 
     if (name == 'search') {
@@ -766,10 +806,40 @@ var MyContent = function MyContent() {
 
       console.log('CREATED URL: ', _fetchUrl);
       fetchData(_fetchUrl);
-    } else {
-      var _fetchUrl2 = baseUrl + value;
+    } else if (name == 'sortBy') {
+      var _newParams2 = queryParams;
+      var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
+      setSortBySelected(selected);
 
+      var sortBy = _newParams2.find(function (entry) {
+        return entry.name === 'sort';
+      });
+
+      if (!sortBy) {
+        queryParams.push({
+          name: 'sort',
+          value: value
+        });
+      } else {
+        sortBy.value = value;
+      }
+
+      setQueryParams(_newParams2);
+
+      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+
+      console.log('CREATED URL sort: ', _fetchUrl2);
       fetchData(_fetchUrl2);
+    } else {
+      if (name == 'status') {
+        var _selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
+
+        setStatusSelected(_selected);
+      }
+
+      var _fetchUrl3 = baseUrl + value;
+
+      fetchData(_fetchUrl3);
     }
   };
 
@@ -792,7 +862,8 @@ var MyContent = function MyContent() {
     className: "su-w-full md:su-w-1/2"
   }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
     onChange: onChange,
-    facets: statusLabel
+    facets: statusLabel,
+    selectedValue: statusSelected
   }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
     onChange: onChange,
     facets: facets
@@ -801,7 +872,8 @@ var MyContent = function MyContent() {
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-0"
   }, resultsSummary.currStart, "-", resultsSummary.currEnd, " of ", resultsSummary.totalMatching, " results"), /*#__PURE__*/react.createElement(SortByFilter/* SortByFilter */.S, {
-    onChange: onChange
+    onChange: onChange,
+    selectedValue: sortBySelected
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results ? results.map(function (contentItem, index) {

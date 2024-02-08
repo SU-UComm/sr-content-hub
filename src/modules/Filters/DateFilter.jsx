@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import {PropTypes} from 'prop-types';
 
 export const DateRangeFilter = (props) => {
-    const [selectedRange, setSelectedRange] = useState('');
+    const [selectedRange, setSelectedRange] = useState(props.selectedValue);
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
     const [statusOptions, setStatusOptions] = useState([]);
@@ -11,7 +11,7 @@ export const DateRangeFilter = (props) => {
     const handleRangeChange = (value, option) => {
         setSelectedRange(value);
         handleClose();
-        props.onChange('date', option.toggleUrl);
+        props.onChange('date', option.toggleUrl, option.label);
     };
 
     const handleOpen = () => setOpen(true);
@@ -66,7 +66,7 @@ export const DateRangeFilter = (props) => {
                             aria-expanded="false"
                             onClick={handleOpen}
                         >
-                            <span className="su-mr-10">{selectedRange ? statusOptions.find((opt) => opt.label === selectedRange)?.label : 'All'}</span>
+                            <span className="su-mr-10">{selectedRange}</span>
                             <img className="su-inline su-ml-6" alt="" src={require('images/chevron-down.svg')} />
                         </button>
                         <div

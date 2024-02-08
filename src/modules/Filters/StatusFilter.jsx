@@ -3,7 +3,7 @@ import {PropTypes} from 'prop-types';
 import {getLabel} from '../Helpers/helperFunctions';
 
 export const StatusFilter = (props) => {
-    const [selectedStatus, setSelectedStatus] = useState('All');
+    const [selectedStatus, setSelectedStatus] = useState(props.selectedValue);
     const [open, setOpen] = useState(false);
     const wrapperRef = useRef(null);
     const [statusOptions, setStatusOptions] = useState([]);
@@ -12,7 +12,7 @@ export const StatusFilter = (props) => {
     const handleStatusChange = (label, option) => {
         setSelectedStatus(label);
         handleClose();
-        props.onChange('status', option.toggleUrl);
+        props.onChange('status', option.toggleUrl, label);
     };
 
     const handleOpen = () => setOpen(true);

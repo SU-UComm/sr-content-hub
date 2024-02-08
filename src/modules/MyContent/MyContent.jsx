@@ -5,7 +5,7 @@ import {fetchFBData} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
-import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
+import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
@@ -21,6 +21,8 @@ export const MyContent = () => {
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
+    const [sortBySelected, setSortBySelected] = useState('Select an option');
+    const [statusSelected, setStatusSelected] = useState('All');
 
     const fetchData = async (url) => {
         setIsLoading(true);
@@ -48,7 +50,7 @@ export const MyContent = () => {
         );
     }, []);
 
-    const onChange = (name, value) => {
+    const onChange = (name, value, selectedVal) => {
         console.log('ON CHANGE: ', name, ' || ', value);
         if (name == 'search') {
             let newParams = queryParams;
@@ -78,7 +80,25 @@ export const MyContent = () => {
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl);
+        } else if (name == 'sortBy') {
+            let newParams = queryParams;
+            let selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
+            setSortBySelected(selected);
+            const sortBy = newParams.find((entry) => entry.name === 'sort');
+            if (!sortBy) {
+                queryParams.push({name: 'sort', value});
+            } else {
+                sortBy.value = value;
+            }
+            setQueryParams(newParams);
+            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
+            console.log('CREATED URL sort: ', fetchUrl);
+            fetchData(fetchUrl);
         } else {
+            if (name == 'status') {
+                let selected = getLabel(selectedVal);
+                setStatusSelected(selected);
+            }
             let fetchUrl = baseUrl + value;
             fetchData(fetchUrl);
         }
@@ -92,7 +112,7 @@ export const MyContent = () => {
             <section>
                 <div className="su-mb-20">
                     <div className="su-w-full md:su-w-1/2">
-                        <StatusFilter onChange={onChange} facets={statusLabel} />
+                        <StatusFilter onChange={onChange} facets={statusLabel} selectedValue={statusSelected} />
                     </div>
                 </div>
                 <SelectedFacets onChange={onChange} facets={facets} />
@@ -102,7 +122,7 @@ export const MyContent = () => {
                         {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
                     </p>
 
-                    <SortByFilter onChange={onChange} />
+                    <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                     {results ? (

@@ -82,13 +82,13 @@ export const ContentRegion = () => {
                     </a>
                 </div>
             </div>
-            {window?.data?.user?.userType === 'CP' ? (
+            {/* {window?.data?.user?.userType === 'CP' ? (
                 <div className="su-mb-60">
                     <div className="su-w-full md:su-w-1/2">
                         <StatusFilter facets={statusLabel} onChange={onChange} />{' '}
                     </div>
                 </div>
-            ) : null}
+            ) : null} */}
 
             <p className="su-leading-[2] su-mb-20">
                 1-5 of {resultsSummary.totalMatching} {window?.data?.user?.userType === 'UCOMM' ? 'results waiting for review' : ''}

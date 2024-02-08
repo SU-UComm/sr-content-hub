@@ -73,7 +73,6 @@ var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 
 
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -89,9 +88,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var DateRangeFilter = function DateRangeFilter(props) {
-  var _statusOptions$find;
-
-  var _useState = (0,react.useState)(''),
+  var _useState = (0,react.useState)(props.selectedValue),
       _useState2 = _slicedToArray(_useState, 2),
       selectedRange = _useState2[0],
       setSelectedRange = _useState2[1];
@@ -117,7 +114,7 @@ var DateRangeFilter = function DateRangeFilter(props) {
   var handleRangeChange = function handleRangeChange(value, option) {
     setSelectedRange(value);
     handleClose();
-    props.onChange('date', option.toggleUrl);
+    props.onChange('date', option.toggleUrl, option.label);
   };
 
   var handleOpen = function handleOpen() {
@@ -176,9 +173,7 @@ var DateRangeFilter = function DateRangeFilter(props) {
     onClick: handleOpen
   }, /*#__PURE__*/react.createElement("span", {
     className: "su-mr-10"
-  }, selectedRange ? (_statusOptions$find = statusOptions.find(function (opt) {
-    return opt.label === selectedRange;
-  })) === null || _statusOptions$find === void 0 ? void 0 : _statusOptions$find.label : 'All'), /*#__PURE__*/react.createElement("img", {
+  }, selectedRange), /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     alt: "",
     src: __webpack_require__(1466)
@@ -588,6 +583,21 @@ var AllContent = function AllContent() {
       dataLocation = _useState24[0],
       setDataLocation = _useState24[1];
 
+  var _useState25 = (0,react.useState)('Select an option'),
+      _useState26 = AllContent_slicedToArray(_useState25, 2),
+      sortBySelected = _useState26[0],
+      setSortBySelected = _useState26[1];
+
+  var _useState27 = (0,react.useState)('All'),
+      _useState28 = AllContent_slicedToArray(_useState27, 2),
+      statusSelected = _useState28[0],
+      setStatusSelected = _useState28[1];
+
+  var _useState29 = (0,react.useState)('All'),
+      _useState30 = AllContent_slicedToArray(_useState29, 2),
+      dateSelected = _useState30[0],
+      setDateSelected = _useState30[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
       var d, params, _d2, _params;
@@ -695,7 +705,7 @@ var AllContent = function AllContent() {
     }
   }, []);
 
-  var onChange = function onChange(name, value) {
+  var onChange = function onChange(name, value, selectedVal) {
     console.log('ON CHANGE: ', name, ' || ', value);
 
     if (name == 'search') {
@@ -743,10 +753,43 @@ var AllContent = function AllContent() {
 
       console.log('CREATED URL: ', _fetchUrl);
       fetchData(_fetchUrl, dataLocation);
-    } else {
-      var _fetchUrl2 = baseUrl + value;
+    } else if (name == 'sortBy') {
+      var _newParams2 = queryParams;
+      var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
+      setSortBySelected(selected);
 
+      var sortBy = _newParams2.find(function (entry) {
+        return entry.name === 'sort';
+      });
+
+      if (!sortBy) {
+        queryParams.push({
+          name: 'sort',
+          value: value
+        });
+      } else {
+        sortBy.value = value;
+      }
+
+      setQueryParams(_newParams2);
+
+      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+
+      console.log('CREATED URL sort: ', _fetchUrl2);
       fetchData(_fetchUrl2, dataLocation);
+    } else {
+      if (name == 'status') {
+        var _selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
+
+        setStatusSelected(_selected);
+      } else if (name == 'date') {
+        var _selected2 = selectedVal;
+        setDateSelected(_selected2);
+      }
+
+      var _fetchUrl3 = baseUrl + value;
+
+      fetchData(_fetchUrl3, dataLocation);
     }
   };
 
@@ -781,10 +824,12 @@ var AllContent = function AllContent() {
     onChange: onChange
   }))), /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
     facets: statusLabel,
-    onChange: onChange
+    onChange: onChange,
+    selectedValue: statusSelected
   }), /*#__PURE__*/react.createElement(DateRangeFilter, {
     facets: dateLabel,
-    onChange: onChange
+    onChange: onChange,
+    selectedValue: dateSelected
   })), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
     onChange: onChange,
     facets: facets
@@ -795,7 +840,8 @@ var AllContent = function AllContent() {
   }, resultsSummary.currStart, "-", resultsSummary.currEnd, " of ", resultsSummary.totalMatching, " results"), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-shrink-0 su-gap-xs su-items-center"
   }, /*#__PURE__*/react.createElement(SortByFilter/* SortByFilter */.S, {
-    onChange: onChange
+    onChange: onChange,
+    selectedValue: sortBySelected
   }))), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {

@@ -10,7 +10,7 @@ import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
 import {SearchBar} from '../Search/SearchBar.jsx';
 import {getSearchData} from '../Helpers/requests.js';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
-import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
+import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -27,6 +27,9 @@ export const AllContent = () => {
     const [queryParams, setQueryParams] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
     const [dataLocation, setDataLocation] = useState('');
+    const [sortBySelected, setSortBySelected] = useState('Select an option');
+    const [statusSelected, setStatusSelected] = useState('All');
+    const [dateSelected, setDateSelected] = useState('All');
 
     const fetchData = async (url, func) => {
         setIsLoading(true);
@@ -86,7 +89,7 @@ export const AllContent = () => {
         }
     }, []);
 
-    const onChange = (name, value) => {
+    const onChange = (name, value, selectedVal) => {
         console.log('ON CHANGE: ', name, ' || ', value);
         if (name == 'search') {
             let newParams = queryParams;
@@ -116,7 +119,28 @@ export const AllContent = () => {
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
+        } else if (name == 'sortBy') {
+            let newParams = queryParams;
+            let selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
+            setSortBySelected(selected);
+            const sortBy = newParams.find((entry) => entry.name === 'sort');
+            if (!sortBy) {
+                queryParams.push({name: 'sort', value});
+            } else {
+                sortBy.value = value;
+            }
+            setQueryParams(newParams);
+            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
+            console.log('CREATED URL sort: ', fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else {
+            if (name == 'status') {
+                let selected = getLabel(selectedVal);
+                setStatusSelected(selected);
+            } else if (name == 'date') {
+                let selected = selectedVal;
+                setDateSelected(selected);
+            }
             let fetchUrl = baseUrl + value;
             fetchData(fetchUrl, dataLocation);
         }
@@ -141,8 +165,8 @@ export const AllContent = () => {
                             </div>
                         </div>
                         {/* CP Filter */}
-                        <StatusFilter facets={statusLabel} onChange={onChange} />
-                        <DateRangeFilter facets={dateLabel} onChange={onChange} />
+                        <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
+                        <DateRangeFilter facets={dateLabel} onChange={onChange} selectedValue={dateSelected} />
                     </div>
                     <SelectedFacets onChange={onChange} facets={facets} />
                 </div>
@@ -152,7 +176,7 @@ export const AllContent = () => {
                         {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
                     </p>
                     <div className="su-flex su-shrink-0 su-gap-xs su-items-center">
-                        <SortByFilter onChange={onChange} />
+                        <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                     </div>
                 </div>
                 {/* Cards */}

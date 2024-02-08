@@ -113,7 +113,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ContentRegion = function ContentRegion() {
-  var _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window7$data$user;
+  var _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -269,16 +269,9 @@ var ContentRegion = function ContentRegion() {
   }, "View all ", ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(7142)
-  })))), ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'CP' ? /*#__PURE__*/react.createElement("div", {
-    className: "su-mb-60"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "su-w-full md:su-w-1/2"
-  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
-    facets: statusLabel,
-    onChange: onChange
-  }), ' ')) : null, /*#__PURE__*/react.createElement("p", {
+  })))), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
-  }, "1-5 of ", resultsSummary.totalMatching, " ", ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? 'results waiting for review' : ''), /*#__PURE__*/react.createElement("ul", {
+  }, "1-5 of ", resultsSummary.totalMatching, " ", ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? 'results waiting for review' : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
   }, results.slice(0, 5).map(function (contentItem, index) {

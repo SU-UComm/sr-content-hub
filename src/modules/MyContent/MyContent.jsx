@@ -10,6 +10,7 @@ import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 import {NoContent} from '../NoContent/NoContent.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 export const MyContent = () => {
     const [statusLabel, setStatusLabels] = useState([]);
@@ -104,7 +105,15 @@ export const MyContent = () => {
                     <SortByFilter onChange={onChange} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results ? results.map((contentItem, index) => <Card key={index} {...contentItem} />) : <NoContent />}
+                    {results ? (
+                        results.map((contentItem, index) => (
+                            <BrowserRouter key={index}>
+                                <Card key={index} data={contentItem} />
+                            </BrowserRouter>
+                        ))
+                    ) : (
+                        <NoContent />
+                    )}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>

@@ -12,6 +12,7 @@ import {getSearchData} from '../Helpers/requests.js';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
+import {BrowserRouter} from 'react-router-dom';
 
 export const AllContent = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
@@ -157,7 +158,9 @@ export const AllContent = () => {
                 {/* Cards */}
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                     {results.map((contentItem, index) => (
-                        <Card key={index} {...contentItem} />
+                        <BrowserRouter key={index}>
+                            <Card key={index} data={contentItem} />
+                        </BrowserRouter>
                     ))}
                 </ul>
                 {/* Cards end */}

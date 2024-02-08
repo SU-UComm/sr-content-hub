@@ -52,8 +52,6 @@ var es_math_to_string_tag = __webpack_require__(7059);
 var es_object_get_prototype_of = __webpack_require__(489);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
 var web_dom_collections_for_each = __webpack_require__(4747);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
-var es_object_assign = __webpack_require__(9601);
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
 var PageHeading = __webpack_require__(7774);
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
@@ -463,11 +461,10 @@ var SelectedFilters = __webpack_require__(5634);
 var helperFunctions = __webpack_require__(6859);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
 var dist_module = __webpack_require__(6665);
+// EXTERNAL MODULE: ./node_modules/react-router-dom/index.js
+var react_router_dom = __webpack_require__(9342);
 ;// CONCATENATED MODULE: ./src/modules/AllContent/AllContent.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 
 
 
@@ -508,6 +505,7 @@ function AllContent_arrayLikeToArray(arr, len) { if (len == null || len > arr.le
 function AllContent_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function AllContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -801,9 +799,12 @@ var AllContent = function AllContent() {
   }))), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(Card/* Card */.Z, _extends({
+    return /*#__PURE__*/react.createElement(react_router_dom/* BrowserRouter */.VK, {
       key: index
-    }, contentItem));
+    }, /*#__PURE__*/react.createElement(Card/* Card */.Z, {
+      key: index,
+      data: contentItem
+    }));
   })), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,

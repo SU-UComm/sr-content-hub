@@ -5,6 +5,8 @@ import {Oval} from 'react-loader-spinner';
 import {CardButtons} from '../Card/CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers';
 import {FullStory} from './FullStory.jsx';
+import {useLocation} from 'react-router-dom';
+import {decodeHTML} from '../Helpers/helperFunctions.js';
 
 const dataObj = {
     id: '128334',
@@ -124,9 +126,12 @@ const dataObj = {
     },
 };
 
-export const StoryView = (id) => {
+export const StoryView = () => {
     const [data, setData] = useState(dataObj); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
+    // const location = useLocation();
+    const [cardData, setCardData] = useState([]); // data from endpoint
+    const [summary, setSummary] = useState('');
 
     const fetchData = async (id) => {
         setIsLoading(true);
@@ -142,14 +147,20 @@ export const StoryView = (id) => {
     };
 
     useEffect(() => {
-        let url = window?.data?.contentHubAPI?.module;
-        if (url) {
-            fetchData(id);
-            console.log('story fetch url: ', url);
-        } else {
-            // setData(dataObj);
-            console.log('story data: ', data);
-        }
+        // setCardData(location.state.data);
+        console.log('PROPS in Full Story: ');
+
+        // let url = window?.data?.contentHubAPI;
+        // if (url) {
+        //     fetchData(id);
+        //     console.log('story fetch url: ', url);
+
+        // } else {
+        // setData(dataObj);
+        console.log('story data: ', data);
+        let summary = decodeHTML(data.metadata.srcSummary[0]);
+        setSummary(summary);
+        // }
     }, []);
 
     return isLoading ? (
@@ -173,7 +184,7 @@ export const StoryView = (id) => {
                 </div>
                 <div>
                     <p className="small-heading">Summary</p>
-                    <p className="su-mb-0 su-py-20 su-leading-normal">{data.metadata.summary}</p>
+                    <p className="su-mb-0 su-py-20 su-leading-normal">{summary}</p>
                 </div>
 
                 <div>

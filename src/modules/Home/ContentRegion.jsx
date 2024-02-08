@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {BrowserRouter, Link} from 'react-router-dom';
 import {Card} from '../Card/Card.jsx';
 import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
@@ -96,7 +96,9 @@ export const ContentRegion = () => {
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
                 {results.slice(0, 5).map((contentItem, index) => (
-                    <Card key={index} {...contentItem} />
+                    <BrowserRouter key={index}>
+                        <Card key={index} data={contentItem} />
+                    </BrowserRouter>
                 ))}
             </ul>
         </section>

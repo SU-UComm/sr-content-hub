@@ -54,8 +54,8 @@ var es_math_to_string_tag = __webpack_require__(7059);
 var es_object_get_prototype_of = __webpack_require__(489);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
 var web_dom_collections_for_each = __webpack_require__(4747);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
-var es_object_assign = __webpack_require__(9601);
+// EXTERNAL MODULE: ./node_modules/react-router-dom/index.js
+var react_router_dom = __webpack_require__(9342);
 // EXTERNAL MODULE: ./src/modules/Card/Card.jsx
 var Card = __webpack_require__(8649);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
@@ -66,9 +66,6 @@ var dist_module = __webpack_require__(6665);
 var StatusFilter = __webpack_require__(1948);
 ;// CONCATENATED MODULE: ./src/modules/Home/ContentRegion.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 
 
 
@@ -285,9 +282,12 @@ var ContentRegion = function ContentRegion() {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
   }, results.slice(0, 5).map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(Card/* Card */.Z, _extends({
+    return /*#__PURE__*/react.createElement(react_router_dom/* BrowserRouter */.VK, {
       key: index
-    }, contentItem));
+    }, /*#__PURE__*/react.createElement(Card/* Card */.Z, {
+      key: index,
+      data: contentItem
+    }));
   })));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home/Home.jsx

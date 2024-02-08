@@ -334,6 +334,8 @@ FullStory_FullStory.propTypes = {
     id: (prop_types_default()).string
   })
 };
+// EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
+var helperFunctions = __webpack_require__(6859);
 ;// CONCATENATED MODULE: ./src/modules/Story/StoryView.jsx
 function StoryView_typeof(obj) { "@babel/helpers - typeof"; return StoryView_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, StoryView_typeof(obj); }
 
@@ -373,6 +375,8 @@ function StoryView_arrayLikeToArray(arr, len) { if (len == null || len > arr.len
 function StoryView_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -492,7 +496,7 @@ var StoryView_dataObj = {
     debug: []
   }
 };
-var StoryView = function StoryView(id) {
+var StoryView = function StoryView() {
   var _useState = useState(StoryView_dataObj),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
@@ -503,7 +507,19 @@ var StoryView = function StoryView(id) {
       _useState4 = StoryView_slicedToArray(_useState3, 2),
       isLoading = _useState4[0],
       setIsLoading = _useState4[1]; // Loader flag
+  // const location = useLocation();
 
+
+  var _useState5 = useState([]),
+      _useState6 = StoryView_slicedToArray(_useState5, 2),
+      cardData = _useState6[0],
+      setCardData = _useState6[1]; // data from endpoint
+
+
+  var _useState7 = useState(''),
+      _useState8 = StoryView_slicedToArray(_useState7, 2),
+      summary = _useState8[0],
+      setSummary = _useState8[1];
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
@@ -548,17 +564,17 @@ var StoryView = function StoryView(id) {
   }();
 
   useEffect(function () {
-    var _window, _window$data, _window$data$contentH;
+    // setCardData(location.state.data);
+    console.log('PROPS in Full Story: '); // let url = window?.data?.contentHubAPI;
+    // if (url) {
+    //     fetchData(id);
+    //     console.log('story fetch url: ', url);
+    // } else {
+    // setData(dataObj);
 
-    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.module;
-
-    if (url) {
-      fetchData(id);
-      console.log('story fetch url: ', url);
-    } else {
-      // setData(dataObj);
-      console.log('story data: ', data);
-    }
+    console.log('story data: ', data);
+    var summary = decodeHTML(data.metadata.srcSummary[0]);
+    setSummary(summary); // }
   }, []);
   return isLoading ? /*#__PURE__*/React.createElement(Oval, {
     visible: true,
@@ -591,7 +607,7 @@ var StoryView = function StoryView(id) {
     className: "small-heading"
   }, "Summary"), /*#__PURE__*/React.createElement("p", {
     className: "su-mb-0 su-py-20 su-leading-normal"
-  }, data.metadata.summary)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
+  }, summary)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
     className: "su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2"
   }, /*#__PURE__*/React.createElement("li", {
     className: "mb-0"

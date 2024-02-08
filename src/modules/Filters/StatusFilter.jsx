@@ -54,8 +54,8 @@ export const StatusFilter = (props) => {
                         value={selectedStatus}
                         // onChange={(e) => handleStatusChange(getLabel(e.target.value))}
                     >
-                        {statusOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
+                        {statusOptions.map((option, index) => (
+                            <option key={index} value={option.value}>
                                 {getLabel(option.label)}
                             </option>
                         ))}
@@ -75,9 +75,9 @@ export const StatusFilter = (props) => {
                             }  group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full`}
                         >
                             <ul className="su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none">
-                                {statusOptions.map((option) => (
+                                {statusOptions.map((option, index) => (
                                     <li
-                                        key={option.data}
+                                        key={index}
                                         role="button"
                                         value={option.data}
                                         data-value={option.data}

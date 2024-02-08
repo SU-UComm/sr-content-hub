@@ -8,6 +8,7 @@ import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
 import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 export const NewContent = () => {
     const [CPLabels, setCPLabels] = useState([]);
@@ -143,7 +144,9 @@ export const NewContent = () => {
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                     {results.map((contentItem, index) => (
-                        <Card key={index} {...contentItem} />
+                        <BrowserRouter key={index}>
+                            <Card key={index} data={contentItem} />
+                        </BrowserRouter>
                     ))}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />

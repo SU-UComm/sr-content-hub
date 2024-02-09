@@ -67,7 +67,7 @@ export const CardButtons = (props) => {
     //         asset_id: storyId,
     //         dataCallback: (resp) => {
     //             // As a callback :: Prepare an update for the asset
-    //             approveStory.;
+    //           prepareUpdate(btnEl, storyId, pageType, resp);
     //         },
     //     });
     // }
@@ -189,12 +189,19 @@ export const CardButtons = (props) => {
 
     const handleSendFullContent = (id) => {
         // Handle sending full content
-        //  let btn =   document.querySelector('#latest-content');
 
         // start(btn, 'story');
         // btn.setAttribute('disabled', 'true');
 
         // start(btn, 'teaser');
+
+        // jsApi.getMetadata({
+        //     asset_id: storyId,
+        //     dataCallback: (resp) => {
+        //         // As a callback :: Prepare an update for the asset
+        //       prepareUpdate(btnEl, storyId, pageType, resp);
+        //     },
+        // });
 
         closeSendDialog(id);
     };

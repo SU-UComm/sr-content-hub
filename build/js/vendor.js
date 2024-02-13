@@ -393,7 +393,7 @@ var CardButtons = function CardButtons(props) {
     var thisStory = {
       id: storyId,
       pageType: pageType,
-      pubDate: props.listMetadata.publishedDate
+      pubDate: props.listMetadata.publishedDate[0]
     };
     console.log('this story:', thisStory); // return approveStory.updateUi(btnEl, "");
     // All fields in place :: Update metadata
@@ -472,7 +472,7 @@ var CardButtons = function CardButtons(props) {
     //         prepareUpdate(btnEl, storyId, pageType, resp);
     //     },
     // });
-    prepareUpdate('', props.listMetadata.assetId, 'story', jsApi);
+    prepareUpdate(props.listMetadata.assetId, 'story', jsApi);
     closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
   };
 

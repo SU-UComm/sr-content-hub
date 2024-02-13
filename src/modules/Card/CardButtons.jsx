@@ -178,7 +178,7 @@ export const CardButtons = (props) => {
         const thisStory = {
             id: storyId,
             pageType: pageType,
-            pubDate: props.listMetadata.publishedDate,
+            pubDate: props.listMetadata.publishedDate[0],
         };
 
         console.log('this story:', thisStory);
@@ -255,7 +255,7 @@ export const CardButtons = (props) => {
         //     },
         // });
 
-        prepareUpdate('', props.listMetadata.assetId, 'story', jsApi);
+        prepareUpdate(props.listMetadata.assetId, 'story', jsApi);
 
         closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
     };

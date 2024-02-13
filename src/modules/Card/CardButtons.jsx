@@ -275,6 +275,7 @@ export const CardButtons = (props) => {
 
         // Add log msg to see if this was triggered
         // logMsg("Beacon triggered....");
+        console.log('Beacon triggered...');
 
         // Store beacon state
         setBeaconSent(true);

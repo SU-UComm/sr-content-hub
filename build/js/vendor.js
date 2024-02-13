@@ -491,7 +491,8 @@ var CardButtons = function CardButtons(props) {
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
     // logMsg("Beacon triggered....");
-    // Store beacon state
+
+    console.log('Beacon triggered...'); // Store beacon state
 
     setBeaconSent(true);
   };

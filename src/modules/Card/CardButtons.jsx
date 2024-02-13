@@ -2,11 +2,44 @@ import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 // const jsApi = require('../../helpers/matrix-js-api.js');
 
+const jsApi = {
+    name: 'Mockup name',
+    short_name: 'Mockup name',
+    asset_id: 'inputQuery.id',
+    id: 'inputQuery.id',
+    type_code: 'folder',
+    type: 'Folder',
+    icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+    web_path: 'https://mockup.url/mockup_name',
+    urls: ['https://mockup.url/mockup_name'],
+    status: 'Under Construction',
+    statusId: '2',
+    created: 1637857729,
+    created_userid: '65',
+    created_username: 'John Doe (Squiz)',
+    updated: 1637857730,
+    updated_userid: '65',
+    updated_username: 'John Doe (Squiz)',
+    published: 'Never Published',
+    published_userid: 'Never Published',
+    published_username: 'Never Published',
+    status_changed: 1637857729,
+    status_changed_userid: '65',
+    status_changed_username: 'John Doe (Squiz)',
+    maximum_perm_on_asset: 'Admin Access',
+    can_live_edit: true,
+    effective_write: true,
+    attribute_contextualised: true,
+    metadata_contextualised: true,
+    contextualable_screens: {details: 'attribute', metadata: 'metadata'},
+};
+
 export const CardButtons = (props) => {
     const [isSendDialogOpen, setSendDialogOpen] = useState(false);
     const [isDeclineDialogOpen, setDeclineDialogOpen] = useState(false);
     const sendDialogRef = useRef(null);
     const declineDialogRef = useRef(null);
+    const [beaconSent, setBeaconSent] = useState(false);
 
     // useEffect(() => {
     //     const handleClickOutside = (event) => {
@@ -147,16 +180,19 @@ export const CardButtons = (props) => {
             pubDate: pubDate,
         };
 
+        console.log('this story:', thisStory);
+
         // return approveStory.updateUi(btnEl, "");
 
         // All fields in place :: Update metadata
-        jsApi.setMetadataAllFields({
-            asset_id: storyId,
-            field_info: fieldsActions,
-            dataCallback: (resp) => {
-                updateUi(btnEl, thisStory, resp);
-            },
-        });
+        // jsApi.setMetadataAllFields({
+        //     asset_id: storyId,
+        //     field_info: fieldsActions,
+        //     dataCallback: (resp) => {
+        //         updateUi(btnEl, thisStory, resp);
+        //     },
+        // });
+        updateUi(btnEl, thisStory, jsApi);
     };
     const updateUi = (btnEl, storyObj, resp) => {
         // Finalize publishing process with additional functions :: Depending from the page type
@@ -168,18 +204,19 @@ export const CardButtons = (props) => {
         }
 
         // We need to update the Button on the front-end :: and remove actions
-        const dialogEl = btnEl.closest('.c-dialog-send');
-        const buttonsCont = dialogEl.closest('.su-flex');
-        // Add Reviwed Badge to the list
-        buttonsCont.innerHTML = chCfg.badges.approved;
+        // const dialogEl = btnEl.closest('.c-dialog-send');
+        // const buttonsCont = dialogEl.closest('.su-flex');
+        // // Add Reviwed Badge to the list
+        // buttonsCont.innerHTML = chCfg.badges.approved;
 
         // Check if this is Home Page and Latest News
         const latestNewsEl = document.querySelector('#latest-content');
         // IF it is then we need to trigger loading one additional result instead of current item
-        if (latestNewsEl !== null) {
-            const currentItem = buttonsCont.closest('li');
-            loadNextStory.init(currentItem);
-        }
+        // if (latestNewsEl !== null) {
+        //     // const currentItem = buttonsCont.closest('li');
+        //     loadNextStory.init(currentItem);
+        // }
+        clearReviewState();
     };
     const sendAsStory = (storyObj) => {
         console.log(`Published as story: ${JSON.stringify(storyObj)}`);
@@ -194,7 +231,7 @@ export const CardButtons = (props) => {
             return false;
         }
         // Use Beacon API to send update :: on page unload
-        storyInReview.beaconSent = false;
+        setBeaconSent(false);
 
         window.addEventListener('unload', sendBeacon, {capture: true});
         window.addEventListener('beforeunload', sendBeacon, {capture: true});
@@ -217,12 +254,14 @@ export const CardButtons = (props) => {
         //     },
         // });
 
+        prepareUpdate('', id, 'story', jsApi);
+
         closeSendDialog(id);
     };
 
     const sendBeacon = () => {
         console.log('Send Beacon!');
-        if (storyInReview.beaconSent !== false) {
+        if (beaconSent !== false) {
             return;
         }
         const beaconUrl = chCfg.endpoints.beacon;
@@ -237,7 +276,7 @@ export const CardButtons = (props) => {
         // logMsg("Beacon triggered....");
 
         // Store beacon state
-        storyInReview.beaconSent = true;
+        setBeaconSent(true);
     };
 
     const handleDecline = (id) => {

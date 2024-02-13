@@ -133,7 +133,7 @@ export const CardButtons = (props) => {
         },
     };
 
-    const prepareUpdate = (btnEl, storyId, pageType, currentState) => {
+    const prepareUpdate = (storyId, pageType, currentState) => {
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
 
@@ -178,7 +178,7 @@ export const CardButtons = (props) => {
         const thisStory = {
             id: storyId,
             pageType: pageType,
-            pubDate: pubDate,
+            pubDate: props.listMetadata.publishedDate,
         };
 
         console.log('this story:', thisStory);
@@ -193,9 +193,9 @@ export const CardButtons = (props) => {
         //         updateUi(btnEl, thisStory, resp);
         //     },
         // });
-        updateUi(btnEl, thisStory, jsApi);
+        updateUi(thisStory, jsApi);
     };
-    const updateUi = (btnEl, storyObj, resp) => {
+    const updateUi = (storyObj, resp) => {
         // Finalize publishing process with additional functions :: Depending from the page type
         storyObj.pageType = storyObj.pageType || 'story';
         if (storyObj.pageType === 'teaser') {
@@ -234,12 +234,12 @@ export const CardButtons = (props) => {
         // Use Beacon API to send update :: on page unload
         setBeaconSent(false);
 
-        window.addEventListener('unload', sendBeacon, {capture: true});
-        window.addEventListener('beforeunload', sendBeacon, {capture: true});
-        window.addEventListener('pagehide', sendBeacon, {capture: true});
+        window.addEventListener('unload', sendBeacon(), {capture: true});
+        window.addEventListener('beforeunload', sendBeacon(), {capture: true});
+        window.addEventListener('pagehide', sendBeacon(), {capture: true});
     };
 
-    const handleSendFullContent = (id) => {
+    const handleSendFullContent = () => {
         // Handle sending full content
 
         // start(btn, 'story');
@@ -255,9 +255,9 @@ export const CardButtons = (props) => {
         //     },
         // });
 
-        prepareUpdate('', id, 'story', jsApi);
+        prepareUpdate('', props.listMetadata.assetId, 'story', jsApi);
 
-        closeSendDialog(id);
+        closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
     };
 
     const sendBeacon = () => {
@@ -268,7 +268,7 @@ export const CardButtons = (props) => {
         const beaconUrl = chCfg.endpoints.beacon;
 
         // Build data for beacon
-        const data = {id: storyInReview.storyId};
+        const data = {id: props.listMetadata.assetId};
 
         // Send beacon to update the state
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
@@ -341,11 +341,7 @@ export const CardButtons = (props) => {
                                 >
                                     Send Teaser
                                 </button>
-                                <button
-                                    onClick={() => handleSendFullContent(`dialogTitle-${props.listMetadata.assetId}-approve`)}
-                                    aria-label="Send Full Content"
-                                    className="button-green js-send-content"
-                                >
+                                <button onClick={() => handleSendFullContent()} aria-label="Send Full Content" className="button-green js-send-content">
                                     Send Full Content
                                 </button>
                                 <button onClick={() => closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`)} aria-label="Cancel" className="js-decline">

@@ -358,7 +358,7 @@ var CardButtons = function CardButtons(props) {
     }
   };
 
-  var prepareUpdate = function prepareUpdate(btnEl, storyId, pageType, currentState) {
+  var prepareUpdate = function prepareUpdate(storyId, pageType, currentState) {
     // Define Metadata Fields Actions Object
     var fieldsActions = {}; // Action #1: Status Update:
 
@@ -393,7 +393,7 @@ var CardButtons = function CardButtons(props) {
     var thisStory = {
       id: storyId,
       pageType: pageType,
-      pubDate: pubDate
+      pubDate: props.listMetadata.publishedDate
     };
     console.log('this story:', thisStory); // return approveStory.updateUi(btnEl, "");
     // All fields in place :: Update metadata
@@ -405,10 +405,10 @@ var CardButtons = function CardButtons(props) {
     //     },
     // });
 
-    updateUi(btnEl, thisStory, jsApi);
+    updateUi(thisStory, jsApi);
   };
 
-  var updateUi = function updateUi(btnEl, storyObj, resp) {
+  var updateUi = function updateUi(storyObj, resp) {
     // Finalize publishing process with additional functions :: Depending from the page type
     storyObj.pageType = storyObj.pageType || 'story';
 
@@ -449,18 +449,18 @@ var CardButtons = function CardButtons(props) {
 
 
     setBeaconSent(false);
-    window.addEventListener('unload', sendBeacon, {
+    window.addEventListener('unload', sendBeacon(), {
       capture: true
     });
-    window.addEventListener('beforeunload', sendBeacon, {
+    window.addEventListener('beforeunload', sendBeacon(), {
       capture: true
     });
-    window.addEventListener('pagehide', sendBeacon, {
+    window.addEventListener('pagehide', sendBeacon(), {
       capture: true
     });
   };
 
-  var handleSendFullContent = function handleSendFullContent(id) {
+  var handleSendFullContent = function handleSendFullContent() {
     // Handle sending full content
     // start(btn, 'story');
     // btn.setAttribute('disabled', 'true');
@@ -472,8 +472,8 @@ var CardButtons = function CardButtons(props) {
     //         prepareUpdate(btnEl, storyId, pageType, resp);
     //     },
     // });
-    prepareUpdate('', id, 'story', jsApi);
-    closeSendDialog(id);
+    prepareUpdate('', props.listMetadata.assetId, 'story', jsApi);
+    closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
   };
 
   var sendBeacon = function sendBeacon() {
@@ -486,7 +486,7 @@ var CardButtons = function CardButtons(props) {
     var beaconUrl = chCfg.endpoints.beacon; // Build data for beacon
 
     var data = {
-      id: storyInReview.storyId
+      id: props.listMetadata.assetId
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
@@ -568,7 +568,7 @@ var CardButtons = function CardButtons(props) {
     className: "button-green js-send-teaser"
   }, "Send Teaser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("button", {
     onClick: function onClick() {
-      return handleSendFullContent("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+      return handleSendFullContent();
     },
     "aria-label": "Send Full Content",
     className: "button-green js-send-content"

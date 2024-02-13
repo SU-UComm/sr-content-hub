@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
+// const jsApi = require('../../helpers/matrix-js-api.js');
 
 export const CardButtons = (props) => {
     const [isSendDialogOpen, setSendDialogOpen] = useState(false);
@@ -113,19 +114,19 @@ export const CardButtons = (props) => {
         fieldsActions[msgField] = '';
 
         // Action #3: Update Version History
-        const currentHistory = getHistoryState(currentState);
+        // const currentHistory = getHistoryState(currentState);
 
         // Generate date and decline message
-        const thisDate = new Date().getTime();
-        const userEl = document.querySelector('#user-status');
-        const userDetails = userEl.getAttribute('data-fullname');
-        const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
-        const newEntry = {date: thisDate, message: historyMessage};
-        currentHistory.unshift(newEntry);
+        // const thisDate = new Date().getTime();
+        // const userEl = document.querySelector('#user-status');
+        // const userDetails = userEl.getAttribute('data-fullname');
+        // const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
+        // const newEntry = {date: thisDate, message: historyMessage};
+        // currentHistory.unshift(newEntry);
 
-        const currentHistoryStr = JSON.stringify(currentHistory);
-        const historyField = chCfg.metaFields.hubVersionHistory;
-        fieldsActions[historyField] = currentHistoryStr;
+        // const currentHistoryStr = JSON.stringify(currentHistory);
+        // const historyField = chCfg.metaFields.hubVersionHistory;
+        // fieldsActions[historyField] = currentHistoryStr;
 
         // Action #4: Clear Reviewed/Hub Description field
         const descField = chCfg.metaFields.hubStatusDescription;
@@ -187,6 +188,19 @@ export const CardButtons = (props) => {
         console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
     };
 
+    const clearReviewState = () => {
+        // logMsg("Clear Review State!");
+        if (typeof navigator.sendBeacon !== 'function') {
+            return false;
+        }
+        // Use Beacon API to send update :: on page unload
+        storyInReview.beaconSent = false;
+
+        window.addEventListener('unload', sendBeacon, {capture: true});
+        window.addEventListener('beforeunload', sendBeacon, {capture: true});
+        window.addEventListener('pagehide', sendBeacon, {capture: true});
+    };
+
     const handleSendFullContent = (id) => {
         // Handle sending full content
 
@@ -199,11 +213,31 @@ export const CardButtons = (props) => {
         //     asset_id: storyId,
         //     dataCallback: (resp) => {
         //         // As a callback :: Prepare an update for the asset
-        //       prepareUpdate(btnEl, storyId, pageType, resp);
+        //         prepareUpdate(btnEl, storyId, pageType, resp);
         //     },
         // });
 
         closeSendDialog(id);
+    };
+
+    const sendBeacon = () => {
+        console.log('Send Beacon!');
+        if (storyInReview.beaconSent !== false) {
+            return;
+        }
+        const beaconUrl = chCfg.endpoints.beacon;
+
+        // Build data for beacon
+        const data = {id: storyInReview.storyId};
+
+        // Send beacon to update the state
+        navigator.sendBeacon(beaconUrl, JSON.stringify(data));
+
+        // Add log msg to see if this was triggered
+        // logMsg("Beacon triggered....");
+
+        // Store beacon state
+        storyInReview.beaconSent = true;
     };
 
     const handleDecline = (id) => {

@@ -24,8 +24,8 @@ export const InsightsCard = ({title, value, percentage, isPositive}) => {
 };
 
 InsightsCard.propTypes = {
-    title: PropTypes.array,
-    value: PropTypes.array,
+    title: PropTypes.string,
+    value: PropTypes.string,
     percentage: PropTypes.string,
-    isPositive: PropTypes.array,
+    isPositive: PropTypes.bool,
 };

@@ -216,9 +216,44 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
- // const jsApi = require('../../helpers/matrix-js-api.js');
 
+var mockData = {
+  name: 'Mockup name',
+  short_name: 'Mockup name',
+  asset_id: 'inputQuery.id',
+  id: 'inputQuery.id',
+  type_code: 'folder',
+  type: 'Folder',
+  icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+  web_path: 'https://mockup.url/mockup_name',
+  urls: ['https://mockup.url/mockup_name'],
+  status: 'Under Construction',
+  statusId: '2',
+  created: 1637857729,
+  created_userid: '65',
+  created_username: 'John Doe (Squiz)',
+  updated: 1637857730,
+  updated_userid: '65',
+  updated_username: 'John Doe (Squiz)',
+  published: 'Never Published',
+  published_userid: 'Never Published',
+  published_username: 'Never Published',
+  status_changed: 1637857729,
+  status_changed_userid: '65',
+  status_changed_username: 'John Doe (Squiz)',
+  maximum_perm_on_asset: 'Admin Access',
+  can_live_edit: true,
+  effective_write: true,
+  attribute_contextualised: true,
+  metadata_contextualised: true,
+  contextualable_screens: {
+    details: 'attribute',
+    metadata: 'metadata'
+  }
+};
 var CardButtons = function CardButtons(props) {
+  var _window;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isSendDialogOpen = _useState2[0],
@@ -230,7 +265,14 @@ var CardButtons = function CardButtons(props) {
       setDeclineDialogOpen = _useState4[1];
 
   var sendDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_11__.useRef)(null);
-  var declineDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_11__.useRef)(null); // useEffect(() => {
+  var declineDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_11__.useRef)(null);
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      beaconSent = _useState6[0],
+      setBeaconSent = _useState6[1];
+
+  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData; // useEffect(() => {
   //     const handleClickOutside = (event) => {
   //         if (sendDialogRef.current && !sendDialogRef.current.contains(event.target)) {
   //             closeSendDialog(event.target.getAttribute('data-id'));
@@ -352,16 +394,18 @@ var CardButtons = function CardButtons(props) {
       id: storyId,
       pageType: pageType,
       pubDate: pubDate
-    }; // return approveStory.updateUi(btnEl, "");
+    };
+    console.log('this story:', thisStory); // return approveStory.updateUi(btnEl, "");
     // All fields in place :: Update metadata
+    // jsApi.setMetadataAllFields({
+    //     asset_id: storyId,
+    //     field_info: fieldsActions,
+    //     dataCallback: (resp) => {
+    //         updateUi(btnEl, thisStory, resp);
+    //     },
+    // });
 
-    jsApi.setMetadataAllFields({
-      asset_id: storyId,
-      field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        updateUi(btnEl, thisStory, resp);
-      }
-    });
+    updateUi(btnEl, thisStory, jsApi);
   };
 
   var updateUi = function updateUi(btnEl, storyObj, resp) {
@@ -373,19 +417,20 @@ var CardButtons = function CardButtons(props) {
     } else {
       sendAsStory(storyObj);
     } // We need to update the Button on the front-end :: and remove actions
+    // const dialogEl = btnEl.closest('.c-dialog-send');
+    // const buttonsCont = dialogEl.closest('.su-flex');
+    // // Add Reviwed Badge to the list
+    // buttonsCont.innerHTML = chCfg.badges.approved;
+    // Check if this is Home Page and Latest News
 
-
-    var dialogEl = btnEl.closest('.c-dialog-send');
-    var buttonsCont = dialogEl.closest('.su-flex'); // Add Reviwed Badge to the list
-
-    buttonsCont.innerHTML = chCfg.badges.approved; // Check if this is Home Page and Latest News
 
     var latestNewsEl = document.querySelector('#latest-content'); // IF it is then we need to trigger loading one additional result instead of current item
+    // if (latestNewsEl !== null) {
+    //     // const currentItem = buttonsCont.closest('li');
+    //     loadNextStory.init(currentItem);
+    // }
 
-    if (latestNewsEl !== null) {
-      var currentItem = buttonsCont.closest('li');
-      loadNextStory.init(currentItem);
-    }
+    clearReviewState();
   };
 
   var sendAsStory = function sendAsStory(storyObj) {
@@ -403,7 +448,7 @@ var CardButtons = function CardButtons(props) {
     } // Use Beacon API to send update :: on page unload
 
 
-    storyInReview.beaconSent = false;
+    setBeaconSent(false);
     window.addEventListener('unload', sendBeacon, {
       capture: true
     });
@@ -427,13 +472,14 @@ var CardButtons = function CardButtons(props) {
     //         prepareUpdate(btnEl, storyId, pageType, resp);
     //     },
     // });
+    prepareUpdate('', id, 'story', jsApi);
     closeSendDialog(id);
   };
 
   var sendBeacon = function sendBeacon() {
     console.log('Send Beacon!');
 
-    if (storyInReview.beaconSent !== false) {
+    if (beaconSent !== false) {
       return;
     }
 
@@ -447,7 +493,7 @@ var CardButtons = function CardButtons(props) {
     // logMsg("Beacon triggered....");
     // Store beacon state
 
-    storyInReview.beaconSent = true;
+    setBeaconSent(true);
   };
 
   var handleDecline = function handleDecline(id) {

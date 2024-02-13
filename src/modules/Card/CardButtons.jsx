@@ -1,8 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
-// const jsApi = require('../../helpers/matrix-js-api.js');
 
-const jsApi = {
+const mockData = {
     name: 'Mockup name',
     short_name: 'Mockup name',
     asset_id: 'inputQuery.id',
@@ -40,6 +39,8 @@ export const CardButtons = (props) => {
     const sendDialogRef = useRef(null);
     const declineDialogRef = useRef(null);
     const [beaconSent, setBeaconSent] = useState(false);
+
+    let jsApi = window?.jsApi ? window.jsApi : mockData;
 
     // useEffect(() => {
     //     const handleClickOutside = (event) => {

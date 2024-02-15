@@ -155,7 +155,6 @@ export const CardButtons = (props) => {
         const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
         const newEntry = {date: thisDate, message: historyMessage};
         currentHistory.unshift(newEntry);
-        props.listMetadata.hubStatusDescription = historyMessage;
 
         const currentHistoryStr = JSON.stringify(currentHistory);
         const historyField = chCfg.metaFields.hubVersionHistory;
@@ -187,12 +186,14 @@ export const CardButtons = (props) => {
             asset_id: storyId,
             field_info: fieldsActions,
             dataCallback: (resp) => {
-                updateUi(thisStory, resp);
+                updateUi(thisStory, pageType, resp);
+                console.log('metadata field set resp: ', resp);
             },
         });
-        // updateUi(thisStory, jsApi);
+
+        console.log('fieldInfo: ', fieldsActions);
     };
-    const updateUi = (storyObj, resp) => {
+    const updateUi = (storyObj, pageType, resp) => {
         // Finalize publishing process with additional functions :: Depending from the page type
         storyObj.pageType = storyObj.pageType || 'story';
         if (storyObj.pageType === 'teaser') {
@@ -206,6 +207,11 @@ export const CardButtons = (props) => {
         // const buttonsCont = dialogEl.closest('.su-flex');
         // // Add Reviwed Badge to the list
         // buttonsCont.innerHTML = chCfg.badges.approved;
+
+        const userEl = document.querySelector('#user-status');
+        const userDetails = userEl.getAttribute('data-fullname');
+        const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
+        props.listMetadata.hubStatusDescription = historyMessage;
 
         // Check if this is Home Page and Latest News
         const latestNewsEl = document.querySelector('#latest-content');
@@ -244,7 +250,8 @@ export const CardButtons = (props) => {
             asset_id: props.listMetadata.assetId,
             dataCallback: (resp) => {
                 // As a callback :: Prepare an update for the asset
-                prepareUpdate(props.listMetadata.assetId, 'story', resp);
+                prepareUpdate(props.listMetadata.assetId, 'Story', resp);
+                console.log('metadata field GET resp: ', resp);
             },
         });
 

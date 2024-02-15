@@ -385,7 +385,6 @@ var CardButtons = function CardButtons(props) {
       message: historyMessage
     };
     currentHistory.unshift(newEntry);
-    props.listMetadata.hubStatusDescription = historyMessage;
     var currentHistoryStr = JSON.stringify(currentHistory);
     var historyField = chCfg.metaFields.hubVersionHistory;
     fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
@@ -410,12 +409,14 @@ var CardButtons = function CardButtons(props) {
       asset_id: storyId,
       field_info: fieldsActions,
       dataCallback: function dataCallback(resp) {
-        updateUi(thisStory, resp);
+        updateUi(thisStory, pageType, resp);
+        console.log('metadata field set resp: ', resp);
       }
-    }); // updateUi(thisStory, jsApi);
+    });
+    console.log('fieldInfo: ', fieldsActions);
   };
 
-  var updateUi = function updateUi(storyObj, resp) {
+  var updateUi = function updateUi(storyObj, pageType, resp) {
     // Finalize publishing process with additional functions :: Depending from the page type
     storyObj.pageType = storyObj.pageType || 'story';
 
@@ -428,8 +429,12 @@ var CardButtons = function CardButtons(props) {
     // const buttonsCont = dialogEl.closest('.su-flex');
     // // Add Reviwed Badge to the list
     // buttonsCont.innerHTML = chCfg.badges.approved;
-    // Check if this is Home Page and Latest News
 
+
+    var userEl = document.querySelector('#user-status');
+    var userDetails = userEl.getAttribute('data-fullname');
+    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
+    props.listMetadata.hubStatusDescription = historyMessage; // Check if this is Home Page and Latest News
 
     var latestNewsEl = document.querySelector('#latest-content'); // IF it is then we need to trigger loading one additional result instead of current item
 
@@ -474,7 +479,8 @@ var CardButtons = function CardButtons(props) {
       asset_id: props.listMetadata.assetId,
       dataCallback: function dataCallback(resp) {
         // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.listMetadata.assetId, 'story', resp);
+        prepareUpdate(props.listMetadata.assetId, 'Story', resp);
+        console.log('metadata field GET resp: ', resp);
       }
     });
     closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));

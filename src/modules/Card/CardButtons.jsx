@@ -89,24 +89,6 @@ export const CardButtons = (props) => {
         closeSendDialog(id);
     };
 
-    // const start = (btnEl, pageType) => {
-    //     // Get ID of the Asset
-    //     const dialogEl = btnEl.closest('.c-dialog-send');
-    //     const storyId = dialogEl.getAttribute('data-id') || '';
-    //     if (storyId === '') {
-    //         return false;
-    //     }
-
-    //     // Get current metadata of the asset first
-    //     jsApi.getMetadata({
-    //         asset_id: storyId,
-    //         dataCallback: (resp) => {
-    //             // As a callback :: Prepare an update for the asset
-    //           prepareUpdate(btnEl, storyId, pageType, resp);
-    //         },
-    //     });
-    // }
-
     const chCfg = {
         metaFields: {
             hubStatusDescription: 31823,
@@ -133,6 +115,22 @@ export const CardButtons = (props) => {
         },
     };
 
+    const getHistoryState = (currentState) => {
+        // Get current history state
+        let currentHistory = [];
+
+        // Check if current state is JSON
+        currentState = isJson(currentState);
+        if (currentState !== false) {
+            // If it is: Get current version history
+            const currentVersionMeta = isJson(currentState['hubVersionHistory']);
+            if (currentVersionMeta !== false) {
+                currentHistory = currentVersionMeta;
+            }
+        }
+        return currentHistory;
+    };
+
     const prepareUpdate = (storyId, pageType, currentState) => {
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
@@ -148,19 +146,20 @@ export const CardButtons = (props) => {
         fieldsActions[msgField] = '';
 
         // Action #3: Update Version History
-        // const currentHistory = getHistoryState(currentState);
+        const currentHistory = getHistoryState(currentState);
 
         // Generate date and decline message
-        // const thisDate = new Date().getTime();
-        // const userEl = document.querySelector('#user-status');
-        // const userDetails = userEl.getAttribute('data-fullname');
-        // const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
-        // const newEntry = {date: thisDate, message: historyMessage};
-        // currentHistory.unshift(newEntry);
+        const thisDate = new Date().getTime();
+        const userEl = document.querySelector('#user-status');
+        const userDetails = userEl.getAttribute('data-fullname');
+        const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
+        const newEntry = {date: thisDate, message: historyMessage};
+        currentHistory.unshift(newEntry);
+        props.listMetadata.hubStatusDescription = historyMessage;
 
-        // const currentHistoryStr = JSON.stringify(currentHistory);
-        // const historyField = chCfg.metaFields.hubVersionHistory;
-        // fieldsActions[historyField] = currentHistoryStr;
+        const currentHistoryStr = JSON.stringify(currentHistory);
+        const historyField = chCfg.metaFields.hubVersionHistory;
+        fieldsActions[historyField] = currentHistoryStr;
 
         // Action #4: Clear Reviewed/Hub Description field
         const descField = chCfg.metaFields.hubStatusDescription;
@@ -172,28 +171,26 @@ export const CardButtons = (props) => {
         fieldsActions[pageTypeField] = pageTypeValue;
 
         // Get Published Date from Metadata :: Needed for publishing on SR
-        const pubDate = currentState.publishedDate || '';
+        const pubDate = props.listMetadata.publishedDate[0] || '';
 
         // Create Asset Details to pass to callback
         const thisStory = {
             id: storyId,
             pageType: pageType,
-            pubDate: props.listMetadata.publishedDate[0],
+            pubDate: pubDate,
         };
 
         console.log('this story:', thisStory);
 
-        // return approveStory.updateUi(btnEl, "");
-
         // All fields in place :: Update metadata
-        // jsApi.setMetadataAllFields({
-        //     asset_id: storyId,
-        //     field_info: fieldsActions,
-        //     dataCallback: (resp) => {
-        //         updateUi(btnEl, thisStory, resp);
-        //     },
-        // });
-        updateUi(thisStory, jsApi);
+        jsApi.setMetadataAllFields({
+            asset_id: storyId,
+            field_info: fieldsActions,
+            dataCallback: (resp) => {
+                updateUi(thisStory, resp);
+            },
+        });
+        // updateUi(thisStory, jsApi);
     };
     const updateUi = (storyObj, resp) => {
         // Finalize publishing process with additional functions :: Depending from the page type
@@ -213,10 +210,10 @@ export const CardButtons = (props) => {
         // Check if this is Home Page and Latest News
         const latestNewsEl = document.querySelector('#latest-content');
         // IF it is then we need to trigger loading one additional result instead of current item
-        // if (latestNewsEl !== null) {
-        //     // const currentItem = buttonsCont.closest('li');
-        //     loadNextStory.init(currentItem);
-        // }
+        if (latestNewsEl !== null) {
+            // const currentItem = buttonsCont.closest('li');
+            // loadNextStory.init(currentItem);
+        }
         clearReviewState();
     };
     const sendAsStory = (storyObj) => {
@@ -241,21 +238,15 @@ export const CardButtons = (props) => {
 
     const handleSendFullContent = () => {
         // Handle sending full content
-
-        // start(btn, 'story');
         // btn.setAttribute('disabled', 'true');
 
-        // start(btn, 'teaser');
-
-        // jsApi.getMetadata({
-        //     asset_id: storyId,
-        //     dataCallback: (resp) => {
-        //         // As a callback :: Prepare an update for the asset
-        //         prepareUpdate(btnEl, storyId, pageType, resp);
-        //     },
-        // });
-
-        prepareUpdate(props.listMetadata.assetId, 'story', jsApi);
+        jsApi.getMetadata({
+            asset_id: props.listMetadata.assetId,
+            dataCallback: (resp) => {
+                // As a callback :: Prepare an update for the asset
+                prepareUpdate(props.listMetadata.assetId, 'story', resp);
+            },
+        });
 
         closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
     };
@@ -265,7 +256,7 @@ export const CardButtons = (props) => {
         if (beaconSent !== false) {
             return;
         }
-        const beaconUrl = chCfg.endpoints.beacon;
+        const beaconUrl = contentHubAPI?.modules?.beaconEndpoint ? contentHubAPI?.modules.beaconEndpoint : chCfg.endpoints.beacon;
 
         // Build data for beacon
         const data = {id: props.listMetadata.assetId};
@@ -274,7 +265,6 @@ export const CardButtons = (props) => {
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
 
         // Add log msg to see if this was triggered
-        // logMsg("Beacon triggered....");
         console.log('Beacon triggered...');
 
         // Store beacon state
@@ -414,5 +404,6 @@ CardButtons.propTypes = {
         hubStatusDescription: PropTypes.array,
         hubStatus: PropTypes.array,
         assetId: PropTypes.array,
+        publishedDate: PropTypes.array,
     }),
 };

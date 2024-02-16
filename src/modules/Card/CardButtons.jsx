@@ -33,6 +33,32 @@ const mockData = {
     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
 };
 
+const chCfg = {
+    metaFields: {
+        hubStatusDescription: 31823,
+        hubStatus: 31822,
+        hubVersionHistory: 31825,
+        hubReviewMsg: 32284,
+        pageType: 4857,
+    },
+    hubStatuses: {
+        reviewed: 'reviewed',
+        approved: 'sent-to-sr',
+    },
+    pageTypes: {
+        story: 'story',
+        teaser: 'teaser',
+    },
+    badges: {
+        reviewed: `<p class="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15">Reviewed</p>`,
+        approved: `<p class="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15">Publishing soon on Stanford Report</p>`,
+    },
+    endpoints: {
+        beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
+        loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next',
+    },
+};
+
 export const CardButtons = (props) => {
     const [isSendDialogOpen, setSendDialogOpen] = useState(false);
     const [isDeclineDialogOpen, setDeclineDialogOpen] = useState(false);
@@ -84,35 +110,34 @@ export const CardButtons = (props) => {
         dialog.close();
     };
 
-    const handleSendTeaser = (id) => {
+    const handleSendTeaser = () => {
         // Handle sending teaser
-        closeSendDialog(id);
+        jsApi.getMetadata({
+            asset_id: props.listMetadata.assetId[0],
+            dataCallback: (resp) => {
+                // As a callback :: Prepare an update for the asset
+                prepareUpdate(props.listMetadata.assetId[0], 'Teaser', resp);
+            },
+        });
+
+        closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
     };
 
-    const chCfg = {
-        metaFields: {
-            hubStatusDescription: 31823,
-            hubStatus: 31822,
-            hubVersionHistory: 31825,
-            hubReviewMsg: 32284,
-            pageType: 4857,
-        },
-        hubStatuses: {
-            reviewed: 'reviewed',
-            approved: 'sent-to-sr',
-        },
-        pageTypes: {
-            story: 'story',
-            teaser: 'teaser',
-        },
-        badges: {
-            reviewed: `<p class="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15">Reviewed</p>`,
-            approved: `<p class="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15">Publishing soon on Stanford Report</p>`,
-        },
-        endpoints: {
-            beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
-            loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next',
-        },
+    const handleDecline = (id) => {
+        // Handle sending decline info
+        closeDeclineDialog(id);
+    };
+
+    const handleSendFullContent = () => {
+        jsApi.getMetadata({
+            asset_id: props.listMetadata.assetId[0],
+            dataCallback: (resp) => {
+                // As a callback :: Prepare an update for the asset
+                prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
+            },
+        });
+
+        closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
     };
 
     const getHistoryState = (currentState) => {
@@ -138,7 +163,6 @@ export const CardButtons = (props) => {
         // Action #1: Status Update:
         const statusField = chCfg.metaFields.hubStatus;
         const statusFieldValue = chCfg.hubStatuses.approved;
-
         fieldsActions[statusField] = statusFieldValue;
 
         // Action #2: Clear Decline message :: In case it was there before
@@ -147,15 +171,6 @@ export const CardButtons = (props) => {
 
         // Action #3: Update Version History
         const currentHistory = getHistoryState(currentState);
-
-        // Generate date and decline message
-        const thisDate = new Date().getTime();
-        const userEl = document.querySelector('#user-status');
-        const userDetails = userEl.getAttribute('data-fullname');
-        const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
-        const newEntry = {date: thisDate, message: historyMessage};
-        currentHistory.unshift(newEntry);
-
         const currentHistoryStr = JSON.stringify(currentHistory);
         const historyField = chCfg.metaFields.hubVersionHistory;
         fieldsActions[historyField] = currentHistoryStr;
@@ -166,7 +181,7 @@ export const CardButtons = (props) => {
 
         // Action #5: Set page type
         const pageTypeField = chCfg.metaFields.pageType;
-        const pageTypeValue = pageType;
+        const pageTypeValue = pageType.toLowerCase();
         fieldsActions[pageTypeField] = pageTypeValue;
 
         // Get Published Date from Metadata :: Needed for publishing on SR
@@ -179,35 +194,25 @@ export const CardButtons = (props) => {
             pubDate: pubDate,
         };
 
-        console.log('this story:', thisStory);
-
         // All fields in place :: Update metadata
         jsApi.setMetadataAllFields({
             asset_id: storyId,
             field_info: fieldsActions,
             dataCallback: (resp) => {
                 updateUi(thisStory, pageType, resp);
-                console.log('metadata field set resp: ', resp);
             },
         });
-
-        console.log('fieldInfo: ', fieldsActions);
     };
     const updateUi = (storyObj, pageType, resp) => {
         // Finalize publishing process with additional functions :: Depending from the page type
         storyObj.pageType = storyObj.pageType || 'story';
-        if (storyObj.pageType === 'teaser') {
+        if (storyObj.pageType.toLowerCase() === 'teaser') {
             sendAsTeaser(storyObj);
         } else {
             sendAsStory(storyObj);
         }
 
         // We need to update the Button on the front-end :: and remove actions
-        // const dialogEl = btnEl.closest('.c-dialog-send');
-        // const buttonsCont = dialogEl.closest('.su-flex');
-        // // Add Reviwed Badge to the list
-        // buttonsCont.innerHTML = chCfg.badges.approved;
-
         const userEl = document.querySelector('#user-status');
         const userDetails = userEl.getAttribute('data-fullname');
         const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
@@ -230,7 +235,6 @@ export const CardButtons = (props) => {
     };
 
     const clearReviewState = () => {
-        // logMsg("Clear Review State!");
         if (typeof navigator.sendBeacon !== 'function') {
             return false;
         }
@@ -240,22 +244,6 @@ export const CardButtons = (props) => {
         window.addEventListener('unload', sendBeacon(), {capture: true});
         window.addEventListener('beforeunload', sendBeacon(), {capture: true});
         window.addEventListener('pagehide', sendBeacon(), {capture: true});
-    };
-
-    const handleSendFullContent = () => {
-        // Handle sending full content
-        // btn.setAttribute('disabled', 'true');
-
-        jsApi.getMetadata({
-            asset_id: props.listMetadata.assetId[0],
-            dataCallback: (resp) => {
-                // As a callback :: Prepare an update for the asset
-                prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
-                console.log('metadata field GET resp: ', resp);
-            },
-        });
-
-        closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
     };
 
     const sendBeacon = () => {
@@ -276,11 +264,6 @@ export const CardButtons = (props) => {
 
         // Store beacon state
         setBeaconSent(true);
-    };
-
-    const handleDecline = (id) => {
-        // Handle sending decline info
-        closeDeclineDialog(id);
     };
 
     return (
@@ -332,11 +315,7 @@ export const CardButtons = (props) => {
                                 You are accepting this story for publication on Stanford Report
                             </h3>
                             <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
-                                <button
-                                    onClick={() => handleSendTeaser(`dialogTitle-${props.listMetadata.assetId}-approve`)}
-                                    aria-label="Send Teaser"
-                                    className="button-green js-send-teaser"
-                                >
+                                <button onClick={() => handleSendTeaser()} aria-label="Send Teaser" className="button-green js-send-teaser">
                                     Send Teaser
                                 </button>
                                 <button onClick={() => handleSendFullContent()} aria-label="Send Full Content" className="button-green js-send-content">

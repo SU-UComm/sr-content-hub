@@ -254,6 +254,31 @@ var mockData = {
     metadata: 'metadata'
   }
 };
+var chCfg = {
+  metaFields: {
+    hubStatusDescription: 31823,
+    hubStatus: 31822,
+    hubVersionHistory: 31825,
+    hubReviewMsg: 32284,
+    pageType: 4857
+  },
+  hubStatuses: {
+    reviewed: 'reviewed',
+    approved: 'sent-to-sr'
+  },
+  pageTypes: {
+    story: 'story',
+    teaser: 'teaser'
+  },
+  badges: {
+    reviewed: "<p class=\"su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Reviewed</p>",
+    approved: "<p class=\"su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Publishing soon on Stanford Report</p>"
+  },
+  endpoints: {
+    beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
+    loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next'
+  }
+};
 var CardButtons = function CardButtons(props) {
   var _window;
 
@@ -314,35 +339,32 @@ var CardButtons = function CardButtons(props) {
     dialog.close();
   };
 
-  var handleSendTeaser = function handleSendTeaser(id) {
+  var handleSendTeaser = function handleSendTeaser() {
     // Handle sending teaser
-    closeSendDialog(id);
+    jsApi.getMetadata({
+      asset_id: props.listMetadata.assetId[0],
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareUpdate(props.listMetadata.assetId[0], 'Teaser', resp);
+      }
+    });
+    closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
   };
 
-  var chCfg = {
-    metaFields: {
-      hubStatusDescription: 31823,
-      hubStatus: 31822,
-      hubVersionHistory: 31825,
-      hubReviewMsg: 32284,
-      pageType: 4857
-    },
-    hubStatuses: {
-      reviewed: 'reviewed',
-      approved: 'sent-to-sr'
-    },
-    pageTypes: {
-      story: 'story',
-      teaser: 'teaser'
-    },
-    badges: {
-      reviewed: "<p class=\"su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Reviewed</p>",
-      approved: "<p class=\"su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Publishing soon on Stanford Report</p>"
-    },
-    endpoints: {
-      beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
-      loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next'
-    }
+  var handleDecline = function handleDecline(id) {
+    // Handle sending decline info
+    closeDeclineDialog(id);
+  };
+
+  var handleSendFullContent = function handleSendFullContent() {
+    jsApi.getMetadata({
+      asset_id: props.listMetadata.assetId[0],
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
+      }
+    });
+    closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
   };
 
   var getHistoryState = function getHistoryState(currentState) {
@@ -374,17 +396,7 @@ var CardButtons = function CardButtons(props) {
     var msgField = chCfg.metaFields.hubReviewMsg;
     fieldsActions[msgField] = ''; // Action #3: Update Version History
 
-    var currentHistory = getHistoryState(currentState); // Generate date and decline message
-
-    var thisDate = new Date().getTime();
-    var userEl = document.querySelector('#user-status');
-    var userDetails = userEl.getAttribute('data-fullname');
-    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
-    var newEntry = {
-      date: thisDate,
-      message: historyMessage
-    };
-    currentHistory.unshift(newEntry);
+    var currentHistory = getHistoryState(currentState);
     var currentHistoryStr = JSON.stringify(currentHistory);
     var historyField = chCfg.metaFields.hubVersionHistory;
     fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
@@ -393,7 +405,7 @@ var CardButtons = function CardButtons(props) {
     fieldsActions[descField] = ''; // Action #5: Set page type
 
     var pageTypeField = chCfg.metaFields.pageType;
-    var pageTypeValue = pageType;
+    var pageTypeValue = pageType.toLowerCase();
     fieldsActions[pageTypeField] = pageTypeValue; // Get Published Date from Metadata :: Needed for publishing on SR
 
     var pubDate = props.listMetadata.publishedDate[0] || ''; // Create Asset Details to pass to callback
@@ -402,33 +414,26 @@ var CardButtons = function CardButtons(props) {
       id: storyId,
       pageType: pageType,
       pubDate: pubDate
-    };
-    console.log('this story:', thisStory); // All fields in place :: Update metadata
+    }; // All fields in place :: Update metadata
 
     jsApi.setMetadataAllFields({
       asset_id: storyId,
       field_info: fieldsActions,
       dataCallback: function dataCallback(resp) {
         updateUi(thisStory, pageType, resp);
-        console.log('metadata field set resp: ', resp);
       }
     });
-    console.log('fieldInfo: ', fieldsActions);
   };
 
   var updateUi = function updateUi(storyObj, pageType, resp) {
     // Finalize publishing process with additional functions :: Depending from the page type
     storyObj.pageType = storyObj.pageType || 'story';
 
-    if (storyObj.pageType === 'teaser') {
+    if (storyObj.pageType.toLowerCase() === 'teaser') {
       sendAsTeaser(storyObj);
     } else {
       sendAsStory(storyObj);
     } // We need to update the Button on the front-end :: and remove actions
-    // const dialogEl = btnEl.closest('.c-dialog-send');
-    // const buttonsCont = dialogEl.closest('.su-flex');
-    // // Add Reviwed Badge to the list
-    // buttonsCont.innerHTML = chCfg.badges.approved;
 
 
     var userEl = document.querySelector('#user-status');
@@ -454,7 +459,6 @@ var CardButtons = function CardButtons(props) {
   };
 
   var clearReviewState = function clearReviewState() {
-    // logMsg("Clear Review State!");
     if (typeof navigator.sendBeacon !== 'function') {
       return false;
     } // Use Beacon API to send update :: on page unload
@@ -470,20 +474,6 @@ var CardButtons = function CardButtons(props) {
     window.addEventListener('pagehide', sendBeacon(), {
       capture: true
     });
-  };
-
-  var handleSendFullContent = function handleSendFullContent() {
-    // Handle sending full content
-    // btn.setAttribute('disabled', 'true');
-    jsApi.getMetadata({
-      asset_id: props.listMetadata.assetId[0],
-      dataCallback: function dataCallback(resp) {
-        // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
-        console.log('metadata field GET resp: ', resp);
-      }
-    });
-    closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
   };
 
   var sendBeacon = function sendBeacon() {
@@ -506,11 +496,6 @@ var CardButtons = function CardButtons(props) {
     console.log('Beacon triggered...'); // Store beacon state
 
     setBeaconSent(true);
-  };
-
-  var handleDecline = function handleDecline(id) {
-    // Handle sending decline info
-    closeDeclineDialog(id);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
@@ -574,7 +559,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick() {
-      return handleSendTeaser("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+      return handleSendTeaser();
     },
     "aria-label": "Send Teaser",
     className: "button-green js-send-teaser"

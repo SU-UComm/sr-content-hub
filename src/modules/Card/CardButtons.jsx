@@ -113,14 +113,14 @@ export const CardButtons = (props) => {
     const handleSendTeaser = () => {
         // Handle sending teaser
         jsApi.getMetadata({
-            asset_id: props.listMetadata.assetId[0],
+            asset_id: props.assetId,
             dataCallback: (resp) => {
                 // As a callback :: Prepare an update for the asset
-                prepareUpdate(props.listMetadata.assetId[0], 'Teaser', resp);
+                prepareUpdate(props.assetId, 'Teaser', resp);
             },
         });
 
-        closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
+        closeSendDialog(`dialogTitle-${props.assetId}-approve`);
     };
 
     const handleDecline = (id) => {
@@ -130,14 +130,14 @@ export const CardButtons = (props) => {
 
     const handleSendFullContent = () => {
         jsApi.getMetadata({
-            asset_id: props.listMetadata.assetId[0],
+            asset_id: props.assetId,
             dataCallback: (resp) => {
                 // As a callback :: Prepare an update for the asset
-                prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
+                prepareUpdate(props.assetId, 'Story', resp);
             },
         });
 
-        closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`);
+        closeSendDialog(`dialogTitle-${props.assetId}-approve`);
     };
 
     const getHistoryState = (currentState) => {
@@ -254,7 +254,7 @@ export const CardButtons = (props) => {
         const beaconUrl = contentHubAPI?.modules?.beaconEndpoint ? contentHubAPI?.modules.beaconEndpoint : chCfg.endpoints.beacon;
 
         // Build data for beacon
-        const data = {id: props.listMetadata.assetId};
+        const data = {id: props.assetId};
 
         // Send beacon to update the state
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
@@ -277,31 +277,31 @@ export const CardButtons = (props) => {
             ) : (
                 <>
                     <button
-                        data-id={`dialogTitle-${props.listMetadata.assetId}-approve`}
+                        data-id={`dialogTitle-${props.assetId}-approve`}
                         className="js-action--send-to-sr button-green c-button-send"
-                        onClick={() => openSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`)}
+                        onClick={() => openSendDialog(`dialogTitle-${props.assetId}-approve`)}
                     >
                         Send to Stanford Report
                     </button>
                     <button
-                        data-id={`dialogTitle-${props.listMetadata.assetId}-decline`}
+                        data-id={`dialogTitle-${props.assetId}-decline`}
                         className="js-action--decline c-button-decline"
-                        onClick={() => openDeclineDialog(`dialogTitle-${props.listMetadata.assetId}-decline`)}
+                        onClick={() => openDeclineDialog(`dialogTitle-${props.assetId}-decline`)}
                     >
                         Decline
                     </button>
 
                     <dialog
                         ref={sendDialogRef}
-                        data-id={props.listMetadata.assetId}
-                        id={`dialogTitle-${props.listMetadata.assetId}-approve`}
+                        data-id={props.assetId}
+                        id={`dialogTitle-${props.assetId}-approve`}
                         role="dialog"
                         open={isSendDialogOpen}
                         className="c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
-                        aria-labelledby={`dialogTitle-${props.listMetadata.assetId}-approve`}
+                        aria-labelledby={`dialogTitle-${props.assetId}-approve`}
                     >
                         <button
-                            onClick={() => closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`)}
+                            onClick={() => closeSendDialog(`dialogTitle-${props.assetId}-approve`)}
                             className="su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent"
                             aria-label="close"
                         >
@@ -311,7 +311,7 @@ export const CardButtons = (props) => {
                             </svg>
                         </button>
                         <div className="c-dialog-body su-p-30 sm:su-p-60">
-                            <h3 id={`dialogTitle-${props.listMetadata.assetId}-approve`} className="su-mb-0 su-font-serif su-text-center su-tracking-normal">
+                            <h3 id={`dialogTitle-${props.assetId}-approve`} className="su-mb-0 su-font-serif su-text-center su-tracking-normal">
                                 You are accepting this story for publication on Stanford Report
                             </h3>
                             <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
@@ -321,7 +321,7 @@ export const CardButtons = (props) => {
                                 <button onClick={() => handleSendFullContent()} aria-label="Send Full Content" className="button-green js-send-content">
                                     Send Full Content
                                 </button>
-                                <button onClick={() => closeSendDialog(`dialogTitle-${props.listMetadata.assetId}-approve`)} aria-label="Cancel" className="js-decline">
+                                <button onClick={() => closeSendDialog(`dialogTitle-${props.assetId}-approve`)} aria-label="Cancel" className="js-decline">
                                     Cancel
                                 </button>
                             </div>
@@ -332,13 +332,13 @@ export const CardButtons = (props) => {
                         ref={declineDialogRef}
                         role="dialog"
                         open={isDeclineDialogOpen}
-                        data-id={props.listMetadata.assetId}
+                        data-id={props.assetId}
                         className="c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]"
-                        aria-labelledby={`dialogTitle-${props.listMetadata.assetId}-decline`}
-                        id={`dialogTitle-${props.listMetadata.assetId}-decline`}
+                        aria-labelledby={`dialogTitle-${props.assetId}-decline`}
+                        id={`dialogTitle-${props.assetId}-decline`}
                     >
                         <button
-                            onClick={() => closeDeclineDialog(`dialogTitle-${props.listMetadata.assetId}-decline`)}
+                            onClick={() => closeDeclineDialog(`dialogTitle-${props.assetId}-decline`)}
                             className="su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent"
                             aria-label="close"
                         >
@@ -348,32 +348,28 @@ export const CardButtons = (props) => {
                             </svg>
                         </button>
                         <div className="c-dialog-body su-p-30 sm:su-p-60">
-                            <h3 id={`dialogTitle-${props.listMetadata.assetId}-decline`} className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">
+                            <h3 id={`dialogTitle-${props.assetId}-decline`} className="su-mb-10 su-font-serif su-leading-[125%] su-text-center">
                                 You are declining this story
                             </h3>
-                            <p id={`dialogDescription-${props.listMetadata.assetId}-decline`} className="su-mb-10 su-leading-[125%] su-text-center">
+                            <p id={`dialogDescription-${props.assetId}-decline`} className="su-mb-10 su-leading-[125%] su-text-center">
                                 Add optional note (viewable by content partner)
                             </p>
-                            <label className="sr-only" htmlFor={`message-textarea-${props.listMetadata.assetId}-decline`}>
+                            <label className="sr-only" htmlFor={`message-textarea-${props.assetId}-decline`}>
                                 Optional note
                             </label>
                             <textarea
                                 className="su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]"
-                                name={`message-${props.listMetadata.assetId}`}
+                                name={`message-${props.assetId}`}
                                 rows="5"
                                 autoComplete="off"
                                 aria-label="Optional note"
-                                id={`message-textarea-${props.listMetadata.assetId}-decline`}
+                                id={`message-textarea-${props.assetId}-decline`}
                             ></textarea>
                             <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
-                                <button
-                                    onClick={() => handleDecline(`dialogTitle-${props.listMetadata.assetId}-decline`)}
-                                    aria-label="Decline"
-                                    className="button-green js-decline-true"
-                                >
+                                <button onClick={() => handleDecline(`dialogTitle-${props.assetId}-decline`)} aria-label="Decline" className="button-green js-decline-true">
                                     Yes, Decline
                                 </button>
-                                <button onClick={() => closeDeclineDialog(`dialogTitle-${props.listMetadata.assetId}-decline`)} aria-label="Cancel" className="js-decline-false">
+                                <button onClick={() => closeDeclineDialog(`dialogTitle-${props.assetId}-decline`)} aria-label="Cancel" className="js-decline-false">
                                     Cancel
                                 </button>
                             </div>
@@ -392,4 +388,5 @@ CardButtons.propTypes = {
         assetId: PropTypes.array,
         publishedDate: PropTypes.array,
     }),
+    assetId: PropTypes.string,
 };

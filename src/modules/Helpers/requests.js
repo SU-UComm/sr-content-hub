@@ -73,7 +73,6 @@ export const getUserData = async () => {
  */
 export const getMedia = async (assetID) => {
     const requestUrl = `${contentHubAPI.modules.relatedMedia}${assetID}`;
-    console.log('URL,', requestUrl);
     const response = await fetch(requestUrl, {
         method: 'GET',
         headers: {
@@ -84,7 +83,6 @@ export const getMedia = async (assetID) => {
         return (res = res.json());
     });
     console.log('getMedia resp: ', response);
-
     return response;
 };
 

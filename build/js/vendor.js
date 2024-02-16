@@ -82,16 +82,15 @@ var Card = function Card(props) {
       setIsLoading = _useState4[1]; // Loader flag
 
 
-  var url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
+  var url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
   desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc);
 
   var routeChange = function routeChange() {
-    console.log('path change');
     var path;
 
     if (contentHubAPI) {
-      path = "/content/story-view-react?storyId=".concat(props.data.listMetadata.assetId);
+      path = url + props.data.listMetadata.assetId;
     } else {
       path = "/story.html?storyId=".concat(props.data.listMetadata.assetId);
     }
@@ -137,7 +136,8 @@ var Card = function Card(props) {
     }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
       className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
     }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
-      listMetadata: props.data.listMetadata
+      listMetadata: props.data.listMetadata,
+      assetId: props.data.listMetadata.assetId[0]
     }) : null)) // </Link>
 
   );
@@ -346,13 +346,13 @@ var CardButtons = function CardButtons(props) {
   var handleSendTeaser = function handleSendTeaser() {
     // Handle sending teaser
     jsApi.getMetadata({
-      asset_id: props.listMetadata.assetId[0],
+      asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
         // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.listMetadata.assetId[0], 'Teaser', resp);
+        prepareUpdate(props.assetId, 'Teaser', resp);
       }
     });
-    closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
   };
 
   var handleDecline = function handleDecline(id) {
@@ -362,13 +362,13 @@ var CardButtons = function CardButtons(props) {
 
   var handleSendFullContent = function handleSendFullContent() {
     jsApi.getMetadata({
-      asset_id: props.listMetadata.assetId[0],
+      asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
         // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
+        prepareUpdate(props.assetId, 'Story', resp);
       }
     });
-    closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
   };
 
   var getHistoryState = function getHistoryState(currentState) {
@@ -492,7 +492,7 @@ var CardButtons = function CardButtons(props) {
     var beaconUrl = (_contentHubAPI = contentHubAPI) !== null && _contentHubAPI !== void 0 && (_contentHubAPI$module = _contentHubAPI.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? (_contentHubAPI2 = contentHubAPI) === null || _contentHubAPI2 === void 0 ? void 0 : _contentHubAPI2.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
 
     var data = {
-      id: props.listMetadata.assetId
+      id: props.assetId
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
@@ -511,28 +511,28 @@ var CardButtons = function CardButtons(props) {
   }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
-    "data-id": "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
+    "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
-      return openSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+      return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     }
   }, "Send to Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
-    "data-id": "dialogTitle-".concat(props.listMetadata.assetId, "-decline"),
+    "data-id": "dialogTitle-".concat(props.assetId, "-decline"),
     className: "js-action--decline c-button-decline",
     onClick: function onClick() {
-      return openDeclineDialog("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+      return openDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
     }
   }, "Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("dialog", {
     ref: sendDialogRef,
-    "data-id": props.listMetadata.assetId,
-    id: "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
+    "data-id": props.assetId,
+    id: "dialogTitle-".concat(props.assetId, "-approve"),
     role: "dialog",
     open: isSendDialogOpen,
     className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
-    "aria-labelledby": "dialogTitle-".concat(props.listMetadata.assetId, "-approve")
+    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-approve")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick() {
-      return closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+      return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     },
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
@@ -557,7 +557,7 @@ var CardButtons = function CardButtons(props) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
-    id: "dialogTitle-".concat(props.listMetadata.assetId, "-approve"),
+    id: "dialogTitle-".concat(props.assetId, "-approve"),
     className: "su-mb-0 su-font-serif su-text-center su-tracking-normal"
   }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
@@ -575,7 +575,7 @@ var CardButtons = function CardButtons(props) {
     className: "button-green js-send-content"
   }, "Send Full Content"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick() {
-      return closeSendDialog("dialogTitle-".concat(props.listMetadata.assetId, "-approve"));
+      return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     },
     "aria-label": "Cancel",
     className: "js-decline"
@@ -583,13 +583,13 @@ var CardButtons = function CardButtons(props) {
     ref: declineDialogRef,
     role: "dialog",
     open: isDeclineDialogOpen,
-    "data-id": props.listMetadata.assetId,
+    "data-id": props.assetId,
     className: "c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
-    "aria-labelledby": "dialogTitle-".concat(props.listMetadata.assetId, "-decline"),
-    id: "dialogTitle-".concat(props.listMetadata.assetId, "-decline")
+    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-decline"),
+    id: "dialogTitle-".concat(props.assetId, "-decline")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick() {
-      return closeDeclineDialog("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+      return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
     },
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
@@ -614,32 +614,32 @@ var CardButtons = function CardButtons(props) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
-    id: "dialogTitle-".concat(props.listMetadata.assetId, "-decline"),
+    id: "dialogTitle-".concat(props.assetId, "-decline"),
     className: "su-mb-10 su-font-serif su-leading-[125%] su-text-center"
   }, "You are declining this story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
-    id: "dialogDescription-".concat(props.listMetadata.assetId, "-decline"),
+    id: "dialogDescription-".concat(props.assetId, "-decline"),
     className: "su-mb-10 su-leading-[125%] su-text-center"
   }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("label", {
     className: "sr-only",
-    htmlFor: "message-textarea-".concat(props.listMetadata.assetId, "-decline")
+    htmlFor: "message-textarea-".concat(props.assetId, "-decline")
   }, "Optional note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("textarea", {
     className: "su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]",
-    name: "message-".concat(props.listMetadata.assetId),
+    name: "message-".concat(props.assetId),
     rows: "5",
     autoComplete: "off",
     "aria-label": "Optional note",
-    id: "message-textarea-".concat(props.listMetadata.assetId, "-decline")
+    id: "message-textarea-".concat(props.assetId, "-decline")
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick() {
-      return handleDecline("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+      return handleDecline("dialogTitle-".concat(props.assetId, "-decline"));
     },
     "aria-label": "Decline",
     className: "button-green js-decline-true"
   }, "Yes, Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick() {
-      return closeDeclineDialog("dialogTitle-".concat(props.listMetadata.assetId, "-decline"));
+      return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
     },
     "aria-label": "Cancel",
     className: "js-decline-false"
@@ -651,7 +651,8 @@ CardButtons.propTypes = {
     hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
     assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
     publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array)
-  })
+  }),
+  assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
 };
 
 /***/ }),
@@ -1842,8 +1843,7 @@ var getMedia = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^
         switch (_context3.prev = _context3.next) {
           case 0:
             requestUrl = "".concat(contentHubAPI.modules.relatedMedia).concat(assetID);
-            console.log('URL,', requestUrl);
-            _context3.next = 4;
+            _context3.next = 3;
             return fetch(requestUrl, {
               method: 'GET',
               headers: {
@@ -1854,12 +1854,12 @@ var getMedia = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context3.sent;
             console.log('getMedia resp: ', response);
             return _context3.abrupt("return", response);
 
-          case 7:
+          case 6:
           case "end":
             return _context3.stop();
         }

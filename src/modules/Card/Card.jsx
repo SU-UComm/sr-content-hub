@@ -9,15 +9,14 @@ import {decodeHTML} from '../Helpers/helperFunctions.js';
 export const Card = (props) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
-    let url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
+    let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
 
     const routeChange = () => {
-        console.log('path change');
         let path;
         if (contentHubAPI) {
-            path = `/content/story-view-react?storyId=${props.data.listMetadata.assetId}`;
+            path = url + props.data.listMetadata.assetId;
         } else {
             path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
         }
@@ -68,7 +67,7 @@ export const Card = (props) => {
                     <p className="su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto">
                         Submitted on {reformatDate(props.data.listMetadata.mtxCreated)} | First published on {reformatDate(props.data.listMetadata.srcPublishedDate)}
                     </p>
-                    {window?.data?.user?.userType === 'UCOMM' ? <CardButtons listMetadata={props.data.listMetadata} /> : null}
+                    {window?.data?.user?.userType === 'UCOMM' ? <CardButtons listMetadata={props.data.listMetadata} assetId={props.data.listMetadata.assetId[0]} /> : null}
                 </div>
             </li>
             // </Link>

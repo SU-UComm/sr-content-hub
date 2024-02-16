@@ -78,7 +78,7 @@ var Home_BackToPageButton = __webpack_require__(8220);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
 var dist_module = __webpack_require__(6665);
 // EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx
-var CardButtons = __webpack_require__(9993);
+var Card_CardButtons = __webpack_require__(9993);
 // EXTERNAL MODULE: ./src/modules/Helpers/dateHelpers.js
 var dateHelpers = __webpack_require__(9113);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
@@ -286,7 +286,7 @@ var FullStory_FullStory = function FullStory(props) {
     style: {
       width: '100%',
       height: '750px',
-      borderColor: 'rgb(201, 201, 201)',
+      borderColor: 'rgb(201 201 201)',
       borderWidth: '1px',
       borderStyle: 'solid'
     }
@@ -615,7 +615,10 @@ var StoryView = function StoryView() {
     className: "su-font-serif su-mb-0"
   }, "View Story"), /*#__PURE__*/React.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
-  }))), /*#__PURE__*/React.createElement("section", {
+  }, /*#__PURE__*/React.createElement(CardButtons, {
+    listMetadata: data.metadata,
+    assetId: data.id
+  })))), /*#__PURE__*/React.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
     className: "small-heading"

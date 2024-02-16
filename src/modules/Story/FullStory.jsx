@@ -110,7 +110,7 @@ export const FullStory = (props) => {
                                 style={{
                                     width: '100%',
                                     height: '750px',
-                                    borderColor: 'rgb(201, 201, 201)',
+                                    borderColor: 'rgb(201 201 201)',
                                     borderWidth: '1px',
                                     borderStyle: 'solid',
                                 }}

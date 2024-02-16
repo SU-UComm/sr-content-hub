@@ -70,7 +70,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Card = function Card(props) {
-  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window$data$user;
+  var _props$data$listMetad, _props$data$listMetad2, _window2, _window2$data, _window2$data$user;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -89,8 +89,18 @@ var Card = function Card(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__/* .useNavigate */ .s0)();
 
   var routeChange = function routeChange() {
+    var _window, _window$data;
+
     console.log('path change');
-    window.location.href = "/story.html?storyId=".concat(props.data.listMetadata.assetId);
+    var path;
+
+    if ((_window = window) !== null && _window !== void 0 && (_window$data = _window.data) !== null && _window$data !== void 0 && _window$data.contentHubAPI) {
+      path = "/content/story-view-react?storyId=".concat(props.data.listMetadata.assetId);
+    } else {
+      path = "/story.html?storyId=".concat(props.data.listMetadata.assetId);
+    }
+
+    window.location.href = path;
   }; // useEffect(() => {
   //     if (props) {
   //         setData(props.listMetadata);
@@ -130,7 +140,7 @@ var Card = function Card(props) {
       className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
     }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
       className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
-    }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
+    }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
       listMetadata: props.data.listMetadata
     }) : null)) // </Link>
 

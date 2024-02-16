@@ -503,7 +503,7 @@ var StoryView_dataObj = {
   }
 };
 var StoryView = function StoryView() {
-  var _useState = useState(StoryView_dataObj),
+  var _useState = useState([]),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
@@ -574,6 +574,7 @@ var StoryView = function StoryView() {
   }();
 
   useEffect(function () {
+    setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
 
@@ -584,21 +585,14 @@ var StoryView = function StoryView() {
     if (id) {
       fetchData(id);
     } else {
-      // setData(dataObj);
+      setData(StoryView_dataObj);
+
       var _summary2 = decodeHTML(data.metadata.srcSummary[0]);
 
       setSummary(_summary2);
-    } // let url = window?.data?.contentHubAPI;
-    // if (url) {
-    //     fetchData(id);
-    //     console.log('story fetch url: ', url);
-    // } else {
-    // setData(dataObj);
-    // console.log('story data: ', data);
-    // let summary = decodeHTML(data.metadata.srcSummary[0]);
-    // setSummary(summary);
-    // }
+    }
 
+    setIsLoading(false);
   }, []);
   return isLoading ? /*#__PURE__*/React.createElement(Oval, {
     visible: true,

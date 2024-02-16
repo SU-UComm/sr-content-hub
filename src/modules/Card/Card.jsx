@@ -17,7 +17,13 @@ export const Card = (props) => {
 
     const routeChange = () => {
         console.log('path change');
-        window.location.href = `/story.html?storyId=${props.data.listMetadata.assetId}`;
+        let path;
+        if (window?.data?.contentHubAPI) {
+            path = `/content/story-view-react?storyId=${props.data.listMetadata.assetId}`;
+        } else {
+            path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
+        }
+        window.location.href = path;
     };
 
     // useEffect(() => {

@@ -127,7 +127,7 @@ const dataObj = {
 };
 
 export const StoryView = () => {
-    const [data, setData] = useState(dataObj); // data from endpoint
+    const [data, setData] = useState([]); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     // const location = useLocation();
     const [cardData, setCardData] = useState([]); // data from endpoint
@@ -150,6 +150,7 @@ export const StoryView = () => {
     };
 
     useEffect(() => {
+        setIsLoading(true);
         let id = window.location.search;
         let match = id.match(/=(\d+)/);
         if (match && match[1]) {
@@ -159,21 +160,11 @@ export const StoryView = () => {
         if (id) {
             fetchData(id);
         } else {
-            // setData(dataObj);
+            setData(dataObj);
             let summary = decodeHTML(data.metadata.srcSummary[0]);
             setSummary(summary);
         }
-        // let url = window?.data?.contentHubAPI;
-        // if (url) {
-        //     fetchData(id);
-        //     console.log('story fetch url: ', url);
-
-        // } else {
-        // setData(dataObj);
-        // console.log('story data: ', data);
-        // let summary = decodeHTML(data.metadata.srcSummary[0]);
-        // setSummary(summary);
-        // }
+        setIsLoading(false);
     }, []);
 
     return isLoading ? (

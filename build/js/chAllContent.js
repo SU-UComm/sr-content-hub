@@ -440,9 +440,7 @@ var SearchBar = function SearchBar(props) {
     className: "su-bg-transparent su-p-0 su-border-none hover:su-bg-transparent hover:su-border-none",
     type: "submit",
     "aria-label": "submit"
-  }, /*#__PURE__*/react.createElement("span", {
-    className: "sr-only"
-  }, "Search"), /*#__PURE__*/react.createElement("img", {
+  }, /*#__PURE__*/react.createElement("img", {
     className: "su-bg-red su-p-7 su-rounded-full",
     src: "https://sug-web.matrix.squiz.cloud/__data/assets/file/0023/31982/search.svg",
     alt: ""

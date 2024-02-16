@@ -476,10 +476,10 @@ var CardButtons = function CardButtons(props) {
     // Handle sending full content
     // btn.setAttribute('disabled', 'true');
     jsApi.getMetadata({
-      asset_id: props.listMetadata.assetId,
+      asset_id: props.listMetadata.assetId[0],
       dataCallback: function dataCallback(resp) {
         // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.listMetadata.assetId, 'Story', resp);
+        prepareUpdate(props.listMetadata.assetId[0], 'Story', resp);
         console.log('metadata field GET resp: ', resp);
       }
     });

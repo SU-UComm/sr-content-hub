@@ -29,7 +29,7 @@ export const SearchBar = (props) => {
             />
 
             <button className="su-bg-transparent su-p-0 su-border-none hover:su-bg-transparent hover:su-border-none" type="submit" aria-label="submit">
-                <span className="sr-only">Search</span>
+                {/* <span className="sr-only">Search</span> */}
                 <img className="su-bg-red su-p-7 su-rounded-full" src="https://sug-web.matrix.squiz.cloud/__data/assets/file/0023/31982/search.svg" alt="" />
             </button>
         </form>

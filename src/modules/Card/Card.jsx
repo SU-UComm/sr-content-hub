@@ -13,12 +13,10 @@ export const Card = (props) => {
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
 
-    const history = useNavigate();
-
     const routeChange = () => {
         console.log('path change');
         let path;
-        if (window?.data?.contentHubAPI) {
+        if (contentHubAPI) {
             path = `/content/story-view-react?storyId=${props.data.listMetadata.assetId}`;
         } else {
             path = `/story.html?storyId=${props.data.listMetadata.assetId}`;

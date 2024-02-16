@@ -30,13 +30,12 @@
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4916);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var _CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(9993);
 /* harmony import */ var _Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9113);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(7856);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(6974);
 /* harmony import */ var _Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(6859);
 
 
@@ -70,7 +69,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Card = function Card(props) {
-  var _props$data$listMetad, _props$data$listMetad2, _window2, _window2$data, _window2$data$user;
+  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window$data$user;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -86,15 +85,12 @@ var Card = function Card(props) {
   var url = 'https://sug-web.matrix.squiz.cloud/content/story?id=';
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
   desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc);
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__/* .useNavigate */ .s0)();
 
   var routeChange = function routeChange() {
-    var _window, _window$data;
-
     console.log('path change');
     var path;
 
-    if ((_window = window) !== null && _window !== void 0 && (_window$data = _window.data) !== null && _window$data !== void 0 && _window$data.contentHubAPI) {
+    if (contentHubAPI) {
       path = "/content/story-view-react?storyId=".concat(props.data.listMetadata.assetId);
     } else {
       path = "/story.html?storyId=".concat(props.data.listMetadata.assetId);
@@ -140,27 +136,27 @@ var Card = function Card(props) {
       className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
     }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
       className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
-    }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
+    }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
       listMetadata: props.data.listMetadata
     }) : null)) // </Link>
 
   );
 };
 Card.propTypes = {
-  data: prop_types__WEBPACK_IMPORTED_MODULE_17___default().shape({
-    imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
-    title: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
-    description: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
-    date: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().number),
-    listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_17___default().shape({
-      canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
-      relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
-      srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().string),
-      taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
-      descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
-      mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
-      srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
-      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array)
+  data: prop_types__WEBPACK_IMPORTED_MODULE_16___default().shape({
+    imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+    title: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+    description: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+    date: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().number),
+    listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_16___default().shape({
+      canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+      taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
     })
   })
 };
@@ -16256,10 +16252,9 @@ function createSearchParams(init) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   F0: function() { return /* binding */ Router; },
-/* harmony export */   s0: function() { return /* binding */ useNavigate; }
+/* harmony export */   F0: function() { return /* binding */ Router; }
 /* harmony export */ });
-/* unused harmony exports MemoryRouter, Navigate, Outlet, Route, Routes, UNSAFE_LocationContext, UNSAFE_NavigationContext, UNSAFE_RouteContext, createRoutesFromChildren, generatePath, matchPath, matchRoutes, renderMatches, resolvePath, useHref, useInRouterContext, useLocation, useMatch, useNavigationType, useOutlet, useOutletContext, useParams, useResolvedPath, useRoutes */
+/* unused harmony exports MemoryRouter, Navigate, Outlet, Route, Routes, UNSAFE_LocationContext, UNSAFE_NavigationContext, UNSAFE_RouteContext, createRoutesFromChildren, generatePath, matchPath, matchRoutes, renderMatches, resolvePath, useHref, useInRouterContext, useLocation, useMatch, useNavigate, useNavigationType, useOutlet, useOutletContext, useParams, useResolvedPath, useRoutes */
 if (/^(441|690|825)$/.test(__webpack_require__.j)) {
 	/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5648);
 }
@@ -16598,7 +16593,7 @@ function resolvePath(to, fromPathname) {
     pathname: toPathname,
     search = "",
     hash = ""
-  } = typeof to === "string" ? (0,history__WEBPACK_IMPORTED_MODULE_1__/* .parsePath */ .cP)(to) : to;
+  } = typeof to === "string" ? parsePath(to) : to;
   let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
   return {
     pathname,
@@ -16622,7 +16617,7 @@ function resolvePathname(relativePath, fromPathname) {
 }
 
 function resolveTo(toArg, routePathnames, locationPathname) {
-  let to = typeof toArg === "string" ? (0,history__WEBPACK_IMPORTED_MODULE_1__/* .parsePath */ .cP)(toArg) : toArg;
+  let to = typeof toArg === "string" ? parsePath(toArg) : toArg;
   let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname; // If a pathname is explicitly provided in `to`, it should be relative to the
   // route context. This is explained in `Note on `<Link to>` values` in our
   // migration guide from v5 as a means of disambiguation between `to` values
@@ -16745,7 +16740,7 @@ function useInRouterContext() {
 
 function useLocation() {
   !useInRouterContext() ?  false ? 0 : invariant(false) : void 0;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(LocationContext).location;
+  return useContext(LocationContext).location;
 }
 /**
  * Returns the current navigation action which describes how the router came to
@@ -16787,19 +16782,19 @@ function useNavigate() {
   let {
     basename,
     navigator
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(NavigationContext);
+  } = useContext(NavigationContext);
   let {
     matches
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(RouteContext);
+  } = useContext(RouteContext);
   let {
     pathname: locationPathname
   } = useLocation();
   let routePathnamesJson = JSON.stringify(matches.map(match => match.pathnameBase));
-  let activeRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(false);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+  let activeRef = useRef(false);
+  useEffect(() => {
     activeRef.current = true;
   });
-  let navigate = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (to, options) {
+  let navigate = useCallback(function (to, options) {
     if (options === void 0) {
       options = {};
     }

@@ -30,7 +30,7 @@ export const AllContent = () => {
     const [sortBySelected, setSortBySelected] = useState('Select an option');
     const [statusSelected, setStatusSelected] = useState('All');
     const [dateSelected, setDateSelected] = useState('All');
-
+    const [query, setQuery] = useState('');
     const fetchData = async (url, func) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
@@ -46,6 +46,7 @@ export const AllContent = () => {
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
+                setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
                 console.log('REQUEST FUNCTION data in all content: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -90,7 +91,7 @@ export const AllContent = () => {
     }, []);
 
     const onChange = (name, value, selectedVal) => {
-        console.log('ON CHANGE: ', name, ' || ', value);
+        console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -141,6 +142,14 @@ export const AllContent = () => {
                 let selected = selectedVal;
                 setDateSelected(selected);
             }
+            if (name == 'unselect') {
+                console.log('check');
+                if (selectedVal == 'hubStatus') {
+                    setStatusSelected('All');
+                } else if (selectedVal == 'date') {
+                    setDateSelected('All');
+                }
+            }
             let fetchUrl = baseUrl + value;
             fetchData(fetchUrl, dataLocation);
         }
@@ -151,7 +160,7 @@ export const AllContent = () => {
     ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10">
             <PageHeading headingText={window?.data?.texts?.allcontent?.headingText} subHeadingText={window?.data?.texts?.newcontent?.subHeadingText} homeButton={true} />
-            <SearchBar onChange={onChange} />
+            <SearchBar onChange={onChange} selectedValue={query} />
             <section>
                 <div className="su-mb-20">
                     <div className="su-flex su-flex-col lg:su-flex-row su-gap-xs">

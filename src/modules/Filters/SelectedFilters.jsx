@@ -8,8 +8,7 @@ export const SelectedFacets = (props) => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
     const onClick = (facet) => {
-        props.onChange('undelect', facet.toggleUrl);
-        console.log('CLICK FILTER UNSELECT', facet.toggleUrl);
+        props.onChange('unselect', facet.toggleUrl, facet.facetName);
     };
     const getSelected = (facets) => {
         // Generate output object
@@ -71,6 +70,7 @@ export const SelectedFacets = (props) => {
                 {selectedFacets &&
                     selectedFacets.map((facet, i) => (
                         <button
+                            name={facet.name}
                             key={i}
                             onClick={(e) => onClick(facet)}
                             href={facet.toggleUrl}

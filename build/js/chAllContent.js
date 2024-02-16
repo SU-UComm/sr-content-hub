@@ -401,7 +401,7 @@ function SearchBar_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var SearchBar = function SearchBar(props) {
-  var _useState = (0,react.useState)(''),
+  var _useState = (0,react.useState)(props.selectedValue),
       _useState2 = SearchBar_slicedToArray(_useState, 2),
       searchQuery = _useState2[0],
       setSearchQuery = _useState2[1];
@@ -412,6 +412,7 @@ var SearchBar = function SearchBar(props) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    setSearchQuery(event.target.value);
     props.onChange('search', searchQuery);
   };
 
@@ -448,7 +449,8 @@ var SearchBar = function SearchBar(props) {
   })));
 };
 SearchBar.propTypes = {
-  onChange: (prop_types_default()).func
+  onChange: (prop_types_default()).func,
+  selectedValue: (prop_types_default()).string
 };
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
 var SelectedFilters = __webpack_require__(5634);
@@ -598,6 +600,11 @@ var AllContent = function AllContent() {
       dateSelected = _useState30[0],
       setDateSelected = _useState30[1];
 
+  var _useState31 = (0,react.useState)(''),
+      _useState32 = AllContent_slicedToArray(_useState31, 2),
+      query = _useState32[0],
+      setQuery = _useState32[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
       var d, params, _d2, _params;
@@ -609,7 +616,7 @@ var AllContent = function AllContent() {
               setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
 
               if (!(func == 'fb')) {
-                _context.next = 26;
+                _context.next = 27;
                 break;
               }
 
@@ -628,30 +635,31 @@ var AllContent = function AllContent() {
               setResultsSummary(d.response.resultPacket.resultsSummary);
               params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(params);
+              setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
               console.log('REQUEST FUNCTION data in all content: ', d);
-              _context.next = 21;
+              _context.next = 22;
               break;
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 21:
-              _context.prev = 21;
+            case 22:
+              _context.prev = 22;
               setIsLoading(false);
-              return _context.finish(21);
+              return _context.finish(22);
 
-            case 24:
-              _context.next = 48;
+            case 25:
+              _context.next = 49;
               break;
 
-            case 26:
-              _context.prev = 26;
-              _context.next = 29;
+            case 27:
+              _context.prev = 27;
+              _context.next = 30;
               return (0,requests/* getSearchData */.Im)(url, '');
 
-            case 29:
+            case 30:
               _d2 = _context.sent;
               setStatusLabels(_d2.response.facets[1].allValues);
               setCPLabels(_d2.response.facets[2].allValues);
@@ -663,25 +671,25 @@ var AllContent = function AllContent() {
               _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(_params);
               console.log('REQUEST FUNCTION data in all content matrix: ', _d2);
-              _context.next = 45;
+              _context.next = 46;
               break;
 
-            case 42:
-              _context.prev = 42;
-              _context.t1 = _context["catch"](26);
+            case 43:
+              _context.prev = 43;
+              _context.t1 = _context["catch"](27);
               console.error('Error fetching data:', _context.t1);
 
-            case 45:
-              _context.prev = 45;
+            case 46:
+              _context.prev = 46;
               setIsLoading(false);
-              return _context.finish(45);
+              return _context.finish(46);
 
-            case 48:
+            case 49:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 18, 21, 24], [26, 42, 45, 48]]);
+      }, _callee, null, [[2, 19, 22, 25], [27, 43, 46, 49]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -706,7 +714,7 @@ var AllContent = function AllContent() {
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
-    console.log('ON CHANGE: ', name, ' || ', value);
+    console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
 
     if (name == 'search') {
       var newParams = queryParams;
@@ -787,6 +795,16 @@ var AllContent = function AllContent() {
         setDateSelected(_selected2);
       }
 
+      if (name == 'unselect') {
+        console.log('check');
+
+        if (selectedVal == 'hubStatus') {
+          setStatusSelected('All');
+        } else if (selectedVal == 'date') {
+          setDateSelected('All');
+        }
+      }
+
       var _fetchUrl3 = baseUrl + value;
 
       fetchData(_fetchUrl3, dataLocation);
@@ -807,7 +825,8 @@ var AllContent = function AllContent() {
     subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.subHeadingText,
     homeButton: true
   }), /*#__PURE__*/react.createElement(SearchBar, {
-    onChange: onChange
+    onChange: onChange,
+    selectedValue: query
   }), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("div", {
     className: "su-mb-20"
   }, /*#__PURE__*/react.createElement("div", {

@@ -4,6 +4,18 @@
   @extend %screen-hide;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 // When screen hidden content is focused restore it to view
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {

@@ -754,8 +754,7 @@ var SelectedFacets = function SelectedFacets(props) {
 
 
   var _onClick = function onClick(facet) {
-    props.onChange('undelect', facet.toggleUrl);
-    console.log('CLICK FILTER UNSELECT', facet.toggleUrl);
+    props.onChange('unselect', facet.toggleUrl, facet.facetName);
   };
 
   var getSelected = function getSelected(facets) {
@@ -816,6 +815,7 @@ var SelectedFacets = function SelectedFacets(props) {
     className: "su-flex su-flex-wrap su-gap-xs su-mt-20"
   }, selectedFacets && selectedFacets.map(function (facet, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_14__.createElement("button", {
+      name: facet.name,
       key: i,
       onClick: function onClick(e) {
         return _onClick(facet);
@@ -1185,7 +1185,8 @@ var StatusFilter = function StatusFilter(props) {
 };
 StatusFilter.propTypes = {
   facets: prop_types__WEBPACK_IMPORTED_MODULE_14__.PropTypes.array,
-  onChange: prop_types__WEBPACK_IMPORTED_MODULE_14__.PropTypes.func
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_14__.PropTypes.func,
+  selectedValue: prop_types__WEBPACK_IMPORTED_MODULE_14__.PropTypes.string
 };
 
 /***/ }),

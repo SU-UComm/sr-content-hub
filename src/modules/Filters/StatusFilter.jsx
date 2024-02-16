@@ -102,4 +102,5 @@ export const StatusFilter = (props) => {
 StatusFilter.propTypes = {
     facets: PropTypes.array,
     onChange: PropTypes.func,
+    selectedValue: PropTypes.string,
 };

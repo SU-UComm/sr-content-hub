@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 export const SearchBar = (props) => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState(props.selectedValue);
 
     const handleInputChange = (event) => {
         setSearchQuery(event.target.value);
@@ -10,6 +10,7 @@ export const SearchBar = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSearchQuery(event.target.value);
         props.onChange('search', searchQuery);
     };
 
@@ -37,4 +38,5 @@ export const SearchBar = (props) => {
 
 SearchBar.propTypes = {
     onChange: PropTypes.func,
+    selectedValue: PropTypes.string,
 };

@@ -89,9 +89,8 @@ var Card = function Card(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__/* .useNavigate */ .s0)();
 
   var routeChange = function routeChange() {
-    console.log('path change'); // history('/story.html', {state: {data: props.data}});
-
-    window.reload();
+    console.log('path change');
+    window.location.href = "/story.html?storyId=".concat(props.data.listMetadata.assetId);
   }; // useEffect(() => {
   //     if (props) {
   //         setData(props.listMetadata);
@@ -104,13 +103,12 @@ var Card = function Card(props) {
 
 
   return (// !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
-    props.data.listMetadata &&
-    /*#__PURE__*/
-    // <Link onClick={() => routeChange()} to="/story.html" state={{data: props.data}}>
-    react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
+    props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
       className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
-      "data-id": props.data.listMetadata.assetId // onClick={() => routeChange()}
-
+      "data-id": props.data.listMetadata.assetId,
+      onClick: function onClick() {
+        return routeChange();
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("a", {
       href: url + props.data.listMetadata.assetId,
       className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
@@ -7803,6 +7801,61 @@ defineIterator(String, 'String', function (iterated) {
   point = charAt(string, index);
   state.index += point.length;
   return { value: point, done: false };
+});
+
+
+/***/ }),
+
+/***/ 4723:
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var call = __webpack_require__(6916);
+var fixRegExpWellKnownSymbolLogic = __webpack_require__(7007);
+var anObject = __webpack_require__(9670);
+var toLength = __webpack_require__(7466);
+var toString = __webpack_require__(1340);
+var requireObjectCoercible = __webpack_require__(4488);
+var getMethod = __webpack_require__(8173);
+var advanceStringIndex = __webpack_require__(1530);
+var regExpExec = __webpack_require__(7651);
+
+// @@match logic
+fixRegExpWellKnownSymbolLogic('match', function (MATCH, nativeMatch, maybeCallNative) {
+  return [
+    // `String.prototype.match` method
+    // https://tc39.es/ecma262/#sec-string.prototype.match
+    function match(regexp) {
+      var O = requireObjectCoercible(this);
+      var matcher = regexp == undefined ? undefined : getMethod(regexp, MATCH);
+      return matcher ? call(matcher, regexp, O) : new RegExp(regexp)[MATCH](toString(O));
+    },
+    // `RegExp.prototype[@@match]` method
+    // https://tc39.es/ecma262/#sec-regexp.prototype-@@match
+    function (string) {
+      var rx = anObject(this);
+      var S = toString(string);
+      var res = maybeCallNative(nativeMatch, rx, S);
+
+      if (res.done) return res.value;
+
+      if (!rx.global) return regExpExec(rx, S);
+
+      var fullUnicode = rx.unicode;
+      rx.lastIndex = 0;
+      var A = [];
+      var n = 0;
+      var result;
+      while ((result = regExpExec(rx, S)) !== null) {
+        var matchStr = toString(result[0]);
+        A[n] = matchStr;
+        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+        n++;
+      }
+      return n === 0 ? null : A;
+    }
+  ];
 });
 
 

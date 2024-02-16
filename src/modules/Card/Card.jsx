@@ -17,8 +17,7 @@ export const Card = (props) => {
 
     const routeChange = () => {
         console.log('path change');
-        // history('/story.html', {state: {data: props.data}});
-        window.reload();
+        window.location.href = `/story.html?storyId=${props.data.listMetadata.assetId}`;
     };
 
     // useEffect(() => {
@@ -33,11 +32,10 @@ export const Card = (props) => {
     return (
         // !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
         props.data.listMetadata && (
-            // <Link onClick={() => routeChange()} to="/story.html" state={{data: props.data}}>
             <li
                 className="su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]"
                 data-id={props.data.listMetadata.assetId}
-                // onClick={() => routeChange()}
+                onClick={() => routeChange()}
             >
                 <a href={url + props.data.listMetadata.assetId} className="su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]">
                     <img

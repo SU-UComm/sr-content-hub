@@ -139,6 +139,9 @@ export const StoryView = () => {
         try {
             const d = await getAPIData(id);
             console.log('Story data: ', d);
+            setData(d);
+            let summary = decodeHTML(d.metadata.srcSummary[0]);
+            setSummary(summary);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -147,9 +150,19 @@ export const StoryView = () => {
     };
 
     useEffect(() => {
-        // setCardData(location.state.data);
-        console.log('PROPS in Full Story: ');
+        let id = window.location.search;
+        let match = id.match(/=(\d+)/);
+        if (match && match[1]) {
+            id = parseInt(match[1], 10);
+        }
 
+        if (id) {
+            fetchData(id);
+        } else {
+            // setData(dataObj);
+            let summary = decodeHTML(data.metadata.srcSummary[0]);
+            setSummary(summary);
+        }
         // let url = window?.data?.contentHubAPI;
         // if (url) {
         //     fetchData(id);
@@ -157,9 +170,9 @@ export const StoryView = () => {
 
         // } else {
         // setData(dataObj);
-        console.log('story data: ', data);
-        let summary = decodeHTML(data.metadata.srcSummary[0]);
-        setSummary(summary);
+        // console.log('story data: ', data);
+        // let summary = decodeHTML(data.metadata.srcSummary[0]);
+        // setSummary(summary);
         // }
     }, []);
 

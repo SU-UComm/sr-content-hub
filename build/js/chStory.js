@@ -369,7 +369,6 @@ function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var StoryView_dataObj = {
   id: '128334',
   type: 'page_standard',
@@ -594,10 +593,7 @@ var StoryView = function StoryView() {
     className: "su-font-serif su-mb-0"
   }, "View Story"), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
-  }, /*#__PURE__*/react.createElement(CardButtons/* CardButtons */.G, {
-    listMetadata: data.metadata,
-    assetId: data.id
-  })))), /*#__PURE__*/react.createElement("section", {
+  }))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
@@ -615,7 +611,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Main Category"), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/react.createElement("em", null, data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'))), /*#__PURE__*/react.createElement("li", {
+  }, /*#__PURE__*/react.createElement("em", null, data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'))), /*#__PURE__*/react.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"

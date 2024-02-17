@@ -126,7 +126,7 @@ const dataObj = {
 };
 
 export const StoryView = () => {
-    const [data, setData] = useState([]); // data from endpoint
+    const [data, setData] = useState(dataObj); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [summary, setSummary] = useState('');
 
@@ -156,8 +156,10 @@ export const StoryView = () => {
 
         if (id) {
             fetchData(id);
+            console.log('fetch');
         } else {
             setData(dataObj);
+            console.log('assign');
             let summary = decodeHTML(data.metadata.srcSummary[0]);
             setSummary(summary);
         }

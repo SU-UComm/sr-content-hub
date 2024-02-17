@@ -502,7 +502,7 @@ var StoryView_dataObj = {
   }
 };
 var StoryView = function StoryView() {
-  var _useState = useState([]),
+  var _useState = useState(StoryView_dataObj),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
@@ -576,8 +576,10 @@ var StoryView = function StoryView() {
 
     if (id) {
       fetchData(id);
+      console.log('fetch');
     } else {
       setData(StoryView_dataObj);
+      console.log('assign');
 
       var _summary2 = decodeHTML(data.metadata.srcSummary[0]);
 

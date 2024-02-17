@@ -176,7 +176,9 @@ export const StoryView = () => {
                 <div className="su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center">
                     <h2 className="su-font-serif su-mb-0">View Story</h2>
 
-                    <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">{/* <CardButtons listMetadata={data.metadata} assetId={data.id} /> */}</div>
+                    <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">
+                        <CardButtons listMetadata={data.metadata} assetId={data.id} />
+                    </div>
                 </div>
             </section>
 
@@ -195,7 +197,7 @@ export const StoryView = () => {
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Main Category</p>
                             <p className="su-leading-[3.6rem] su-mb-0">
-                                <em>{data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'}</em>
+                                {/* <em>{data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'}</em> */}
                             </p>
                         </li>
                         <li className="mb-0">

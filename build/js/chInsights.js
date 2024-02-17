@@ -78,7 +78,7 @@ var Home_BackToPageButton = __webpack_require__(8220);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
 var dist_module = __webpack_require__(6665);
 // EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx
-var CardButtons = __webpack_require__(9993);
+var Card_CardButtons = __webpack_require__(9993);
 // EXTERNAL MODULE: ./src/modules/Helpers/dateHelpers.js
 var dateHelpers = __webpack_require__(9113);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
@@ -614,7 +614,10 @@ var StoryView = function StoryView() {
     className: "su-font-serif su-mb-0"
   }, "View Story"), /*#__PURE__*/React.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
-  }))), /*#__PURE__*/React.createElement("section", {
+  }, /*#__PURE__*/React.createElement(CardButtons, {
+    listMetadata: data.metadata,
+    assetId: data.id
+  })))), /*#__PURE__*/React.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
     className: "small-heading"
@@ -632,7 +635,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Main Category"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'))), /*#__PURE__*/React.createElement("li", {
+  })), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"

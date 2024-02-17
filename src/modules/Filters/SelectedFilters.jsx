@@ -46,7 +46,7 @@ export const SelectedFacets = (props) => {
         } // For facets
 
         if (props.page == 'newContent') {
-            selectedItems = selectedItems.filter((entry) => entry.name == 'hubStatus');
+            selectedItems = selectedItems.filter((entry) => entry.facetName !== 'hubStatus');
         }
 
         return selectedItems;
@@ -96,4 +96,5 @@ export const SelectedFacets = (props) => {
 SelectedFacets.propTypes = {
     facets: PropTypes.array,
     onChange: PropTypes.func,
+    page: PropTypes.string,
 };

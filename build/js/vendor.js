@@ -783,7 +783,7 @@ var SelectedFacets = function SelectedFacets(props) {
 
     if (props.page == 'newContent') {
       selectedItems = selectedItems.filter(function (entry) {
-        return entry.name == 'hubStatus';
+        return entry.facetName !== 'hubStatus';
       });
     }
 
@@ -840,7 +840,8 @@ var SelectedFacets = function SelectedFacets(props) {
 };
 SelectedFacets.propTypes = {
   facets: prop_types__WEBPACK_IMPORTED_MODULE_16__.PropTypes.array,
-  onChange: prop_types__WEBPACK_IMPORTED_MODULE_16__.PropTypes.func
+  onChange: prop_types__WEBPACK_IMPORTED_MODULE_16__.PropTypes.func,
+  page: prop_types__WEBPACK_IMPORTED_MODULE_16__.PropTypes.string
 };
 
 /***/ }),

@@ -147,7 +147,7 @@ export const StoryView = () => {
     };
 
     useEffect(() => {
-        // setIsLoading(true);
+        setIsLoading(true);
         let id = window.location.search;
         let match = id.match(/=(\d+)/);
         if (match && match[1]) {
@@ -163,7 +163,7 @@ export const StoryView = () => {
             let summary = decodeHTML(data.metadata.srcSummary[0]);
             setSummary(summary);
         }
-        // setIsLoading(false);
+        setIsLoading(false);
     }, []);
 
     return isLoading ? (

@@ -545,7 +545,7 @@ var StoryView = function StoryView() {
   }();
 
   (0,react.useEffect)(function () {
-    // setIsLoading(true);
+    setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
 
@@ -563,8 +563,9 @@ var StoryView = function StoryView() {
       var _summary2 = (0,helperFunctions/* decodeHTML */.p1)(data.metadata.srcSummary[0]);
 
       setSummary(_summary2);
-    } // setIsLoading(false);
+    }
 
+    setIsLoading(false);
   }, []);
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
     visible: true,

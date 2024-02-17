@@ -504,13 +504,13 @@ var CardButtons = function CardButtons(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
-  }, props.listMetadata.hubStatusDescription ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
-    className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.listMetadata.hubStatusDescription) : props.listMetadata.hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, props.listMetadata.hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Publishing soon on Stanford Report") : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+    className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, props.listMetadata.hubStatusDescription) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {

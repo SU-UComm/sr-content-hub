@@ -587,7 +587,10 @@ var StoryView = function StoryView() {
     className: "su-font-serif su-mb-0"
   }, "View Story"), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
-  }))), /*#__PURE__*/react.createElement("section", {
+  }, /*#__PURE__*/react.createElement(CardButtons/* CardButtons */.G, {
+    listMetadata: data.metadata,
+    assetId: data.id
+  })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"

@@ -27,7 +27,7 @@ export const AllContent = () => {
     const [queryParams, setQueryParams] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
     const [dataLocation, setDataLocation] = useState('');
-    const [sortBySelected, setSortBySelected] = useState('Select an option');
+    const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
     const [dateSelected, setDateSelected] = useState('All');
     const [query, setQuery] = useState('');

@@ -583,7 +583,7 @@ var AllContent = function AllContent() {
       dataLocation = _useState24[0],
       setDataLocation = _useState24[1];
 
-  var _useState25 = (0,react.useState)('Select an option'),
+  var _useState25 = (0,react.useState)('Newest to Oldest'),
       _useState26 = AllContent_slicedToArray(_useState25, 2),
       sortBySelected = _useState26[0],
       setSortBySelected = _useState26[1];

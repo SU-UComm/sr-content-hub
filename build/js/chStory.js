@@ -686,6 +686,19 @@ var StoryView = function StoryView() {
     console.log('beacon triggered'); // Store beacon state
 
     setBeaconSent(true);
+    var fieldsActions = []; // Action #1: Update Status Description
+
+    var statusField = chCfg.metaFields.hubStatusDescription;
+    fieldsActions[statusField] = '';
+    jsApi.setMetadataAllFields({
+      asset_id: data.id,
+      field_info: fieldsActions,
+      dataCallback: function dataCallback(resp) {
+        if (StoryView_typeof(resp) === 'object') {
+          resp = JSON.stringify(resp);
+        }
+      }
+    });
   };
 
   (0,react.useEffect)(function () {

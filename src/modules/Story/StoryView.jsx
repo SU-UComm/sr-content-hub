@@ -281,6 +281,22 @@ export const StoryView = () => {
 
         // Store beacon state
         setBeaconSent(true);
+
+        const fieldsActions = [];
+
+        // Action #1: Update Status Description
+        const statusField = chCfg.metaFields.hubStatusDescription;
+        fieldsActions[statusField] = '';
+
+        jsApi.setMetadataAllFields({
+            asset_id: data.id,
+            field_info: fieldsActions,
+            dataCallback: (resp) => {
+                if (typeof resp === 'object') {
+                    resp = JSON.stringify(resp);
+                }
+            },
+        });
     };
 
     useEffect(() => {

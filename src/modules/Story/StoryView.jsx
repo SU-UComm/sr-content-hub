@@ -248,30 +248,54 @@ export const StoryView = () => {
             dataCallback: (resp) => {
                 if (typeof resp === 'object') {
                     resp = JSON.stringify(resp);
+                    console.log('RESP sendBeacon1: ', resp);
                 }
+                clearReviewState(id);
             },
         });
+    };
 
+    const clearReviewState = (id) => {
         if (typeof navigator.sendBeacon !== 'function') {
             return false;
         }
         // Use Beacon API to send update :: on page unload
         setBeaconSent(false);
 
-        window.addEventListener('unload', sendBeacon, {capture: true});
-        window.addEventListener('beforeunload', sendBeacon, {capture: true});
-        window.addEventListener('pagehide', sendBeacon, {capture: true});
+        window.addEventListener('unload', sendBeacon(id), {capture: true});
+        window.addEventListener('beforeunload', sendBeacon(id), {capture: true});
+        window.addEventListener('pagehide', sendBeacon(id), {capture: true});
     };
 
-    const sendBeacon = () => {
+    const sendBeacon = (id) => {
+        // const fieldsActions = [];
+
+        // // Action #1: Update Status Description
+        // let statusField = chCfg.metaFields.hubStatusDescription;
+        // fieldsActions[statusField] = '';
+        // statusField = chCfg.metaFields.hubStatus;
+        // const statusFieldValue = 'submitted';
+        // fieldsActions[statusField] = statusFieldValue;
+
+        // jsApi.setMetadataAllFields({
+        //     asset_id: data.id,
+        //     field_info: fieldsActions,
+        //     dataCallback: (resp) => {
+        //         if (typeof resp === 'object') {
+        //             resp = JSON.stringify(resp);
+        //             console.log('RESP sendBeacon2: ', resp);
+        //         }
+        //     },
+        // });
+
         console.log('Send Beacon!');
         if (beaconSent !== false) {
             return;
         }
-        const beaconUrl = chCfg.endpoints.beacon;
+        const beaconUrl = contentHubAPI?.modules?.beaconEndpoint ? contentHubAPI?.modules.beaconEndpoint : chCfg.endpoints.beacon;
 
         // Build data for beacon
-        const data = {id: data.id};
+        const data = {id: id};
 
         // Send beacon to update the state
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
@@ -281,22 +305,6 @@ export const StoryView = () => {
 
         // Store beacon state
         setBeaconSent(true);
-
-        const fieldsActions = [];
-
-        // Action #1: Update Status Description
-        const statusField = chCfg.metaFields.hubStatusDescription;
-        fieldsActions[statusField] = '';
-
-        jsApi.setMetadataAllFields({
-            asset_id: data.id,
-            field_info: fieldsActions,
-            dataCallback: (resp) => {
-                if (typeof resp === 'object') {
-                    resp = JSON.stringify(resp);
-                }
-            },
-        });
     };
 
     useEffect(() => {

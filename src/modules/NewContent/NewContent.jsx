@@ -20,7 +20,7 @@ export const NewContent = () => {
     const [facets, setFacets] = useState([]);
     const [dataLocation, setDataLocation] = useState('');
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
-    const [sortBySelected, setSortBySelected] = useState('Select an option');
+    const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
 
     const fetchData = async (url, func) => {
         setIsLoading(true);

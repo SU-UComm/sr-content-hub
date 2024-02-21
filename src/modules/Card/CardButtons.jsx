@@ -103,6 +103,7 @@ export const CardButtons = (props) => {
         const dialog = document.getElementById(id);
         dialog.showModal();
     };
+
     const closeDeclineDialog = (id) => {
         setDeclineDialogOpen(false);
         const dialog = document.getElementById(id);

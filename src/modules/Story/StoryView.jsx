@@ -125,10 +125,71 @@ const dataObj = {
     },
 };
 
+const chCfg = {
+    metaFields: {
+        hubStatusDescription: 31823,
+        hubStatus: 31822,
+        hubVersionHistory: 31825,
+        hubReviewMsg: 32284,
+        pageType: 4857,
+    },
+    hubStatuses: {
+        reviewed: 'reviewed',
+        approved: 'sent-to-sr',
+    },
+    pageTypes: {
+        story: 'story',
+        teaser: 'teaser',
+    },
+    badges: {
+        reviewed: `<p class="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15">Reviewed</p>`,
+        approved: `<p class="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15">Publishing soon on Stanford Report</p>`,
+    },
+    endpoints: {
+        beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
+        loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next',
+    },
+};
+
+const mockData = {
+    name: 'Mockup name',
+    short_name: 'Mockup name',
+    asset_id: 'inputQuery.id',
+    id: 'inputQuery.id',
+    type_code: 'folder',
+    type: 'Folder',
+    icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+    web_path: 'https://mockup.url/mockup_name',
+    urls: ['https://mockup.url/mockup_name'],
+    status: 'Under Construction',
+    statusId: '2',
+    created: 1637857729,
+    created_userid: '65',
+    created_username: 'John Doe (Squiz)',
+    updated: 1637857730,
+    updated_userid: '65',
+    updated_username: 'John Doe (Squiz)',
+    published: 'Never Published',
+    published_userid: 'Never Published',
+    published_username: 'Never Published',
+    status_changed: 1637857729,
+    status_changed_userid: '65',
+    status_changed_username: 'John Doe (Squiz)',
+    maximum_perm_on_asset: 'Admin Access',
+    can_live_edit: true,
+    effective_write: true,
+    attribute_contextualised: true,
+    metadata_contextualised: true,
+    contextualable_screens: {details: 'attribute', metadata: 'metadata'},
+};
+
 export const StoryView = () => {
     const [data, setData] = useState(dataObj); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [summary, setSummary] = useState('');
+    const [beaconSent, setBeaconSent] = useState(false);
+
+    let jsApi = window?.jsApi ? window.jsApi : mockData;
 
     const fetchData = async (id) => {
         setIsLoading(true);
@@ -146,6 +207,82 @@ export const StoryView = () => {
         }
     };
 
+    const sendInReview = (id) => {
+        // Check if story should be moved to 'in review'
+        // const inReview = document.querySelector('#js-story-reviewing');
+        // if (inReview === null) {
+        //     return false;
+        // }
+        // // Double check in review value
+        // const inReviewStatus = inReview.getAttribute('data-value');
+        // if (inReviewStatus !== 'true') {
+        //     return false;
+        // }
+
+        // Check if we can get user's name
+        const userStatusEl = document.querySelector('#user-status');
+        // if (userStatusEl === null) {
+        //     logMsg('Tried to update the story status description but information about the user are missing...');
+        //     return false;
+        // }
+        const userDetails = userStatusEl.getAttribute('data-fullname') || '';
+        // if (userDetails === '') {
+        //     logMsg('Tried to update the story status description but information about the user are missing...');
+        //     return false;
+        // }
+
+        // Looks like we have all the informatin in place
+
+        // Build in review message
+        const msg = `${userDetails} is reviewing`;
+
+        const fieldsActions = [];
+
+        // Action #1: Update Status Description
+        const statusField = chCfg.metaFields.hubStatusDescription;
+        fieldsActions[statusField] = msg;
+
+        jsApi.setMetadataAllFields({
+            asset_id: id,
+            field_info: fieldsActions,
+            dataCallback: (resp) => {
+                if (typeof resp === 'object') {
+                    resp = JSON.stringify(resp);
+                }
+            },
+        });
+
+        if (typeof navigator.sendBeacon !== 'function') {
+            return false;
+        }
+        // Use Beacon API to send update :: on page unload
+        setBeaconSent(false);
+
+        window.addEventListener('unload', sendBeacon, {capture: true});
+        window.addEventListener('beforeunload', sendBeacon, {capture: true});
+        window.addEventListener('pagehide', sendBeacon, {capture: true});
+    };
+
+    const sendBeacon = () => {
+        console.log('Send Beacon!');
+        if (beaconSent !== false) {
+            return;
+        }
+        const beaconUrl = chCfg.endpoints.beacon;
+
+        // Build data for beacon
+        const data = {id: data.id};
+
+        // Send beacon to update the state
+        navigator.sendBeacon(beaconUrl, JSON.stringify(data));
+
+        // Add log msg to see if this was triggered
+        console.log('beacon triggered');
+
+        // Store beacon state
+        setBeaconSent(true);
+    };
+
     useEffect(() => {
         setIsLoading(true);
         let id = window.location.search;
@@ -157,6 +294,7 @@ export const StoryView = () => {
         if (id) {
             fetchData(id);
             console.log('fetch');
+            sendInReview(id);
         } else {
             setData(dataObj);
             console.log('assign');

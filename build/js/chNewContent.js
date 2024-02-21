@@ -342,7 +342,7 @@ var NewContent = function NewContent() {
       baseUrl = _useState18[0],
       setUrl = _useState18[1];
 
-  var _useState19 = (0,react.useState)('Select an option'),
+  var _useState19 = (0,react.useState)('Newest to Oldest'),
       _useState20 = NewContent_slicedToArray(_useState19, 2),
       sortBySelected = _useState20[0],
       setSortBySelected = _useState20[1];

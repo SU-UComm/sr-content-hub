@@ -235,8 +235,6 @@ var helperFunctions = __webpack_require__(6859);
 var dist_module = __webpack_require__(6665);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
 var SelectedFilters = __webpack_require__(5634);
-// EXTERNAL MODULE: ./node_modules/react-router-dom/index.js
-var react_router_dom = __webpack_require__(9342);
 ;// CONCATENATED MODULE: ./src/modules/NewContent/NewContent.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -571,12 +569,10 @@ var NewContent = function NewContent() {
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(react_router_dom/* BrowserRouter */.VK, {
-      key: index
-    }, /*#__PURE__*/react.createElement(Card/* Card */.Z, {
+    return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
       data: contentItem
-    }));
+    });
   })), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,
@@ -596,6 +592,7 @@ var NoContent = function NoContent() {
 };
 ;// CONCATENATED MODULE: ./src/modules/MyContent/MyContent.jsx
 function MyContent_typeof(obj) { "@babel/helpers - typeof"; return MyContent_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, MyContent_typeof(obj); }
+
 
 
 
@@ -650,7 +647,7 @@ function MyContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var MyContent = function MyContent() {
-  var _window, _window$data, _window$data$texts, _window$data$texts$my, _window2, _window2$data, _window2$data$texts, _window2$data$texts$m;
+  var _window2, _window2$data, _window2$data$texts, _window2$data$texts$m, _window3, _window3$data, _window3$data$texts, _window3$data$texts$m;
 
   var _useState = (0,react.useState)([]),
       _useState2 = MyContent_slicedToArray(_useState, 2),
@@ -706,19 +703,25 @@ var MyContent = function MyContent() {
       setStatusSelected = _useState20[1];
 
   var fetchData = /*#__PURE__*/function () {
-    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(url) {
-      var d, params;
+    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(source, url) {
+      var d, params, _d2, _params;
+
       return MyContent_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
 
-              _context.prev = 1;
-              _context.next = 4;
+              if (!(source == 'fb')) {
+                _context.next = 24;
+                break;
+              }
+
+              _context.prev = 2;
+              _context.next = 5;
               return (0,requests/* fetchFBData */.gV)(url);
 
-            case 4:
+            case 5:
               d = _context.sent;
               setFacets(d.response.facets);
               setStatusLabels(d.response.facets[1].allValues);
@@ -727,35 +730,75 @@ var MyContent = function MyContent() {
               setResultsSummary(d.response.resultPacket.resultsSummary);
               params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(params);
-              console.log('REQUEST FUNCTION data in all content: ', d);
-              _context.next = 18;
+              console.log('REQUEST FUNCTION data in MY content: ', d);
+              _context.next = 19;
               break;
 
-            case 15:
-              _context.prev = 15;
-              _context.t0 = _context["catch"](1);
+            case 16:
+              _context.prev = 16;
+              _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               setIsLoading(false);
-              return _context.finish(18);
+              return _context.finish(19);
 
-            case 21:
+            case 22:
+              _context.next = 44;
+              break;
+
+            case 24:
+              _context.prev = 24;
+              _context.next = 27;
+              return (0,requests/* getMyContent */.Wc)();
+
+            case 27:
+              _d2 = _context.sent;
+              setFacets(_d2.response.facets);
+              setStatusLabels(_d2.response.facets[1].allValues);
+              setData(_d2);
+              setResults(_d2.response.resultPacket.results);
+              setResultsSummary(_d2.response.resultPacket.resultsSummary);
+              _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
+              setQueryParams(_params);
+              console.log('MY content MATRIX FETCH: ', _d2);
+              _context.next = 41;
+              break;
+
+            case 38:
+              _context.prev = 38;
+              _context.t1 = _context["catch"](24);
+              console.error('Error fetching data:', _context.t1);
+
+            case 41:
+              _context.prev = 41;
+              setIsLoading(false);
+              return _context.finish(41);
+
+            case 44:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 15, 18, 21]]);
+      }, _callee, null, [[2, 16, 19, 22], [24, 38, 41, 44]]);
     }));
 
-    return function fetchData(_x) {
+    return function fetchData(_x, _x2) {
       return _ref.apply(this, arguments);
     };
   }();
 
   (0,react.useEffect)(function () {
-    fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+    var _window, _window$data, _window$data$contentH;
+
+    var myContentApi = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search.myContent;
+
+    if (myContentApi) {
+      fetchData('matrix', '');
+    }
+
+    fetchData('fb', 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
@@ -850,11 +893,11 @@ var MyContent = function MyContent() {
     color: "#B1040E",
     secondaryColor: "gray",
     ariaLabel: "oval-loading"
-  }) : /*#__PURE__*/react.createElement("div", {
+  }) : results.length > 1 ? /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
-    headingText: (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$texts = _window$data.texts) === null || _window$data$texts === void 0 ? void 0 : (_window$data$texts$my = _window$data$texts.mycontent) === null || _window$data$texts$my === void 0 ? void 0 : _window$data$texts$my.headingText,
-    subHeadingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$m = _window2$data$texts.mycontent) === null || _window2$data$texts$m === void 0 ? void 0 : _window2$data$texts$m.subHeadingText,
+    headingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$m = _window2$data$texts.mycontent) === null || _window2$data$texts$m === void 0 ? void 0 : _window2$data$texts$m.headingText,
+    subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$m = _window3$data$texts.mycontent) === null || _window3$data$texts$m === void 0 ? void 0 : _window3$data$texts$m.subHeadingText,
     homeButton: true
   }), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("div", {
     className: "su-mb-20"
@@ -877,17 +920,15 @@ var MyContent = function MyContent() {
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results ? results.map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(react_router_dom/* BrowserRouter */.VK, {
-      key: index
-    }, /*#__PURE__*/react.createElement(Card/* Card */.Z, {
+    return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
       data: contentItem
-    }));
+    });
   }) : /*#__PURE__*/react.createElement(NoContent, null)), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,
     onChange: onChange
-  })));
+  }))) : /*#__PURE__*/react.createElement(NoContent, null);
 };
 ;// CONCATENATED MODULE: ./src/modules/NewContent.jsx
 // Imports

@@ -159,9 +159,7 @@ export const NewContent = () => {
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                     {results.map((contentItem, index) => (
-                        <BrowserRouter key={index}>
-                            <Card key={index} data={contentItem} />
-                        </BrowserRouter>
+                        <Card key={index} data={contentItem} />
                     ))}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />

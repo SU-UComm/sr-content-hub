@@ -71,6 +71,29 @@ export const getUserData = async () => {
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
  */
+export const getMyContent = async () => {
+    const requestUrl = contentHubAPI.search.myContent;
+
+    const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+        },
+    }).then((res) => {
+        return (res = res.json());
+    });
+    console.log('myContent resp: ', response);
+
+    return response;
+};
+
+/**
+ * GET relatedMedia Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
 export const getMedia = async (assetID) => {
     const requestUrl = `${contentHubAPI.modules.relatedMedia}${assetID}`;
     const response = await fetch(requestUrl, {

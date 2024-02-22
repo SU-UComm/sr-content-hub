@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PageHeading} from '../Home/PageHeading.jsx';
 import {CPFilter} from '../Filters/CPFilter.jsx';
-import {fetchFBData} from '../Helpers/requests.js';
+import {fetchFBData, getMyContent} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
@@ -24,28 +24,52 @@ export const MyContent = () => {
     const [sortBySelected, setSortBySelected] = useState('Select an option');
     const [statusSelected, setStatusSelected] = useState('All');
 
-    const fetchData = async (url) => {
+    const fetchData = async (source, url) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
-        try {
-            const d = await fetchFBData(url);
-            setFacets(d.response.facets);
-            setStatusLabels(d.response.facets[1].allValues);
-            setData(d);
-            setResults(d.response.resultPacket.results);
-            setResultsSummary(d.response.resultPacket.resultsSummary);
-            let params = getQueryStringParams(url);
-            setQueryParams(params);
-            console.log('REQUEST FUNCTION data in all content: ', d);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        } finally {
-            setIsLoading(false);
+        if (source == 'fb') {
+            try {
+                const d = await fetchFBData(url);
+                setFacets(d.response.facets);
+                setStatusLabels(d.response.facets[1].allValues);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                let params = getQueryStringParams(url);
+                setQueryParams(params);
+                console.log('REQUEST FUNCTION data in MY content: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            try {
+                const d = await getMyContent();
+                setFacets(d.response.facets);
+                setStatusLabels(d.response.facets[1].allValues);
+                setData(d);
+                setResults(d.response.resultPacket.results);
+                setResultsSummary(d.response.resultPacket.resultsSummary);
+                let params = getQueryStringParams(url);
+                setQueryParams(params);
+                console.log('MY content MATRIX FETCH: ', d);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
     useEffect(() => {
+        let myContentApi = window?.data?.contentHubAPI?.search.myContent;
+        if (myContentApi) {
+            fetchData('matrix', '');
+        }
+
         fetchData(
+            'fb',
             'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
         );
     }, []);
@@ -106,7 +130,7 @@ export const MyContent = () => {
 
     return isLoading ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
-    ) : (
+    ) : results.length > 1 ? (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10">
             <PageHeading headingText={window?.data?.texts?.mycontent?.headingText} subHeadingText={window?.data?.texts?.mycontent?.subHeadingText} homeButton={true} />
             <section>
@@ -125,18 +149,12 @@ export const MyContent = () => {
                     <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results ? (
-                        results.map((contentItem, index) => (
-                            <BrowserRouter key={index}>
-                                <Card key={index} data={contentItem} />
-                            </BrowserRouter>
-                        ))
-                    ) : (
-                        <NoContent />
-                    )}
+                    {results ? results.map((contentItem, index) => <Card key={index} data={contentItem} />) : <NoContent />}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>
         </div>
+    ) : (
+        <NoContent />
     );
 };

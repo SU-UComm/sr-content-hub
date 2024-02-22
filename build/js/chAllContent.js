@@ -456,8 +456,6 @@ var SelectedFilters = __webpack_require__(5634);
 var helperFunctions = __webpack_require__(6859);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
 var dist_module = __webpack_require__(6665);
-// EXTERNAL MODULE: ./node_modules/react-router-dom/index.js
-var react_router_dom = __webpack_require__(9342);
 ;// CONCATENATED MODULE: ./src/modules/AllContent/AllContent.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -517,7 +515,7 @@ function AllContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AllContent = function AllContent() {
-  var _window2, _window2$data, _window2$data$texts, _window2$data$texts$a, _window3, _window3$data, _window3$data$texts, _window3$data$texts$n;
+  var _window3, _window3$data, _window3$data$texts, _window3$data$texts$a, _window4, _window4$data, _window4$data$texts, _window4$data$texts$n;
 
   var _useState = (0,react.useState)(false),
       _useState2 = AllContent_slicedToArray(_useState, 2),
@@ -696,9 +694,11 @@ var AllContent = function AllContent() {
   }();
 
   (0,react.useEffect)(function () {
-    var _window, _window$data, _window$data$contentH;
+    var _window, _window$data, _window2, _window2$data, _window2$data$content;
 
-    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search;
+    var userData = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user;
+    setUserData(userData);
+    var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
 
     if (url) {
       fetchData('allContent', 'matrix'); // getSearchData('newContent', '');
@@ -819,8 +819,8 @@ var AllContent = function AllContent() {
   }) : /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
-    headingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$a = _window2$data$texts.allcontent) === null || _window2$data$texts$a === void 0 ? void 0 : _window2$data$texts$a.headingText,
-    subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.subHeadingText,
+    headingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$a = _window3$data$texts.allcontent) === null || _window3$data$texts$a === void 0 ? void 0 : _window3$data$texts$a.headingText,
+    subHeadingText: (_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$texts = _window4$data.texts) === null || _window4$data$texts === void 0 ? void 0 : (_window4$data$texts$n = _window4$data$texts.newcontent) === null || _window4$data$texts$n === void 0 ? void 0 : _window4$data$texts$n.subHeadingText,
     homeButton: true
   }), /*#__PURE__*/react.createElement(SearchBar, {
     onChange: onChange,
@@ -839,11 +839,11 @@ var AllContent = function AllContent() {
   }, /*#__PURE__*/react.createElement(CPFilter, {
     facets: CPLabels,
     onChange: onChange
-  }))), /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
+  }))), userData.userType === 'UCOMM' ? /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
     facets: statusLabel,
     onChange: onChange,
     selectedValue: statusSelected
-  }), /*#__PURE__*/react.createElement(DateRangeFilter, {
+  }) : null, /*#__PURE__*/react.createElement(DateRangeFilter, {
     facets: dateLabel,
     onChange: onChange,
     selectedValue: dateSelected
@@ -862,12 +862,10 @@ var AllContent = function AllContent() {
   }))), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(react_router_dom/* BrowserRouter */.VK, {
-      key: index
-    }, /*#__PURE__*/react.createElement(Card/* Card */.Z, {
+    return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
       data: contentItem
-    }));
+    });
   })), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,

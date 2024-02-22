@@ -75,6 +75,8 @@ export const AllContent = () => {
     };
 
     useEffect(() => {
+        let userData = window?.data?.user;
+        setUserData(userData);
         let url = window?.data?.contentHubAPI?.search;
         if (url) {
             fetchData('allContent', 'matrix');
@@ -174,7 +176,7 @@ export const AllContent = () => {
                             </div>
                         </div>
                         {/* CP Filter */}
-                        <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
+                        {userData.userType === 'UCOMM' ? <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} /> : null}
                         <DateRangeFilter facets={dateLabel} onChange={onChange} selectedValue={dateSelected} />
                     </div>
                     <SelectedFacets onChange={onChange} facets={facets} />
@@ -191,9 +193,7 @@ export const AllContent = () => {
                 {/* Cards */}
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                     {results.map((contentItem, index) => (
-                        <BrowserRouter key={index}>
-                            <Card key={index} data={contentItem} />
-                        </BrowserRouter>
+                        <Card key={index} data={contentItem} />
                     ))}
                 </ul>
                 {/* Cards end */}

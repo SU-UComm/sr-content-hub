@@ -64,6 +64,8 @@ var requests = __webpack_require__(9072);
 var dist_module = __webpack_require__(6665);
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
 var StatusFilter = __webpack_require__(1948);
+// EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
+var SelectedFilters = __webpack_require__(5634);
 ;// CONCATENATED MODULE: ./src/modules/Home/ContentRegion.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -105,6 +107,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -294,7 +297,7 @@ var ContentRegion = function ContentRegion() {
   }, "View all ", ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(7142)
-  })))), ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'CP' && results.length > 1 ? /*#__PURE__*/react.createElement("div", {
+  })))), ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'CP' && results.length > 1 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
     className: "su-mb-60"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"
@@ -302,7 +305,10 @@ var ContentRegion = function ContentRegion() {
     facets: statusLabel,
     onChange: onChange,
     selectedValue: statusSelected
-  }))) : null, /*#__PURE__*/react.createElement("p", {
+  }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
+    onChange: onChange,
+    facets: facets
+  })) : null, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
   }, ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? "1-5 of ".concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",

@@ -5,6 +5,7 @@ import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFuncti
 import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
+import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 
 export const ContentRegion = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
@@ -100,11 +101,14 @@ export const ContentRegion = () => {
                 </div>
             </div>
             {window?.data?.user?.userType === 'CP' && results.length > 1 ? (
-                <div className="su-mb-60">
-                    <div className="su-w-full md:su-w-1/2">
-                        <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
+                <>
+                    <div className="su-mb-60">
+                        <div className="su-w-full md:su-w-1/2">
+                            <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
+                        </div>
                     </div>
-                </div>
+                    <SelectedFacets onChange={onChange} facets={facets} />
+                </>
             ) : null}
 
             <p className="su-leading-[2] su-mb-20">{window?.data?.user?.userType === 'UCOMM' ? `1-5 of ${resultsSummary.totalMatching} results waiting for review` : ''}</p>

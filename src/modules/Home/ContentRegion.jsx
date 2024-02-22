@@ -16,7 +16,7 @@ export const ContentRegion = () => {
     const [statusSelected, setStatusSelected] = useState('All');
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
 
-    const fetchData = async (url, func) => {
+    const fetchData = async (url, func, query) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
         if (func == 'fb') {
@@ -27,7 +27,7 @@ export const ContentRegion = () => {
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                console.log('REQUEST FUNCTION data in all content: ', d);
+                console.log('REQUEST FUNCTION data in home: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -35,13 +35,14 @@ export const ContentRegion = () => {
             }
         } else {
             try {
-                const d = await getSearchData(url, '');
+                let q = query ? query : '';
+                const d = await getSearchData(url, q);
                 setStatusLabels(d.response.facets[1].allValues);
                 setFacets(d.response.facets);
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                console.log('REQUEST FUNCTION data in all content: ', d);
+                console.log('REQUEST FUNCTION data in home: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -79,7 +80,7 @@ export const ContentRegion = () => {
             }
         }
         let fetchUrl = baseUrl + value;
-        fetchData(fetchUrl, 'matrix');
+        fetchData('allContent', 'matrix', value);
     };
 
     return isLoading ? (

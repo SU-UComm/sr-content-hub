@@ -160,8 +160,8 @@ var ContentRegion = function ContentRegion() {
       setUrl = _useState16[1];
 
   var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, _d2;
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func, query) {
+      var d, q, _d2;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -185,7 +185,7 @@ var ContentRegion = function ContentRegion() {
               setData(d);
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
-              console.log('REQUEST FUNCTION data in all content: ', d);
+              console.log('REQUEST FUNCTION data in home: ', d);
               _context.next = 17;
               break;
 
@@ -200,44 +200,45 @@ var ContentRegion = function ContentRegion() {
               return _context.finish(17);
 
             case 20:
-              _context.next = 40;
+              _context.next = 41;
               break;
 
             case 22:
               _context.prev = 22;
-              _context.next = 25;
-              return (0,requests/* getSearchData */.Im)(url, '');
+              q = query ? query : '';
+              _context.next = 26;
+              return (0,requests/* getSearchData */.Im)(url, q);
 
-            case 25:
+            case 26:
               _d2 = _context.sent;
               setStatusLabels(_d2.response.facets[1].allValues);
               setFacets(_d2.response.facets);
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              console.log('REQUEST FUNCTION data in all content: ', _d2);
-              _context.next = 37;
+              console.log('REQUEST FUNCTION data in home: ', _d2);
+              _context.next = 38;
               break;
 
-            case 34:
-              _context.prev = 34;
+            case 35:
+              _context.prev = 35;
               _context.t1 = _context["catch"](22);
               console.error('Error fetching data:', _context.t1);
 
-            case 37:
-              _context.prev = 37;
+            case 38:
+              _context.prev = 38;
               setIsLoading(false);
-              return _context.finish(37);
+              return _context.finish(38);
 
-            case 40:
+            case 41:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 14, 17, 20], [22, 34, 37, 40]]);
+      }, _callee, null, [[2, 14, 17, 20], [22, 35, 38, 41]]);
     }));
 
-    return function fetchData(_x, _x2) {
+    return function fetchData(_x, _x2, _x3) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -273,7 +274,7 @@ var ContentRegion = function ContentRegion() {
     }
 
     var fetchUrl = baseUrl + value;
-    fetchData(fetchUrl, 'matrix');
+    fetchData('allContent', 'matrix', value);
   };
 
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {

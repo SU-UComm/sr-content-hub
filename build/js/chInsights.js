@@ -732,23 +732,25 @@ var StoryView = function StoryView() {
       id = parseInt(match[1], 10);
     }
 
-    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType; // if (id) {
+    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType;
 
-    fetchData(id);
-    console.log('fetch');
+    if (id) {
+      fetchData(id);
+      console.log('fetch');
 
-    if (userType === 'UCOMM') {
-      sendInReview(id);
-    } // } else {
-    //     setData(dataObj);
-    //     console.log('assign');
-    //     let summary = decodeHTML(data.metadata.srcSummary[0]);
-    //     setSummary(summary);
-    // }
-    // setIsLoading(false);
+      if (userType === 'UCOMM') {
+        sendInReview(id);
+      }
+    } else {
+      setData(StoryView_dataObj);
+      console.log('assign');
 
+      var _summary2 = decodeHTML(data.metadata.srcSummary[0]);
+
+      setSummary(_summary2);
+    }
   }, []);
-  return isLoading && !data ? /*#__PURE__*/React.createElement(Oval, {
+  return isLoading || data == null ? /*#__PURE__*/React.createElement(Oval, {
     visible: true,
     height: "80",
     width: "80",

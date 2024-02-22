@@ -302,22 +302,21 @@ export const StoryView = () => {
         }
         let userType = window?.data?.user?.userType;
 
-        // if (id) {
-        fetchData(id);
-        console.log('fetch');
-        if (userType === 'UCOMM') {
-            sendInReview(id);
+        if (id) {
+            fetchData(id);
+            console.log('fetch');
+            if (userType === 'UCOMM') {
+                sendInReview(id);
+            }
+        } else {
+            setData(dataObj);
+            console.log('assign');
+            let summary = decodeHTML(data.metadata.srcSummary[0]);
+            setSummary(summary);
         }
-        // } else {
-        //     setData(dataObj);
-        //     console.log('assign');
-        //     let summary = decodeHTML(data.metadata.srcSummary[0]);
-        //     setSummary(summary);
-        // }
-        // setIsLoading(false);
     }, []);
 
-    return isLoading && !data ? (
+    return isLoading || data == null ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10" id="view-story" data-id={data.id}>

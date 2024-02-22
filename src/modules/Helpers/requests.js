@@ -116,7 +116,7 @@ export const getMedia = async (assetID) => {
  * @returns {object} JSON object
  */
 export const getAPIData = async (assetID) => {
-    const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata`;
+    const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata,url`;
     console.log('URL,', requestUrl);
     const response = await fetch(requestUrl, {
         method: 'GET',

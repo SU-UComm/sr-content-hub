@@ -281,8 +281,8 @@ var FullStory_FullStory = function FullStory(props) {
     className: "su-py-20 [&>p:last-child]:su-mb-0"
   }, /*#__PURE__*/react.createElement("iframe", {
     id: "story-content-iframe",
-    src: "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast?SQ_DESIGN_NAME=content_only",
-    "data-src": "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast",
+    src: props.frameUrl + '?SQ_DESIGN_NAME=content_only',
+    "data-src": props.frameUrl,
     style: {
       width: '100%',
       height: '750px',
@@ -336,7 +336,8 @@ FullStory_FullStory.propTypes = {
     bylineAuthor: (prop_types_default()).string,
     name: (prop_types_default()).string,
     id: (prop_types_default()).string
-  })
+  }),
+  frameUrl: (prop_types_default()).string
 };
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
 var helperFunctions = __webpack_require__(6859);
@@ -889,7 +890,8 @@ var StoryView = function StoryView() {
   }))))), /*#__PURE__*/React.createElement("div", {
     className: "su-flex su-flex-col su-gap-[10px]"
   })), /*#__PURE__*/React.createElement(FullStory, {
-    data: data
+    data: data,
+    frameUrl: data.url
   }));
 };
 ;// CONCATENATED MODULE: ./src/modules/Insights.jsx

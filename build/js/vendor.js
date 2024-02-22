@@ -2015,7 +2015,7 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,url");
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
             console.log('URL,', requestUrl);
             _context5.next = 4;
             return fetch(requestUrl, {

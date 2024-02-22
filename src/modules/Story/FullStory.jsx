@@ -105,8 +105,8 @@ export const FullStory = (props) => {
                         <div className="su-py-20 [&>p:last-child]:su-mb-0">
                             <iframe
                                 id="story-content-iframe"
-                                src="https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast?SQ_DESIGN_NAME=content_only"
-                                data-src="https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-law-school/sls-relaunches-stanford-legal-podcast"
+                                src={props.frameUrl + '?SQ_DESIGN_NAME=content_only'}
+                                data-src={props.frameUrl}
                                 style={{
                                     width: '100%',
                                     height: '750px',
@@ -166,4 +166,5 @@ FullStory.propTypes = {
         name: PropTypes.string,
         id: PropTypes.string,
     }),
+    frameUrl: PropTypes.string,
 };

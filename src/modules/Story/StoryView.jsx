@@ -448,7 +448,7 @@ export const StoryView = () => {
                 <div className="su-flex su-flex-col su-gap-[10px]"></div>
             </section>
 
-            <FullStory data={data} />
+            <FullStory data={data} frameUrl={data.url} />
         </div>
     );
 };

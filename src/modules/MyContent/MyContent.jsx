@@ -130,7 +130,7 @@ export const MyContent = () => {
 
     return isLoading ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
-    ) : results.length > 1 ? (
+    ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10">
             <PageHeading headingText={window?.data?.texts?.mycontent?.headingText} subHeadingText={window?.data?.texts?.mycontent?.subHeadingText} homeButton={true} />
             <section>
@@ -149,12 +149,10 @@ export const MyContent = () => {
                     <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results ? results.map((contentItem, index) => <Card key={index} data={contentItem} />) : <NoContent />}
+                    {results && results.length > 1 ? results.map((contentItem, index) => <Card key={index} data={contentItem} />) : <NoContent />}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>
         </div>
-    ) : (
-        <NoContent />
     );
 };

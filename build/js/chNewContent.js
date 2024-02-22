@@ -893,7 +893,7 @@ var MyContent = function MyContent() {
     color: "#B1040E",
     secondaryColor: "gray",
     ariaLabel: "oval-loading"
-  }) : results.length > 1 ? /*#__PURE__*/react.createElement("div", {
+  }) : /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
     headingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$m = _window2$data$texts.mycontent) === null || _window2$data$texts$m === void 0 ? void 0 : _window2$data$texts$m.headingText,
@@ -919,7 +919,7 @@ var MyContent = function MyContent() {
     selectedValue: sortBySelected
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
-  }, results ? results.map(function (contentItem, index) {
+  }, results && results.length > 1 ? results.map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
       data: contentItem
@@ -928,7 +928,7 @@ var MyContent = function MyContent() {
     data: data,
     summary: resultsSummary,
     onChange: onChange
-  }))) : /*#__PURE__*/react.createElement(NoContent, null);
+  })));
 };
 ;// CONCATENATED MODULE: ./src/modules/NewContent.jsx
 // Imports

@@ -463,7 +463,12 @@ export const StoryView = () => {
                 <div className="su-flex su-flex-col su-gap-[10px]">
                     <p className="small-heading su-p-0 su-m-0">Version History</p>
                     <ul className="su-py-20 su-p-0 su-m-0 su-list-none su-text-[18px] su-leading-[100%]">
-                        <li>{convertISOToReadableDate(data.status_changed.date)} - New version of story pushed from source</li>
+                        {data.metadata.hubVersionHistory &&
+                            data.metadata.hubVersionHistory.map((el, index) => (
+                                <li key={index}>
+                                    {el.date} - {el.message} {}
+                                </li>
+                            ))}
                     </ul>
                 </div>
             </section>

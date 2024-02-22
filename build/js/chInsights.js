@@ -39,6 +39,8 @@ var es_string_search = __webpack_require__(4765);
 var es_string_match = __webpack_require__(4723);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__(8309);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -81,8 +83,6 @@ var dist_module = __webpack_require__(6665);
 var Card_CardButtons = __webpack_require__(9993);
 // EXTERNAL MODULE: ./src/modules/Helpers/dateHelpers.js
 var dateHelpers = __webpack_require__(9113);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(5697);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
@@ -342,6 +342,7 @@ FullStory_FullStory.propTypes = {
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
 var helperFunctions = __webpack_require__(6859);
 ;// CONCATENATED MODULE: ./src/modules/Story/StoryView.jsx
+
 
 
 
@@ -917,7 +918,11 @@ var StoryView = function StoryView() {
     className: "small-heading su-p-0 su-m-0"
   }, "Version History"), /*#__PURE__*/React.createElement("ul", {
     className: "su-py-20 su-p-0 su-m-0 su-list-none su-text-[18px] su-leading-[100%]"
-  }, /*#__PURE__*/React.createElement("li", null, convertISOToReadableDate(data.status_changed.date), " - New version of story pushed from source")))), /*#__PURE__*/React.createElement(FullStory, {
+  }, data.metadata.hubVersionHistory && data.metadata.hubVersionHistory.map(function (el, index) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: index
+    }, el.date, " - ", el.message, " ");
+  })))), /*#__PURE__*/React.createElement(FullStory, {
     data: data,
     frameUrl: data.url
   }));

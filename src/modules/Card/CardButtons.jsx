@@ -65,8 +65,12 @@ export const CardButtons = (props) => {
     const sendDialogRef = useRef(null);
     const declineDialogRef = useRef(null);
     const [beaconSent, setBeaconSent] = useState(false);
-
+    const [textArea, setTextAreaValue] = useState('');
     let jsApi = window?.jsApi ? window.jsApi : mockData;
+
+    const onTextAreaValueChange = (val) => {
+        setTextAreaValue(val);
+    };
 
     // useEffect(() => {
     //     const handleClickOutside = (event) => {
@@ -126,7 +130,64 @@ export const CardButtons = (props) => {
 
     const handleDecline = (id) => {
         // Handle sending decline info
+        jsApi.getMetadata({
+            asset_id: props.assetId,
+            dataCallback: (resp) => {
+                // As a callback :: Prepare an update for the asset
+                prepareDeclineUpdate(props.assetId, resp);
+            },
+        });
+
         closeDeclineDialog(id);
+    };
+
+    const prepareDeclineUpdate = (id, currentState) => {
+        // Define Metadata Fields Actions Object
+        const fieldsActions = {};
+
+        // Action #1: Status Update:
+        const statusField = chCfg.metaFields.hubStatus;
+        const statusFieldValue = chCfg.hubStatuses.reviewed;
+        fieldsActions[statusField] = statusFieldValue;
+
+        // Action #2: Decline Message Update
+        let msgTxt = textArea;
+        const msgField = chCfg.metaFields.hubReviewMsg;
+
+        fieldsActions[msgField] = msgTxt;
+
+        // Action #3: Update Version History
+        const currentHistory = getHistoryState(currentState);
+
+        // Generate date and decline message
+        const thisDate = new Date().getTime();
+        const userEl = document.querySelector('#user-status');
+        const userDetails = userEl.getAttribute('data-fullname');
+
+        if (msgTxt.length === 0) {
+            msgTxt = 'No message';
+        }
+        const historyMessage = `Reviewed by ${userDetails}, Message: ${msgTxt}`;
+        const newEntry = {date: thisDate, message: historyMessage};
+        currentHistory.unshift(newEntry);
+
+        const currentHistoryStr = JSON.stringify(currentHistory);
+        const historyField = chCfg.metaFields.hubVersionHistory;
+        fieldsActions[historyField] = currentHistoryStr;
+
+        // Action #4: Clear Reviewed/Hub Description field
+        const descField = chCfg.metaFields.hubStatusDescription;
+        fieldsActions[descField] = '';
+
+        // All fields in place :: Update metadata
+        jsApi.setMetadataAllFields({
+            asset_id: id,
+            field_info: fieldsActions,
+            dataCallback: (resp) => {
+                // updateUi(btnEl, resp);
+                console.log('Decline resp: ', resp);
+            },
+        });
     };
 
     const handleSendFullContent = () => {
@@ -134,7 +195,7 @@ export const CardButtons = (props) => {
             asset_id: props.assetId,
             dataCallback: (resp) => {
                 // As a callback :: Prepare an update for the asset
-                prepareUpdate(props.assetId, 'Story', resp);
+                prepareApproveUpdate(props.assetId, 'Story', resp);
             },
         });
 
@@ -157,7 +218,7 @@ export const CardButtons = (props) => {
         return currentHistory;
     };
 
-    const prepareUpdate = (storyId, pageType, currentState) => {
+    const prepareApproveUpdate = (storyId, pageType, currentState) => {
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
 
@@ -364,7 +425,9 @@ export const CardButtons = (props) => {
                                 rows="5"
                                 autoComplete="off"
                                 aria-label="Optional note"
+                                value={textArea}
                                 id={`message-textarea-${props.assetId}-decline`}
+                                onChange={(e) => onTextAreaValueChange(e.target.value)}
                             ></textarea>
                             <div className="su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center">
                                 <button onClick={() => handleDecline(`dialogTitle-${props.assetId}-decline`)} aria-label="Decline" className="button-green js-decline-true">

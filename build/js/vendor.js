@@ -304,7 +304,16 @@ var CardButtons = function CardButtons(props) {
       beaconSent = _useState6[0],
       setBeaconSent = _useState6[1];
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData; // useEffect(() => {
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      textArea = _useState8[0],
+      setTextAreaValue = _useState8[1];
+
+  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
+
+  var onTextAreaValueChange = function onTextAreaValueChange(val) {
+    setTextAreaValue(val);
+  }; // useEffect(() => {
   //     const handleClickOutside = (event) => {
   //         if (sendDialogRef.current && !sendDialogRef.current.contains(event.target)) {
   //             closeSendDialog(event.target.getAttribute('data-id'));
@@ -318,6 +327,7 @@ var CardButtons = function CardButtons(props) {
   //         document.removeEventListener('click', handleClickOutside);
   //     };
   // }, []);
+
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -357,7 +367,59 @@ var CardButtons = function CardButtons(props) {
 
   var handleDecline = function handleDecline(id) {
     // Handle sending decline info
+    jsApi.getMetadata({
+      asset_id: props.assetId,
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareDeclineUpdate(props.assetId, resp);
+      }
+    });
     closeDeclineDialog(id);
+  };
+
+  var prepareDeclineUpdate = function prepareDeclineUpdate(id, currentState) {
+    // Define Metadata Fields Actions Object
+    var fieldsActions = {}; // Action #1: Status Update:
+
+    var statusField = chCfg.metaFields.hubStatus;
+    var statusFieldValue = chCfg.hubStatuses.reviewed;
+    fieldsActions[statusField] = statusFieldValue; // Action #2: Decline Message Update
+
+    var msgTxt = textArea;
+    var msgField = chCfg.metaFields.hubReviewMsg;
+    fieldsActions[msgField] = msgTxt; // Action #3: Update Version History
+
+    var currentHistory = getHistoryState(currentState); // Generate date and decline message
+
+    var thisDate = new Date().getTime();
+    var userEl = document.querySelector('#user-status');
+    var userDetails = userEl.getAttribute('data-fullname');
+
+    if (msgTxt.length === 0) {
+      msgTxt = 'No message';
+    }
+
+    var historyMessage = "Reviewed by ".concat(userDetails, ", Message: ").concat(msgTxt);
+    var newEntry = {
+      date: thisDate,
+      message: historyMessage
+    };
+    currentHistory.unshift(newEntry);
+    var currentHistoryStr = JSON.stringify(currentHistory);
+    var historyField = chCfg.metaFields.hubVersionHistory;
+    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
+
+    var descField = chCfg.metaFields.hubStatusDescription;
+    fieldsActions[descField] = ''; // All fields in place :: Update metadata
+
+    jsApi.setMetadataAllFields({
+      asset_id: id,
+      field_info: fieldsActions,
+      dataCallback: function dataCallback(resp) {
+        // updateUi(btnEl, resp);
+        console.log('Decline resp: ', resp);
+      }
+    });
   };
 
   var handleSendFullContent = function handleSendFullContent() {
@@ -365,7 +427,7 @@ var CardButtons = function CardButtons(props) {
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
         // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.assetId, 'Story', resp);
+        prepareApproveUpdate(props.assetId, 'Story', resp);
       }
     });
     closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
@@ -389,7 +451,7 @@ var CardButtons = function CardButtons(props) {
     return currentHistory;
   };
 
-  var prepareUpdate = function prepareUpdate(storyId, pageType, currentState) {
+  var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
     // Define Metadata Fields Actions Object
     var fieldsActions = {}; // Action #1: Status Update:
 
@@ -628,7 +690,11 @@ var CardButtons = function CardButtons(props) {
     rows: "5",
     autoComplete: "off",
     "aria-label": "Optional note",
-    id: "message-textarea-".concat(props.assetId, "-decline")
+    value: textArea,
+    id: "message-textarea-".concat(props.assetId, "-decline"),
+    onChange: function onChange(e) {
+      return onTextAreaValueChange(e.target.value);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {

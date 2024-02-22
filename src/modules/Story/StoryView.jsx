@@ -198,7 +198,8 @@ export const StoryView = () => {
             const d = await getAPIData(id);
             console.log('Story data: ', d);
             setData(d);
-            let summary = decodeHTML(d.metadata.srcSummary[0]);
+
+            let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -288,7 +289,7 @@ export const StoryView = () => {
         //     },
         // });
 
-        console.log('Send Beacon!');
+        console.log('Send Beacon unload!');
         if (beaconSent !== false) {
             return;
         }

@@ -605,7 +605,7 @@ var StoryView = function StoryView() {
               d = _context.sent;
               console.log('Story data: ', d);
               setData(d);
-              _summary = decodeHTML(d.metadata.srcSummary[0]);
+              _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);
               _context.next = 14;
               break;
@@ -714,7 +714,7 @@ var StoryView = function StoryView() {
     //         }
     //     },
     // });
-    console.log('Send Beacon!');
+    console.log('Send Beacon unload!');
 
     if (beaconSent !== false) {
       return;

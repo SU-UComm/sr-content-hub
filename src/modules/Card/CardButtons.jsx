@@ -78,6 +78,7 @@ export const CardButtons = (props) => {
         let userDetails = window?.data?.user.firstName + ' ' + window.data + window?.data?.user.lastName;
         const userEl = document.querySelector('#user-status');
         let pageUserDetails = userEl.getAttribute('data-fullname');
+        console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
         if (userDetails === pageUserDetails) {
             setUserMatch(true);
             console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);

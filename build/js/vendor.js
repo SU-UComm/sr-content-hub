@@ -319,6 +319,7 @@ var CardButtons = function CardButtons(props) {
     var userDetails = ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.firstName) + ' ' + window.data + ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.lastName);
     var userEl = document.querySelector('#user-status');
     var pageUserDetails = userEl.getAttribute('data-fullname');
+    console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
 
     if (userDetails === pageUserDetails) {
       setUserMatch(true);

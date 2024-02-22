@@ -392,49 +392,54 @@ function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var StoryView_dataObj = {
-  id: '128334',
+  id: '128490',
   type: 'page_standard',
   type_name: 'Standard Page',
-  version: '0.0.7',
-  name: '',
-  short_name: '',
+  version: '0.0.26',
+  name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
+  short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
   status: {
     id: 2,
     code: 'under_construction',
     name: 'Under Construction'
   },
   created: {
-    date: '2024-01-23T13:56:10-08:00',
+    date: '2024-01-25T09:36:45-08:00',
     user_id: '6004'
   },
   updated: {
-    date: '2024-01-25T02:46:43-08:00',
-    user_id: '57'
+    date: '2024-02-22T02:02:26-08:00',
+    user_id: '8993'
   },
   published: {
     date: null,
     user_id: null
   },
   status_changed: {
-    date: '2024-01-23T13:56:10-08:00',
+    date: '2024-01-25T09:36:45-08:00',
     user_id: '6004'
   },
+  urls: ['https://sug-web.matrix.squiz.cloud/content/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
+  url: 'https://sug-web.matrix.squiz.cloud/content/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
   attributes: {
-    short_name: '',
-    name: ''
+    name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
+    short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'
   },
   metadata: {
     hubStatus: ['submitted'],
     hubStatusDescription: [],
-    hubVersionHistory: ['[{"date":1706054817693,"message":"New version of story pushed from source"}]'],
+    hubVersionHistory: ['[{"date":1706204337603,"message":"New version of story pushed from source"}]'],
     hubReviewMsg: [],
-    seoTitle: ['SLS Relaunches ‘Stanford Legal’ Podcast'],
-    canonicalUrl: ['https://law.stanford.edu/press/sls-relaunches-stanford-legal-podcast/'],
+    seoTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
+    canonicalUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
     seoDescription: [],
-    seoKeywords: ['Stanford Legal, SLS News and Announcements, Yes, Public'],
-    robots: ['index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'],
-    publishedDate: ['2023-12-18 01:42:35'],
-    modifiedDate: ['2023-12-18 01:48:01'],
+    seoKeywords: ['Students'],
+    robots: [],
+    publishedDate: ['2023-11-03 12:03:55'],
+    modifiedDate: ['2023-11-03 14:47:06'],
+    includePageTopMargin: ['yes'],
+    includePageBottomMargin: ['yes'],
+    includePageHero: ['yes'],
     srAudience: [],
     srMessage: [],
     srContentType: [],
@@ -443,21 +448,25 @@ var StoryView_dataObj = {
     srContentMainTopic: [],
     srContentTopic: [],
     srContentSubtopic: [],
+    srAllCategories: [],
     embargoFlag: [],
-    embargoPublishDate: ['2024-01-01 00:00:00'],
+    embargoPublishDate: ['2023-01-01 00:00:00'],
     pageType: ['story'],
-    teaser: ['<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>'],
-    featuredImage: ['128338'],
+    teaser: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
+    featuredImage: ['128494'],
     featuredVideo: [],
+    featuredMediaCaption: [],
+    featuredMediaCredit: [],
     mediaContacts: [],
     featuredMediaOrientation: ['vertical'],
     storyLayout: ['Basic'],
     bannerImg: [],
     bannerCaption: [],
+    basicStoryBannerType: ['image'],
     bannerImgType: ['normal'],
-    summary: ['<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>'],
+    summary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
     storyFormat: ['standard'],
-    mediaAttachments: ['128338'],
+    mediaAttachments: ['128494'],
     featuredImageTwitter: [],
     featuredImageOg: [],
     hideSocialMedia: [],
@@ -469,7 +478,7 @@ var StoryView_dataObj = {
     contributorsVideographers: [],
     contributorsPhotographyDirector: [],
     contributorsMediaContacts: [],
-    bylineAuthor: ['Monica Schreiber'],
+    bylineAuthor: [],
     bylineText: [],
     bylineUrl: [],
     ogLocale: ['en_US'],
@@ -477,27 +486,27 @@ var StoryView_dataObj = {
     twitterCard: ['summary_large_image'],
     authorId: [],
     authorName: [],
-    srcOrigin: ['law.stanford.edu'],
+    srcOrigin: ['acceleratelearning.stanford.edu'],
     srcOriginType: ['Wordpress'],
-    srcContentSource: ['Stanford Law School'],
-    srcTitle: ['SLS Relaunches ‘Stanford Legal’ Podcast'],
-    srcSummary: ['<p>STANFORD, CA, December 18, 2023&mdash;Stanford Law School (SLS) announced today the relaunch of Stanford Legal, a bi-weekly podcast that delves into the cases, questions, conflicts, and legal issues that are [&hellip;]</p>'],
-    srcPublishedDate: ['2023-12-18 01:42:35'],
+    srcContentSource: ['Accelerator For Learning'],
+    srcTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
+    srcSummary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
+    srcPublishedDate: ['2023-11-03 12:03:55'],
     srcFeaturedImage: [],
-    slug: ['sls-relaunches-stanford-legal-podcast'],
-    srcKeywords: ['Stanford Legal, SLS News and Announcements, Yes, Public'],
-    srcPostId: ['458351'],
-    srcUrl: ['https://law.stanford.edu/press/sls-relaunches-stanford-legal-podcast/'],
+    slug: ['joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
+    srcKeywords: ['Students'],
+    srcPostId: ['2705'],
+    srcUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
     srcStatus: ['publish'],
-    debugFeedUrl: ['https://law.stanford.edu/wp-json/wp/v2/news/458351'],
-    debugPushTs: ['1706054760164'],
-    debugBlueprintId: ['128334'],
+    debugFeedUrl: ['https://acceleratelearning.stanford.edu/wp-json/wp/v2/story/2705'],
+    debugPushTs: ['1706204277313'],
+    debugBlueprintId: ['128490'],
     storyType: ['5981'],
     sections: [],
-    topics: [],
+    topics: ['5692'],
     messages: [],
     feeds: [],
-    contentPartners: ['5859'],
+    contentPartners: [],
     storyAudience: [],
     debug: []
   }
@@ -588,6 +597,10 @@ var StoryView = function StoryView() {
 
   var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
 
+  var copyUrl = function copyUrl() {
+    navigator.clipboard.writeText(data.url);
+  };
+
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
       var d, _summary;
@@ -633,6 +646,16 @@ var StoryView = function StoryView() {
       return _ref.apply(this, arguments);
     };
   }();
+
+  var convertISOToReadableDate = function convertISOToReadableDate(isoDate) {
+    var date = new Date(isoDate);
+    var options = {
+      month: 'long',
+      day: '2-digit',
+      year: 'numeric'
+    };
+    return date.toLocaleDateString('en-US', options);
+  };
 
   var sendInReview = function sendInReview(id) {
     // Check if we can get user's name
@@ -794,7 +817,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Main Category"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'))), /*#__PURE__*/React.createElement("li", {
+  }, data.metadata.srContentMainTopic && data.metadata.topics.length > 0 ? data.metadata.topics[0] : /*#__PURE__*/React.createElement("em", null, "N/A"))), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
@@ -806,31 +829,31 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Byline"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.bylineAuthor)), /*#__PURE__*/React.createElement("li", {
+  }, data.metadata.bylineAuthor && data.metadata.bylineAuthor.length > 0 ? data.metadata.bylineAuthor : /*#__PURE__*/React.createElement("em", null, "N/A"))), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Submitted on"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.created.date)), /*#__PURE__*/React.createElement("li", {
+  }, convertISOToReadableDate(data.created.date))), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Other Topics"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.topics.length > 0 ? data.metadata.topics : 'NA')), /*#__PURE__*/React.createElement("li", {
+  }, data.metadata.topics.length > 0 ? data.metadata.topics : /*#__PURE__*/React.createElement("em", null, "N/A"))), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "First Published"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.publishedDate)), /*#__PURE__*/React.createElement("li", {
+  }, convertISOToReadableDate(data.metadata.publishedDate))), /*#__PURE__*/React.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Other keywords"), /*#__PURE__*/React.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : 'NA'))))), /*#__PURE__*/React.createElement("div", {
+  }, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : /*#__PURE__*/React.createElement("em", null, "N/A"))))), /*#__PURE__*/React.createElement("div", {
     className: "su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray"
   }, /*#__PURE__*/React.createElement("p", {
     className: "small-heading su-m-0 su-p-0"
@@ -847,7 +870,7 @@ var StoryView = function StoryView() {
   }, /*#__PURE__*/React.createElement("a", {
     id: "story-mtx-link",
     className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
-    href: "https://sug-web.matrix.squiz.cloud/content/stories/content-partners/stanford-engineering/a-team-of-scientists-invent-a-method-to-modify-the-behavior-of-cells",
+    href: data.url,
     target: "_blank",
     rel: "noreferrer"
   }, "View full story", /*#__PURE__*/React.createElement("svg", {
@@ -869,6 +892,7 @@ var StoryView = function StoryView() {
     fill: "#fff",
     d: "M0 0h18v18H0z"
   }))))), /*#__PURE__*/React.createElement("button", {
+    onClick: copyUrl,
     className: "js-copy-link su-group su-flex su-items-center -su-tracking-[0.176px] su-justify-center sm:su-justify-start"
   }, "Copy Link", /*#__PURE__*/React.createElement("svg", {
     className: "su-ml-5 su-transition-colors su-text-red group-hover:su-text-white",
@@ -889,7 +913,11 @@ var StoryView = function StoryView() {
     fill: "currentColor"
   }))))), /*#__PURE__*/React.createElement("div", {
     className: "su-flex su-flex-col su-gap-[10px]"
-  })), /*#__PURE__*/React.createElement(FullStory, {
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "small-heading su-p-0 su-m-0"
+  }, "Version History"), /*#__PURE__*/React.createElement("ul", {
+    className: "su-py-20 su-p-0 su-m-0 su-list-none su-text-[18px] su-leading-[100%]"
+  }, /*#__PURE__*/React.createElement("li", null, convertISOToReadableDate(data.status_changed.date), " - New version of story pushed from source")))), /*#__PURE__*/React.createElement(FullStory, {
     data: data,
     frameUrl: data.url
   }));

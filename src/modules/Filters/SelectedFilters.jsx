@@ -49,6 +49,10 @@ export const SelectedFacets = (props) => {
             selectedItems = selectedItems.filter((entry) => entry.facetName !== 'hubStatus');
         }
 
+        if (props.page == 'myContent') {
+            selectedItems = selectedItems.filter((entry) => entry.facetName !== 'contentPartner');
+        }
+
         return selectedItems;
     };
 

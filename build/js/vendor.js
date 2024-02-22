@@ -866,6 +866,12 @@ var SelectedFacets = function SelectedFacets(props) {
       });
     }
 
+    if (props.page == 'myContent') {
+      selectedItems = selectedItems.filter(function (entry) {
+        return entry.facetName !== 'contentPartner';
+      });
+    }
+
     return selectedItems;
   };
 

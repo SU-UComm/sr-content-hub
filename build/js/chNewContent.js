@@ -692,7 +692,7 @@ var MyContent = function MyContent() {
       baseUrl = _useState16[0],
       setUrl = _useState16[1];
 
-  var _useState17 = (0,react.useState)('Select an option'),
+  var _useState17 = (0,react.useState)('Newest to Oldest'),
       _useState18 = MyContent_slicedToArray(_useState17, 2),
       sortBySelected = _useState18[0],
       setSortBySelected = _useState18[1];
@@ -909,8 +909,9 @@ var MyContent = function MyContent() {
     selectedValue: statusSelected
   }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
     onChange: onChange,
-    facets: facets
-  }), /*#__PURE__*/react.createElement("div", {
+    facets: facets,
+    page: "myContent"
+  }), results && results.length > 1 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-0"
@@ -919,12 +920,12 @@ var MyContent = function MyContent() {
     selectedValue: sortBySelected
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
-  }, results && results.length > 1 ? results.map(function (contentItem, index) {
+  }, results.map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
       data: contentItem
     });
-  }) : /*#__PURE__*/react.createElement(NoContent, null)), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
+  }))) : /*#__PURE__*/react.createElement(NoContent, null), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,
     onChange: onChange

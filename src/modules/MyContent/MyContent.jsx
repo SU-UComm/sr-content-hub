@@ -21,7 +21,7 @@ export const MyContent = () => {
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
-    const [sortBySelected, setSortBySelected] = useState('Select an option');
+    const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
 
     const fetchData = async (source, url) => {
@@ -139,18 +139,26 @@ export const MyContent = () => {
                         <StatusFilter onChange={onChange} facets={statusLabel} selectedValue={statusSelected} />
                     </div>
                 </div>
-                <SelectedFacets onChange={onChange} facets={facets} />
+                <SelectedFacets onChange={onChange} facets={facets} page="myContent" />
 
-                <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
-                    <p className="su-leading-[2] su-mb-0">
-                        {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
-                    </p>
+                {results && results.length > 1 ? (
+                    <>
+                        <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
+                            <p className="su-leading-[2] su-mb-0">
+                                {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
+                            </p>
 
-                    <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
-                </div>
-                <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results && results.length > 1 ? results.map((contentItem, index) => <Card key={index} data={contentItem} />) : <NoContent />}
-                </ul>
+                            <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
+                        </div>
+                        <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
+                            {results.map((contentItem, index) => (
+                                <Card key={index} data={contentItem} />
+                            ))}
+                        </ul>
+                    </>
+                ) : (
+                    <NoContent />
+                )}
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>
         </div>

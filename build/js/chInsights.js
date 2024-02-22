@@ -767,7 +767,8 @@ var StoryView = function StoryView() {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
   }, /*#__PURE__*/React.createElement(CardButtons, {
     listMetadata: data.metadata,
-    assetId: data.id
+    assetId: data.id,
+    page: "story"
   })))), /*#__PURE__*/React.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {

@@ -325,7 +325,7 @@ export const StoryView = () => {
                     <h2 className="su-font-serif su-mb-0">View Story</h2>
 
                     <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">
-                        <CardButtons listMetadata={data.metadata} assetId={data.id} />
+                        <CardButtons listMetadata={data.metadata} assetId={data.id} page="story" />
                     </div>
                 </div>
             </section>

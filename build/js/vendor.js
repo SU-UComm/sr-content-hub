@@ -130,7 +130,8 @@ var Card = function Card(props) {
       className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
     }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
       listMetadata: props.data.listMetadata,
-      assetId: props.data.listMetadata.assetId[0]
+      assetId: props.data.listMetadata.assetId[0],
+      page: "card"
     }) : null)) // </Link>
 
   );
@@ -581,7 +582,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 && !userMatch ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Publishing soon on Stanford Report") : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 && !userMatch && props.page !== 'story' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, props.listMetadata.hubStatusDescription) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
@@ -729,7 +730,8 @@ CardButtons.propTypes = {
     assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
     publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array)
   }),
-  assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
+  assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
+  page: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
 };
 
 /***/ }),

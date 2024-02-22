@@ -575,6 +575,11 @@ var StoryView = function StoryView() {
       beaconSent = _useState8[0],
       setBeaconSent = _useState8[1];
 
+  var _useState9 = (0,react.useState)(null),
+      _useState10 = StoryView_slicedToArray(_useState9, 2),
+      versionHistory = _useState10[0],
+      setVersionHistory = _useState10[1];
+
   var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
 
   var copyUrl = function copyUrl() {
@@ -601,25 +606,26 @@ var StoryView = function StoryView() {
               setData(d);
               _summary = (0,helperFunctions/* decodeHTML */.p1)(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);
-              _context.next = 14;
+              setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
+              _context.next = 15;
               break;
 
-            case 11:
-              _context.prev = 11;
+            case 12:
+              _context.prev = 12;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 14:
-              _context.prev = 14;
+            case 15:
+              _context.prev = 15;
               setIsLoading(false);
-              return _context.finish(14);
+              return _context.finish(15);
 
-            case 17:
+            case 18:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 11, 14, 17]]);
+      }, _callee, null, [[1, 12, 15, 18]]);
     }));
 
     return function fetchData(_x) {
@@ -752,7 +758,10 @@ var StoryView = function StoryView() {
       var _summary2 = (0,helperFunctions/* decodeHTML */.p1)(data.metadata.srcSummary[0]);
 
       setSummary(_summary2);
+      setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
     }
+
+    setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
   }, []);
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
     visible: true,
@@ -893,14 +902,14 @@ var StoryView = function StoryView() {
     fill: "currentColor"
   }))))), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col su-gap-[10px]"
-  }, /*#__PURE__*/react.createElement("p", {
+  }, versionHistory && /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-p-0 su-m-0"
   }, "Version History"), /*#__PURE__*/react.createElement("ul", {
     className: "su-py-20 su-p-0 su-m-0 su-list-none su-text-[18px] su-leading-[100%]"
-  }, data.metadata.hubVersionHistory && data.metadata.hubVersionHistory.map(function (el, index) {
+  }, versionHistory && versionHistory.map(function (el, index) {
     return /*#__PURE__*/react.createElement("li", {
       key: index
-    }, el.date, " - ", el.message, " ");
+    }, convertISOToReadableDate(el.date), " - ", el.message);
   })))), /*#__PURE__*/react.createElement(FullStory, {
     data: data,
     frameUrl: data.url

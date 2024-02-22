@@ -193,6 +193,7 @@ export const StoryView = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [summary, setSummary] = useState('');
     const [beaconSent, setBeaconSent] = useState(false);
+    const [versionHistory, setVersionHistory] = useState(null);
 
     let jsApi = window?.jsApi ? window.jsApi : mockData;
 
@@ -210,6 +211,7 @@ export const StoryView = () => {
 
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
+            setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -328,7 +330,9 @@ export const StoryView = () => {
             console.log('default load');
             let summary = decodeHTML(data.metadata.srcSummary[0]);
             setSummary(summary);
+            setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
         }
+        setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
     }, []);
 
     return isLoading ? (
@@ -461,12 +465,12 @@ export const StoryView = () => {
                 </div>
 
                 <div className="su-flex su-flex-col su-gap-[10px]">
-                    <p className="small-heading su-p-0 su-m-0">Version History</p>
+                    {versionHistory && <p className="small-heading su-p-0 su-m-0">Version History</p>}
                     <ul className="su-py-20 su-p-0 su-m-0 su-list-none su-text-[18px] su-leading-[100%]">
-                        {data.metadata.hubVersionHistory &&
-                            data.metadata.hubVersionHistory.map((el, index) => (
+                        {versionHistory &&
+                            versionHistory.map((el, index) => (
                                 <li key={index}>
-                                    {el.date} - {el.message} {}
+                                    {convertISOToReadableDate(el.date)} - {el.message}
                                 </li>
                             ))}
                     </ul>

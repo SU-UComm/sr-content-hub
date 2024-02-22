@@ -80,7 +80,7 @@ export const ContentRegion = () => {
             }
         }
         let fetchUrl = baseUrl + value;
-        fetchData('allContent', 'matrix', value);
+        fetchData(fetchUrl, 'fb');
     };
 
     return isLoading ? (
@@ -90,7 +90,10 @@ export const ContentRegion = () => {
             <div className="su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs">
                 <h2 className="su-text-h4 md:su-text-h3 su-font-serif su-mb-0">{window?.data?.user?.userType === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'}</h2>
                 <div>
-                    <a href={window.globalData.pageHrefs.newContent} className="su-flex su-items-center su-text-[18px] hover:su-underline">
+                    <a
+                        href={window?.data?.user?.userType === 'UCOMM' ? window.globalData.pageHrefs.newContent : window.globalData.pageHrefs.myContent}
+                        className="su-flex su-items-center su-text-[18px] hover:su-underline"
+                    >
                         View all {window?.data?.user?.userType === 'UCOMM' ? 'Latest Content' : 'My Content'}
                         <img className="su-inline su-ml-6" src={require('images/arrow-right.svg')} />
                     </a>

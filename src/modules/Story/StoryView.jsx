@@ -294,7 +294,7 @@ export const StoryView = () => {
     };
 
     useEffect(() => {
-        setIsLoading(true);
+        // setIsLoading(true);
         let id = window.location.search;
         let match = id.match(/=(\d+)/);
         if (match && match[1]) {
@@ -314,10 +314,10 @@ export const StoryView = () => {
         //     let summary = decodeHTML(data.metadata.srcSummary[0]);
         //     setSummary(summary);
         // }
-        setIsLoading(false);
+        // setIsLoading(false);
     }, []);
 
-    return isLoading ? (
+    return isLoading && !data ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10" id="view-story" data-id={data.id}>

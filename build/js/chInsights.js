@@ -724,7 +724,7 @@ var StoryView = function StoryView() {
   useEffect(function () {
     var _window2, _window2$data, _window2$data$user;
 
-    setIsLoading(true);
+    // setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
 
@@ -745,11 +745,10 @@ var StoryView = function StoryView() {
     //     let summary = decodeHTML(data.metadata.srcSummary[0]);
     //     setSummary(summary);
     // }
+    // setIsLoading(false);
 
-
-    setIsLoading(false);
   }, []);
-  return isLoading ? /*#__PURE__*/React.createElement(Oval, {
+  return isLoading && !data ? /*#__PURE__*/React.createElement(Oval, {
     visible: true,
     height: "80",
     width: "80",

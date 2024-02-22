@@ -760,8 +760,6 @@ var StoryView = function StoryView() {
       setSummary(_summary2);
       setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
     }
-
-    setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
   }, []);
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
     visible: true,

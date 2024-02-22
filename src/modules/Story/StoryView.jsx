@@ -332,7 +332,6 @@ export const StoryView = () => {
             setSummary(summary);
             setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
         }
-        setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
     }, []);
 
     return isLoading ? (

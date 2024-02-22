@@ -542,7 +542,7 @@ var mockData = {
 var StoryView = function StoryView() {
   var _window;
 
-  var _useState = (0,react.useState)([]),
+  var _useState = (0,react.useState)(StoryView_dataObj),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
@@ -764,7 +764,51 @@ var StoryView = function StoryView() {
     className: "small-heading"
   }, "Summary"), /*#__PURE__*/react.createElement("p", {
     className: "su-mb-0 su-py-20 su-leading-normal"
-  }, summary)), /*#__PURE__*/react.createElement("div", null), /*#__PURE__*/react.createElement("div", {
+  }, summary)), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("ul", {
+    className: "su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2"
+  }, /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Main Category"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, /*#__PURE__*/react.createElement("em", null, data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'))), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Submitted by"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, data.metadata.srcContentSource)), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Byline"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, data.metadata.bylineAuthor)), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Submitted on"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, data.created.date)), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Other Topics"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, data.metadata.topics.length > 0 ? data.metadata.topics : 'NA')), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "First Published"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, data.metadata.publishedDate)), /*#__PURE__*/react.createElement("li", {
+    className: "mb-0"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
+  }, "Other keywords"), /*#__PURE__*/react.createElement("p", {
+    className: "su-leading-[3.6rem] su-mb-0"
+  }, /*#__PURE__*/react.createElement("em", null, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : 'NA'))))), /*#__PURE__*/react.createElement("div", {
     className: "su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray"
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-m-0 su-p-0"
@@ -772,11 +816,11 @@ var StoryView = function StoryView() {
     className: "su-mb-10 su-py-20"
   }, /*#__PURE__*/react.createElement("a", {
     id: "story-link",
-    href: "https://engineering.stanford.edu/magazine/article/team-scientists-invent-method-modify-behavior-cells",
+    href: data.metadata.srcUrl,
     className: "su-underline hover:su-cursor-pointer su-break-words",
     target: "_blank",
     rel: "noreferrer"
-  }, "https://engineering.stanford.edu/magazine/article/team-scientists-invent-method-modify-behavior-cells")), /*#__PURE__*/react.createElement("div", {
+  }, data.metadata.srcUrl)), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, /*#__PURE__*/react.createElement("a", {
     id: "story-mtx-link",

@@ -300,11 +300,14 @@ export const StoryView = () => {
         if (match && match[1]) {
             id = parseInt(match[1], 10);
         }
+        let userType = window?.data?.user?.userType;
 
         if (id) {
             fetchData(id);
             console.log('fetch');
-            sendInReview(id);
+            if (userType === 'UCOMM') {
+                sendInReview(id);
+            }
         } else {
             setData(dataObj);
             console.log('assign');

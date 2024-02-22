@@ -55,7 +55,7 @@ export const ContentRegion = () => {
         let url = window?.data?.contentHubAPI?.search;
 
         if (url) {
-            url = userType == 'CP' ? 'myContent' : 'newContent';
+            url = userType == 'CP' ? 'allContent' : 'newContent';
 
             fetchData(url, 'matrix');
         } else {
@@ -95,7 +95,7 @@ export const ContentRegion = () => {
                     </a>
                 </div>
             </div>
-            {window?.data?.user?.userType === 'CP' ? (
+            {window?.data?.user?.userType === 'CP' && results.length > 1 ? (
                 <div className="su-mb-60">
                     <div className="su-w-full md:su-w-1/2">
                         <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />

@@ -722,6 +722,8 @@ var StoryView = function StoryView() {
   };
 
   useEffect(function () {
+    var _window2, _window2$data, _window2$data$user;
+
     // setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
@@ -730,10 +732,15 @@ var StoryView = function StoryView() {
       id = parseInt(match[1], 10);
     }
 
+    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType;
+
     if (id) {
       fetchData(id);
       console.log('fetch');
-      sendInReview(id);
+
+      if (userType === 'UCOMM') {
+        sendInReview(id);
+      }
     } else {
       setData(StoryView_dataObj);
       console.log('assign');

@@ -374,8 +374,8 @@ var StoryView_dataObj = {
   type: 'page_standard',
   type_name: 'Standard Page',
   version: '0.0.7',
-  name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-  short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+  name: '',
+  short_name: '',
   status: {
     id: 2,
     code: 'under_construction',
@@ -398,8 +398,8 @@ var StoryView_dataObj = {
     user_id: '6004'
   },
   attributes: {
-    short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-    name: 'SLS Relaunches ‘Stanford Legal’ Podcast'
+    short_name: '',
+    name: ''
   },
   metadata: {
     hubStatus: ['submitted'],
@@ -711,23 +711,20 @@ var StoryView = function StoryView() {
       id = parseInt(match[1], 10);
     }
 
-    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType;
+    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType; // if (id) {
 
-    if (id) {
-      fetchData(id);
-      console.log('fetch');
+    fetchData(id);
+    console.log('fetch');
 
-      if (userType === 'UCOMM') {
-        sendInReview(id);
-      }
-    } else {
-      setData(StoryView_dataObj);
-      console.log('assign');
-
-      var _summary2 = (0,helperFunctions/* decodeHTML */.p1)(data.metadata.srcSummary[0]);
-
-      setSummary(_summary2);
-    } // setIsLoading(false);
+    if (userType === 'UCOMM') {
+      sendInReview(id);
+    } // } else {
+    //     setData(dataObj);
+    //     console.log('assign');
+    //     let summary = decodeHTML(data.metadata.srcSummary[0]);
+    //     setSummary(summary);
+    // }
+    // setIsLoading(false);
 
   }, []);
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {

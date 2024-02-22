@@ -12,8 +12,8 @@ const dataObj = {
     type: 'page_standard',
     type_name: 'Standard Page',
     version: '0.0.7',
-    name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-    short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+    name: '',
+    short_name: '',
     status: {
         id: 2,
         code: 'under_construction',
@@ -36,8 +36,8 @@ const dataObj = {
         user_id: '6004',
     },
     attributes: {
-        short_name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
-        name: 'SLS Relaunches ‘Stanford Legal’ Podcast',
+        short_name: '',
+        name: '',
     },
     metadata: {
         hubStatus: ['submitted'],
@@ -302,18 +302,18 @@ export const StoryView = () => {
         }
         let userType = window?.data?.user?.userType;
 
-        if (id) {
-            fetchData(id);
-            console.log('fetch');
-            if (userType === 'UCOMM') {
-                sendInReview(id);
-            }
-        } else {
-            setData(dataObj);
-            console.log('assign');
-            let summary = decodeHTML(data.metadata.srcSummary[0]);
-            setSummary(summary);
+        // if (id) {
+        fetchData(id);
+        console.log('fetch');
+        if (userType === 'UCOMM') {
+            sendInReview(id);
         }
+        // } else {
+        //     setData(dataObj);
+        //     console.log('assign');
+        //     let summary = decodeHTML(data.metadata.srcSummary[0]);
+        //     setSummary(summary);
+        // }
         // setIsLoading(false);
     }, []);
 

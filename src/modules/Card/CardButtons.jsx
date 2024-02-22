@@ -66,28 +66,39 @@ export const CardButtons = (props) => {
     const declineDialogRef = useRef(null);
     const [beaconSent, setBeaconSent] = useState(false);
     const [textArea, setTextAreaValue] = useState('');
+    const [userMatch, setUserMatch] = useState(false);
+
     let jsApi = window?.jsApi ? window.jsApi : mockData;
 
     const onTextAreaValueChange = (val) => {
         setTextAreaValue(val);
     };
 
-    // useEffect(() => {
-    //     const handleClickOutside = (event) => {
-    //         if (sendDialogRef.current && !sendDialogRef.current.contains(event.target)) {
-    //             closeSendDialog(event.target.getAttribute('data-id'));
-    //         }
-    //         if (declineDialogRef.current && !declineDialogRef.current.contains(event.target)) {
-    //             closeDeclineDialog(event.target.getAttribute('data-id'));
-    //         }
-    //     };
+    useEffect(() => {
+        let userDetails = window?.data?.user.firstName + ' ' + window.data + window?.data?.user.lastName;
+        const userEl = document.querySelector('#user-status');
+        let pageUserDetails = userEl.getAttribute('data-fullname');
+        if (userDetails === pageUserDetails) {
+            setUserMatch(true);
+            console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
+        }
 
-    //     document.addEventListener('click', handleClickOutside);
+        // const handleClickOutside = (event) => {
+        //     console.log(event);
+        //     if (isSendDialogOpen && sendDialogRef.current && event.target.classList.contains('backdrop')) {
+        //         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
+        //     }
+        //     if (isDeclineDialogOpen && declineDialogRef.current && event.target.classList.contains('backdrop')) {
+        //         closeDeclineDialog(`dialogTitle-${props.assetId}-decline`);
+        //     }
+        // };
 
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutside);
-    //     };
-    // }, []);
+        // document.addEventListener('click', handleClickOutside);
+
+        // return () => {
+        //     document.removeEventListener('click', handleClickOutside);
+        // };
+    }, []);
 
     const openSendDialog = (id) => {
         setSendDialogOpen(true);
@@ -121,7 +132,7 @@ export const CardButtons = (props) => {
             asset_id: props.assetId,
             dataCallback: (resp) => {
                 // As a callback :: Prepare an update for the asset
-                prepareUpdate(props.assetId, 'Teaser', resp);
+                prepareApproveUpdate(props.assetId, 'Teaser', resp);
             },
         });
 
@@ -334,7 +345,7 @@ export const CardButtons = (props) => {
                 <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>
             ) : props.listMetadata.hubStatus == 'sent-to-sr' ? (
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>
-            ) : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 ? (
+            ) : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 && !userMatch ? (
                 <p className="su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15">{props.listMetadata.hubStatusDescription}</p>
             ) : (
                 <>

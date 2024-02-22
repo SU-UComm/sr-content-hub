@@ -13,15 +13,15 @@ export const Card = (props) => {
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
 
-    const routeChange = () => {
-        let path;
-        if (contentHubAPI) {
-            path = url + props.data.listMetadata.assetId;
-        } else {
-            path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
-        }
-        window.location.href = path;
-    };
+    // const routeChange = () => {
+    //     let path;
+    //     if (contentHubAPI) {
+    //         path = url + props.data.listMetadata.assetId;
+    //     } else {
+    //         path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
+    //     }
+    //     window.location.href = path;
+    // };
 
     // useEffect(() => {
     //     if (props) {
@@ -38,7 +38,6 @@ export const Card = (props) => {
             <li
                 className="su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]"
                 data-id={props.data.listMetadata.assetId}
-                onClick={() => routeChange()}
             >
                 <a href={url + props.data.listMetadata.assetId} className="su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]">
                     <img

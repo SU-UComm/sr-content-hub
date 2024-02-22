@@ -84,19 +84,16 @@ var Card = function Card(props) {
 
   var url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
-  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc);
-
-  var routeChange = function routeChange() {
-    var path;
-
-    if (contentHubAPI) {
-      path = url + props.data.listMetadata.assetId;
-    } else {
-      path = "/story.html?storyId=".concat(props.data.listMetadata.assetId);
-    }
-
-    window.location.href = path;
-  }; // useEffect(() => {
+  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc); // const routeChange = () => {
+  //     let path;
+  //     if (contentHubAPI) {
+  //         path = url + props.data.listMetadata.assetId;
+  //     } else {
+  //         path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
+  //     }
+  //     window.location.href = path;
+  // };
+  // useEffect(() => {
   //     if (props) {
   //         setData(props.listMetadata);
   //         setIsLoading(false);
@@ -106,14 +103,10 @@ var Card = function Card(props) {
   //     }
   // }, [props]);
 
-
   return (// !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
     props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
       className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
-      "data-id": props.data.listMetadata.assetId,
-      onClick: function onClick() {
-        return routeChange();
-      }
+      "data-id": props.data.listMetadata.assetId
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("a", {
       href: url + props.data.listMetadata.assetId,
       className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
@@ -309,25 +302,42 @@ var CardButtons = function CardButtons(props) {
       textArea = _useState8[0],
       setTextAreaValue = _useState8[1];
 
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      userMatch = _useState10[0],
+      setUserMatch = _useState10[1];
+
   var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
 
   var onTextAreaValueChange = function onTextAreaValueChange(val) {
     setTextAreaValue(val);
-  }; // useEffect(() => {
-  //     const handleClickOutside = (event) => {
-  //         if (sendDialogRef.current && !sendDialogRef.current.contains(event.target)) {
-  //             closeSendDialog(event.target.getAttribute('data-id'));
-  //         }
-  //         if (declineDialogRef.current && !declineDialogRef.current.contains(event.target)) {
-  //             closeDeclineDialog(event.target.getAttribute('data-id'));
-  //         }
-  //     };
-  //     document.addEventListener('click', handleClickOutside);
-  //     return () => {
-  //         document.removeEventListener('click', handleClickOutside);
-  //     };
-  // }, []);
+  };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_12__.useEffect)(function () {
+    var _window2, _window2$data, _window3, _window3$data;
+
+    var userDetails = ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.firstName) + ' ' + window.data + ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.lastName);
+    var userEl = document.querySelector('#user-status');
+    var pageUserDetails = userEl.getAttribute('data-fullname');
+
+    if (userDetails === pageUserDetails) {
+      setUserMatch(true);
+      console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
+    } // const handleClickOutside = (event) => {
+    //     console.log(event);
+    //     if (isSendDialogOpen && sendDialogRef.current && event.target.classList.contains('backdrop')) {
+    //         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
+    //     }
+    //     if (isDeclineDialogOpen && declineDialogRef.current && event.target.classList.contains('backdrop')) {
+    //         closeDeclineDialog(`dialogTitle-${props.assetId}-decline`);
+    //     }
+    // };
+    // document.addEventListener('click', handleClickOutside);
+    // return () => {
+    //     document.removeEventListener('click', handleClickOutside);
+    // };
+
+  }, []);
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -359,7 +369,7 @@ var CardButtons = function CardButtons(props) {
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
         // As a callback :: Prepare an update for the asset
-        prepareUpdate(props.assetId, 'Teaser', resp);
+        prepareApproveUpdate(props.assetId, 'Teaser', resp);
       }
     });
     closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
@@ -570,7 +580,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Publishing soon on Stanford Report") : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 && !userMatch ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, props.listMetadata.hubStatusDescription) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),

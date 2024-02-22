@@ -184,7 +184,7 @@ const mockData = {
 };
 
 export const StoryView = () => {
-    const [data, setData] = useState(dataObj); // data from endpoint
+    const [data, setData] = useState([]); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [summary, setSummary] = useState('');
     const [beaconSent, setBeaconSent] = useState(false);
@@ -209,28 +209,13 @@ export const StoryView = () => {
     };
 
     const sendInReview = (id) => {
-        // Check if story should be moved to 'in review'
-        // const inReview = document.querySelector('#js-story-reviewing');
-        // if (inReview === null) {
-        //     return false;
-        // }
-        // // Double check in review value
-        // const inReviewStatus = inReview.getAttribute('data-value');
-        // if (inReviewStatus !== 'true') {
-        //     return false;
-        // }
-
         // Check if we can get user's name
         const userStatusEl = document.querySelector('#user-status');
-        // if (userStatusEl === null) {
-        //     logMsg('Tried to update the story status description but information about the user are missing...');
-        //     return false;
-        // }
         const userDetails = userStatusEl.getAttribute('data-fullname') || '';
-        // if (userDetails === '') {
-        //     logMsg('Tried to update the story status description but information about the user are missing...');
-        //     return false;
-        // }
+        if (userDetails === '') {
+            // logMsg('Tried to update the story status description but information about the user are missing...');
+            return false;
+        }
 
         // Looks like we have all the informatin in place
 
@@ -309,7 +294,7 @@ export const StoryView = () => {
     };
 
     useEffect(() => {
-        setIsLoading(true);
+        // setIsLoading(true);
         let id = window.location.search;
         let match = id.match(/=(\d+)/);
         if (match && match[1]) {
@@ -326,7 +311,7 @@ export const StoryView = () => {
             let summary = decodeHTML(data.metadata.srcSummary[0]);
             setSummary(summary);
         }
-        setIsLoading(false);
+        // setIsLoading(false);
     }, []);
 
     return isLoading ? (

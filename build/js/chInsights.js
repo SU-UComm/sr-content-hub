@@ -563,7 +563,7 @@ var mockData = {
 var StoryView = function StoryView() {
   var _window;
 
-  var _useState = useState(StoryView_dataObj),
+  var _useState = useState([]),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
@@ -634,28 +634,16 @@ var StoryView = function StoryView() {
   }();
 
   var sendInReview = function sendInReview(id) {
-    // Check if story should be moved to 'in review'
-    // const inReview = document.querySelector('#js-story-reviewing');
-    // if (inReview === null) {
-    //     return false;
-    // }
-    // // Double check in review value
-    // const inReviewStatus = inReview.getAttribute('data-value');
-    // if (inReviewStatus !== 'true') {
-    //     return false;
-    // }
     // Check if we can get user's name
-    var userStatusEl = document.querySelector('#user-status'); // if (userStatusEl === null) {
-    //     logMsg('Tried to update the story status description but information about the user are missing...');
-    //     return false;
-    // }
+    var userStatusEl = document.querySelector('#user-status');
+    var userDetails = userStatusEl.getAttribute('data-fullname') || '';
 
-    var userDetails = userStatusEl.getAttribute('data-fullname') || ''; // if (userDetails === '') {
-    //     logMsg('Tried to update the story status description but information about the user are missing...');
-    //     return false;
-    // }
-    // Looks like we have all the informatin in place
+    if (userDetails === '') {
+      // logMsg('Tried to update the story status description but information about the user are missing...');
+      return false;
+    } // Looks like we have all the informatin in place
     // Build in review message
+
 
     var msg = "".concat(userDetails, " is reviewing");
     var fieldsActions = []; // Action #1: Update Status Description
@@ -734,7 +722,7 @@ var StoryView = function StoryView() {
   };
 
   useEffect(function () {
-    setIsLoading(true);
+    // setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
 
@@ -753,9 +741,8 @@ var StoryView = function StoryView() {
       var _summary2 = decodeHTML(data.metadata.srcSummary[0]);
 
       setSummary(_summary2);
-    }
+    } // setIsLoading(false);
 
-    setIsLoading(false);
   }, []);
   return isLoading ? /*#__PURE__*/React.createElement(Oval, {
     visible: true,

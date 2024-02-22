@@ -346,9 +346,13 @@ export const CardButtons = (props) => {
                 <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>
             ) : props.listMetadata.hubStatus == 'sent-to-sr' ? (
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>
-            ) : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 && !userMatch && props.page !== 'story' ? (
+            ) : props.listMetadata.hubStatusDescription &&
+              props.listMetadata.hubStatusDescription.length > 0 &&
+              !userMatch &&
+              props.page !== 'story' &&
+              window?.data?.user?.userType === 'UCOMM' ? (
                 <p className="su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15">{props.listMetadata.hubStatusDescription}</p>
-            ) : (
+            ) : window?.data?.user?.userType === 'UCOMM' ? (
                 <>
                     <button
                         data-id={`dialogTitle-${props.assetId}-approve`}
@@ -452,7 +456,7 @@ export const CardButtons = (props) => {
                         </div>
                     </dialog>
                 </>
-            )}
+            ) : null}
         </div>
     );
 };

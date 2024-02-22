@@ -864,7 +864,8 @@ var AllContent = function AllContent() {
   }, results.map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
-      data: contentItem
+      data: contentItem,
+      page: "allContent"
     });
   })), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,

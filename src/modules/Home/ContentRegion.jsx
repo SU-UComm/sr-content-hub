@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Link} from 'react-router-dom';
 import {Card} from '../Card/Card.jsx';
+import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
@@ -12,6 +13,8 @@ export const ContentRegion = () => {
     const [resultsSummary, setResultsSummary] = useState([]);
     const [statusLabel, setStatusLabels] = useState([]);
     const [facets, setFacets] = useState([]);
+    const [statusSelected, setStatusSelected] = useState('All');
+    const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
 
     const fetchData = async (url, func) => {
         setIsLoading(true);
@@ -48,9 +51,13 @@ export const ContentRegion = () => {
     };
 
     useEffect(() => {
-        let url = window?.data?.contentHubAPI?.search?.newContent;
+        let userType = window?.data?.user.userType;
+        let url = window?.data?.contentHubAPI?.search;
+
         if (url) {
-            fetchData('newContent', 'matrix');
+            url = userType == 'CP' ? 'myContent' : 'newContent';
+
+            fetchData(url, 'matrix');
         } else {
             fetchData(
                 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated',
@@ -59,14 +66,20 @@ export const ContentRegion = () => {
         }
     }, []);
 
-    const onChange = (name, value) => {
-        console.log('ON CHANGE: ', name, ' || ', value);
-        let baseUrl = window?.data?.contentHubAPI?.search?.newContent
-            ? window?.data?.contentHubAPI?.search?.newContent
-            : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
-
+    const onChange = (name, value, selectedVal) => {
+        console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        if (name == 'status') {
+            let selected = getLabel(selectedVal);
+            setStatusSelected(selected);
+        }
+        if (name == 'unselect') {
+            console.log('check');
+            if (selectedVal == 'hubStatus') {
+                setStatusSelected('All');
+            }
+        }
         let fetchUrl = baseUrl + value;
-        fetchData(fetchUrl);
+        fetchData(fetchUrl, 'matrix');
     };
 
     return isLoading ? (
@@ -82,23 +95,19 @@ export const ContentRegion = () => {
                     </a>
                 </div>
             </div>
-            {/* {window?.data?.user?.userType === 'CP' ? (
+            {window?.data?.user?.userType === 'CP' ? (
                 <div className="su-mb-60">
                     <div className="su-w-full md:su-w-1/2">
-                        <StatusFilter facets={statusLabel} onChange={onChange} />{' '}
+                        <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
                     </div>
                 </div>
-            ) : null} */}
+            ) : null}
 
-            <p className="su-leading-[2] su-mb-20">
-                1-5 of {resultsSummary.totalMatching} {window?.data?.user?.userType === 'UCOMM' ? 'results waiting for review' : ''}
-            </p>
+            <p className="su-leading-[2] su-mb-20">{window?.data?.user?.userType === 'UCOMM' ? `1-5 of ${resultsSummary.totalMatching} results waiting for review` : ''}</p>
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
                 {results.slice(0, 5).map((contentItem, index) => (
-                    <BrowserRouter key={index}>
-                        <Card key={index} data={contentItem} />
-                    </BrowserRouter>
+                    <Card key={index} data={contentItem} />
                 ))}
             </ul>
         </section>

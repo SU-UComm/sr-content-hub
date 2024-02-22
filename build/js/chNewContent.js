@@ -751,7 +751,7 @@ var MyContent = function MyContent() {
             case 24:
               _context.prev = 24;
               _context.next = 27;
-              return (0,requests/* getMyContent */.Wc)();
+              return (0,requests/* getSearchData */.Im)('myContent', '');
 
             case 27:
               _d2 = _context.sent;

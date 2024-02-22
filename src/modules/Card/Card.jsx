@@ -66,9 +66,10 @@ export const Card = (props) => {
                     <p className="su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto">
                         Submitted on {reformatDate(props.data.listMetadata.mtxCreated)} | First published on {reformatDate(props.data.listMetadata.srcPublishedDate)}
                     </p>
-                    {window?.data?.user?.userType === 'UCOMM' ? (
+
+                    {props.page === 'allContent' && window?.data?.user.userType === 'CP' ? null : (
                         <CardButtons listMetadata={props.data.listMetadata} assetId={props.data.listMetadata.assetId[0]} page="card" />
-                    ) : null}
+                    )}
                 </div>
             </li>
             // </Link>
@@ -93,4 +94,5 @@ Card.propTypes = {
             assetId: PropTypes.array,
         }),
     }),
+    page: PropTypes.string,
 };

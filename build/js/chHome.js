@@ -54,10 +54,10 @@ var es_math_to_string_tag = __webpack_require__(7059);
 var es_object_get_prototype_of = __webpack_require__(489);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
 var web_dom_collections_for_each = __webpack_require__(4747);
-// EXTERNAL MODULE: ./node_modules/react-router-dom/index.js
-var react_router_dom = __webpack_require__(9342);
 // EXTERNAL MODULE: ./src/modules/Card/Card.jsx
 var Card = __webpack_require__(8649);
+// EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
+var helperFunctions = __webpack_require__(6859);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
@@ -112,8 +112,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var ContentRegion = function ContentRegion() {
-  var _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
+  var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -147,6 +148,16 @@ var ContentRegion = function ContentRegion() {
       _useState12 = _slicedToArray(_useState11, 2),
       facets = _useState12[0],
       setFacets = _useState12[1];
+
+  var _useState13 = (0,react.useState)('All'),
+      _useState14 = _slicedToArray(_useState13, 2),
+      statusSelected = _useState14[0],
+      setStatusSelected = _useState14[1];
+
+  var _useState15 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+      _useState16 = _slicedToArray(_useState15, 2),
+      baseUrl = _useState16[0],
+      setUrl = _useState16[1];
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
@@ -232,24 +243,37 @@ var ContentRegion = function ContentRegion() {
   }();
 
   (0,react.useEffect)(function () {
-    var _window, _window$data, _window$data$contentH, _window$data$contentH2;
+    var _window, _window$data, _window2, _window2$data, _window2$data$content;
 
-    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : (_window$data$contentH2 = _window$data$contentH.search) === null || _window$data$contentH2 === void 0 ? void 0 : _window$data$contentH2.newContent;
+    var userType = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType;
+    var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
 
     if (url) {
-      fetchData('newContent', 'matrix');
+      url = userType == 'CP' ? 'myContent' : 'newContent';
+      fetchData(url, 'matrix');
     } else {
       fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
     }
   }, []);
 
-  var onChange = function onChange(name, value) {
-    var _window2, _window2$data, _window2$data$content, _window2$data$content2, _window3, _window3$data, _window3$data$content, _window3$data$content2;
+  var onChange = function onChange(name, value, selectedVal) {
+    console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
 
-    console.log('ON CHANGE: ', name, ' || ', value);
-    var baseUrl = (_window2 = window) !== null && _window2 !== void 0 && (_window2$data = _window2.data) !== null && _window2$data !== void 0 && (_window2$data$content = _window2$data.contentHubAPI) !== null && _window2$data$content !== void 0 && (_window2$data$content2 = _window2$data$content.search) !== null && _window2$data$content2 !== void 0 && _window2$data$content2.newContent ? (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : (_window3$data$content2 = _window3$data$content.search) === null || _window3$data$content2 === void 0 ? void 0 : _window3$data$content2.newContent : 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json';
+    if (name == 'status') {
+      var selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
+      setStatusSelected(selected);
+    }
+
+    if (name == 'unselect') {
+      console.log('check');
+
+      if (selectedVal == 'hubStatus') {
+        setStatusSelected('All');
+      }
+    }
+
     var fetchUrl = baseUrl + value;
-    fetchData(fetchUrl);
+    fetchData(fetchUrl, 'matrix');
   };
 
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
@@ -263,24 +287,30 @@ var ContentRegion = function ContentRegion() {
     className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
-  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
+  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
     href: window.globalData.pageHrefs.newContent,
     className: "su-flex su-items-center su-text-[18px] hover:su-underline"
-  }, "View all ", ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
+  }, "View all ", ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(7142)
-  })))), /*#__PURE__*/react.createElement("p", {
+  })))), ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'CP' ? /*#__PURE__*/react.createElement("div", {
+    className: "su-mb-60"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-w-full md:su-w-1/2"
+  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
+    facets: statusLabel,
+    onChange: onChange,
+    selectedValue: statusSelected
+  }))) : null, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
-  }, "1-5 of ", resultsSummary.totalMatching, " ", ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? 'results waiting for review' : ''), /*#__PURE__*/react.createElement("ul", {
+  }, ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? "1-5 of ".concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
   }, results.slice(0, 5).map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(react_router_dom/* BrowserRouter */.VK, {
-      key: index
-    }, /*#__PURE__*/react.createElement(Card/* Card */.Z, {
+    return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
       key: index,
       data: contentItem
-    }));
+    });
   })));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home/Home.jsx

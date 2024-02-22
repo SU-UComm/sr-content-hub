@@ -324,7 +324,7 @@ export const StoryView = () => {
                 <BackToPageButton page="home" />
 
                 <div className="su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center">
-                    <h2 className="su-font-serif su-mb-0">View Story</h2>
+                    <h2 className="su-font-serif su-mb-0">{window?.data?.user?.userType == 'UCOMM' ? 'Review Story' : 'View Story'}</h2>
 
                     <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">
                         <CardButtons listMetadata={data.metadata} assetId={data.id} page="story" />

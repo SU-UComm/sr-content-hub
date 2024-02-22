@@ -561,7 +561,7 @@ var mockData = {
   }
 };
 var StoryView = function StoryView() {
-  var _window;
+  var _window, _window3, _window3$data, _window3$data$user;
 
   var _useState = useState(StoryView_dataObj),
       _useState2 = StoryView_slicedToArray(_useState, 2),
@@ -769,7 +769,7 @@ var StoryView = function StoryView() {
     className: "su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center"
   }, /*#__PURE__*/React.createElement("h2", {
     className: "su-font-serif su-mb-0"
-  }, "View Story"), /*#__PURE__*/React.createElement("div", {
+  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/React.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
   }, /*#__PURE__*/React.createElement(CardButtons, {
     listMetadata: data.metadata,

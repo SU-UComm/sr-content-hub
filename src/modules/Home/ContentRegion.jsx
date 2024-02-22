@@ -101,14 +101,12 @@ export const ContentRegion = () => {
                 </div>
             </div>
             {window?.data?.user?.userType === 'CP' && results.length > 1 ? (
-                <>
-                    <div className="su-mb-60">
-                        <div className="su-w-full md:su-w-1/2">
-                            <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
-                        </div>
+                <div className="su-mb-60">
+                    <div className="su-w-full md:su-w-1/2">
+                        <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
                     </div>
                     <SelectedFacets onChange={onChange} facets={facets} />
-                </>
+                </div>
             ) : null}
 
             <p className="su-leading-[2] su-mb-20">{window?.data?.user?.userType === 'UCOMM' ? `1-5 of ${resultsSummary.totalMatching} results waiting for review` : ''}</p>

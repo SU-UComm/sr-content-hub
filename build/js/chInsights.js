@@ -743,11 +743,14 @@ var StoryView = function StoryView() {
       }
     } else {
       fetchData('33190');
-      console.log('assign'); // let summary = decodeHTML(data.metadata.srcSummary[0]);
-      // setSummary(summary);
+      console.log('default load');
+
+      var _summary2 = decodeHTML(data.metadata.srcSummary[0]);
+
+      setSummary(_summary2);
     }
   }, []);
-  return isLoading || data == null ? /*#__PURE__*/React.createElement(Oval, {
+  return isLoading ? /*#__PURE__*/React.createElement(Oval, {
     visible: true,
     height: "80",
     width: "80",
@@ -782,51 +785,7 @@ var StoryView = function StoryView() {
     className: "small-heading"
   }, "Summary"), /*#__PURE__*/React.createElement("p", {
     className: "su-mb-0 su-py-20 su-leading-normal"
-  }, summary)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
-    className: "su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2"
-  }, /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Main Category"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, data.metadata.srContentMainTopic && data.metadata.srContentMainTopic.length > 0 ? data.metadata.srContentMainTopic : 'NA'))), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Submitted by"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.srcContentSource)), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Byline"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.bylineAuthor)), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Submitted on"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, data.created.date)), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Other Topics"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.topics.length > 0 ? data.metadata.topics : 'NA')), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "First Published"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.publishedDate)), /*#__PURE__*/React.createElement("li", {
-    className: "mb-0"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
-  }, "Other keywords"), /*#__PURE__*/React.createElement("p", {
-    className: "su-leading-[3.6rem] su-mb-0"
-  }, /*#__PURE__*/React.createElement("em", null, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : 'NA'))))), /*#__PURE__*/React.createElement("div", {
+  }, summary)), /*#__PURE__*/React.createElement("div", null), /*#__PURE__*/React.createElement("div", {
     className: "su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray"
   }, /*#__PURE__*/React.createElement("p", {
     className: "small-heading su-m-0 su-p-0"

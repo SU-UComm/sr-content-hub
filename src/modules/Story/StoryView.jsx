@@ -310,13 +310,13 @@ export const StoryView = () => {
             }
         } else {
             fetchData('33190');
-            console.log('assign');
-            // let summary = decodeHTML(data.metadata.srcSummary[0]);
-            // setSummary(summary);
+            console.log('default load');
+            let summary = decodeHTML(data.metadata.srcSummary[0]);
+            setSummary(summary);
         }
     }, []);
 
-    return isLoading || data == null ? (
+    return isLoading ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10" id="view-story" data-id={data.id}>
@@ -343,7 +343,7 @@ export const StoryView = () => {
                 </div>
 
                 <div>
-                    <ul className="su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2">
+                    {/* <ul className="su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2">
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Main Category</p>
                             <p className="su-leading-[3.6rem] su-mb-0">
@@ -376,7 +376,7 @@ export const StoryView = () => {
                                 <em>{data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : 'NA'}</em>
                             </p>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
 
                 <div className="su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray">

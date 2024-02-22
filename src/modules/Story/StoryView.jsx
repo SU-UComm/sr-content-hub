@@ -309,10 +309,10 @@ export const StoryView = () => {
                 sendInReview(id);
             }
         } else {
-            setData(dataObj);
+            fetchData('33190');
             console.log('assign');
-            let summary = decodeHTML(data.metadata.srcSummary[0]);
-            setSummary(summary);
+            // let summary = decodeHTML(data.metadata.srcSummary[0]);
+            // setSummary(summary);
         }
     }, []);
 

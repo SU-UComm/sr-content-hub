@@ -742,12 +742,9 @@ var StoryView = function StoryView() {
         sendInReview(id);
       }
     } else {
-      setData(StoryView_dataObj);
-      console.log('assign');
-
-      var _summary2 = decodeHTML(data.metadata.srcSummary[0]);
-
-      setSummary(_summary2);
+      fetchData('33190');
+      console.log('assign'); // let summary = decodeHTML(data.metadata.srcSummary[0]);
+      // setSummary(summary);
     }
   }, []);
   return isLoading || data == null ? /*#__PURE__*/React.createElement(Oval, {

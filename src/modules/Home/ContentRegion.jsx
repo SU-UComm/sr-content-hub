@@ -6,6 +6,7 @@ import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
+import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const ContentRegion = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
@@ -111,12 +112,14 @@ export const ContentRegion = () => {
                 </div>
             ) : null}
 
-            <p className="su-leading-[2] su-mb-20">{window?.data?.user?.userType === 'UCOMM' ? `1-5 of ${resultsSummary.totalMatching} results waiting for review` : ''}</p>
+            <p className="su-leading-[2] su-mb-20">
+                {window?.data?.user?.userType === 'UCOMM'
+                    ? `1-${resultsSummary.totalMatching > 5 ? '5' : resultsSummary.totalMatching} of ${resultsSummary.totalMatching} results waiting for review`
+                    : ''}
+            </p>
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
-                {results.slice(0, 5).map((contentItem, index) => (
-                    <Card key={index} data={contentItem} />
-                ))}
+                {results.length > 0 ? results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} />) : <NoContent />}
             </ul>
         </section>
     );

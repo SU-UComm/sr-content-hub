@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 2909:
+/***/ 1380:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -576,15 +576,8 @@ var NewContent = function NewContent() {
 };
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
 var StatusFilter = __webpack_require__(1948);
-;// CONCATENATED MODULE: ./src/modules/NoContent/NoContent.jsx
-
-var NoContent = function NoContent() {
-  return /*#__PURE__*/react.createElement("div", {
-    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
-  }, /*#__PURE__*/react.createElement("h2", {
-    className: "su-mb-12"
-  }, "No results found"), /*#__PURE__*/react.createElement("p", null, "Please search again using different keywords and filters."));
-};
+// EXTERNAL MODULE: ./src/modules/NoContent/NoContent.jsx
+var NoContent = __webpack_require__(1488);
 ;// CONCATENATED MODULE: ./src/modules/MyContent/MyContent.jsx
 function MyContent_typeof(obj) { "@babel/helpers - typeof"; return MyContent_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, MyContent_typeof(obj); }
 
@@ -928,7 +921,7 @@ var MyContent = function MyContent() {
       key: index,
       data: contentItem
     });
-  }))) : /*#__PURE__*/react.createElement(NoContent, null), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
+  }))) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.d, null), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
     data: data,
     summary: resultsSummary,
     onChange: onChange
@@ -1130,7 +1123,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(2909); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(1380); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

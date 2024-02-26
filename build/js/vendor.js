@@ -2407,6 +2407,25 @@ PageHeading.propTypes = {
 
 /***/ }),
 
+/***/ 1488:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   d: function() { return /* binding */ NoContent; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+
+var NoContent = function NoContent() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "su-mb-12"
+  }, "No results found"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Please search again using different keywords and filters."));
+};
+
+/***/ }),
+
 /***/ 5569:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 

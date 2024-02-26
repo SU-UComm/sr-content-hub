@@ -1706,6 +1706,7 @@ var HtmlEntities = {
 /* harmony export */   Im: function() { return /* binding */ getSearchData; },
 /* harmony export */   fP: function() { return /* binding */ getAPIData; },
 /* harmony export */   gV: function() { return /* binding */ fetchFBData; },
+/* harmony export */   mK: function() { return /* binding */ getTaxonomyTerms; },
 /* harmony export */   om: function() { return /* binding */ getMedia; }
 /* harmony export */ });
 /* unused harmony exports getUserData, getMyContent, postData */
@@ -1808,7 +1809,8 @@ var contentHubAPI = {
     userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
     hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
     contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
-    relatedMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id='
+    relatedMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
+    relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids='
   }
 };
 var fetchFBData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
@@ -2002,20 +2004,19 @@ var getMedia = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^
   };
 }()) : null);
 /**
- * GET ContentAPI Data
- * @param {string} module to get endpoint URL
- * @param {string} assetID request asset ID
+ * GET Taxonomy Terms Data
+ * @param {string} assetID array of asset ID
  * @returns {object} JSON object
  */
 
-var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 202 == __webpack_require__.j ? (function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(assetID) {
+var getTaxonomyTerms = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 202 == __webpack_require__.j ? (function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(assetIDs) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
+            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
             console.log('URL,', requestUrl);
             _context5.next = 4;
             return fetch(requestUrl, {
@@ -2030,7 +2031,7 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
 
           case 4:
             response = _context5.sent;
-            console.log('getAPIDATA resp: ', response);
+            console.log('Taxonomy Terms resp: ', response);
             return _context5.abrupt("return", response);
 
           case 7:
@@ -2041,8 +2042,52 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
     }, _callee5);
   }));
 
-  return function getAPIData(_x3) {
+  return function getTaxonomyTerms(_x3) {
     return _ref5.apply(this, arguments);
+  };
+}()) : null);
+/**
+ * GET ContentAPI Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
+
+var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 202 == __webpack_require__.j ? (function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetID) {
+    var requestUrl, response;
+    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
+            console.log('URL,', requestUrl);
+            _context6.next = 4;
+            return fetch(requestUrl, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
+              }
+            }).then(function (res) {
+              return res = res.json();
+            });
+
+          case 4:
+            response = _context6.sent;
+            console.log('getAPIDATA resp: ', response);
+            return _context6.abrupt("return", response);
+
+          case 7:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function getAPIData(_x4) {
+    return _ref6.apply(this, arguments);
   };
 }()) : null);
 /**
@@ -2053,19 +2098,19 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
  */
 
 var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(pageName) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(pageName) {
     var queryString,
         url,
         response,
-        _args6 = arguments;
-    return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        _args7 = arguments;
+    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
-            queryString = _args6.length > 1 && _args6[1] !== undefined ? _args6[1] : '';
+            queryString = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : '';
             url = contentHubAPI.search[pageName];
             console.log('URL,', url);
-            _context6.next = 5;
+            _context7.next = 5;
             return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
               method: 'GET',
               headers: {
@@ -2077,20 +2122,20 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
             });
 
           case 5:
-            response = _context6.sent;
+            response = _context7.sent;
             console.log('getSearchDATA resp: ', response);
-            return _context6.abrupt("return", response);
+            return _context7.abrupt("return", response);
 
           case 8:
           case "end":
-            return _context6.stop();
+            return _context7.stop();
         }
       }
-    }, _callee6);
+    }, _callee7);
   }));
 
-  return function getSearchData(_x4) {
-    return _ref6.apply(this, arguments);
+  return function getSearchData(_x5) {
+    return _ref7.apply(this, arguments);
   };
 }()) : null);
 /**
@@ -2102,18 +2147,18 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
  */
 
 var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(url) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(url) {
     var queryString,
         requestData,
         response,
-        _args7 = arguments;
-    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+        _args8 = arguments;
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context7.prev = _context7.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
-            queryString = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : '';
-            requestData = _args7.length > 2 && _args7[2] !== undefined ? _args7[2] : {};
-            _context7.next = 4;
+            queryString = _args8.length > 1 && _args8[1] !== undefined ? _args8[1] : '';
+            requestData = _args8.length > 2 && _args8[2] !== undefined ? _args8[2] : {};
+            _context8.next = 4;
             return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
               method: 'POST',
               headers: {
@@ -2125,19 +2170,19 @@ var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (func
             });
 
           case 4:
-            response = _context7.sent;
-            return _context7.abrupt("return", response);
+            response = _context8.sent;
+            return _context8.abrupt("return", response);
 
           case 6:
           case "end":
-            return _context7.stop();
+            return _context8.stop();
         }
       }
-    }, _callee7);
+    }, _callee8);
   }));
 
-  return function postData(_x5) {
-    return _ref7.apply(this, arguments);
+  return function postData(_x6) {
+    return _ref8.apply(this, arguments);
   };
 }())); // if needed - replaced with toggleUrl
 
@@ -2174,10 +2219,10 @@ var createQuery = function createQuery(name, value) {
       break;
   }
 
-  url += Object.entries(params).map(function (_ref8) {
-    var _ref9 = _slicedToArray(_ref8, 2),
-        key = _ref9[0],
-        val = _ref9[1];
+  url += Object.entries(params).map(function (_ref9) {
+    var _ref10 = _slicedToArray(_ref9, 2),
+        key = _ref10[0],
+        val = _ref10[1];
 
     return val !== '' ? "".concat(key, "=").concat(val) : '';
   }).join('&');

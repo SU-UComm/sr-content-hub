@@ -12,16 +12,18 @@ var react = __webpack_require__(7294);
 var client = __webpack_require__(745);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
 var es_array_join = __webpack_require__(9600);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__(8309);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
+var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
 var es_regexp_exec = __webpack_require__(4916);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(4765);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.match.js
 var es_string_match = __webpack_require__(4723);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -36,8 +38,6 @@ var es_array_iterator = __webpack_require__(6992);
 var es_string_iterator = __webpack_require__(8783);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__(3948);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
 var es_array_from = __webpack_require__(1038);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
@@ -597,7 +597,7 @@ var StoryView = function StoryView() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
-      var d, _summary, assetIDs, taxonomyTerms;
+      var d, _summary, assetIDs, taxonomyTerms, terms;
 
       return StoryView_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -622,26 +622,29 @@ var StoryView = function StoryView() {
 
             case 13:
               taxonomyTerms = _context.sent;
-              setTaxonomy(taxonomyTerms);
-              _context.next = 20;
+              terms = taxonomyTerms.map(function (item) {
+                return item.name.charAt(0).toUpperCase() + item.name.slice(1);
+              });
+              setTaxonomy(terms);
+              _context.next = 21;
               break;
 
-            case 17:
-              _context.prev = 17;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 20:
-              _context.prev = 20;
+            case 21:
+              _context.prev = 21;
               setIsLoading(false);
-              return _context.finish(20);
+              return _context.finish(21);
 
-            case 23:
+            case 24:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 17, 20, 23]]);
+      }, _callee, null, [[1, 18, 21, 24]]);
     }));
 
     return function fetchData(_x) {
@@ -820,7 +823,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Main Category"), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.srContentMainTopic && data.metadata.topics.length > 0 ? data.metadata.topics[0] : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("li", {
+  }, taxonomy && taxonomy.length > 0 ? taxonomy[0] : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
@@ -844,7 +847,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Other Topics"), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.topics.length > 0 ? data.metadata.topics : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("li", {
+  }, " ", taxonomy && taxonomy.length > 0 ? taxonomy : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("li", {
     className: "mb-0"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"

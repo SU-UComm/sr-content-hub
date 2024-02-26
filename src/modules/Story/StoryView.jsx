@@ -215,7 +215,8 @@ export const StoryView = () => {
             setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
             let assetIDs = d.metadata.topics.join(',');
             const taxonomyTerms = await getTaxonomyTerms(assetIDs);
-            setTaxonomy(taxonomyTerms);
+            let terms = taxonomyTerms.map((item) => item.name.charAt(0).toUpperCase() + item.name.slice(1));
+            setTaxonomy(terms);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -368,9 +369,7 @@ export const StoryView = () => {
                     <ul className="su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2">
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Main Category</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">
-                                {data.metadata.srContentMainTopic && data.metadata.topics.length > 0 ? data.metadata.topics[0] : <em>N/A</em>}
-                            </p>
+                            <p className="su-leading-[3.6rem] su-mb-0">{taxonomy && taxonomy.length > 0 ? taxonomy[0] : <em>N/A</em>}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Submitted by</p>
@@ -388,7 +387,7 @@ export const StoryView = () => {
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Other Topics</p>
-                            <p className="su-leading-[3.6rem] su-mb-0">{data.metadata.topics.length > 0 ? data.metadata.topics : <em>N/A</em>}</p>
+                            <p className="su-leading-[3.6rem] su-mb-0"> {taxonomy && taxonomy.length > 0 ? taxonomy : <em>N/A</em>}</p>
                         </li>
                         <li className="mb-0">
                             <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">First Published</p>

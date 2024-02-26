@@ -11,6 +11,7 @@ const contentHubAPI = {
         hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
         contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
         relatedMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
+        relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
     },
 };
 
@@ -106,6 +107,28 @@ export const getMedia = async (assetID) => {
         return (res = res.json());
     });
     console.log('getMedia resp: ', response);
+    return response;
+};
+
+/**
+ * GET Taxonomy Terms Data
+ * @param {string} assetID array of asset ID
+ * @returns {object} JSON object
+ */
+export const getTaxonomyTerms = async (assetIDs) => {
+    const requestUrl = contentHubAPI.modules.relTerms + assetIDs;
+    console.log('URL,', requestUrl);
+    const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+        },
+    }).then((res) => {
+        return (res = res.json());
+    });
+    console.log('Taxonomy Terms resp: ', response);
+
     return response;
 };
 

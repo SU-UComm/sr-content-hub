@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {getAPIData} from '../Helpers/requests';
+import {getAPIData, getTaxonomyTerms} from '../Helpers/requests';
 import {BackToPageButton} from '../Home/BackToPageButton.jsx';
 import {Oval} from 'react-loader-spinner';
 import {CardButtons} from '../Card/CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers';
 import {FullStory} from './FullStory.jsx';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
+import {array} from 'prop-types';
 
 const dataObj = {
     id: '128490',
@@ -194,6 +195,7 @@ export const StoryView = () => {
     const [summary, setSummary] = useState('');
     const [beaconSent, setBeaconSent] = useState(false);
     const [versionHistory, setVersionHistory] = useState(null);
+    const [taxonomy, setTaxonomy] = useState('');
 
     let jsApi = window?.jsApi ? window.jsApi : mockData;
 
@@ -208,10 +210,12 @@ export const StoryView = () => {
             const d = await getAPIData(id);
             console.log('Story data: ', d);
             setData(d);
-
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
             setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
+            let assetIDs = d.metadata.topics.join(',');
+            const taxonomyTerms = await getTaxonomyTerms(assetIDs);
+            setTaxonomy(taxonomyTerms);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {

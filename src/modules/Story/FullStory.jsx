@@ -92,7 +92,9 @@ export const FullStory = (props) => {
             <div className={`${isOpen ? 'su-flex' : 'su-hidden'} su-mt-45 su-flex-col su-gap-[30px]`}>
                 <div>
                     <p className="small-heading">Author</p>
-                    <p className="su-py-20 su-mb-0">{props.data.metadata.bylineAuthor ? props.data.metadata.bylineAuthor : 'NA'}</p>
+                    <p className="su-py-20 su-mb-0">
+                        {props.data.metadata.bylineAuthor && props.data.metadata.bylineAuthor.length > 1 ? props.data.metadata.bylineAuthor : <em>N/A</em>}
+                    </p>
                 </div>
                 <div
                     className="su-pb-45 
@@ -132,7 +134,7 @@ export const FullStory = (props) => {
                                     />
                                 </div>
 
-                                <ul className="su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1">
+                                <ul className="su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 lg:su-grid-cols-1 sm:su-grid-cols-2">
                                     <li className="mb-0">
                                         <p className="su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8">Credit</p>
                                         <p className="su-leading-[3.6rem] su-mb-0">{item.mediaCredit ? item.mediaCredit : <em>N/A</em>}</p>
@@ -162,9 +164,11 @@ export const FullStory = (props) => {
 
 FullStory.propTypes = {
     data: PropTypes.shape({
-        bylineAuthor: PropTypes.string,
         name: PropTypes.string,
         id: PropTypes.string,
+        metadata: PropTypes.shape({
+            bylineAuthor: PropTypes.array,
+        }),
     }),
     frameUrl: PropTypes.string,
 };

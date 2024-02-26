@@ -252,7 +252,7 @@ var FullStory = function FullStory(props) {
     className: "small-heading"
   }, "Author"), /*#__PURE__*/react.createElement("p", {
     className: "su-py-20 su-mb-0"
-  }, props.data.metadata.bylineAuthor ? props.data.metadata.bylineAuthor : 'NA')), /*#__PURE__*/react.createElement("div", {
+  }, props.data.metadata.bylineAuthor && props.data.metadata.bylineAuthor.length > 1 ? props.data.metadata.bylineAuthor : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("div", {
     className: "su-pb-45  su-border-b su-border-gray "
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
@@ -284,7 +284,7 @@ var FullStory = function FullStory(props) {
       alt: item.title,
       className: "su-aspect-[3/2] su-object-cover"
     })), /*#__PURE__*/react.createElement("ul", {
-      className: "su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 sm:su-grid-cols-2 lg:su-grid-cols-1"
+      className: "su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 lg:su-grid-cols-1 sm:su-grid-cols-2"
     }, /*#__PURE__*/react.createElement("li", {
       className: "mb-0"
     }, /*#__PURE__*/react.createElement("p", {
@@ -314,9 +314,11 @@ var FullStory = function FullStory(props) {
 };
 FullStory.propTypes = {
   data: prop_types_default().shape({
-    bylineAuthor: (prop_types_default()).string,
     name: (prop_types_default()).string,
-    id: (prop_types_default()).string
+    id: (prop_types_default()).string,
+    metadata: prop_types_default().shape({
+      bylineAuthor: (prop_types_default()).array
+    })
   }),
   frameUrl: (prop_types_default()).string
 };

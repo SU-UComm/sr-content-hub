@@ -2102,17 +2102,14 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
 
 var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(url) {
-    var queryString,
-        response,
-        _args7 = arguments;
+    var response;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            queryString = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : '';
             // let url = contentHubAPI.search[pageName];
             console.log('URL,', url);
-            _context7.next = 4;
+            _context7.next = 3;
             return fetch(url, {
               method: 'GET',
               headers: {
@@ -2123,12 +2120,12 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context7.sent;
             console.log('getSearchDATA resp: ', response);
             return _context7.abrupt("return", response);
 
-          case 7:
+          case 6:
           case "end":
             return _context7.stop();
         }

@@ -32,7 +32,7 @@ export const AllContent = () => {
     const [dateSelected, setDateSelected] = useState('All');
     const [query, setQuery] = useState('');
 
-    const fetchData = async (url, func, query) => {
+    const fetchData = async (url, func) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
         if (func == 'fb') {
@@ -66,6 +66,7 @@ export const AllContent = () => {
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
+                setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
                 console.log('REQUEST FUNCTION data in all content matrix: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -81,7 +82,6 @@ export const AllContent = () => {
         let url = window?.data?.contentHubAPI?.search.allContent;
         if (url) {
             fetchData(url, 'matrix');
-            // getSearchData('newContent', '');
             setDataLocation('matrix');
             setUrl(url);
         } else {

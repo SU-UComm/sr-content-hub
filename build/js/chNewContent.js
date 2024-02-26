@@ -290,7 +290,7 @@ function NewContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var NewContent = function NewContent() {
-  var _window3, _window3$data, _window3$data$texts, _window3$data$texts$n, _window4, _window4$data, _window4$data$texts, _window4$data$texts$n;
+  var _window2, _window2$data, _window2$data$texts, _window2$data$texts$n, _window3, _window3$data, _window3$data$texts, _window3$data$texts$n;
 
   var _useState = (0,react.useState)([]),
       _useState2 = NewContent_slicedToArray(_useState, 2),
@@ -394,7 +394,7 @@ var NewContent = function NewContent() {
             case 24:
               _context.prev = 24;
               _context.next = 27;
-              return (0,requests/* getSearchData */.Im)(url, '');
+              return (0,requests/* getSearchData */.Im)(url);
 
             case 27:
               _d2 = _context.sent;
@@ -433,18 +433,13 @@ var NewContent = function NewContent() {
   }();
 
   (0,react.useEffect)(function () {
-    var _window, _window$data, _window$data$user, _window2, _window2$data, _window2$data$content;
+    var _window, _window$data, _window$data$contentH;
 
-    var user = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType;
-    var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
+    // let user = window?.data?.user?.userType;
+    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search.newContent;
 
     if (url) {
-      if (user == 'CP') {
-        fetchData('myContent', 'matrix'); // getSearchData('myContent', '');
-      } else {
-        fetchData('newContent', 'matrix'); // getSearchData('newContent', '');
-      }
-
+      fetchData(url, 'matrix');
       setDataLocation('matrix');
       setUrl(url);
     } else {
@@ -542,8 +537,8 @@ var NewContent = function NewContent() {
   }) : /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
-    headingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.headingText,
-    subHeadingText: (_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$texts = _window4$data.texts) === null || _window4$data$texts === void 0 ? void 0 : (_window4$data$texts$n = _window4$data$texts.newcontent) === null || _window4$data$texts$n === void 0 ? void 0 : _window4$data$texts$n.subHeadingText,
+    headingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$n = _window2$data$texts.newcontent) === null || _window2$data$texts$n === void 0 ? void 0 : _window2$data$texts$n.headingText,
+    subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.subHeadingText,
     homeButton: true
   }), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("div", {
     className: "su-mb-20"
@@ -702,8 +697,13 @@ var MyContent = function MyContent() {
       statusSelected = _useState20[0],
       setStatusSelected = _useState20[1];
 
+  var _useState21 = (0,react.useState)(''),
+      _useState22 = MyContent_slicedToArray(_useState21, 2),
+      dataLocation = _useState22[0],
+      setDataLocation = _useState22[1];
+
   var fetchData = /*#__PURE__*/function () {
-    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(source, url) {
+    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(func, url) {
       var d, params, _d2, _params;
 
       return MyContent_regeneratorRuntime().wrap(function _callee$(_context) {
@@ -712,7 +712,7 @@ var MyContent = function MyContent() {
             case 0:
               setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
 
-              if (!(source == 'fb')) {
+              if (!(func == 'fb')) {
                 _context.next = 24;
                 break;
               }
@@ -751,7 +751,7 @@ var MyContent = function MyContent() {
             case 24:
               _context.prev = 24;
               _context.next = 27;
-              return (0,requests/* getSearchData */.Im)('myContent', '');
+              return (0,requests/* getSearchData */.Im)(url);
 
             case 27:
               _d2 = _context.sent;
@@ -792,13 +792,16 @@ var MyContent = function MyContent() {
   (0,react.useEffect)(function () {
     var _window, _window$data, _window$data$contentH;
 
-    var myContentApi = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search.myContent;
+    var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search.myContent;
 
-    if (myContentApi) {
-      fetchData('matrix', '');
+    if (url) {
+      fetchData('matrix', url);
+      setUrl(url);
+      setDataLocation('matrix');
+    } else {
+      fetchData('fb', 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+      setDataLocation('fb');
     }
-
-    fetchData('fb', 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
@@ -826,7 +829,7 @@ var MyContent = function MyContent() {
       setQueryParams(newParams);
       var fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
       console.log('CREATED URL: ', fetchUrl);
-      fetchData(fetchUrl);
+      fetchData(fetchUrl, dataLocation);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
 
@@ -848,7 +851,7 @@ var MyContent = function MyContent() {
       var _fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
 
       console.log('CREATED URL: ', _fetchUrl);
-      fetchData(_fetchUrl);
+      fetchData(_fetchUrl, dataLocation);
     } else if (name == 'sortBy') {
       var _newParams2 = queryParams;
       var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
@@ -872,7 +875,7 @@ var MyContent = function MyContent() {
       var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
 
       console.log('CREATED URL sort: ', _fetchUrl2);
-      fetchData(_fetchUrl2);
+      fetchData(_fetchUrl2, dataLocation);
     } else {
       if (name == 'status') {
         var _selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
@@ -882,7 +885,7 @@ var MyContent = function MyContent() {
 
       var _fetchUrl3 = baseUrl + value;
 
-      fetchData(_fetchUrl3);
+      fetchData(_fetchUrl3, dataLocation);
     }
   };
 

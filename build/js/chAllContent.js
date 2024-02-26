@@ -602,7 +602,7 @@ var AllContent = function AllContent() {
       setQuery = _useState32[1];
 
   var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func, query) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
       var d, params, _d2, _params;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -647,7 +647,7 @@ var AllContent = function AllContent() {
               return _context.finish(22);
 
             case 25:
-              _context.next = 49;
+              _context.next = 50;
               break;
 
             case 27:
@@ -666,29 +666,30 @@ var AllContent = function AllContent() {
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
               _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(_params);
+              setQuery(_d2.question.query == '!nullquery' ? '' : _d2.question.query);
               console.log('REQUEST FUNCTION data in all content matrix: ', _d2);
-              _context.next = 46;
+              _context.next = 47;
               break;
 
-            case 43:
-              _context.prev = 43;
+            case 44:
+              _context.prev = 44;
               _context.t1 = _context["catch"](27);
               console.error('Error fetching data:', _context.t1);
 
-            case 46:
-              _context.prev = 46;
+            case 47:
+              _context.prev = 47;
               setIsLoading(false);
-              return _context.finish(46);
+              return _context.finish(47);
 
-            case 49:
+            case 50:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 19, 22, 25], [27, 43, 46, 49]]);
+      }, _callee, null, [[2, 19, 22, 25], [27, 44, 47, 50]]);
     }));
 
-    return function fetchData(_x, _x2, _x3) {
+    return function fetchData(_x, _x2) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -701,8 +702,7 @@ var AllContent = function AllContent() {
     var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search.allContent;
 
     if (url) {
-      fetchData(url, 'matrix'); // getSearchData('newContent', '');
-
+      fetchData(url, 'matrix');
       setDataLocation('matrix');
       setUrl(url);
     } else {

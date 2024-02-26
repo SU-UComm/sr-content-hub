@@ -43,7 +43,7 @@ export const NewContent = () => {
             }
         } else {
             try {
-                const d = await getSearchData(url, '');
+                const d = await getSearchData(url);
                 setFacets(d.response.facets);
                 setCPLabels(d.response.facets[2].allValues);
                 setData(d);
@@ -61,16 +61,10 @@ export const NewContent = () => {
     };
 
     useEffect(() => {
-        let user = window?.data?.user?.userType;
-        let url = window?.data?.contentHubAPI?.search;
+        // let user = window?.data?.user?.userType;
+        let url = window?.data?.contentHubAPI?.search.newContent;
         if (url) {
-            if (user == 'CP') {
-                fetchData('myContent', 'matrix');
-                // getSearchData('myContent', '');
-            } else {
-                fetchData('newContent', 'matrix');
-                // getSearchData('newContent', '');
-            }
+            fetchData(url, 'matrix');
             setDataLocation('matrix');
             setUrl(url);
         } else {

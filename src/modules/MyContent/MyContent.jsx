@@ -23,11 +23,12 @@ export const MyContent = () => {
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
     const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
+    const [dataLocation, setDataLocation] = useState('');
 
-    const fetchData = async (source, url) => {
+    const fetchData = async (func, url) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
-        if (source == 'fb') {
+        if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);
                 setFacets(d.response.facets);
@@ -45,7 +46,7 @@ export const MyContent = () => {
             }
         } else {
             try {
-                const d = await getSearchData('myContent', '');
+                const d = await getSearchData(url);
                 setFacets(d.response.facets);
                 setStatusLabels(d.response.facets[1].allValues);
                 setData(d);
@@ -63,15 +64,18 @@ export const MyContent = () => {
     };
 
     useEffect(() => {
-        let myContentApi = window?.data?.contentHubAPI?.search.myContent;
-        if (myContentApi) {
-            fetchData('matrix', '');
+        let url = window?.data?.contentHubAPI?.search.myContent;
+        if (url) {
+            fetchData('matrix', url);
+            setUrl(url);
+            setDataLocation('matrix');
+        } else {
+            fetchData(
+                'fb',
+                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+            );
+            setDataLocation('fb');
         }
-
-        fetchData(
-            'fb',
-            'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
-        );
     }, []);
 
     const onChange = (name, value, selectedVal) => {
@@ -91,7 +95,7 @@ export const MyContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else if (name == 'pagination') {
             let newParams = queryParams;
             const hasStartRank = newParams.find((entry) => entry.name === 'start_rank');
@@ -103,7 +107,7 @@ export const MyContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else if (name == 'sortBy') {
             let newParams = queryParams;
             let selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
@@ -117,14 +121,14 @@ export const MyContent = () => {
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
             console.log('CREATED URL sort: ', fetchUrl);
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         } else {
             if (name == 'status') {
                 let selected = getLabel(selectedVal);
                 setStatusSelected(selected);
             }
             let fetchUrl = baseUrl + value;
-            fetchData(fetchUrl);
+            fetchData(fetchUrl, dataLocation);
         }
     };
 

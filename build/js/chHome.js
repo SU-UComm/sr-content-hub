@@ -117,7 +117,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ContentRegion = function ContentRegion() {
-  var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window7$data$user;
+  var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window8, _window8$data, _window8$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -162,9 +162,14 @@ var ContentRegion = function ContentRegion() {
       baseUrl = _useState16[0],
       setUrl = _useState16[1];
 
+  var _useState17 = (0,react.useState)(''),
+      _useState18 = _slicedToArray(_useState17, 2),
+      dataLocation = _useState18[0],
+      setDataLocation = _useState18[1];
+
   var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func, query) {
-      var d, q, _d2;
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
+      var d, _d2;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -203,45 +208,44 @@ var ContentRegion = function ContentRegion() {
               return _context.finish(17);
 
             case 20:
-              _context.next = 41;
+              _context.next = 40;
               break;
 
             case 22:
               _context.prev = 22;
-              q = query ? query : '';
-              _context.next = 26;
-              return (0,requests/* getSearchData */.Im)(url, q);
+              _context.next = 25;
+              return (0,requests/* getSearchData */.Im)(url);
 
-            case 26:
+            case 25:
               _d2 = _context.sent;
               setStatusLabels(_d2.response.facets[1].allValues);
               setFacets(_d2.response.facets);
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              console.log('REQUEST FUNCTION data in home: ', _d2);
-              _context.next = 38;
+              console.log('REQUEST FUNCTION data in home matrix: ', _d2);
+              _context.next = 37;
               break;
 
-            case 35:
-              _context.prev = 35;
+            case 34:
+              _context.prev = 34;
               _context.t1 = _context["catch"](22);
               console.error('Error fetching data:', _context.t1);
 
-            case 38:
-              _context.prev = 38;
+            case 37:
+              _context.prev = 37;
               setIsLoading(false);
-              return _context.finish(38);
+              return _context.finish(37);
 
-            case 41:
+            case 40:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 14, 17, 20], [22, 35, 38, 41]]);
+      }, _callee, null, [[2, 14, 17, 20], [22, 34, 37, 40]]);
     }));
 
-    return function fetchData(_x, _x2, _x3) {
+    return function fetchData(_x, _x2) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -250,13 +254,15 @@ var ContentRegion = function ContentRegion() {
     var _window, _window$data, _window2, _window2$data, _window2$data$content;
 
     var userType = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType;
-    var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
+    var urlCheck = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
 
-    if (url) {
-      url = userType == 'CP' ? 'allContent' : 'newContent';
+    if (urlCheck) {
+      var url = userType == 'CP' ? window.data.contentHubAPI.search.allContent : window.data.contentHubAPI.search.newContent;
       fetchData(url, 'matrix');
+      setDataLocation('matrix');
     } else {
       fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
+      setDataLocation('fb');
     }
   }, []);
 
@@ -277,7 +283,7 @@ var ContentRegion = function ContentRegion() {
     }
 
     var fetchUrl = baseUrl + value;
-    fetchData(fetchUrl, 'fb');
+    fetchData(fetchUrl, dataLocation);
   };
 
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
@@ -307,10 +313,11 @@ var ContentRegion = function ContentRegion() {
     selectedValue: statusSelected
   })), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
     onChange: onChange,
-    facets: facets
+    facets: facets,
+    page: ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : _window7$data.user.userType) == 'CP' ? 'myContent' : 'newContent'
   })) : null, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
-  }, ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? "1-5 of ".concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
+  }, ((_window8 = window) === null || _window8 === void 0 ? void 0 : (_window8$data = _window8.data) === null || _window8$data === void 0 ? void 0 : (_window8$data$user = _window8$data.user) === null || _window8$data$user === void 0 ? void 0 : _window8$data$user.userType) === 'UCOMM' ? "1-5 of ".concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
   }, results.slice(0, 5).map(function (contentItem, index) {

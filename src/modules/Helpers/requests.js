@@ -165,7 +165,7 @@ export const getAPIData = async (assetID) => {
  * @param {string} queryString request query string
  * @returns {object} JSON object
  */
-export const getSearchData = async (url, queryString = '') => {
+export const getSearchData = async (url) => {
     // let url = contentHubAPI.search[pageName];
     console.log('URL,', url);
     const response = await fetch(url, {

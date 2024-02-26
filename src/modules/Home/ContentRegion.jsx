@@ -16,8 +16,9 @@ export const ContentRegion = () => {
     const [facets, setFacets] = useState([]);
     const [statusSelected, setStatusSelected] = useState('All');
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
+    const [dataLocation, setDataLocation] = useState('');
 
-    const fetchData = async (url, func, query) => {
+    const fetchData = async (url, func) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
         if (func == 'fb') {
@@ -36,14 +37,13 @@ export const ContentRegion = () => {
             }
         } else {
             try {
-                let q = query ? query : '';
-                const d = await getSearchData(url, q);
+                const d = await getSearchData(url);
                 setStatusLabels(d.response.facets[1].allValues);
                 setFacets(d.response.facets);
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                console.log('REQUEST FUNCTION data in home: ', d);
+                console.log('REQUEST FUNCTION data in home matrix: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -54,17 +54,19 @@ export const ContentRegion = () => {
 
     useEffect(() => {
         let userType = window?.data?.user.userType;
-        let url = window?.data?.contentHubAPI?.search;
+        let urlCheck = window?.data?.contentHubAPI?.search;
 
-        if (url) {
-            url = userType == 'CP' ? 'allContent' : 'newContent';
+        if (urlCheck) {
+            let url = userType == 'CP' ? window.data.contentHubAPI.search.allContent : window.data.contentHubAPI.search.newContent;
 
             fetchData(url, 'matrix');
+            setDataLocation('matrix');
         } else {
             fetchData(
                 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated',
                 'fb',
             );
+            setDataLocation('fb');
         }
     }, []);
 
@@ -81,7 +83,7 @@ export const ContentRegion = () => {
             }
         }
         let fetchUrl = baseUrl + value;
-        fetchData(fetchUrl, 'fb');
+        fetchData(fetchUrl, dataLocation);
     };
 
     return isLoading ? (
@@ -105,7 +107,7 @@ export const ContentRegion = () => {
                     <div className="su-w-full md:su-w-1/2">
                         <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />
                     </div>
-                    <SelectedFacets onChange={onChange} facets={facets} />
+                    <SelectedFacets onChange={onChange} facets={facets} page={window?.data?.user.userType == 'CP' ? 'myContent' : 'newContent'} />
                 </div>
             ) : null}
 

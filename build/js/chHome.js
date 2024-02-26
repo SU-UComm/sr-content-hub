@@ -257,7 +257,7 @@ var ContentRegion = function ContentRegion() {
     var urlCheck = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
 
     if (urlCheck) {
-      var url = userType == 'CP' ? window.data.contentHubAPI.search.allContent : window.data.contentHubAPI.search.newContent;
+      var url = userType == 'CP' ? window.data.contentHubAPI.search.myContent : window.data.contentHubAPI.search.newContent;
       fetchData(url, 'matrix');
       setDataLocation('matrix');
     } else {

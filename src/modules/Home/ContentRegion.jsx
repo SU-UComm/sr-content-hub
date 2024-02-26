@@ -57,7 +57,7 @@ export const ContentRegion = () => {
         let urlCheck = window?.data?.contentHubAPI?.search;
 
         if (urlCheck) {
-            let url = userType == 'CP' ? window.data.contentHubAPI.search.allContent : window.data.contentHubAPI.search.newContent;
+            let url = userType == 'CP' ? window.data.contentHubAPI.search.myContent : window.data.contentHubAPI.search.newContent;
 
             fetchData(url, 'matrix');
             setDataLocation('matrix');

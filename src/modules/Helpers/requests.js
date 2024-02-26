@@ -10,10 +10,14 @@ const contentHubAPI = {
         userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
         hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
         contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
-        relatedMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
+        relMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
         relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
+        beaconEndpoint: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
     },
 };
+
+// "relMedia": "https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media",
+// "relTerms": "https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms"
 
 export const fetchFBData = async (url) => {
     try {
@@ -67,7 +71,7 @@ export const getUserData = async () => {
 };
 
 /**
- * GET relatedMedia Data
+ * GET myContent Data
  * @param {string} module to get endpoint URL
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
@@ -96,7 +100,7 @@ export const getMyContent = async () => {
  * @returns {object} JSON object
  */
 export const getMedia = async (assetID) => {
-    const requestUrl = `${contentHubAPI.modules.relatedMedia}${assetID}`;
+    const requestUrl = `${contentHubAPI.modules.relMedia}${assetID}`;
     const response = await fetch(requestUrl, {
         method: 'GET',
         headers: {
@@ -161,10 +165,10 @@ export const getAPIData = async (assetID) => {
  * @param {string} queryString request query string
  * @returns {object} JSON object
  */
-export const getSearchData = async (pageName, queryString = '') => {
-    let url = contentHubAPI.search[pageName];
+export const getSearchData = async (url, queryString = '') => {
+    // let url = contentHubAPI.search[pageName];
     console.log('URL,', url);
-    const response = await fetch(`${url}${queryString ? `?${queryString}` : ''}`, {
+    const response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

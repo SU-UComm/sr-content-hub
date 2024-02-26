@@ -1809,10 +1809,13 @@ var contentHubAPI = {
     userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
     hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
     contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
-    relatedMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
-    relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids='
+    relMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
+    relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
+    beaconEndpoint: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon'
   }
-};
+}; // "relMedia": "https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media",
+// "relTerms": "https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms"
+
 var fetchFBData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
     var response, res;
@@ -1918,7 +1921,7 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
   };
 }()));
 /**
- * GET relatedMedia Data
+ * GET myContent Data
  * @param {string} module to get endpoint URL
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
@@ -1974,7 +1977,7 @@ var getMedia = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.relatedMedia).concat(assetID);
+            requestUrl = "".concat(contentHubAPI.modules.relMedia).concat(assetID);
             _context4.next = 3;
             return fetch(requestUrl, {
               method: 'GET',
@@ -2098,9 +2101,8 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
  */
 
 var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(pageName) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(url) {
     var queryString,
-        url,
         response,
         _args7 = arguments;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -2108,10 +2110,10 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
         switch (_context7.prev = _context7.next) {
           case 0:
             queryString = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : '';
-            url = contentHubAPI.search[pageName];
+            // let url = contentHubAPI.search[pageName];
             console.log('URL,', url);
-            _context7.next = 5;
-            return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
+            _context7.next = 4;
+            return fetch(url, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
@@ -2121,12 +2123,12 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
               return res = res.json();
             });
 
-          case 5:
+          case 4:
             response = _context7.sent;
             console.log('getSearchDATA resp: ', response);
             return _context7.abrupt("return", response);
 
-          case 8:
+          case 7:
           case "end":
             return _context7.stop();
         }

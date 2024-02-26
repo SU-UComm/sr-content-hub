@@ -31,7 +31,8 @@ export const AllContent = () => {
     const [statusSelected, setStatusSelected] = useState('All');
     const [dateSelected, setDateSelected] = useState('All');
     const [query, setQuery] = useState('');
-    const fetchData = async (url, func) => {
+
+    const fetchData = async (url, func, query) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
         if (func == 'fb') {
@@ -55,7 +56,7 @@ export const AllContent = () => {
             }
         } else {
             try {
-                const d = await getSearchData(url, '');
+                const d = await getSearchData(url);
                 setStatusLabels(d.response.facets[1].allValues);
                 setCPLabels(d.response.facets[2].allValues);
                 setDateLabels(d.response.facets[0].allValues);
@@ -77,9 +78,9 @@ export const AllContent = () => {
     useEffect(() => {
         let userData = window?.data?.user;
         setUserData(userData);
-        let url = window?.data?.contentHubAPI?.search;
+        let url = window?.data?.contentHubAPI?.search.allContent;
         if (url) {
-            fetchData('allContent', 'matrix');
+            fetchData(url, 'matrix');
             // getSearchData('newContent', '');
             setDataLocation('matrix');
             setUrl(url);

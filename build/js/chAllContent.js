@@ -602,7 +602,7 @@ var AllContent = function AllContent() {
       setQuery = _useState32[1];
 
   var fetchData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func, query) {
       var d, params, _d2, _params;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -653,7 +653,7 @@ var AllContent = function AllContent() {
             case 27:
               _context.prev = 27;
               _context.next = 30;
-              return (0,requests/* getSearchData */.Im)(url, '');
+              return (0,requests/* getSearchData */.Im)(url);
 
             case 30:
               _d2 = _context.sent;
@@ -688,7 +688,7 @@ var AllContent = function AllContent() {
       }, _callee, null, [[2, 19, 22, 25], [27, 43, 46, 49]]);
     }));
 
-    return function fetchData(_x, _x2) {
+    return function fetchData(_x, _x2, _x3) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -698,10 +698,10 @@ var AllContent = function AllContent() {
 
     var userData = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user;
     setUserData(userData);
-    var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
+    var url = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search.allContent;
 
     if (url) {
-      fetchData('allContent', 'matrix'); // getSearchData('newContent', '');
+      fetchData(url, 'matrix'); // getSearchData('newContent', '');
 
       setDataLocation('matrix');
       setUrl(url);

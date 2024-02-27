@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Link} from 'react-router-dom';
 import {Card} from '../Card/Card.jsx';
 import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
-import {fetchFBData, getHubStatus, getSearchData} from '../Helpers/requests.js';
+import {fetchFBData, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
@@ -22,7 +22,6 @@ export const ContentRegion = () => {
 
     const fetchData = async (url, func) => {
         setIsLoading(true);
-        // replace with getSearchData from requests.js with blank query once CORS is resolved
         if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);

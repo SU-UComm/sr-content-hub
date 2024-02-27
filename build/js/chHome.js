@@ -189,7 +189,7 @@ var ContentRegion = function ContentRegion() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
+              setIsLoading(true);
 
               if (!(func == 'fb')) {
                 _context.next = 29;
@@ -215,7 +215,7 @@ var ContentRegion = function ContentRegion() {
                 }
               });
               _context.next = 16;
-              return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
+              return getHubStatus(sourceIdsArray.join(','));
 
             case 16:
               statuses = _context.sent;
@@ -260,7 +260,7 @@ var ContentRegion = function ContentRegion() {
               });
 
               _context.next = 43;
-              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
+              return getHubStatus(_sourceIdsArray.join(','));
 
             case 43:
               _statuses = _context.sent;

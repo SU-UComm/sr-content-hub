@@ -617,7 +617,7 @@ var AllContent = function AllContent() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
+              setIsLoading(true);
 
               if (!(func == 'fb')) {
                 _context.next = 34;

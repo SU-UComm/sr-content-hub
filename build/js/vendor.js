@@ -2513,9 +2513,7 @@ var Pagination = function Pagination(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_12__.useEffect)(function () {
     if (props.summary) {
       setSummaryData(props.summary);
-      setIsLoading(false); // console.log('DATA @ PAGINATION:', props.data);
-      // console.log('SUMMARY', props.summary);
-
+      setIsLoading(false);
       getPages(props.summary);
     } else {
       setIsLoading(true);
@@ -2523,7 +2521,6 @@ var Pagination = function Pagination(props) {
   }, [props.summary]);
 
   var addPage = function addPage(pagesOutput, itemRank, label, isActive, isLast) {
-    console.log('pagesOutput: ', pagesOutput);
     return pagesOutput.push({
       itemRank: itemRank,
       label: label,
@@ -2542,9 +2539,8 @@ var Pagination = function Pagination(props) {
 
     if (summary.totalMatching % perPage > 0) {
       numberOfPages = numberOfPages + 1;
-    }
+    } // Define variable for which whole pagination will be generated
 
-    console.log('numPgaes:', numberOfPages); // Define variable for which whole pagination will be generated
 
     var printAllFor = 6; // ========= And print pagination for it =========
 
@@ -2555,7 +2551,6 @@ var Pagination = function Pagination(props) {
         var thisPageStart = (pageToPrint - 1) * perPage + 1;
         var isLast = pageToPrint === numberOfPages ? true : false;
         addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
-        console.log('LOG: ', pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
         pageToPrint = pageToPrint + 1;
       }
 
@@ -2585,7 +2580,6 @@ var Pagination = function Pagination(props) {
 
       var pageToPrintStart = (_pageToPrint - 1) * perPage + 1;
       addPage(pagesOutput, pageToPrintStart, _pageToPrint, false, false);
-      console.log('check');
     } // Add Current Page
 
 
@@ -2622,7 +2616,6 @@ var Pagination = function Pagination(props) {
     } // Return output
 
 
-    console.log('getPAGES: ', pagesOutput);
     setPagesData(pagesOutput);
   };
 

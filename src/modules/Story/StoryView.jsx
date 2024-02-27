@@ -203,6 +203,30 @@ export const StoryView = () => {
         navigator.clipboard.writeText(data.url);
     };
 
+    useEffect(() => {
+        // setIsLoading(true);
+        let id = window.location.search;
+        let match = id.match(/=(\d+)/);
+        if (match && match[1]) {
+            id = parseInt(match[1], 10);
+        }
+        let userType = window?.data?.user?.userType;
+
+        if (id) {
+            fetchData(id);
+            console.log('fetch');
+            if (userType === 'UCOMM') {
+                sendInReview(id);
+            }
+        } else {
+            fetchData('33190');
+            console.log('default load');
+            let summary = decodeHTML(data.metadata.srcSummary[0]);
+            setSummary(summary);
+            setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+        }
+    }, []);
+
     const fetchData = async (id) => {
         setIsLoading(true);
         // replace with getSearchData from requests.js with blank query once CORS is resolved
@@ -270,9 +294,32 @@ export const StoryView = () => {
         // Use Beacon API to send update :: on page unload
         setBeaconSent(false);
 
-        window.addEventListener('unload', sendBeacon(id), {capture: true});
-        window.addEventListener('beforeunload', sendBeacon(id), {capture: true});
-        window.addEventListener('pagehide', sendBeacon(id), {capture: true});
+        // window.addEventListener('unload', sendBeacon(id), {capture: true});
+        // window.addEventListener('beforeunload', sendBeacon(id), {capture: true});
+        // window.addEventListener('pagehide', sendBeacon(id), {capture: true});
+        window.addEventListener(
+            'unload',
+            function () {
+                sendBeacon(id);
+            },
+            {capture: true},
+        );
+
+        window.addEventListener(
+            'beforeunload',
+            function () {
+                sendBeacon(id);
+            },
+            {capture: true},
+        );
+
+        window.addEventListener(
+            'pagehide',
+            function () {
+                sendBeacon(id);
+            },
+            {capture: true},
+        );
     };
 
     const sendBeacon = (id) => {
@@ -314,30 +361,6 @@ export const StoryView = () => {
         // Store beacon state
         setBeaconSent(true);
     };
-
-    useEffect(() => {
-        // setIsLoading(true);
-        let id = window.location.search;
-        let match = id.match(/=(\d+)/);
-        if (match && match[1]) {
-            id = parseInt(match[1], 10);
-        }
-        let userType = window?.data?.user?.userType;
-
-        if (id) {
-            fetchData(id);
-            console.log('fetch');
-            if (userType === 'UCOMM') {
-                sendInReview(id);
-            }
-        } else {
-            fetchData('33190');
-            console.log('default load');
-            let summary = decodeHTML(data.metadata.srcSummary[0]);
-            setSummary(summary);
-            setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
-        }
-    }, []);
 
     return isLoading ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />

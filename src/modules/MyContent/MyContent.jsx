@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PageHeading} from '../Home/PageHeading.jsx';
 import {CPFilter} from '../Filters/CPFilter.jsx';
-import {fetchFBData, getMyContent, getSearchData} from '../Helpers/requests.js';
+import {fetchFBData, getHubStatus, getMyContent, getSearchData} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
@@ -24,6 +24,7 @@ export const MyContent = () => {
     const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
     const [dataLocation, setDataLocation] = useState('');
+    const [hubStatuses, setHubStatuses] = useState([]);
 
     const fetchData = async (func, url) => {
         setIsLoading(true);
@@ -39,6 +40,16 @@ export const MyContent = () => {
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
                 console.log('REQUEST FUNCTION data in MY content: ', d);
+                let sourceIdsArray = [];
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
+
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                console.log('Statuses:', statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -55,6 +66,16 @@ export const MyContent = () => {
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
                 console.log('MY content MATRIX FETCH: ', d);
+                let sourceIdsArray = [];
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
+
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                console.log('Statuses:', statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -156,7 +177,7 @@ export const MyContent = () => {
                         </div>
                         <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                             {results.map((contentItem, index) => (
-                                <Card key={index} data={contentItem} />
+                                <Card key={index} data={contentItem} statuses={hubStatuses} />
                             ))}
                         </ul>
                     </>

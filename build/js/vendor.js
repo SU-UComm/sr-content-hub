@@ -2088,7 +2088,7 @@ var getTaxonomyTerms = /*#__PURE__*/(/* runtime-dependent pure expression or sup
  * @returns {object} JSON object
  */
 
-var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 690 == __webpack_require__.j ? (function () {
+var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetIDs) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {

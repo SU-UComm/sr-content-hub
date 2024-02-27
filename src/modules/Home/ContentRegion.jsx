@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Link} from 'react-router-dom';
 import {Card} from '../Card/Card.jsx';
 import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
-import {fetchFBData, getSearchData} from '../Helpers/requests.js';
+import {fetchFBData, getHubStatus, getSearchData} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';

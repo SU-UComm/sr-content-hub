@@ -2516,7 +2516,9 @@ var Pagination = function Pagination(props) {
       setIsLoading(false); // console.log('DATA @ PAGINATION:', props.data);
       // console.log('SUMMARY', props.summary);
 
-      getPages(props.summary);
+      if (props.summary.totalMatching > props.summary.numRanks) {
+        getPages(props.summary);
+      }
     } else {
       setIsLoading(true);
     }

@@ -2553,8 +2553,14 @@ var Pagination = function Pagination(props) {
 
       while (pageToPrint <= numberOfPages) {
         var thisPageStart = (pageToPrint - 1) * perPage + 1;
-        var isLast = pageToPrint === numberOfPages ? true : false;
-        addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
+        var isLast = pageToPrint === numberOfPages ? true : false; // addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
+
+        if (pageToPrint === currentPage) {
+          addPage(pagesOutput, thisPageStart, pageToPrint, true, isLast);
+        } else {
+          addPage(pagesOutput, thisPageStart, pageToPrint, false, isLast);
+        }
+
         pageToPrint = pageToPrint + 1;
       } // console.log('getPAGES: ', pagesOutput);
 
@@ -2683,7 +2689,7 @@ var Pagination = function Pagination(props) {
         className: "pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40 su-border-none"
       }, item.label));
     }
-  }), props.summary.nextStart && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("li", {
+  }), props.summary.nextStart !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("li", {
     className: "su-mb-0 su-rounded-r su-border su-border-gray su-bg-white hover:su-bg-gray-light"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick(e) {

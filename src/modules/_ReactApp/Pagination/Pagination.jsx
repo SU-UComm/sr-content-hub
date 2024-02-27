@@ -52,7 +52,13 @@ export const Pagination = (props) => {
                 const thisPageStart = (pageToPrint - 1) * perPage + 1;
                 const isLast = pageToPrint === numberOfPages ? true : false;
 
-                addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
+                // addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
+
+                if (pageToPrint === currentPage) {
+                    addPage(pagesOutput, thisPageStart, pageToPrint, true, isLast);
+                } else {
+                    addPage(pagesOutput, thisPageStart, pageToPrint, false, isLast);
+                }
 
                 pageToPrint = pageToPrint + 1;
             }
@@ -187,7 +193,7 @@ export const Pagination = (props) => {
                         }
                     })}
 
-                {props.summary.nextStart && (
+                {props.summary.nextStart !== null && (
                     <li className="su-mb-0 su-rounded-r su-border su-border-gray su-bg-white hover:su-bg-gray-light">
                         <button
                             onClick={(e) => onButtonClick(e)}

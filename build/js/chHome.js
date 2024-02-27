@@ -215,7 +215,7 @@ var ContentRegion = function ContentRegion() {
                 }
               });
               _context.next = 16;
-              return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
+              return getHubStatus(sourceIdsArray.join(','));
 
             case 16:
               statuses = _context.sent;
@@ -260,7 +260,7 @@ var ContentRegion = function ContentRegion() {
               });
 
               _context.next = 43;
-              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
+              return getHubStatus(_sourceIdsArray.join(','));
 
             case 43:
               _statuses = _context.sent;

@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {PropTypes} from 'prop-types';
 
 export const CPFilter = (props) => {
     const [selectedPartner, setSelectedPartner] = useState('');
@@ -11,7 +12,6 @@ export const CPFilter = (props) => {
     const handleChange = (value, partner) => {
         setSelectedPartner(value);
         handleClose();
-        // console.log('CP FILTER partner: ', partner.toggleUrl);
         props.onChange('CP', partner.toggleUrl);
     };
 
@@ -107,4 +107,9 @@ export const CPFilter = (props) => {
             </div>
         )
     );
+};
+
+CPFilter.propTypes = {
+    facets: PropTypes.array,
+    onChange: PropTypes.func,
 };

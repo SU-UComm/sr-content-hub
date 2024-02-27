@@ -6,24 +6,23 @@ import {CPFilter} from '../Filters/CPFilter.jsx';
 import {fetchFBData, getHubStatus} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
-import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
+import {Pagination} from '../Pagination/Pagination.jsx';
 import {SearchBar} from '../Search/SearchBar.jsx';
 import {getSearchData} from '../Helpers/requests.js';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
-import {BrowserRouter} from 'react-router-dom';
 
 export const AllContent = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [data, setData] = useState([]); // data from endpoint
-    const [userData, setUserData] = useState([]); // user data from endpoint
+    const [userData, setUserData] = useState([]);
     const [CPLabels, setCPLabels] = useState([]);
     const [facets, setFacets] = useState([]);
     const [statusLabel, setStatusLabels] = useState([]);
     const [dateLabel, setDateLabels] = useState([]);
     const [resultsSummary, setResultsSummary] = useState([]);
-    const [results, setResults] = useState([]); // data from endpoint
+    const [results, setResults] = useState([]);
     const [queryParams, setQueryParams] = useState([]);
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
     const [dataLocation, setDataLocation] = useState('');
@@ -55,9 +54,7 @@ export const AllContent = () => {
                         sourceIdsArray.push(item.listMetadata.assetId[0]);
                     }
                 });
-
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);

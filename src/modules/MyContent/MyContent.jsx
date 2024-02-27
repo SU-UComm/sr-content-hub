@@ -4,7 +4,7 @@ import {CPFilter} from '../Filters/CPFilter.jsx';
 import {fetchFBData, getMyContent, getSearchData} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
-import {Pagination} from '../_ReactApp/Pagination/Pagination.jsx';
+import {Pagination} from '../Pagination/Pagination.jsx';
 import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';

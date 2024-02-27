@@ -74,7 +74,6 @@ export const AllContent = () => {
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
                 setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
-                console.log('REQUEST FUNCTION data in all content matrix: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -82,7 +81,6 @@ export const AllContent = () => {
                     }
                 });
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -101,6 +99,7 @@ export const AllContent = () => {
             setDataLocation('matrix');
             setUrl(url);
         } else {
+            // backup link for local dev environment
             fetchData(
                 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
                 'fb',
@@ -111,6 +110,7 @@ export const AllContent = () => {
 
     const onChange = (name, value, selectedVal) => {
         console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        let fetchUrl;
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -124,9 +124,7 @@ export const AllContent = () => {
                 newParams.push({name: 'query', value: value});
             }
             setQueryParams(newParams);
-            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl, dataLocation);
+            fetchUrl = baseUrl + '?' + createUrl(queryParams);
         } else if (name == 'pagination') {
             let newParams = queryParams;
             const hasStartRank = newParams.find((entry) => entry.name === 'start_rank');
@@ -136,9 +134,7 @@ export const AllContent = () => {
                 hasStartRank.value = value;
             }
             setQueryParams(newParams);
-            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            console.log('CREATED URL: ', fetchUrl);
-            fetchData(fetchUrl, dataLocation);
+            fetchUrl = baseUrl + '?' + createUrl(queryParams);
         } else if (name == 'sortBy') {
             let newParams = queryParams;
             let selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
@@ -150,9 +146,7 @@ export const AllContent = () => {
                 sortBy.value = value;
             }
             setQueryParams(newParams);
-            let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            console.log('CREATED URL sort: ', fetchUrl);
-            fetchData(fetchUrl, dataLocation);
+            fetchUrl = baseUrl + '?' + createUrl(queryParams);
         } else {
             if (name == 'status') {
                 let selected = getLabel(selectedVal);
@@ -169,9 +163,9 @@ export const AllContent = () => {
                     setDateSelected('All');
                 }
             }
-            let fetchUrl = baseUrl + value;
-            fetchData(fetchUrl, dataLocation);
+            fetchUrl = baseUrl + value;
         }
+        fetchData(fetchUrl, dataLocation);
     };
 
     return isLoading ? (

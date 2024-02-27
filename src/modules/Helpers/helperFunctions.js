@@ -12,8 +12,6 @@ export const getQueryStringParams = (url) => {
             queryParams.push({name: thisParamArr[0], value: thisParamArr[1]});
         }
     });
-
-    console.log('QUERY STRING PARAMS: ', queryParams);
     return queryParams;
 };
 
@@ -25,7 +23,6 @@ export const createUrl = (queryParams) => {
         const encodedValue = entry.value;
         queryStringArray.push(`${encodedKey}=${encodedValue}`);
     }
-
     const queryString = queryStringArray.join('&');
     return queryString;
 };

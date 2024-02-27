@@ -10,6 +10,7 @@ export const Pagination = (props) => {
     const onButtonClick = (e) => {
         props.onChange('pagination', e.target.value);
     };
+
     useEffect(() => {
         if (props.summary) {
             setSummaryData(props.summary);

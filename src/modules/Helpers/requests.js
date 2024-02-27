@@ -16,8 +16,14 @@ export const contentHubAPI = {
     },
 };
 
-// "relMedia": "https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media",
-// "relTerms": "https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms"
+// Bearer token to be replaced with matrix fetch
+const requestOptions = {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+    },
+};
 
 export const fetchFBData = async (url) => {
     try {
@@ -33,22 +39,6 @@ export const fetchFBData = async (url) => {
     }
 };
 
-const assetId = 128334;
-const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetId}?data=attributes,metadata`;
-const requestOptions = {
-    headers: {
-        Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-    },
-};
-// mock data from matrix
-// fetch(requestUrl, requestOptions)
-//     .then((response) => {
-//         return response.json();
-//     })
-//     .then((body) => {
-//         console.log(body);
-//     });
-
 /**
  * GET USER Data
  * @param {string} url endpoint URL
@@ -57,16 +47,9 @@ const requestOptions = {
  */
 export const getUserData = async () => {
     let url = contentHubAPI.modules.userData;
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: '',
-        },
-    }).then((res) => {
+    const response = await fetch(url, requestOptions).then((res) => {
         return (res = res.json());
     });
-
     return response;
 };
 
@@ -78,39 +61,22 @@ export const getUserData = async () => {
  */
 export const getMyContent = async () => {
     const requestUrl = contentHubAPI.search.myContent;
-
-    const response = await fetch(requestUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-        },
-    }).then((res) => {
+    const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
-    console.log('myContent resp: ', response);
-
     return response;
 };
 
 /**
- * GET relatedMedia Data
- * @param {string} module to get endpoint URL
+ * GET related Media Data
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
  */
 export const getMedia = async (assetID) => {
     const requestUrl = `${contentHubAPI.modules.relMedia}${assetID}`;
-    const response = await fetch(requestUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-        },
-    }).then((res) => {
+    const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
-    console.log('getMedia resp: ', response);
     return response;
 };
 
@@ -122,17 +88,9 @@ export const getMedia = async (assetID) => {
 export const getTaxonomyTerms = async (assetIDs) => {
     const requestUrl = contentHubAPI.modules.relTerms + assetIDs;
     console.log('URL,', requestUrl);
-    const response = await fetch(requestUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-        },
-    }).then((res) => {
+    const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
-    console.log('Taxonomy Terms resp: ', response);
-
     return response;
 };
 
@@ -144,17 +102,9 @@ export const getTaxonomyTerms = async (assetIDs) => {
 export const getHubStatus = async (assetIDs) => {
     const requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
     console.log('URL,', requestUrl);
-    const response = await fetch(requestUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-        },
-    }).then((res) => {
+    const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
-    console.log('Hub Status resp: ', response);
-
     return response;
 };
 
@@ -167,40 +117,23 @@ export const getHubStatus = async (assetIDs) => {
 export const getAPIData = async (assetID) => {
     const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata,urls`;
     console.log('URL,', requestUrl);
-    const response = await fetch(requestUrl, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-        },
-    }).then((res) => {
+    const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
-    console.log('getAPIDATA resp: ', response);
-
     return response;
 };
 
 /**
  * GET Search Data
- * @param {string} pageName to get endpoint URL
- * @param {string} queryString request query string
+ * @param {string} url endpoint URL
  * @returns {object} JSON object
  */
 export const getSearchData = async (url) => {
     // let url = contentHubAPI.search[pageName];
     console.log('URL,', url);
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
-        },
-    }).then((res) => {
+    const response = await fetch(url, requestOptions).then((res) => {
         return (res = res.json());
     });
-    console.log('getSearchDATA resp: ', response);
-
     return response;
 };
 
@@ -223,40 +156,4 @@ export const postData = async (url, queryString = '', requestData = {}) => {
     });
 
     return response;
-};
-
-// if needed - replaced with toggleUrl
-const createQuery = (name, value) => {
-    let url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?collection=sug~sp-stanford-university-content-hub&';
-    const params = {
-        profile: 'search',
-        num_ranks: 10,
-        start_rank: 1,
-        query: '',
-        'f.hubStatus%7ChubStatus': '',
-        sort: '',
-        date: '',
-    };
-
-    switch (name) {
-        case 'status':
-            params.hubStatus += value;
-            break;
-        case 'sortBy':
-            params.sortBy += value;
-            break;
-        case 'date':
-            params.date += value;
-            break;
-        case 'search':
-            params.query = value === '' ? '!nullquery' : `${value}`;
-            break;
-        default:
-            break;
-    }
-
-    url += Object.entries(params)
-        .map(([key, val]) => (val !== '' ? `${key}=${val}` : ''))
-        .join('&');
-    console.log('URL createQuery', url);
 };

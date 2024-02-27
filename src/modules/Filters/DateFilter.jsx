@@ -34,7 +34,6 @@ export const DateRangeFilter = (props) => {
         if (props.facets) {
             setStatusOptions(props.facets);
             setIsLoading(false);
-            console.log('DATE OPTIONS', props.facets);
         } else {
             setIsLoading(true);
         }
@@ -47,13 +46,7 @@ export const DateRangeFilter = (props) => {
                     Date Range
                 </label>
                 <div className="c-select su-min-w-full">
-                    <select
-                        className="su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0"
-                        name="f.date|d"
-                        id="date-filter"
-                        value={selectedRange}
-                        // onChange={(e) => handleRangeChange(e.target.value)}
-                    >
+                    <select className="su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0" name="f.date|d" id="date-filter" value={selectedRange}>
                         {statusOptions.map((option) => (
                             <option key={option.label} value={option.label}>
                                 {option.label}

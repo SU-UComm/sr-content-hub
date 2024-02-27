@@ -18,6 +18,7 @@ export const ContentRegion = () => {
     const [statusSelected, setStatusSelected] = useState('All');
     const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
     const [dataLocation, setDataLocation] = useState('');
+    const [hubStatuses, setHubStatuses] = useState([]);
 
     const fetchData = async (url, func) => {
         setIsLoading(true);
@@ -31,6 +32,16 @@ export const ContentRegion = () => {
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 console.log('REQUEST FUNCTION data in home: ', d);
+                let sourceIdsArray = [];
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
+
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                console.log('Statuses:', statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -45,6 +56,16 @@ export const ContentRegion = () => {
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 console.log('REQUEST FUNCTION data in home matrix: ', d);
+                let sourceIdsArray = [];
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
+
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                console.log('Statuses:', statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -119,7 +140,7 @@ export const ContentRegion = () => {
             </p>
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
-                {results.length > 0 ? results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} />) : <NoContent />}
+                {results.length > 0 ? results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} />) : <NoContent />}
             </ul>
         </section>
     );

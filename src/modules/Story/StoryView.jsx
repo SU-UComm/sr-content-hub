@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {getAPIData, getTaxonomyTerms} from '../Helpers/requests';
+import {contentHubAPI, getAPIData, getTaxonomyTerms} from '../Helpers/requests';
 import {BackToPageButton} from '../Home/BackToPageButton.jsx';
 import {Oval} from 'react-loader-spinner';
 import {CardButtons} from '../Card/CardButtons.jsx';
@@ -323,26 +323,6 @@ export const StoryView = () => {
     };
 
     const sendBeacon = (id) => {
-        // const fieldsActions = [];
-
-        // // Action #1: Update Status Description
-        // let statusField = chCfg.metaFields.hubStatusDescription;
-        // fieldsActions[statusField] = '';
-        // statusField = chCfg.metaFields.hubStatus;
-        // const statusFieldValue = 'submitted';
-        // fieldsActions[statusField] = statusFieldValue;
-
-        // jsApi.setMetadataAllFields({
-        //     asset_id: data.id,
-        //     field_info: fieldsActions,
-        //     dataCallback: (resp) => {
-        //         if (typeof resp === 'object') {
-        //             resp = JSON.stringify(resp);
-        //             console.log('RESP sendBeacon2: ', resp);
-        //         }
-        //     },
-        // });
-
         console.log('Send Beacon unload!');
         if (beaconSent !== false) {
             return;

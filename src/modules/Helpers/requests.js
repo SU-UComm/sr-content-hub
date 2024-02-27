@@ -1,4 +1,4 @@
-const contentHubAPI = {
+export const contentHubAPI = {
     search: {
         allContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/all-content',
         newContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cm/new-content',
@@ -8,7 +8,7 @@ const contentHubAPI = {
         homeMyContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cp/my-content',
         homeLatestContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cm/latest-content',
         userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
-        hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
+        hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status?ids=',
         contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
         relMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
         relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
@@ -132,6 +132,28 @@ export const getTaxonomyTerms = async (assetIDs) => {
         return (res = res.json());
     });
     console.log('Taxonomy Terms resp: ', response);
+
+    return response;
+};
+
+/**
+ * GET Hub Status Data
+ * @param {string} assetIDs array of asset IDs
+ * @returns {object} JSON object
+ */
+export const getHubStatus = async (assetIDs) => {
+    const requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
+    console.log('URL,', requestUrl);
+    const response = await fetch(requestUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+        },
+    }).then((res) => {
+        return (res = res.json());
+    });
+    console.log('Hub Status resp: ', response);
 
     return response;
 };

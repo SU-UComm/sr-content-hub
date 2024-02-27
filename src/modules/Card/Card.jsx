@@ -8,32 +8,22 @@ import {decodeHTML} from '../Helpers/helperFunctions.js';
 
 export const Card = (props) => {
     const [data, setData] = useState([]);
+    const [hubStatus, setHubStatus] = useState(props.data.listMetadata.hubStatus);
+    const [hubStatusDesc, setHubStatusDesc] = useState(props.data.listMetadata.hubStatusDescription);
+
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
+    for (let item of props.statuses) {
+        if (item.id == props.data.listMetadata.assetId) {
+            setHubStatus(item.hubStatus);
+            setHubStatusDesc(item.hubStatusDesc);
+            return;
+        }
+    }
 
-    // const routeChange = () => {
-    //     let path;
-    //     if (contentHubAPI) {
-    //         path = url + props.data.listMetadata.assetId;
-    //     } else {
-    //         path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
-    //     }
-    //     window.location.href = path;
-    // };
-
-    // useEffect(() => {
-    //     if (props) {
-    //         setData(props.listMetadata);
-    //         setIsLoading(false);
-    //         console.log(props);
-    //     } else {
-    //         setIsLoading(true);
-    //     }
-    // }, [props]);
     return (
-        // !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
         props.data.listMetadata && (
             <li
                 className="su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]"
@@ -68,11 +58,16 @@ export const Card = (props) => {
                     </p>
 
                     {props.page === 'allContent' && window?.data?.user.userType === 'CP' ? null : (
-                        <CardButtons listMetadata={props.data.listMetadata} assetId={props.data.listMetadata.assetId[0]} page="card" />
+                        <CardButtons
+                            listMetadata={props.data.listMetadata}
+                            assetId={props.data.listMetadata.assetId[0]}
+                            page="card"
+                            hubStatus={hubStatus}
+                            hubStatusDesc={hubStatusDesc}
+                        />
                     )}
                 </div>
             </li>
-            // </Link>
         )
     );
 };
@@ -92,7 +87,10 @@ Card.propTypes = {
             mtxCreated: PropTypes.array,
             srcPublishedDate: PropTypes.array,
             assetId: PropTypes.array,
+            hubStatusDescription: PropTypes.array,
+            hubStatus: PropTypes.array,
         }),
     }),
     page: PropTypes.string,
+    statuses: PropTypes.array,
 };

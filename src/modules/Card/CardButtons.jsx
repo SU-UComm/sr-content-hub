@@ -67,7 +67,8 @@ export const CardButtons = (props) => {
     const [beaconSent, setBeaconSent] = useState(false);
     const [textArea, setTextAreaValue] = useState('');
     const [userMatch, setUserMatch] = useState(false);
-
+    const [hubStatus, setHubStatus] = useState(props.listMetadata.hubStatus);
+    const [hubStatusDesc, setHubStatusDesc] = useState(props.listMetadata.hubStatusDescription);
     let jsApi = window?.jsApi ? window.jsApi : mockData;
 
     const onTextAreaValueChange = (val) => {
@@ -83,6 +84,13 @@ export const CardButtons = (props) => {
             setUserMatch(true);
             console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
         }
+
+        let status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
+        setHubStatus(status);
+        let statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
+        setHubStatusDesc(statusDesc);
+
+        console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
 
         // const handleClickOutside = (event) => {
         //     console.log(event);
@@ -342,16 +350,12 @@ export const CardButtons = (props) => {
 
     return (
         <div className="su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]">
-            {props.listMetadata.hubStatus == 'reviewed' ? (
+            {hubStatus == 'reviewed' ? (
                 <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>
-            ) : props.listMetadata.hubStatus == 'sent-to-sr' ? (
+            ) : hubStatus == 'sent-to-sr' ? (
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>
-            ) : props.listMetadata.hubStatusDescription &&
-              props.listMetadata.hubStatusDescription.length > 0 &&
-              !userMatch &&
-              props.page !== 'story' &&
-              window?.data?.user?.userType === 'UCOMM' ? (
-                <p className="su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15">{props.listMetadata.hubStatusDescription}</p>
+            ) : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && window?.data?.user?.userType === 'UCOMM' ? (
+                <p className="su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15">{hubStatusDesc}</p>
             ) : window?.data?.user?.userType === 'UCOMM' ? (
                 <>
                     <button

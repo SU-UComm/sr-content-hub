@@ -775,32 +775,15 @@ var StoryView = function StoryView() {
   };
 
   var sendBeacon = function sendBeacon(id) {
-    var _contentHubAPI, _contentHubAPI$module, _contentHubAPI2;
+    var _contentHubAPI$module;
 
-    // const fieldsActions = [];
-    // // Action #1: Update Status Description
-    // let statusField = chCfg.metaFields.hubStatusDescription;
-    // fieldsActions[statusField] = '';
-    // statusField = chCfg.metaFields.hubStatus;
-    // const statusFieldValue = 'submitted';
-    // fieldsActions[statusField] = statusFieldValue;
-    // jsApi.setMetadataAllFields({
-    //     asset_id: data.id,
-    //     field_info: fieldsActions,
-    //     dataCallback: (resp) => {
-    //         if (typeof resp === 'object') {
-    //             resp = JSON.stringify(resp);
-    //             console.log('RESP sendBeacon2: ', resp);
-    //         }
-    //     },
-    // });
     console.log('Send Beacon unload!');
 
     if (beaconSent !== false) {
       return;
     }
 
-    var beaconUrl = (_contentHubAPI = contentHubAPI) !== null && _contentHubAPI !== void 0 && (_contentHubAPI$module = _contentHubAPI.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? (_contentHubAPI2 = contentHubAPI) === null || _contentHubAPI2 === void 0 ? void 0 : _contentHubAPI2.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
+    var beaconUrl = contentHubAPI !== null && contentHubAPI !== void 0 && (_contentHubAPI$module = contentHubAPI.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? contentHubAPI === null || contentHubAPI === void 0 ? void 0 : contentHubAPI.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
 
     var data = {
       id: id

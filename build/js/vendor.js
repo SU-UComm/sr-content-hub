@@ -49,6 +49,8 @@
 
 
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -76,65 +78,76 @@ var Card = function Card(props) {
       data = _useState2[0],
       setData = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(props.data.listMetadata.hubStatus),
       _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1]; // Loader flag
+      hubStatus = _useState4[0],
+      setHubStatus = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(props.data.listMetadata.hubStatusDescription),
+      _useState6 = _slicedToArray(_useState5, 2),
+      hubStatusDesc = _useState6[0],
+      setHubStatusDesc = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      isLoading = _useState8[0],
+      setIsLoading = _useState8[1]; // Loader flag
 
 
   var url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
-  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc); // const routeChange = () => {
-  //     let path;
-  //     if (contentHubAPI) {
-  //         path = url + props.data.listMetadata.assetId;
-  //     } else {
-  //         path = `/story.html?storyId=${props.data.listMetadata.assetId}`;
-  //     }
-  //     window.location.href = path;
-  // };
-  // useEffect(() => {
-  //     if (props) {
-  //         setData(props.listMetadata);
-  //         setIsLoading(false);
-  //         console.log(props);
-  //     } else {
-  //         setIsLoading(true);
-  //     }
-  // }, [props]);
+  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc);
 
-  return (// !isLoading && href={url + listMetadata.assetId} || href={window.globalData.pageHrefs.story}
-    props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
-      className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
-      "data-id": props.data.listMetadata.assetId
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("a", {
-      href: url + props.data.listMetadata.assetId,
-      className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("img", {
-      className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
-      src: props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
-      alt: props.data.title + ' image'
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
-      className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-      className: "su-text-16 su-mb-0 su-leading-none su-text-red-darker"
-    }, props.data.listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("h3", {
-      className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("a", {
-      href: url + props.data.listMetadata.assetId,
-      title: "View ".concat(props.data.title),
-      className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
-    }, props.data.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-      className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
-    }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
-      className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
-    }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
-      listMetadata: props.data.listMetadata,
-      assetId: props.data.listMetadata.assetId[0],
-      page: "card"
-    }))) // </Link>
+  var _iterator = _createForOfIteratorHelper(props.statuses),
+      _step;
 
-  );
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var item = _step.value;
+
+      if (item.id == props.data.listMetadata.assetId) {
+        setHubStatus(item.hubStatus);
+        setHubStatusDesc(item.hubStatusDesc);
+        return;
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
+    className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
+    "data-id": props.data.listMetadata.assetId
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("a", {
+    href: url + props.data.listMetadata.assetId,
+    className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("img", {
+    className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
+    src: props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
+    alt: props.data.title + ' image'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("div", {
+    className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
+    className: "su-text-16 su-mb-0 su-leading-none su-text-red-darker"
+  }, props.data.listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("h3", {
+    className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("a", {
+    href: url + props.data.listMetadata.assetId,
+    title: "View ".concat(props.data.title),
+    className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
+  }, props.data.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
+    className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
+  }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
+    className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
+  }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
+    listMetadata: props.data.listMetadata,
+    assetId: props.data.listMetadata.assetId[0],
+    page: "card",
+    hubStatus: hubStatus,
+    hubStatusDesc: hubStatusDesc
+  })));
 };
 Card.propTypes = {
   data: prop_types__WEBPACK_IMPORTED_MODULE_16___default().shape({
@@ -150,10 +163,13 @@ Card.propTypes = {
       descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
       mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
       srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
+      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
+      hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
     })
   }),
-  page: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string)
+  page: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
+  statuses: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
 };
 
 /***/ }),
@@ -309,6 +325,16 @@ var CardButtons = function CardButtons(props) {
       userMatch = _useState10[0],
       setUserMatch = _useState10[1];
 
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.listMetadata.hubStatus),
+      _useState12 = _slicedToArray(_useState11, 2),
+      hubStatus = _useState12[0],
+      setHubStatus = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.listMetadata.hubStatusDescription),
+      _useState14 = _slicedToArray(_useState13, 2),
+      hubStatusDesc = _useState14[0],
+      setHubStatusDesc = _useState14[1];
+
   var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
 
   var onTextAreaValueChange = function onTextAreaValueChange(val) {
@@ -326,7 +352,13 @@ var CardButtons = function CardButtons(props) {
     if (userDetails === pageUserDetails) {
       setUserMatch(true);
       console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
-    } // const handleClickOutside = (event) => {
+    }
+
+    var status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
+    setHubStatus(status);
+    var statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
+    setHubStatusDesc(statusDesc);
+    console.log('Card status: ', props.hubStatusDesc, props.hubStatus); // const handleClickOutside = (event) => {
     //     console.log(event);
     //     if (isSendDialogOpen && sendDialogRef.current && event.target.classList.contains('backdrop')) {
     //         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
@@ -339,7 +371,6 @@ var CardButtons = function CardButtons(props) {
     // return () => {
     //     document.removeEventListener('click', handleClickOutside);
     // };
-
   }, []);
 
   var openSendDialog = function openSendDialog(id) {
@@ -579,13 +610,13 @@ var CardButtons = function CardButtons(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
-  }, props.listMetadata.hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed") : props.listMetadata.hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Reviewed") : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : props.listMetadata.hubStatusDescription && props.listMetadata.hubStatusDescription.length > 0 && !userMatch && props.page !== 'story' && ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Publishing soon on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.listMetadata.hubStatusDescription) : ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, hubStatusDesc) : ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -1704,6 +1735,8 @@ var HtmlEntities = {
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Im: function() { return /* binding */ getSearchData; },
+/* harmony export */   V9: function() { return /* binding */ getHubStatus; },
+/* harmony export */   fH: function() { return /* binding */ contentHubAPI; },
 /* harmony export */   fP: function() { return /* binding */ getAPIData; },
 /* harmony export */   gV: function() { return /* binding */ fetchFBData; },
 /* harmony export */   mK: function() { return /* binding */ getTaxonomyTerms; },
@@ -1807,7 +1840,7 @@ var contentHubAPI = {
     homeMyContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cp/my-content',
     homeLatestContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cm/latest-content',
     userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
-    hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status',
+    hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status?ids=',
     contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
     relMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
     relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
@@ -2050,20 +2083,19 @@ var getTaxonomyTerms = /*#__PURE__*/(/* runtime-dependent pure expression or sup
   };
 }()) : null);
 /**
- * GET ContentAPI Data
- * @param {string} module to get endpoint URL
- * @param {string} assetID request asset ID
+ * GET Hub Status Data
+ * @param {string} assetIDs array of asset IDs
  * @returns {object} JSON object
  */
 
-var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 202 == __webpack_require__.j ? (function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetID) {
+var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 690 == __webpack_require__.j ? (function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetIDs) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
+            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
             console.log('URL,', requestUrl);
             _context6.next = 4;
             return fetch(requestUrl, {
@@ -2078,7 +2110,7 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
 
           case 4:
             response = _context6.sent;
-            console.log('getAPIDATA resp: ', response);
+            console.log('Hub Status resp: ', response);
             return _context6.abrupt("return", response);
 
           case 7:
@@ -2089,8 +2121,52 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
     }, _callee6);
   }));
 
-  return function getAPIData(_x4) {
+  return function getHubStatus(_x4) {
     return _ref6.apply(this, arguments);
+  };
+}()) : null);
+/**
+ * GET ContentAPI Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
+
+var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 202 == __webpack_require__.j ? (function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(assetID) {
+    var requestUrl, response;
+    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
+            console.log('URL,', requestUrl);
+            _context7.next = 4;
+            return fetch(requestUrl, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
+              }
+            }).then(function (res) {
+              return res = res.json();
+            });
+
+          case 4:
+            response = _context7.sent;
+            console.log('getAPIDATA resp: ', response);
+            return _context7.abrupt("return", response);
+
+          case 7:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7);
+  }));
+
+  return function getAPIData(_x5) {
+    return _ref7.apply(this, arguments);
   };
 }()) : null);
 /**
@@ -2101,15 +2177,15 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
  */
 
 var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(url) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(url) {
     var response;
-    return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context7.prev = _context7.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
             // let url = contentHubAPI.search[pageName];
             console.log('URL,', url);
-            _context7.next = 3;
+            _context8.next = 3;
             return fetch(url, {
               method: 'GET',
               headers: {
@@ -2121,20 +2197,20 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
             });
 
           case 3:
-            response = _context7.sent;
+            response = _context8.sent;
             console.log('getSearchDATA resp: ', response);
-            return _context7.abrupt("return", response);
+            return _context8.abrupt("return", response);
 
           case 6:
           case "end":
-            return _context7.stop();
+            return _context8.stop();
         }
       }
-    }, _callee7);
+    }, _callee8);
   }));
 
-  return function getSearchData(_x5) {
-    return _ref7.apply(this, arguments);
+  return function getSearchData(_x6) {
+    return _ref8.apply(this, arguments);
   };
 }()) : null);
 /**
@@ -2146,18 +2222,18 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
  */
 
 var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(url) {
+  var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(url) {
     var queryString,
         requestData,
         response,
-        _args8 = arguments;
-    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+        _args9 = arguments;
+    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
       while (1) {
-        switch (_context8.prev = _context8.next) {
+        switch (_context9.prev = _context9.next) {
           case 0:
-            queryString = _args8.length > 1 && _args8[1] !== undefined ? _args8[1] : '';
-            requestData = _args8.length > 2 && _args8[2] !== undefined ? _args8[2] : {};
-            _context8.next = 4;
+            queryString = _args9.length > 1 && _args9[1] !== undefined ? _args9[1] : '';
+            requestData = _args9.length > 2 && _args9[2] !== undefined ? _args9[2] : {};
+            _context9.next = 4;
             return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
               method: 'POST',
               headers: {
@@ -2169,19 +2245,19 @@ var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (func
             });
 
           case 4:
-            response = _context8.sent;
-            return _context8.abrupt("return", response);
+            response = _context9.sent;
+            return _context9.abrupt("return", response);
 
           case 6:
           case "end":
-            return _context8.stop();
+            return _context9.stop();
         }
       }
-    }, _callee8);
+    }, _callee9);
   }));
 
-  return function postData(_x6) {
-    return _ref8.apply(this, arguments);
+  return function postData(_x7) {
+    return _ref9.apply(this, arguments);
   };
 }())); // if needed - replaced with toggleUrl
 
@@ -2218,10 +2294,10 @@ var createQuery = function createQuery(name, value) {
       break;
   }
 
-  url += Object.entries(params).map(function (_ref9) {
-    var _ref10 = _slicedToArray(_ref9, 2),
-        key = _ref10[0],
-        val = _ref10[1];
+  url += Object.entries(params).map(function (_ref10) {
+    var _ref11 = _slicedToArray(_ref10, 2),
+        key = _ref11[0],
+        val = _ref11[1];
 
     return val !== '' ? "".concat(key, "=").concat(val) : '';
   }).join('&');

@@ -67,9 +67,13 @@ export const CardButtons = (props) => {
     const [beaconSent, setBeaconSent] = useState(false);
     const [textArea, setTextAreaValue] = useState('');
     const [userMatch, setUserMatch] = useState(false);
-    const [hubStatus, setHubStatus] = useState(props.listMetadata.hubStatus);
-    const [hubStatusDesc, setHubStatusDesc] = useState();
+    const [hubStatus, setHubStatus] = useState(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus);
+    const [hubStatusDesc, setHubStatusDesc] = useState(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription);
     let jsApi = window?.jsApi ? window.jsApi : mockData;
+    // let hubStatus = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
+    // setHubStatus(status);
+    // let hubStatusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
+    // setHubStatusDesc(statusDesc);
 
     const onTextAreaValueChange = (val) => {
         setTextAreaValue(val);
@@ -85,28 +89,12 @@ export const CardButtons = (props) => {
             console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
         }
 
-        let status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
-        setHubStatus(status);
-        let statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
-        setHubStatusDesc(statusDesc);
+        // let status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
+        // setHubStatus(status);
+        // let statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
+        // setHubStatusDesc(statusDesc);
 
         console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
-
-        // const handleClickOutside = (event) => {
-        //     console.log(event);
-        //     if (isSendDialogOpen && sendDialogRef.current && event.target.classList.contains('backdrop')) {
-        //         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
-        //     }
-        //     if (isDeclineDialogOpen && declineDialogRef.current && event.target.classList.contains('backdrop')) {
-        //         closeDeclineDialog(`dialogTitle-${props.assetId}-decline`);
-        //     }
-        // };
-
-        // document.addEventListener('click', handleClickOutside);
-
-        // return () => {
-        //     document.removeEventListener('click', handleClickOutside);
-        // };
     }, []);
 
     const openSendDialog = (id) => {
@@ -299,6 +287,7 @@ export const CardButtons = (props) => {
         const userDetails = userEl.getAttribute('data-fullname');
         const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
         props.listMetadata.hubStatusDescription = historyMessage;
+        setHubStatusDesc(historyMessage);
 
         // Check if this is Home Page and Latest News
         const latestNewsEl = document.querySelector('#latest-content');
@@ -487,4 +476,5 @@ CardButtons.propTypes = {
     assetId: PropTypes.string,
     page: PropTypes.string,
     hubStatusDesc: PropTypes.string,
+    hubStatus: PropTypes.string,
 };

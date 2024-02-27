@@ -327,17 +327,20 @@ var CardButtons = function CardButtons(props) {
       userMatch = _useState10[0],
       setUserMatch = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.listMetadata.hubStatus),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus),
       _useState12 = _slicedToArray(_useState11, 2),
       hubStatus = _useState12[0],
       setHubStatus = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription),
       _useState14 = _slicedToArray(_useState13, 2),
       hubStatusDesc = _useState14[0],
       setHubStatusDesc = _useState14[1];
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
+  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData; // let hubStatus = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
+  // setHubStatus(status);
+  // let hubStatusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
+  // setHubStatusDesc(statusDesc);
 
   var onTextAreaValueChange = function onTextAreaValueChange(val) {
     setTextAreaValue(val);
@@ -354,25 +357,13 @@ var CardButtons = function CardButtons(props) {
     if (userDetails === pageUserDetails) {
       setUserMatch(true);
       console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
-    }
+    } // let status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
+    // setHubStatus(status);
+    // let statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
+    // setHubStatusDesc(statusDesc);
 
-    var status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
-    setHubStatus(status);
-    var statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
-    setHubStatusDesc(statusDesc);
-    console.log('Card status: ', props.hubStatusDesc, props.hubStatus); // const handleClickOutside = (event) => {
-    //     console.log(event);
-    //     if (isSendDialogOpen && sendDialogRef.current && event.target.classList.contains('backdrop')) {
-    //         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
-    //     }
-    //     if (isDeclineDialogOpen && declineDialogRef.current && event.target.classList.contains('backdrop')) {
-    //         closeDeclineDialog(`dialogTitle-${props.assetId}-decline`);
-    //     }
-    // };
-    // document.addEventListener('click', handleClickOutside);
-    // return () => {
-    //     document.removeEventListener('click', handleClickOutside);
-    // };
+
+    console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
   }, []);
 
   var openSendDialog = function openSendDialog(id) {
@@ -551,7 +542,8 @@ var CardButtons = function CardButtons(props) {
     var userEl = document.querySelector('#user-status');
     var userDetails = userEl.getAttribute('data-fullname');
     var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
-    props.listMetadata.hubStatusDescription = historyMessage; // Check if this is Home Page and Latest News
+    props.listMetadata.hubStatusDescription = historyMessage;
+    setHubStatusDesc(historyMessage); // Check if this is Home Page and Latest News
 
     var latestNewsEl = document.querySelector('#latest-content'); // IF it is then we need to trigger loading one additional result instead of current item
 
@@ -772,7 +764,8 @@ CardButtons.propTypes = {
   }),
   assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
   page: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
-  hubStatusDesc: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
+  hubStatusDesc: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
+  hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
 };
 
 /***/ }),

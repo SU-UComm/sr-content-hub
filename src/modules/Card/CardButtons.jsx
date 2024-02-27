@@ -68,7 +68,7 @@ export const CardButtons = (props) => {
     const [textArea, setTextAreaValue] = useState('');
     const [userMatch, setUserMatch] = useState(false);
     const [hubStatus, setHubStatus] = useState(props.listMetadata.hubStatus);
-    const [hubStatusDesc, setHubStatusDesc] = useState(props.listMetadata.hubStatusDescription);
+    const [hubStatusDesc, setHubStatusDesc] = useState();
     let jsApi = window?.jsApi ? window.jsApi : mockData;
 
     const onTextAreaValueChange = (val) => {

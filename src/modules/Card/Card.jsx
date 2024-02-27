@@ -9,7 +9,7 @@ import {decodeHTML} from '../Helpers/helperFunctions.js';
 export const Card = (props) => {
     const [data, setData] = useState([]);
     const [hubStatus, setHubStatus] = useState(props.data.listMetadata.hubStatus);
-    const [hubStatusDesc, setHubStatusDesc] = useState(props.data.listMetadata.hubStatusDescription);
+    const [hubStatusDesc, setHubStatusDesc] = useState();
 
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';

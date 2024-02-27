@@ -83,7 +83,7 @@ var Card = function Card(props) {
       hubStatus = _useState4[0],
       setHubStatus = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(props.data.listMetadata.hubStatusDescription),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(),
       _useState6 = _slicedToArray(_useState5, 2),
       hubStatusDesc = _useState6[0],
       setHubStatusDesc = _useState6[1];
@@ -330,7 +330,7 @@ var CardButtons = function CardButtons(props) {
       hubStatus = _useState12[0],
       setHubStatus = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.listMetadata.hubStatusDescription),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(),
       _useState14 = _slicedToArray(_useState13, 2),
       hubStatusDesc = _useState14[0],
       setHubStatusDesc = _useState14[1];

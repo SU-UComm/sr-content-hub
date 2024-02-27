@@ -83,7 +83,7 @@ var Card = function Card(props) {
       hubStatus = _useState4[0],
       setHubStatus = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       hubStatusDesc = _useState6[0],
       setHubStatusDesc = _useState6[1];
@@ -98,23 +98,25 @@ var Card = function Card(props) {
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
   desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc);
 
-  var _iterator = _createForOfIteratorHelper(props.statuses),
-      _step;
+  if (props.statuses) {
+    var _iterator = _createForOfIteratorHelper(props.statuses),
+        _step;
 
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var item = _step.value;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var item = _step.value;
 
-      if (item.id == props.data.listMetadata.assetId) {
-        setHubStatus(item.hubStatus);
-        setHubStatusDesc(item.hubStatusDesc);
-        return;
+        if (item.id == props.data.listMetadata.assetId) {
+          setHubStatus(item.hubStatus);
+          setHubStatusDesc(item.hubStatusDesc);
+          return;
+        }
       }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
     }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
   }
 
   return props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
@@ -763,7 +765,8 @@ CardButtons.propTypes = {
     publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array)
   }),
   assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
-  page: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
+  page: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
+  hubStatusDesc: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
 };
 
 /***/ }),

@@ -476,4 +476,5 @@ CardButtons.propTypes = {
     }),
     assetId: PropTypes.string,
     page: PropTypes.string,
+    hubStatusDesc: PropTypes.string,
 };

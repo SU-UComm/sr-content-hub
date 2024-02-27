@@ -9,17 +9,19 @@ import {decodeHTML} from '../Helpers/helperFunctions.js';
 export const Card = (props) => {
     const [data, setData] = useState([]);
     const [hubStatus, setHubStatus] = useState(props.data.listMetadata.hubStatus);
-    const [hubStatusDesc, setHubStatusDesc] = useState();
+    const [hubStatusDesc, setHubStatusDesc] = useState('');
 
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
-    for (let item of props.statuses) {
-        if (item.id == props.data.listMetadata.assetId) {
-            setHubStatus(item.hubStatus);
-            setHubStatusDesc(item.hubStatusDesc);
-            return;
+    if (props.statuses) {
+        for (let item of props.statuses) {
+            if (item.id == props.data.listMetadata.assetId) {
+                setHubStatus(item.hubStatus);
+                setHubStatusDesc(item.hubStatusDesc);
+                return;
+            }
         }
     }
 

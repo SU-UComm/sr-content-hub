@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {contentHubAPI} from '../Helpers/requests';
 
 const mockData = {
     name: 'Mockup name',
@@ -70,10 +71,6 @@ export const CardButtons = (props) => {
     const [hubStatus, setHubStatus] = useState(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus);
     const [hubStatusDesc, setHubStatusDesc] = useState(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription);
     let jsApi = window?.jsApi ? window.jsApi : mockData;
-    // let hubStatus = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
-    // setHubStatus(status);
-    // let hubStatusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
-    // setHubStatusDesc(statusDesc);
 
     const onTextAreaValueChange = (val) => {
         setTextAreaValue(val);
@@ -83,17 +80,9 @@ export const CardButtons = (props) => {
         let userDetails = window?.data?.user.firstName + ' ' + window.data + window?.data?.user.lastName;
         const userEl = document.querySelector('#user-status');
         let pageUserDetails = userEl.getAttribute('data-fullname');
-        console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
         if (userDetails === pageUserDetails) {
             setUserMatch(true);
-            console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
         }
-
-        // let status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
-        // setHubStatus(status);
-        // let statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
-        // setHubStatusDesc(statusDesc);
-
         console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
     }, []);
 
@@ -123,8 +112,19 @@ export const CardButtons = (props) => {
         dialog.close();
     };
 
+    const handleSendFullContent = () => {
+        jsApi.getMetadata({
+            asset_id: props.assetId,
+            dataCallback: (resp) => {
+                // As a callback :: Prepare an update for the asset
+                prepareApproveUpdate(props.assetId, 'Story', resp);
+            },
+        });
+
+        closeSendDialog(`dialogTitle-${props.assetId}-approve`);
+    };
+
     const handleSendTeaser = () => {
-        // Handle sending teaser
         jsApi.getMetadata({
             asset_id: props.assetId,
             dataCallback: (resp) => {
@@ -147,6 +147,23 @@ export const CardButtons = (props) => {
         });
 
         closeDeclineDialog(id);
+    };
+
+    // Helper Function to get state
+    const getHistoryState = (currentState) => {
+        // Get current history state
+        let currentHistory = [];
+
+        // Check if current state is JSON
+        currentState = JSON.parse(currentState);
+        if (currentState !== false) {
+            // If it is: Get current version history
+            const currentVersionMeta = JSON.parse(currentState['hubVersionHistory']);
+            if (currentVersionMeta !== false) {
+                currentHistory = currentVersionMeta;
+            }
+        }
+        return currentHistory;
     };
 
     const prepareDeclineUpdate = (id, currentState) => {
@@ -175,9 +192,12 @@ export const CardButtons = (props) => {
         if (msgTxt.length === 0) {
             msgTxt = 'No message';
         }
+
         const historyMessage = `Reviewed by ${userDetails}, Message: ${msgTxt}`;
+        // Update status on front end
         setHubStatusDesc(historyMessage);
         setHubStatus('reviewed');
+
         const newEntry = {date: thisDate, message: historyMessage};
         currentHistory.unshift(newEntry);
 
@@ -194,38 +214,9 @@ export const CardButtons = (props) => {
             asset_id: id,
             field_info: fieldsActions,
             dataCallback: (resp) => {
-                // updateUi(btnEl, resp);
                 console.log('Decline resp: ', resp);
             },
         });
-    };
-
-    const handleSendFullContent = () => {
-        jsApi.getMetadata({
-            asset_id: props.assetId,
-            dataCallback: (resp) => {
-                // As a callback :: Prepare an update for the asset
-                prepareApproveUpdate(props.assetId, 'Story', resp);
-            },
-        });
-
-        closeSendDialog(`dialogTitle-${props.assetId}-approve`);
-    };
-
-    const getHistoryState = (currentState) => {
-        // Get current history state
-        let currentHistory = [];
-
-        // Check if current state is JSON
-        currentState = isJson(currentState);
-        if (currentState !== false) {
-            // If it is: Get current version history
-            const currentVersionMeta = isJson(currentState['hubVersionHistory']);
-            if (currentVersionMeta !== false) {
-                currentHistory = currentVersionMeta;
-            }
-        }
-        return currentHistory;
     };
 
     const prepareApproveUpdate = (storyId, pageType, currentState) => {
@@ -291,15 +282,14 @@ export const CardButtons = (props) => {
         props.listMetadata.hubStatusDescription = historyMessage;
         setHubStatusDesc(historyMessage);
         setHubStatus('sent-to-sr');
-
-        // Check if this is Home Page and Latest News
-        const latestNewsEl = document.querySelector('#latest-content');
-        // IF it is then we need to trigger loading one additional result instead of current item
-        if (latestNewsEl !== null) {
-            // const currentItem = buttonsCont.closest('li');
-            // loadNextStory.init(currentItem);
-        }
         clearReviewState();
+
+        // // Check if this is Home Page or New Content
+        // const latestNewsEl = document.querySelector('#latest-content');
+        // // IF it is then we need to trigger loading one additional result instead of current item
+        // if (latestNewsEl !== null) {
+        //     window.location.reload()
+        // }
     };
     const sendAsStory = (storyObj) => {
         console.log(`Published as story: ${JSON.stringify(storyObj)}`);

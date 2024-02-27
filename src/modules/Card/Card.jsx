@@ -7,11 +7,8 @@ import {Link, useNavigate} from 'react-router-dom';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
 
 export const Card = (props) => {
-    const [data, setData] = useState([]);
     const [hubStatus, setHubStatus] = useState(props.data.listMetadata.hubStatus);
     const [hubStatusDesc, setHubStatusDesc] = useState('');
-
-    const [isLoading, setIsLoading] = useState(false); // Loader flag
     let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);

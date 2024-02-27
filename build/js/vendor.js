@@ -437,6 +437,8 @@ var CardButtons = function CardButtons(props) {
     }
 
     var historyMessage = "Reviewed by ".concat(userDetails, ", Message: ").concat(msgTxt);
+    setHubStatusDesc(historyMessage);
+    setHubStatus('reviewed');
     var newEntry = {
       date: thisDate,
       message: historyMessage

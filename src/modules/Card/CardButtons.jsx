@@ -176,6 +176,8 @@ export const CardButtons = (props) => {
             msgTxt = 'No message';
         }
         const historyMessage = `Reviewed by ${userDetails}, Message: ${msgTxt}`;
+        setHubStatusDesc(historyMessage);
+        setHubStatus('reviewed');
         const newEntry = {date: thisDate, message: historyMessage};
         currentHistory.unshift(newEntry);
 

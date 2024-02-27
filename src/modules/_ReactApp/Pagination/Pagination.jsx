@@ -16,15 +16,14 @@ export const Pagination = (props) => {
             setIsLoading(false);
             // console.log('DATA @ PAGINATION:', props.data);
             // console.log('SUMMARY', props.summary);
-            if (props.summary.totalMatching > props.summary.numRanks) {
-                getPages(props.summary);
-            }
+            getPages(props.summary);
         } else {
             setIsLoading(true);
         }
     }, [props.summary]);
 
     const addPage = (pagesOutput, itemRank, label, isActive, isLast) => {
+        console.log('pagesOutput: ', pagesOutput);
         return pagesOutput.push({itemRank, label, isActive, isLast});
     };
 
@@ -42,28 +41,23 @@ export const Pagination = (props) => {
         if (summary.totalMatching % perPage > 0) {
             numberOfPages = numberOfPages + 1;
         }
+        console.log('numPgaes:', numberOfPages);
 
         // Define variable for which whole pagination will be generated
         const printAllFor = 6;
         // ========= And print pagination for it =========
-        if (numberOfPages <= printAllFor) {
+        if (numberOfPages < printAllFor) {
             let pageToPrint = 1;
             while (pageToPrint <= numberOfPages) {
                 const thisPageStart = (pageToPrint - 1) * perPage + 1;
                 const isLast = pageToPrint === numberOfPages ? true : false;
 
-                // addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
-
-                if (pageToPrint === currentPage) {
-                    addPage(pagesOutput, thisPageStart, pageToPrint, true, isLast);
-                } else {
-                    addPage(pagesOutput, thisPageStart, pageToPrint, false, isLast);
-                }
-
+                addPage(pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
+                console.log('LOG: ', pagesOutput, thisPageStart, pageToPrint, currentPage === pageToPrint, isLast);
                 pageToPrint = pageToPrint + 1;
             }
-            // console.log('getPAGES: ', pagesOutput);
             setPagesData(pagesOutput);
+            return;
         }
 
         // ========= If there's more pages :: Generate more complex pagination =========
@@ -87,6 +81,7 @@ export const Pagination = (props) => {
             let pageToPrintStart = (pageToPrint - 1) * perPage + 1;
 
             addPage(pagesOutput, pageToPrintStart, pageToPrint, false, false);
+            console.log('check');
         }
 
         // Add Current Page

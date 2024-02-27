@@ -2634,7 +2634,7 @@ var Pagination = function Pagination(props) {
     className: "su-flex su-justify-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("ul", {
     className: "su-flex su-p-0 su-m-0 su-list-none"
-  }, props.summary.prevStart && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("li", {
+  }, props.summary.prevStart !== null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("li", {
     className: "su-mb-0 su-rounded-l su-border su-border-r-0 su-border-gray su-bg-white hover:su-bg-gray-light"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     onClick: function onClick(e) {

@@ -125,7 +125,7 @@ export const Pagination = (props) => {
     ) : (
         <nav aria-label="Pagination" className="su-flex su-justify-center">
             <ul className="su-flex su-p-0 su-m-0 su-list-none">
-                {props.summary.prevStart && (
+                {props.summary.prevStart !== null && (
                     <li className="su-mb-0 su-rounded-l su-border su-border-r-0 su-border-gray su-bg-white hover:su-bg-gray-light">
                         <button
                             onClick={(e) => onButtonClick(e)}

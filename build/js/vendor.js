@@ -545,7 +545,8 @@ var CardButtons = function CardButtons(props) {
     var userDetails = userEl.getAttribute('data-fullname');
     var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
     props.listMetadata.hubStatusDescription = historyMessage;
-    setHubStatusDesc(historyMessage); // Check if this is Home Page and Latest News
+    setHubStatusDesc(historyMessage);
+    setHubStatus('sent-to-sr'); // Check if this is Home Page and Latest News
 
     var latestNewsEl = document.querySelector('#latest-content'); // IF it is then we need to trigger loading one additional result instead of current item
 

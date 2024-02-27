@@ -290,6 +290,7 @@ export const CardButtons = (props) => {
         const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
         props.listMetadata.hubStatusDescription = historyMessage;
         setHubStatusDesc(historyMessage);
+        setHubStatus('sent-to-sr');
 
         // Check if this is Home Page and Latest News
         const latestNewsEl = document.querySelector('#latest-content');

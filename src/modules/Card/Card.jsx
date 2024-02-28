@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {CardButtons} from './CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers.js';
-import * as DOMPurify from 'dompurify';
-import {Link, useNavigate} from 'react-router-dom';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
 
 export const Card = (props) => {

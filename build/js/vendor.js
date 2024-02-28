@@ -30,13 +30,11 @@
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4916);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var _CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(9993);
 /* harmony import */ var _Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9113);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(7856);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(6859);
+/* harmony import */ var _Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(6859);
 
 
 
@@ -68,35 +66,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
 var Card = function Card(props) {
   var _props$data$listMetad, _props$data$listMetad2, _window, _window$data;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(props.data.listMetadata.hubStatus),
       _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
+      hubStatus = _useState2[0],
+      setHubStatus = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(props.data.listMetadata.hubStatus),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      hubStatus = _useState4[0],
-      setHubStatus = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      hubStatusDesc = _useState6[0],
-      setHubStatusDesc = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_11__.useState)(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      isLoading = _useState8[0],
-      setIsLoading = _useState8[1]; // Loader flag
-
+      hubStatusDesc = _useState4[0],
+      setHubStatusDesc = _useState4[1];
 
   var url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
-  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_15__/* .decodeHTML */ .p1)(desc);
+  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_14__/* .decodeHTML */ .p1)(desc);
 
   if (props.statuses) {
     var _iterator = _createForOfIteratorHelper(props.statuses),
@@ -152,26 +137,26 @@ var Card = function Card(props) {
   })));
 };
 Card.propTypes = {
-  data: prop_types__WEBPACK_IMPORTED_MODULE_16___default().shape({
-    imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
-    title: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
-    description: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
-    date: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().number),
-    listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_16___default().shape({
-      canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
-      taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array),
-      hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
+  data: prop_types__WEBPACK_IMPORTED_MODULE_15___default().shape({
+    imageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().string),
+    title: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().string),
+    description: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().string),
+    date: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().number),
+    listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_15___default().shape({
+      canonicalUrl: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      relatedImageURL: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      srcFeaturedImageUrl: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().string),
+      taxonomyContentPartnerText: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      descriptionPlain: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      mtxCreated: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      srcPublishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      assetId: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array),
+      hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array)
     })
   }),
-  page: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().string),
-  statuses: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().array)
+  page: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().string),
+  statuses: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().array)
 };
 
 /***/ }),
@@ -208,8 +193,9 @@ Card.propTypes = {
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(4916);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(5697);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9072);
 
 
 
@@ -234,6 +220,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -337,10 +324,7 @@ var CardButtons = function CardButtons(props) {
       hubStatusDesc = _useState14[0],
       setHubStatusDesc = _useState14[1];
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData; // let hubStatus = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
-  // setHubStatus(status);
-  // let hubStatusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
-  // setHubStatusDesc(statusDesc);
+  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
 
   var onTextAreaValueChange = function onTextAreaValueChange(val) {
     setTextAreaValue(val);
@@ -352,16 +336,10 @@ var CardButtons = function CardButtons(props) {
     var userDetails = ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.firstName) + ' ' + window.data + ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.lastName);
     var userEl = document.querySelector('#user-status');
     var pageUserDetails = userEl.getAttribute('data-fullname');
-    console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
 
     if (userDetails === pageUserDetails) {
       setUserMatch(true);
-      console.log('reviweing & ucomm user same: ', userDetails, ' ||| ', pageUserDetails);
-    } // let status = props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus;
-    // setHubStatus(status);
-    // let statusDesc = props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription;
-    // setHubStatusDesc(statusDesc);
-
+    }
 
     console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
   }, []);
@@ -390,8 +368,18 @@ var CardButtons = function CardButtons(props) {
     dialog.close();
   };
 
+  var handleSendFullContent = function handleSendFullContent() {
+    jsApi.getMetadata({
+      asset_id: props.assetId,
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareApproveUpdate(props.assetId, 'Story', resp);
+      }
+    });
+    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+  };
+
   var handleSendTeaser = function handleSendTeaser() {
-    // Handle sending teaser
     jsApi.getMetadata({
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
@@ -412,6 +400,25 @@ var CardButtons = function CardButtons(props) {
       }
     });
     closeDeclineDialog(id);
+  }; // Helper Function to get state
+
+
+  var getHistoryState = function getHistoryState(currentState) {
+    // Get current history state
+    var currentHistory = []; // Check if current state is JSON
+
+    currentState = JSON.parse(currentState);
+
+    if (currentState !== false) {
+      // If it is: Get current version history
+      var currentVersionMeta = JSON.parse(currentState['hubVersionHistory']);
+
+      if (currentVersionMeta !== false) {
+        currentHistory = currentVersionMeta;
+      }
+    }
+
+    return currentHistory;
   };
 
   var prepareDeclineUpdate = function prepareDeclineUpdate(id, currentState) {
@@ -436,7 +443,8 @@ var CardButtons = function CardButtons(props) {
       msgTxt = 'No message';
     }
 
-    var historyMessage = "Reviewed by ".concat(userDetails, ", Message: ").concat(msgTxt);
+    var historyMessage = "Reviewed by ".concat(userDetails, ", Message: ").concat(msgTxt); // Update status on front end
+
     setHubStatusDesc(historyMessage);
     setHubStatus('reviewed');
     var newEntry = {
@@ -455,39 +463,9 @@ var CardButtons = function CardButtons(props) {
       asset_id: id,
       field_info: fieldsActions,
       dataCallback: function dataCallback(resp) {
-        // updateUi(btnEl, resp);
         console.log('Decline resp: ', resp);
       }
     });
-  };
-
-  var handleSendFullContent = function handleSendFullContent() {
-    jsApi.getMetadata({
-      asset_id: props.assetId,
-      dataCallback: function dataCallback(resp) {
-        // As a callback :: Prepare an update for the asset
-        prepareApproveUpdate(props.assetId, 'Story', resp);
-      }
-    });
-    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-  };
-
-  var getHistoryState = function getHistoryState(currentState) {
-    // Get current history state
-    var currentHistory = []; // Check if current state is JSON
-
-    currentState = isJson(currentState);
-
-    if (currentState !== false) {
-      // If it is: Get current version history
-      var currentVersionMeta = isJson(currentState['hubVersionHistory']);
-
-      if (currentVersionMeta !== false) {
-        currentHistory = currentVersionMeta;
-      }
-    }
-
-    return currentHistory;
   };
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
@@ -546,15 +524,13 @@ var CardButtons = function CardButtons(props) {
     var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
     props.listMetadata.hubStatusDescription = historyMessage;
     setHubStatusDesc(historyMessage);
-    setHubStatus('sent-to-sr'); // Check if this is Home Page and Latest News
-
-    var latestNewsEl = document.querySelector('#latest-content'); // IF it is then we need to trigger loading one additional result instead of current item
-
-    if (latestNewsEl !== null) {// const currentItem = buttonsCont.closest('li');
-      // loadNextStory.init(currentItem);
-    }
-
-    clearReviewState();
+    setHubStatus('sent-to-sr');
+    clearReviewState(); // // Check if this is Home Page or New Content
+    // const latestNewsEl = document.querySelector('#latest-content');
+    // // IF it is then we need to trigger loading one additional result instead of current item
+    // if (latestNewsEl !== null) {
+    //     window.location.reload()
+    // }
   };
 
   var sendAsStory = function sendAsStory(storyObj) {
@@ -584,7 +560,7 @@ var CardButtons = function CardButtons(props) {
   };
 
   var sendBeacon = function sendBeacon() {
-    var _contentHubAPI, _contentHubAPI$module, _contentHubAPI2;
+    var _contentHubAPI$module;
 
     console.log('Send Beacon!');
 
@@ -592,7 +568,7 @@ var CardButtons = function CardButtons(props) {
       return;
     }
 
-    var beaconUrl = (_contentHubAPI = contentHubAPI) !== null && _contentHubAPI !== void 0 && (_contentHubAPI$module = _contentHubAPI.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? (_contentHubAPI2 = contentHubAPI) === null || _contentHubAPI2 === void 0 ? void 0 : _contentHubAPI2.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
+    var beaconUrl = _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH !== null && _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH !== void 0 && (_contentHubAPI$module = _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH === null || _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH === void 0 ? void 0 : _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
 
     var data = {
       id: props.assetId
@@ -759,16 +735,16 @@ var CardButtons = function CardButtons(props) {
   }, "Cancel")))));
 };
 CardButtons.propTypes = {
-  listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_13___default().shape({
-    hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
-    hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
-    assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
-    publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array)
+  listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_14___default().shape({
+    hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
+    hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
+    assetId: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
+    publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array)
   }),
-  assetId: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
-  page: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
-  hubStatusDesc: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string),
-  hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
+  assetId: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
+  page: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
+  hubStatusDesc: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
+  hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)
 };
 
 /***/ }),
@@ -1430,7 +1406,6 @@ var getQueryStringParams = function getQueryStringParams(url) {
       });
     }
   });
-  console.log('QUERY STRING PARAMS: ', queryParams);
   return queryParams;
 };
 var createUrl = function createUrl(queryParams) {
@@ -1752,65 +1727,41 @@ var HtmlEntities = {
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8674);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2222);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4916);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_join_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9600);
-/* harmony import */ var core_js_modules_es_array_join_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_join_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1249);
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_object_entries_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9720);
-/* harmony import */ var core_js_modules_es_object_entries_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_entries_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2526);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1817);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2165);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(6992);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(8783);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(3948);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var core_js_modules_es_symbol_async_iterator_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(2443);
-/* harmony import */ var core_js_modules_es_symbol_async_iterator_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_async_iterator_js__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var core_js_modules_es_symbol_to_string_tag_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(3680);
-/* harmony import */ var core_js_modules_es_symbol_to_string_tag_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_to_string_tag_js__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var core_js_modules_es_json_to_string_tag_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(3706);
-/* harmony import */ var core_js_modules_es_json_to_string_tag_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_json_to_string_tag_js__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var core_js_modules_es_math_to_string_tag_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(7059);
-/* harmony import */ var core_js_modules_es_math_to_string_tag_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_math_to_string_tag_js__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(489);
-/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(4747);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(8309);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(7042);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(1038);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4916);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2222);
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2526);
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1817);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2165);
+/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6992);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8783);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(3948);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var core_js_modules_es_symbol_async_iterator_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2443);
+/* harmony import */ var core_js_modules_es_symbol_async_iterator_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_async_iterator_js__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var core_js_modules_es_symbol_to_string_tag_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(3680);
+/* harmony import */ var core_js_modules_es_symbol_to_string_tag_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_to_string_tag_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var core_js_modules_es_json_to_string_tag_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(3706);
+/* harmony import */ var core_js_modules_es_json_to_string_tag_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_json_to_string_tag_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var core_js_modules_es_math_to_string_tag_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(7059);
+/* harmony import */ var core_js_modules_es_math_to_string_tag_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_math_to_string_tag_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(489);
+/* harmony import */ var core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_get_prototype_of_js__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(4747);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(8309);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(7042);
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_17__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator.return && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, catch: function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-
-
-
-
 
 
 
@@ -1851,9 +1802,15 @@ var contentHubAPI = {
     relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
     beaconEndpoint: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon'
   }
-}; // "relMedia": "https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media",
-// "relTerms": "https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms"
+}; // Bearer token to be replaced with matrix fetch
 
+var requestOptions = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
+  }
+};
 var fetchFBData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
     var response, res;
@@ -1901,21 +1858,6 @@ var fetchFBData = /*#__PURE__*/(/* runtime-dependent pure expression or super */
     return _ref.apply(this, arguments);
   };
 }()) : null);
-var assetId = 128334;
-var requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetId, "?data=attributes,metadata");
-var requestOptions = {
-  headers: {
-    Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-  }
-}; // mock data from matrix
-// fetch(requestUrl, requestOptions)
-//     .then((response) => {
-//         return response.json();
-//     })
-//     .then((body) => {
-//         console.log(body);
-//     });
-
 /**
  * GET USER Data
  * @param {string} url endpoint URL
@@ -1932,13 +1874,7 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
           case 0:
             url = contentHubAPI.modules.userData;
             _context2.next = 3;
-            return fetch(url, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: ''
-              }
-            }).then(function (res) {
+            return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
@@ -1974,22 +1910,15 @@ var getMyContent = /*#__PURE__*/(/* unused pure expression or super */ null && (
           case 0:
             requestUrl = contentHubAPI.search.myContent;
             _context3.next = 3;
-            return fetch(requestUrl, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-              }
-            }).then(function (res) {
+            return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 3:
             response = _context3.sent;
-            console.log('myContent resp: ', response);
             return _context3.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context3.stop();
         }
@@ -2002,8 +1931,7 @@ var getMyContent = /*#__PURE__*/(/* unused pure expression or super */ null && (
   };
 }()));
 /**
- * GET relatedMedia Data
- * @param {string} module to get endpoint URL
+ * GET related Media Data
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
  */
@@ -2017,22 +1945,15 @@ var getMedia = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^
           case 0:
             requestUrl = "".concat(contentHubAPI.modules.relMedia).concat(assetID);
             _context4.next = 3;
-            return fetch(requestUrl, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-              }
-            }).then(function (res) {
+            return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 3:
             response = _context4.sent;
-            console.log('getMedia resp: ', response);
             return _context4.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context4.stop();
         }
@@ -2060,22 +1981,15 @@ var getTaxonomyTerms = /*#__PURE__*/(/* runtime-dependent pure expression or sup
             requestUrl = contentHubAPI.modules.relTerms + assetIDs;
             console.log('URL,', requestUrl);
             _context5.next = 4;
-            return fetch(requestUrl, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-              }
-            }).then(function (res) {
+            return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 4:
             response = _context5.sent;
-            console.log('Taxonomy Terms resp: ', response);
             return _context5.abrupt("return", response);
 
-          case 7:
+          case 6:
           case "end":
             return _context5.stop();
         }
@@ -2103,22 +2017,15 @@ var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super *
             requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
             console.log('URL,', requestUrl);
             _context6.next = 4;
-            return fetch(requestUrl, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-              }
-            }).then(function (res) {
+            return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 4:
             response = _context6.sent;
-            console.log('Hub Status resp: ', response);
             return _context6.abrupt("return", response);
 
-          case 7:
+          case 6:
           case "end":
             return _context6.stop();
         }
@@ -2147,22 +2054,15 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
             requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
             console.log('URL,', requestUrl);
             _context7.next = 4;
-            return fetch(requestUrl, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-              }
-            }).then(function (res) {
+            return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 4:
             response = _context7.sent;
-            console.log('getAPIDATA resp: ', response);
             return _context7.abrupt("return", response);
 
-          case 7:
+          case 6:
           case "end":
             return _context7.stop();
         }
@@ -2176,8 +2076,7 @@ var getAPIData = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 
 }()) : null);
 /**
  * GET Search Data
- * @param {string} pageName to get endpoint URL
- * @param {string} queryString request query string
+ * @param {string} url endpoint URL
  * @returns {object} JSON object
  */
 
@@ -2191,22 +2090,15 @@ var getSearchData = /*#__PURE__*/(/* runtime-dependent pure expression or super 
             // let url = contentHubAPI.search[pageName];
             console.log('URL,', url);
             _context8.next = 3;
-            return fetch(url, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9'
-              }
-            }).then(function (res) {
+            return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 3:
             response = _context8.sent;
-            console.log('getSearchDATA resp: ', response);
             return _context8.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context8.stop();
         }
@@ -2264,50 +2156,7 @@ var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (func
   return function postData(_x7) {
     return _ref9.apply(this, arguments);
   };
-}())); // if needed - replaced with toggleUrl
-
-var createQuery = function createQuery(name, value) {
-  var url = 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?collection=sug~sp-stanford-university-content-hub&';
-  var params = {
-    profile: 'search',
-    num_ranks: 10,
-    start_rank: 1,
-    query: '',
-    'f.hubStatus%7ChubStatus': '',
-    sort: '',
-    date: ''
-  };
-
-  switch (name) {
-    case 'status':
-      params.hubStatus += value;
-      break;
-
-    case 'sortBy':
-      params.sortBy += value;
-      break;
-
-    case 'date':
-      params.date += value;
-      break;
-
-    case 'search':
-      params.query = value === '' ? '!nullquery' : "".concat(value);
-      break;
-
-    default:
-      break;
-  }
-
-  url += Object.entries(params).map(function (_ref10) {
-    var _ref11 = _slicedToArray(_ref10, 2),
-        key = _ref11[0],
-        val = _ref11[1];
-
-    return val !== '' ? "".concat(key, "=").concat(val) : '';
-  }).join('&');
-  console.log('URL createQuery', url);
-};
+}()));
 
 /***/ }),
 
@@ -2507,7 +2356,7 @@ var NoContent = function NoContent() {
 
 /***/ }),
 
-/***/ 5569:
+/***/ 3729:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5565,49 +5414,6 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
 
 /***/ }),
 
-/***/ 4699:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__(9781);
-var uncurryThis = __webpack_require__(1702);
-var objectKeys = __webpack_require__(1956);
-var toIndexedObject = __webpack_require__(5656);
-var $propertyIsEnumerable = (__webpack_require__(5296).f);
-
-var propertyIsEnumerable = uncurryThis($propertyIsEnumerable);
-var push = uncurryThis([].push);
-
-// `Object.{ entries, values }` methods implementation
-var createMethod = function (TO_ENTRIES) {
-  return function (it) {
-    var O = toIndexedObject(it);
-    var keys = objectKeys(O);
-    var length = keys.length;
-    var i = 0;
-    var result = [];
-    var key;
-    while (length > i) {
-      key = keys[i++];
-      if (!DESCRIPTORS || propertyIsEnumerable(O, key)) {
-        push(result, TO_ENTRIES ? [key, O[key]] : O[key]);
-      }
-    }
-    return result;
-  };
-};
-
-module.exports = {
-  // `Object.entries` method
-  // https://tc39.es/ecma262/#sec-object.entries
-  entries: createMethod(true),
-  // `Object.values` method
-  // https://tc39.es/ecma262/#sec-object.values
-  values: createMethod(false)
-};
-
-
-/***/ }),
-
 /***/ 288:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -7208,23 +7014,6 @@ var assign = __webpack_require__(1574);
 // eslint-disable-next-line es-x/no-object-assign -- required for testing
 $({ target: 'Object', stat: true, arity: 2, forced: Object.assign !== assign }, {
   assign: assign
-});
-
-
-/***/ }),
-
-/***/ 9720:
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-var $ = __webpack_require__(2109);
-var $entries = (__webpack_require__(4699).entries);
-
-// `Object.entries` method
-// https://tc39.es/ecma262/#sec-object.entries
-$({ target: 'Object', stat: true }, {
-  entries: function entries(O) {
-    return $entries(O);
-  }
 });
 
 

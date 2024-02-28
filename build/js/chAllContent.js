@@ -143,7 +143,6 @@ var DateRangeFilter = function DateRangeFilter(props) {
     if (props.facets) {
       setStatusOptions(props.facets);
       setIsLoading(false);
-      console.log('DATE OPTIONS', props.facets);
     } else {
       setIsLoading(true);
     }
@@ -159,8 +158,7 @@ var DateRangeFilter = function DateRangeFilter(props) {
     className: "su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0",
     name: "f.date|d",
     id: "date-filter",
-    value: selectedRange // onChange={(e) => handleRangeChange(e.target.value)}
-
+    value: selectedRange
   }, statusOptions.map(function (option) {
     return /*#__PURE__*/react.createElement("option", {
       key: option.label,
@@ -239,6 +237,7 @@ function CPFilter_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : t
 function CPFilter_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
 var CPFilter = function CPFilter(props) {
   var _useState = (0,react.useState)(''),
       _useState2 = CPFilter_slicedToArray(_useState, 2),
@@ -270,8 +269,7 @@ var CPFilter = function CPFilter(props) {
 
   var handleChange = function handleChange(value, partner) {
     setSelectedPartner(value);
-    handleClose(); // console.log('CP FILTER partner: ', partner.toggleUrl);
-
+    handleClose();
     props.onChange('CP', partner.toggleUrl);
   };
 
@@ -367,14 +365,18 @@ var CPFilter = function CPFilter(props) {
     }, partner.label.replace(/&amp;/g, '&'));
   })))));
 };
+CPFilter.propTypes = {
+  facets: prop_types.PropTypes.array,
+  onChange: prop_types.PropTypes.func
+};
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
 // EXTERNAL MODULE: ./src/modules/Card/Card.jsx
 var Card = __webpack_require__(8649);
-// EXTERNAL MODULE: ./src/modules/_ReactApp/Pagination/Pagination.jsx
-var Pagination = __webpack_require__(5569);
+// EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
+var Pagination = __webpack_require__(3729);
 ;// CONCATENATED MODULE: ./src/modules/Search/SearchBar.jsx
 
 
@@ -516,7 +518,6 @@ function AllContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var AllContent = function AllContent() {
   var _window3, _window3$data, _window3$data$texts, _window3$data$texts$a, _window4, _window4$data, _window4$data$texts, _window4$data$texts$n;
 
@@ -535,8 +536,7 @@ var AllContent = function AllContent() {
   var _useState5 = (0,react.useState)([]),
       _useState6 = AllContent_slicedToArray(_useState5, 2),
       userData = _useState6[0],
-      setUserData = _useState6[1]; // user data from endpoint
-
+      setUserData = _useState6[1];
 
   var _useState7 = (0,react.useState)([]),
       _useState8 = AllContent_slicedToArray(_useState7, 2),
@@ -566,8 +566,7 @@ var AllContent = function AllContent() {
   var _useState17 = (0,react.useState)([]),
       _useState18 = AllContent_slicedToArray(_useState17, 2),
       results = _useState18[0],
-      setResults = _useState18[1]; // data from endpoint
-
+      setResults = _useState18[1];
 
   var _useState19 = (0,react.useState)([]),
       _useState20 = AllContent_slicedToArray(_useState19, 2),
@@ -620,7 +619,7 @@ var AllContent = function AllContent() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 34;
+                _context.next = 33;
                 break;
               }
 
@@ -652,31 +651,30 @@ var AllContent = function AllContent() {
 
             case 21:
               statuses = _context.sent;
-              console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 29;
+              _context.next = 28;
               break;
 
-            case 26:
-              _context.prev = 26;
+            case 25:
+              _context.prev = 25;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 29:
-              _context.prev = 29;
+            case 28:
+              _context.prev = 28;
               setIsLoading(false);
-              return _context.finish(29);
+              return _context.finish(28);
 
-            case 32:
-              _context.next = 64;
+            case 31:
+              _context.next = 61;
               break;
 
-            case 34:
-              _context.prev = 34;
-              _context.next = 37;
+            case 33:
+              _context.prev = 33;
+              _context.next = 36;
               return (0,requests/* getSearchData */.Im)(url);
 
-            case 37:
+            case 36:
               _d2 = _context.sent;
               setStatusLabels(_d2.response.facets[1].allValues);
               setCPLabels(_d2.response.facets[2].allValues);
@@ -687,8 +685,8 @@ var AllContent = function AllContent() {
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
               _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(_params);
-              setQuery(_d2.question.query == '!nullquery' ? '' : _d2.question.query);
-              console.log('REQUEST FUNCTION data in all content matrix: ', _d2);
+              setQuery(_d2.question.query == '!nullquery' ? '' : _d2.question.query); // Get live Hub Status using IDs from data just fetched
+
               _sourceIdsArray = [];
 
               _d2.response.resultPacket.results.forEach(function (item) {
@@ -697,32 +695,31 @@ var AllContent = function AllContent() {
                 }
               });
 
-              _context.next = 53;
+              _context.next = 51;
               return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
-            case 53:
+            case 51:
               _statuses = _context.sent;
-              console.log('Statuses:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 61;
+              _context.next = 58;
               break;
+
+            case 55:
+              _context.prev = 55;
+              _context.t1 = _context["catch"](33);
+              console.error('Error fetching data:', _context.t1);
 
             case 58:
               _context.prev = 58;
-              _context.t1 = _context["catch"](34);
-              console.error('Error fetching data:', _context.t1);
+              setIsLoading(false);
+              return _context.finish(58);
 
             case 61:
-              _context.prev = 61;
-              setIsLoading(false);
-              return _context.finish(61);
-
-            case 64:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 26, 29, 32], [34, 58, 61, 64]]);
+      }, _callee, null, [[2, 25, 28, 31], [33, 55, 58, 61]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -742,6 +739,7 @@ var AllContent = function AllContent() {
       setDataLocation('matrix');
       setUrl(url);
     } else {
+      // backup link for local dev environment
       fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery', 'fb');
       setDataLocation('fb');
     }
@@ -749,6 +747,7 @@ var AllContent = function AllContent() {
 
   var onChange = function onChange(name, value, selectedVal) {
     console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+    var fetchUrl;
 
     if (name == 'search') {
       var newParams = queryParams;
@@ -770,9 +769,7 @@ var AllContent = function AllContent() {
       }
 
       setQueryParams(newParams);
-      var fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
-      console.log('CREATED URL: ', fetchUrl);
-      fetchData(fetchUrl, dataLocation);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
 
@@ -790,11 +787,7 @@ var AllContent = function AllContent() {
       }
 
       setQueryParams(_newParams);
-
-      var _fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
-
-      console.log('CREATED URL: ', _fetchUrl);
-      fetchData(_fetchUrl, dataLocation);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
     } else if (name == 'sortBy') {
       var _newParams2 = queryParams;
       var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
@@ -814,11 +807,7 @@ var AllContent = function AllContent() {
       }
 
       setQueryParams(_newParams2);
-
-      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
-
-      console.log('CREATED URL sort: ', _fetchUrl2);
-      fetchData(_fetchUrl2, dataLocation);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
     } else {
       if (name == 'status') {
         var _selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
@@ -839,10 +828,10 @@ var AllContent = function AllContent() {
         }
       }
 
-      var _fetchUrl3 = baseUrl + value;
-
-      fetchData(_fetchUrl3, dataLocation);
+      fetchUrl = baseUrl + value;
     }
+
+    fetchData(fetchUrl, dataLocation);
   };
 
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {

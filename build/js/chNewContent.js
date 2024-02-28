@@ -64,6 +64,8 @@ var es_array_includes = __webpack_require__(6699);
 var es_string_includes = __webpack_require__(2023);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
 var es_string_replace = __webpack_require__(5306);
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
 ;// CONCATENATED MODULE: ./src/modules/Filters/CPFilter.jsx
 
 
@@ -93,6 +95,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 var CPFilter = function CPFilter(props) {
@@ -126,8 +129,7 @@ var CPFilter = function CPFilter(props) {
 
   var handleChange = function handleChange(value, partner) {
     setSelectedPartner(value);
-    handleClose(); // console.log('CP FILTER partner: ', partner.toggleUrl);
-
+    handleClose();
     props.onChange('CP', partner.toggleUrl);
   };
 
@@ -223,14 +225,18 @@ var CPFilter = function CPFilter(props) {
     }, partner.label.replace(/&amp;/g, '&'));
   })))));
 };
+CPFilter.propTypes = {
+  facets: prop_types.PropTypes.array,
+  onChange: prop_types.PropTypes.func
+};
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
 // EXTERNAL MODULE: ./src/modules/Card/Card.jsx
 var Card = __webpack_require__(8649);
-// EXTERNAL MODULE: ./src/modules/_ReactApp/Pagination/Pagination.jsx
-var Pagination = __webpack_require__(5569);
+// EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
+var Pagination = __webpack_require__(3729);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
 var helperFunctions = __webpack_require__(6859);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules

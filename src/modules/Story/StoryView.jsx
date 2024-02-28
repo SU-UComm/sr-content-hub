@@ -294,9 +294,7 @@ export const StoryView = () => {
         // Use Beacon API to send update :: on page unload
         setBeaconSent(false);
 
-        // window.addEventListener('unload', sendBeacon(id), {capture: true});
-        // window.addEventListener('beforeunload', sendBeacon(id), {capture: true});
-        // window.addEventListener('pagehide', sendBeacon(id), {capture: true});
+       
         window.addEventListener(
             'unload',
             function () {

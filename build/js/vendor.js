@@ -209,6 +209,8 @@ Card.propTypes = {
 
 
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -330,6 +332,22 @@ var CardButtons = function CardButtons(props) {
     setTextAreaValue(val);
   };
 
+  var isJson = function isJson(str) {
+    // Check if we need to parse it
+    if (_typeof(str) === 'object') {
+      return str;
+    } // Check if obj is json and return object if succesful
+
+
+    try {
+      var data = JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+
+    return data;
+  };
+
   (0,react__WEBPACK_IMPORTED_MODULE_12__.useEffect)(function () {
     var _window2, _window2$data, _window3, _window3$data;
 
@@ -411,7 +429,7 @@ var CardButtons = function CardButtons(props) {
 
     if (currentState !== false) {
       // If it is: Get current version history
-      var currentVersionMeta = currentState['hubVersionHistory'];
+      var currentVersionMeta = isJson(currentState['hubVersionHistory']);
 
       if (currentVersionMeta !== false) {
         currentHistory = currentVersionMeta;

@@ -76,6 +76,22 @@ export const CardButtons = (props) => {
         setTextAreaValue(val);
     };
 
+    const isJson = (str) => {
+        // Check if we need to parse it
+        if (typeof str === 'object') {
+            return str;
+        }
+
+        // Check if obj is json and return object if succesful
+        try {
+            var data = JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+
+        return data;
+    };
+
     useEffect(() => {
         let userDetails = window?.data?.user.firstName + ' ' + window.data + window?.data?.user.lastName;
         const userEl = document.querySelector('#user-status');
@@ -158,7 +174,7 @@ export const CardButtons = (props) => {
         currentState = isJson(currentState);
         if (currentState !== false) {
             // If it is: Get current version history
-            const currentVersionMeta = currentState['hubVersionHistory'];
+            const currentVersionMeta = isJson(currentState['hubVersionHistory']);
             if (currentVersionMeta !== false) {
                 currentHistory = currentVersionMeta;
             }

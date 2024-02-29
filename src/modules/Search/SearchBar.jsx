@@ -20,7 +20,7 @@ export const SearchBar = (props) => {
                 type="text"
                 name="query"
                 id="search"
-                placeholder="Search Content from content partners"
+                placeholder="Search content from content partners"
                 className="su-w-full su-max-w-[540px] su-text-18 sm:su-text-22 md:su-text-25 su-bg-transparent su-leading-display su-px-20 su-pt-12 su-pb-18 su-text-gray-dark su-border-2 su-border-transparent su-border-b-2 su-border-b-gray focus:su-ring-0 focus:su-border-gray focus:su-shadow-none su-shadow-transparent focus:su-outline-none"
                 autoComplete="off"
                 value={searchQuery}

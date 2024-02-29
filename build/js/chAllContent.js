@@ -536,7 +536,7 @@ var AllContent = function AllContent() {
 
               _d2.response.resultPacket.results.forEach(function (item) {
                 if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                  _sourceIdsArray.push(item.listMetadata.assetI[0]);
+                  _sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
 

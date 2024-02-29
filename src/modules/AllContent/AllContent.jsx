@@ -91,7 +91,7 @@ export const AllContent = () => {
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetI[0]);
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
                     }
                 });
                 const statuses = await getHubStatus(sourceIdsArray.join(','));

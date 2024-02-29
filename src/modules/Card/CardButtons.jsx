@@ -360,9 +360,9 @@ export const CardButtons = (props) => {
                             Send to Stanford Report
                         </button>
                     ) : null}
-                    {props.listMetadata.hubReviewMsg && props.listMetadata.hubReviewMsg.length > 0 ? (
+                    {/* {props.listMetadata.hubReviewMsg && props.listMetadata.hubReviewMsg.length > 0 ? (
                         <p className="su-text-red-dark su-text-16 su-mb-0 su-py-9 ">{props.listMetadata.hubReviewMsg}</p>
-                    ) : null}
+                    ) : null} */}
                 </>
             ) : hubStatus == 'sent-to-sr' ? (
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>

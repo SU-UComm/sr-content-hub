@@ -441,7 +441,7 @@ var AllContent = function AllContent() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray, _statuses;
+      var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -503,7 +503,7 @@ var AllContent = function AllContent() {
               return _context.finish(26);
 
             case 29:
-              _context.next = 58;
+              _context.next = 53;
               break;
 
             case 31:
@@ -532,40 +532,34 @@ var AllContent = function AllContent() {
               setQueryParams(_params);
               setQuery(_d2.question.query == '!nullquery' ? '' : _d2.question.query); // Get live Hub Status using IDs from data just fetched
 
-              _sourceIdsArray = [];
+              _sourceIdsArray = []; // d.response.resultPacket.results.forEach((item) => {
+              //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+              //         sourceIdsArray.push(item.listMetadata.assetId[0]);
+              //     }
+              // });
+              // const statuses = await getHubStatus(sourceIdsArray.join(','));
+              // setHubStatuses(statuses);
 
-              _d2.response.resultPacket.results.forEach(function (item) {
-                if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                  _sourceIdsArray.push(item.listMetadata.assetId[0]);
-                }
-              });
-
-              _context.next = 47;
-              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
-
-            case 47:
-              _statuses = _context.sent;
-              setHubStatuses(_statuses);
               console.log('ALL CONTENT DATA: ', _d2);
-              _context.next = 55;
+              _context.next = 50;
               break;
 
-            case 52:
-              _context.prev = 52;
+            case 47:
+              _context.prev = 47;
               _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 55:
-              _context.prev = 55;
+            case 50:
+              _context.prev = 50;
               setIsLoading(false);
-              return _context.finish(55);
+              return _context.finish(50);
 
-            case 58:
+            case 53:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 47, 50, 53]]);
     }));
 
     return function fetchData(_x, _x2) {

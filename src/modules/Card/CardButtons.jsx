@@ -350,7 +350,7 @@ export const CardButtons = (props) => {
         <div className="su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]">
             {hubStatus == 'reviewed' ? (
                 <>
-                    <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>{' '}
+                    <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>
                     {window?.data?.user?.userType === 'UCOMM' && props.page == 'story' ? (
                         <button
                             data-id={`dialogTitle-${props.assetId}-approve`}
@@ -359,6 +359,9 @@ export const CardButtons = (props) => {
                         >
                             Send to Stanford Report
                         </button>
+                    ) : null}
+                    {props.listMetadata.hubReviewMsg && props.listMetadata.hubReviewMsg.length > 0 ? (
+                        <p className="su-text-red-dark su-text-16 su-mb-0 su-py-9 ">{props.listMetadata.hubReviewMsg}</p>
                     ) : null}
                 </>
             ) : hubStatus == 'sent-to-sr' ? (
@@ -481,6 +484,7 @@ CardButtons.propTypes = {
         hubStatus: PropTypes.array,
         assetId: PropTypes.array,
         publishedDate: PropTypes.array,
+        hubReviewMsg: PropTypes.array,
     }),
     assetId: PropTypes.string,
     page: PropTypes.string,

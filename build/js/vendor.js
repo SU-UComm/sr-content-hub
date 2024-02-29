@@ -603,13 +603,15 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ' ', ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
       return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     }
-  }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Send to Stanford Report") : null, props.listMetadata.hubReviewMsg && props.listMetadata.hubReviewMsg.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+    className: "su-text-red-dark su-text-16 su-mb-0 su-py-9 "
+  }, props.listMetadata.hubReviewMsg) : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
@@ -757,7 +759,8 @@ CardButtons.propTypes = {
     hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
     hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
     assetId: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
-    publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array)
+    publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
+    hubReviewMsg: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array)
   }),
   assetId: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
   page: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),

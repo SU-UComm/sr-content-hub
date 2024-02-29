@@ -503,7 +503,7 @@ var AllContent = function AllContent() {
               return _context.finish(26);
 
             case 29:
-              _context.next = 57;
+              _context.next = 58;
               break;
 
             case 31:
@@ -546,25 +546,26 @@ var AllContent = function AllContent() {
             case 47:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
-              _context.next = 54;
+              console.log('ALL CONTENT DATA: ', _d2);
+              _context.next = 55;
               break;
 
-            case 51:
-              _context.prev = 51;
+            case 52:
+              _context.prev = 52;
               _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 54:
-              _context.prev = 54;
+            case 55:
+              _context.prev = 55;
               setIsLoading(false);
-              return _context.finish(54);
+              return _context.finish(55);
 
-            case 57:
+            case 58:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 51, 54, 57]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
     }));
 
     return function fetchData(_x, _x2) {

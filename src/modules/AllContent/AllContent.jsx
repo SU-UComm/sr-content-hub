@@ -96,6 +96,7 @@ export const AllContent = () => {
                 });
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 setHubStatuses(statuses);
+                console.log('ALL CONTENT DATA: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {

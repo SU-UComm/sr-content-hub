@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 1380:
+/***/ 7397:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -10,6 +10,10 @@
 var react = __webpack_require__(7294);
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
 var react_dom = __webpack_require__(3935);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
 var es_object_to_string = __webpack_require__(1539);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
@@ -22,10 +26,6 @@ var es_regexp_exec = __webpack_require__(4916);
 var es_string_search = __webpack_require__(4765);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find.js
 var es_array_find = __webpack_require__(9826);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -56,179 +56,8 @@ var es_math_to_string_tag = __webpack_require__(7059);
 var es_object_get_prototype_of = __webpack_require__(489);
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
 var PageHeading = __webpack_require__(7774);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
-var es_array_filter = __webpack_require__(7327);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
-var es_array_includes = __webpack_require__(6699);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.includes.js
-var es_string_includes = __webpack_require__(2023);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
-var es_string_replace = __webpack_require__(5306);
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(5697);
-;// CONCATENATED MODULE: ./src/modules/Filters/CPFilter.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-var CPFilter = function CPFilter(props) {
-  var _useState = (0,react.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      selectedPartner = _useState2[0],
-      setSelectedPartner = _useState2[1];
-
-  var _useState3 = (0,react.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      open = _useState4[0],
-      setOpen = _useState4[1];
-
-  var wrapperRef = (0,react.useRef)(null);
-
-  var _useState5 = (0,react.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      statusOptions = _useState6[0],
-      setStatusOptions = _useState6[1];
-
-  var _useState7 = (0,react.useState)(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      isLoading = _useState8[0],
-      setIsLoading = _useState8[1]; // Loader flag
-
-
-  var _useState9 = (0,react.useState)(''),
-      _useState10 = _slicedToArray(_useState9, 2),
-      searchInput = _useState10[0],
-      setSearchInput = _useState10[1];
-
-  var handleChange = function handleChange(value, partner) {
-    setSelectedPartner(value);
-    handleClose();
-    props.onChange('CP', partner.toggleUrl);
-  };
-
-  var onInputChange = function onInputChange(e) {
-    var inputValue = e.target.value;
-    setSearchInput(inputValue);
-    var filteredOptions = props.facets.filter(function (partner) {
-      return partner.label.replace(/&amp;/g, '&').toLowerCase().includes(inputValue.toLowerCase());
-    });
-    setStatusOptions(filteredOptions);
-  };
-
-  var handleOpen = function handleOpen() {
-    return setOpen(true);
-  };
-
-  var handleClose = function handleClose() {
-    return setOpen(false);
-  };
-
-  (0,react.useEffect)(function () {
-    var handleClickOutside = function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        handleClose();
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return function () {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-  (0,react.useEffect)(function () {
-    if (props.facets) {
-      setStatusOptions(props.facets);
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
-  }, [props.facets]);
-  return !isLoading && /*#__PURE__*/react.createElement("div", {
-    className: "c-select c-select--search su-min-w-full"
-  }, /*#__PURE__*/react.createElement("select", {
-    className: "su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0",
-    name: "f.contentPartner%7CtaxonomyContentPartnerText",
-    id: "cp-filter",
-    value: selectedPartner // onChange={(e) => handleChange(e.target.value, e)}
-
-  }, /*#__PURE__*/react.createElement("option", {
-    value: ""
-  }, "-- Choose Content Partner --"), statusOptions.map(function (partner) {
-    return /*#__PURE__*/react.createElement("option", {
-      key: partner.label,
-      value: partner.label
-    }, partner.label);
-  })), /*#__PURE__*/react.createElement("div", {
-    ref: wrapperRef,
-    className: "c-wrapper su-relative su-group ".concat(open ? 'open' : '')
-  }, /*#__PURE__*/react.createElement("button", {
-    className: "c-button su-transition-none group-[.open]:su-mb-1 group-[.open]:su-border-b-transparent group-[.open]:su-rounded-b-none su-leading-[3.6rem] su-pr-20 su-w-full su-text-18 su-flex su-items-center su-justify-between su-text-left su-bg-white su-font-regular hover:su-bg-white hover:su-border-gray hover:su-text-black",
-    "aria-expanded": open,
-    onClick: handleOpen
-  }, /*#__PURE__*/react.createElement("span", {
-    className: "su-mr-10 su-line-clamp-1"
-  }, selectedPartner || '-- Choose Content Partner --'), /*#__PURE__*/react.createElement("img", {
-    className: "su-inline su-ml-6",
-    alt: "",
-    src: __webpack_require__(1466)
-  })), /*#__PURE__*/react.createElement("div", {
-    className: "u-z-10 ".concat(open ? 'su-block' : 'su-hidden', " group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full")
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "su-leading-[3.6rem] su-px-8 su-pt-4 su-pb-8"
-  }, /*#__PURE__*/react.createElement("input", {
-    className: "su-w-full su-rounded su-border-gray su-text-18 su-py-8 focus:su-border-red focus:su-ring-red",
-    placeholder: "Search",
-    type: "text",
-    name: "cp-search",
-    id: "cp-search",
-    value: searchInput,
-    onChange: onInputChange
-  })), /*#__PURE__*/react.createElement("ul", {
-    className: "su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none"
-  }, statusOptions.map(function (partner) {
-    return /*#__PURE__*/react.createElement("li", {
-      key: partner.label,
-      "data-value": partner.data,
-      role: "button",
-      className: "su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-py-8 su-pl-15 su-pr-20 hover:su-cursor-pointer hover:su-bg-gray-light",
-      tabIndex: "0",
-      onClick: function onClick(e) {
-        return handleChange(partner.label, partner);
-      }
-    }, partner.label.replace(/&amp;/g, '&'));
-  })))));
-};
-CPFilter.propTypes = {
-  facets: prop_types.PropTypes.array,
-  onChange: prop_types.PropTypes.func
-};
+// EXTERNAL MODULE: ./src/modules/Filters/CPFilter.jsx
+var CPFilter = __webpack_require__(4842);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
@@ -275,18 +104,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function NewContent_slicedToArray(arr, i) { return NewContent_arrayWithHoles(arr) || NewContent_iterableToArrayLimit(arr, i) || NewContent_unsupportedIterableToArray(arr, i) || NewContent_nonIterableRest(); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function NewContent_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function NewContent_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return NewContent_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return NewContent_arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function NewContent_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function NewContent_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function NewContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -302,60 +130,60 @@ var NewContent = function NewContent() {
   var _window2, _window2$data, _window2$data$texts, _window2$data$texts$n, _window3, _window3$data, _window3$data$texts, _window3$data$texts$n;
 
   var _useState = (0,react.useState)([]),
-      _useState2 = NewContent_slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray(_useState, 2),
       CPLabels = _useState2[0],
       setCPLabels = _useState2[1];
 
   var _useState3 = (0,react.useState)([]),
-      _useState4 = NewContent_slicedToArray(_useState3, 2),
+      _useState4 = _slicedToArray(_useState3, 2),
       data = _useState4[0],
       setData = _useState4[1]; // data from endpoint
 
 
   var _useState5 = (0,react.useState)(false),
-      _useState6 = NewContent_slicedToArray(_useState5, 2),
+      _useState6 = _slicedToArray(_useState5, 2),
       isLoading = _useState6[0],
       setIsLoading = _useState6[1]; // Loader flag
 
 
   var _useState7 = (0,react.useState)([]),
-      _useState8 = NewContent_slicedToArray(_useState7, 2),
+      _useState8 = _slicedToArray(_useState7, 2),
       resultsSummary = _useState8[0],
       setResultsSummary = _useState8[1];
 
   var _useState9 = (0,react.useState)([]),
-      _useState10 = NewContent_slicedToArray(_useState9, 2),
+      _useState10 = _slicedToArray(_useState9, 2),
       results = _useState10[0],
       setResults = _useState10[1]; // data from endpoint
 
 
   var _useState11 = (0,react.useState)([]),
-      _useState12 = NewContent_slicedToArray(_useState11, 2),
+      _useState12 = _slicedToArray(_useState11, 2),
       queryParams = _useState12[0],
       setQueryParams = _useState12[1];
 
   var _useState13 = (0,react.useState)([]),
-      _useState14 = NewContent_slicedToArray(_useState13, 2),
+      _useState14 = _slicedToArray(_useState13, 2),
       facets = _useState14[0],
       setFacets = _useState14[1];
 
   var _useState15 = (0,react.useState)(''),
-      _useState16 = NewContent_slicedToArray(_useState15, 2),
+      _useState16 = _slicedToArray(_useState15, 2),
       dataLocation = _useState16[0],
       setDataLocation = _useState16[1];
 
   var _useState17 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
-      _useState18 = NewContent_slicedToArray(_useState17, 2),
+      _useState18 = _slicedToArray(_useState17, 2),
       baseUrl = _useState18[0],
       setUrl = _useState18[1];
 
   var _useState19 = (0,react.useState)('Newest to Oldest'),
-      _useState20 = NewContent_slicedToArray(_useState19, 2),
+      _useState20 = _slicedToArray(_useState19, 2),
       sortBySelected = _useState20[0],
       setSortBySelected = _useState20[1];
 
   var _useState21 = (0,react.useState)([]),
-      _useState22 = NewContent_slicedToArray(_useState21, 2),
+      _useState22 = _slicedToArray(_useState21, 2),
       hubStatuses = _useState22[0],
       setHubStatuses = _useState22[1];
 
@@ -380,8 +208,12 @@ var NewContent = function NewContent() {
 
             case 5:
               d = _context.sent;
+              d.response.facets.map(function (item) {
+                if (item.name == 'contentPartner') {
+                  setCPLabels(item.allValues);
+                }
+              });
               setFacets(d.response.facets);
-              setCPLabels(d.response.facets[2].allValues);
               setData(d);
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -426,7 +258,13 @@ var NewContent = function NewContent() {
             case 34:
               _d2 = _context.sent;
               setFacets(_d2.response.facets);
-              setCPLabels(_d2.response.facets[2].allValues);
+
+              _d2.response.facets.map(function (item) {
+                if (item.name == 'contentPartner') {
+                  setCPLabels(item.allValues);
+                }
+              });
+
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
@@ -589,7 +427,7 @@ var NewContent = function NewContent() {
     className: "su-block su-text-18 su-font-bold su-leading-[2] su-mb-10"
   }, "Content partners"), /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"
-  }, /*#__PURE__*/react.createElement(CPFilter, {
+  }, /*#__PURE__*/react.createElement(CPFilter/* CPFilter */.r, {
     facets: CPLabels,
     onChange: onChange
   }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
@@ -664,8 +502,6 @@ function MyContent_arrayLikeToArray(arr, len) { if (len == null || len > arr.len
 function MyContent_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function MyContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -766,7 +602,11 @@ var MyContent = function MyContent() {
             case 5:
               d = _context.sent;
               setFacets(d.response.facets);
-              setStatusLabels(d.response.facets[1].allValues);
+              d.response.facets.map(function (item) {
+                if (item.name == 'hubStatus') {
+                  setStatusLabels(item.allValues);
+                }
+              });
               setData(d);
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -811,7 +651,13 @@ var MyContent = function MyContent() {
             case 34:
               _d2 = _context.sent;
               setFacets(_d2.response.facets);
-              setStatusLabels(_d2.response.facets[1].allValues);
+
+              _d2.response.facets.map(function (item) {
+                if (item.name == 'hubStatus') {
+                  setStatusLabels(item.allValues);
+                }
+              });
+
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
@@ -1201,7 +1047,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(1380); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(7397); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

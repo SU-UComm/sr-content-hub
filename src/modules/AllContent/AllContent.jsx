@@ -37,9 +37,15 @@ export const AllContent = () => {
         if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);
-                setStatusLabels(d.response.facets[1].allValues);
-                setCPLabels(d.response.facets[2].allValues);
-                setDateLabels(d.response.facets[0].allValues);
+                d.response.facets.map((item) => {
+                    if (item.name == 'hubStatus') {
+                        setStatusLabels(item.allValues);
+                    } else if (item.name == 'date') {
+                        setDateLabels(item.allValues);
+                    } else {
+                        setCPLabels(item.allValues);
+                    }
+                });
                 setFacets(d.response.facets);
                 setData(d);
                 setResults(d.response.resultPacket.results);
@@ -64,9 +70,16 @@ export const AllContent = () => {
         } else {
             try {
                 const d = await getSearchData(url);
-                setStatusLabels(d.response.facets[1].allValues);
-                setCPLabels(d.response.facets[2].allValues);
-                setDateLabels(d.response.facets[0].allValues);
+
+                d.response.facets.map((item) => {
+                    if (item.name == 'hubStatus') {
+                        setStatusLabels(item.allValues);
+                    } else if (item.name == 'date') {
+                        setDateLabels(item.allValues);
+                    } else {
+                        setCPLabels(item.allValues);
+                    }
+                });
                 setFacets(d.response.facets);
                 setData(d);
                 setResults(d.response.resultPacket.results);

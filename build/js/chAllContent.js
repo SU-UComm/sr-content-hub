@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5230:
+/***/ 47:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -10,6 +10,10 @@
 var react = __webpack_require__(7294);
 // EXTERNAL MODULE: ./node_modules/react-dom/client.js
 var client = __webpack_require__(745);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
 var es_object_to_string = __webpack_require__(1539);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
@@ -22,10 +26,6 @@ var es_regexp_exec = __webpack_require__(4916);
 var es_string_search = __webpack_require__(4765);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find.js
 var es_array_find = __webpack_require__(9826);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -198,177 +198,8 @@ DateRangeFilter.propTypes = {
   facets: prop_types.PropTypes.array,
   onChange: prop_types.PropTypes.func
 };
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
-var es_array_filter = __webpack_require__(7327);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
-var es_array_includes = __webpack_require__(6699);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.includes.js
-var es_string_includes = __webpack_require__(2023);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
-var es_string_replace = __webpack_require__(5306);
-;// CONCATENATED MODULE: ./src/modules/Filters/CPFilter.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function CPFilter_slicedToArray(arr, i) { return CPFilter_arrayWithHoles(arr) || CPFilter_iterableToArrayLimit(arr, i) || CPFilter_unsupportedIterableToArray(arr, i) || CPFilter_nonIterableRest(); }
-
-function CPFilter_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function CPFilter_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return CPFilter_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return CPFilter_arrayLikeToArray(o, minLen); }
-
-function CPFilter_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function CPFilter_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function CPFilter_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-var CPFilter = function CPFilter(props) {
-  var _useState = (0,react.useState)(''),
-      _useState2 = CPFilter_slicedToArray(_useState, 2),
-      selectedPartner = _useState2[0],
-      setSelectedPartner = _useState2[1];
-
-  var _useState3 = (0,react.useState)(false),
-      _useState4 = CPFilter_slicedToArray(_useState3, 2),
-      open = _useState4[0],
-      setOpen = _useState4[1];
-
-  var wrapperRef = (0,react.useRef)(null);
-
-  var _useState5 = (0,react.useState)([]),
-      _useState6 = CPFilter_slicedToArray(_useState5, 2),
-      statusOptions = _useState6[0],
-      setStatusOptions = _useState6[1];
-
-  var _useState7 = (0,react.useState)(false),
-      _useState8 = CPFilter_slicedToArray(_useState7, 2),
-      isLoading = _useState8[0],
-      setIsLoading = _useState8[1]; // Loader flag
-
-
-  var _useState9 = (0,react.useState)(''),
-      _useState10 = CPFilter_slicedToArray(_useState9, 2),
-      searchInput = _useState10[0],
-      setSearchInput = _useState10[1];
-
-  var handleChange = function handleChange(value, partner) {
-    setSelectedPartner(value);
-    handleClose();
-    props.onChange('CP', partner.toggleUrl);
-  };
-
-  var onInputChange = function onInputChange(e) {
-    var inputValue = e.target.value;
-    setSearchInput(inputValue);
-    var filteredOptions = props.facets.filter(function (partner) {
-      return partner.label.replace(/&amp;/g, '&').toLowerCase().includes(inputValue.toLowerCase());
-    });
-    setStatusOptions(filteredOptions);
-  };
-
-  var handleOpen = function handleOpen() {
-    return setOpen(true);
-  };
-
-  var handleClose = function handleClose() {
-    return setOpen(false);
-  };
-
-  (0,react.useEffect)(function () {
-    var handleClickOutside = function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        handleClose();
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return function () {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-  (0,react.useEffect)(function () {
-    if (props.facets) {
-      setStatusOptions(props.facets);
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
-  }, [props.facets]);
-  return !isLoading && /*#__PURE__*/react.createElement("div", {
-    className: "c-select c-select--search su-min-w-full"
-  }, /*#__PURE__*/react.createElement("select", {
-    className: "su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0",
-    name: "f.contentPartner%7CtaxonomyContentPartnerText",
-    id: "cp-filter",
-    value: selectedPartner // onChange={(e) => handleChange(e.target.value, e)}
-
-  }, /*#__PURE__*/react.createElement("option", {
-    value: ""
-  }, "-- Choose Content Partner --"), statusOptions.map(function (partner) {
-    return /*#__PURE__*/react.createElement("option", {
-      key: partner.label,
-      value: partner.label
-    }, partner.label);
-  })), /*#__PURE__*/react.createElement("div", {
-    ref: wrapperRef,
-    className: "c-wrapper su-relative su-group ".concat(open ? 'open' : '')
-  }, /*#__PURE__*/react.createElement("button", {
-    className: "c-button su-transition-none group-[.open]:su-mb-1 group-[.open]:su-border-b-transparent group-[.open]:su-rounded-b-none su-leading-[3.6rem] su-pr-20 su-w-full su-text-18 su-flex su-items-center su-justify-between su-text-left su-bg-white su-font-regular hover:su-bg-white hover:su-border-gray hover:su-text-black",
-    "aria-expanded": open,
-    onClick: handleOpen
-  }, /*#__PURE__*/react.createElement("span", {
-    className: "su-mr-10 su-line-clamp-1"
-  }, selectedPartner || '-- Choose Content Partner --'), /*#__PURE__*/react.createElement("img", {
-    className: "su-inline su-ml-6",
-    alt: "",
-    src: __webpack_require__(1466)
-  })), /*#__PURE__*/react.createElement("div", {
-    className: "u-z-10 ".concat(open ? 'su-block' : 'su-hidden', " group-[.open]:su-block su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full")
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "su-leading-[3.6rem] su-px-8 su-pt-4 su-pb-8"
-  }, /*#__PURE__*/react.createElement("input", {
-    className: "su-w-full su-rounded su-border-gray su-text-18 su-py-8 focus:su-border-red focus:su-ring-red",
-    placeholder: "Search",
-    type: "text",
-    name: "cp-search",
-    id: "cp-search",
-    value: searchInput,
-    onChange: onInputChange
-  })), /*#__PURE__*/react.createElement("ul", {
-    className: "su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none"
-  }, statusOptions.map(function (partner) {
-    return /*#__PURE__*/react.createElement("li", {
-      key: partner.label,
-      "data-value": partner.data,
-      role: "button",
-      className: "su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-py-8 su-pl-15 su-pr-20 hover:su-cursor-pointer hover:su-bg-gray-light",
-      tabIndex: "0",
-      onClick: function onClick(e) {
-        return handleChange(partner.label, partner);
-      }
-    }, partner.label.replace(/&amp;/g, '&'));
-  })))));
-};
-CPFilter.propTypes = {
-  facets: prop_types.PropTypes.array,
-  onChange: prop_types.PropTypes.func
-};
+// EXTERNAL MODULE: ./src/modules/Filters/CPFilter.jsx
+var CPFilter = __webpack_require__(4842);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
@@ -432,7 +263,7 @@ var SearchBar = function SearchBar(props) {
     type: "text",
     name: "query",
     id: "search",
-    placeholder: "Search Content from over 20 content partners",
+    placeholder: "Search Content from content partners",
     className: "su-w-full su-max-w-[540px] su-text-18 sm:su-text-22 md:su-text-25 su-bg-transparent su-leading-display su-px-20 su-pt-12 su-pb-18 su-text-gray-dark su-border-2 su-border-transparent su-border-b-2 su-border-b-gray focus:su-ring-0 focus:su-border-gray focus:su-shadow-none su-shadow-transparent focus:su-outline-none",
     autoComplete: "off",
     value: searchQuery,
@@ -619,7 +450,7 @@ var AllContent = function AllContent() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 33;
+                _context.next = 31;
                 break;
               }
 
@@ -629,9 +460,15 @@ var AllContent = function AllContent() {
 
             case 5:
               d = _context.sent;
-              setStatusLabels(d.response.facets[1].allValues);
-              setCPLabels(d.response.facets[2].allValues);
-              setDateLabels(d.response.facets[0].allValues);
+              d.response.facets.map(function (item) {
+                if (item.name == 'hubStatus') {
+                  setStatusLabels(item.allValues);
+                } else if (item.name == 'date') {
+                  setDateLabels(item.allValues);
+                } else {
+                  setCPLabels(item.allValues);
+                }
+              });
               setFacets(d.response.facets);
               setData(d);
               setResults(d.response.resultPacket.results);
@@ -646,39 +483,47 @@ var AllContent = function AllContent() {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 21;
+              _context.next = 19;
               return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
 
-            case 21:
+            case 19:
               statuses = _context.sent;
               setHubStatuses(statuses);
-              _context.next = 28;
+              _context.next = 26;
               break;
 
-            case 25:
-              _context.prev = 25;
+            case 23:
+              _context.prev = 23;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 28:
-              _context.prev = 28;
+            case 26:
+              _context.prev = 26;
               setIsLoading(false);
-              return _context.finish(28);
+              return _context.finish(26);
 
-            case 31:
-              _context.next = 61;
+            case 29:
+              _context.next = 57;
               break;
 
-            case 33:
-              _context.prev = 33;
-              _context.next = 36;
+            case 31:
+              _context.prev = 31;
+              _context.next = 34;
               return (0,requests/* getSearchData */.Im)(url);
 
-            case 36:
+            case 34:
               _d2 = _context.sent;
-              setStatusLabels(_d2.response.facets[1].allValues);
-              setCPLabels(_d2.response.facets[2].allValues);
-              setDateLabels(_d2.response.facets[0].allValues);
+
+              _d2.response.facets.map(function (item) {
+                if (item.name == 'hubStatus') {
+                  setStatusLabels(item.allValues);
+                } else if (item.name == 'date') {
+                  setDateLabels(item.allValues);
+                } else {
+                  setCPLabels(item.allValues);
+                }
+              });
+
               setFacets(_d2.response.facets);
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
@@ -695,31 +540,31 @@ var AllContent = function AllContent() {
                 }
               });
 
-              _context.next = 51;
+              _context.next = 47;
               return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
-            case 51:
+            case 47:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
-              _context.next = 58;
+              _context.next = 54;
               break;
 
-            case 55:
-              _context.prev = 55;
-              _context.t1 = _context["catch"](33);
+            case 51:
+              _context.prev = 51;
+              _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 58:
-              _context.prev = 58;
+            case 54:
+              _context.prev = 54;
               setIsLoading(false);
-              return _context.finish(58);
+              return _context.finish(54);
 
-            case 61:
+            case 57:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 25, 28, 31], [33, 55, 58, 61]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 51, 54, 57]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -861,7 +706,7 @@ var AllContent = function AllContent() {
     className: "su-block su-text-18 su-font-bold su-leading-[2] su-mb-10"
   }, "Content partners"), /*#__PURE__*/react.createElement("div", {
     className: "undefined"
-  }, /*#__PURE__*/react.createElement(CPFilter, {
+  }, /*#__PURE__*/react.createElement(CPFilter/* CPFilter */.r, {
     facets: CPLabels,
     onChange: onChange
   }))), userData.userType === 'UCOMM' ? /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
@@ -1092,7 +937,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5230); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(47); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

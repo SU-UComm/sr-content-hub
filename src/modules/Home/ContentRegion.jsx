@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Link} from 'react-router-dom';
 import {Card} from '../Card/Card.jsx';
 import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {fetchFBData, getSearchData} from '../Helpers/requests.js';
@@ -25,7 +24,11 @@ export const ContentRegion = () => {
         if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);
-                setStatusLabels(d.response.facets[1].allValues);
+                d.response.facets.map((item) => {
+                    if (item.name == 'hubStatus') {
+                        setStatusLabels(item.allValues);
+                    }
+                });
                 setFacets(d.response.facets);
                 setData(d);
                 setResults(d.response.resultPacket.results);
@@ -49,7 +52,11 @@ export const ContentRegion = () => {
         } else {
             try {
                 const d = await getSearchData(url);
-                setStatusLabels(d.response.facets[1].allValues);
+                d.response.facets.map((item) => {
+                    if (item.name == 'hubStatus') {
+                        setStatusLabels(item.allValues);
+                    }
+                });
                 setFacets(d.response.facets);
                 setData(d);
                 setResults(d.response.resultPacket.results);

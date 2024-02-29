@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {PageHeading} from '../Home/PageHeading.jsx';
-import {CPFilter} from '../Filters/CPFilter.jsx';
 import {fetchFBData, getMyContent, getSearchData} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
@@ -10,7 +9,6 @@ import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 import {NoContent} from '../NoContent/NoContent.jsx';
-import {BrowserRouter} from 'react-router-dom';
 
 export const MyContent = () => {
     const [statusLabel, setStatusLabels] = useState([]);
@@ -33,7 +31,12 @@ export const MyContent = () => {
             try {
                 const d = await fetchFBData(url);
                 setFacets(d.response.facets);
-                setStatusLabels(d.response.facets[1].allValues);
+
+                d.response.facets.map((item) => {
+                    if (item.name == 'hubStatus') {
+                        setStatusLabels(item.allValues);
+                    }
+                });
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -59,7 +62,11 @@ export const MyContent = () => {
             try {
                 const d = await getSearchData(url);
                 setFacets(d.response.facets);
-                setStatusLabels(d.response.facets[1].allValues);
+                d.response.facets.map((item) => {
+                    if (item.name == 'hubStatus') {
+                        setStatusLabels(item.allValues);
+                    }
+                });
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);

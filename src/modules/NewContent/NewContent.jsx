@@ -8,7 +8,6 @@ import {Pagination} from '../Pagination/Pagination.jsx';
 import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
-import {BrowserRouter} from 'react-router-dom';
 
 export const NewContent = () => {
     const [CPLabels, setCPLabels] = useState([]);
@@ -29,8 +28,12 @@ export const NewContent = () => {
         if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);
+                d.response.facets.map((item) => {
+                    if (item.name == 'contentPartner') {
+                        setCPLabels(item.allValues);
+                    }
+                });
                 setFacets(d.response.facets);
-                setCPLabels(d.response.facets[2].allValues);
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -56,7 +59,11 @@ export const NewContent = () => {
             try {
                 const d = await getSearchData(url);
                 setFacets(d.response.facets);
-                setCPLabels(d.response.facets[2].allValues);
+                d.response.facets.map((item) => {
+                    if (item.name == 'contentPartner') {
+                        setCPLabels(item.allValues);
+                    }
+                });
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);

@@ -14,6 +14,10 @@ var client = __webpack_require__(745);
 var PageHeading = __webpack_require__(7774);
 // EXTERNAL MODULE: ./src/modules/Home/HomeInsights.jsx + 1 modules
 var HomeInsights = __webpack_require__(792);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
 var es_object_to_string = __webpack_require__(1539);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
@@ -26,8 +30,6 @@ var es_regexp_exec = __webpack_require__(4916);
 var es_string_search = __webpack_require__(4765);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__(2222);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
@@ -42,8 +44,6 @@ var es_array_iterator = __webpack_require__(6992);
 var es_string_iterator = __webpack_require__(8783);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__(3948);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
 var es_array_from = __webpack_require__(1038);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
@@ -115,7 +115,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -202,7 +201,11 @@ var ContentRegion = function ContentRegion() {
 
             case 5:
               d = _context.sent;
-              setStatusLabels(d.response.facets[1].allValues);
+              d.response.facets.map(function (item) {
+                if (item.name == 'hubStatus') {
+                  setStatusLabels(item.allValues);
+                }
+              });
               setFacets(d.response.facets);
               setData(d);
               setResults(d.response.resultPacket.results);
@@ -245,7 +248,13 @@ var ContentRegion = function ContentRegion() {
 
             case 32:
               _d2 = _context.sent;
-              setStatusLabels(_d2.response.facets[1].allValues);
+
+              _d2.response.facets.map(function (item) {
+                if (item.name == 'hubStatus') {
+                  setStatusLabels(item.allValues);
+                }
+              });
+
               setFacets(_d2.response.facets);
               setData(_d2);
               setResults(_d2.response.resultPacket.results);

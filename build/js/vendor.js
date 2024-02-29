@@ -407,11 +407,11 @@ var CardButtons = function CardButtons(props) {
     // Get current history state
     var currentHistory = []; // Check if current state is JSON
 
-    currentState = JSON.parse(currentState);
+    currentState = isJson(currentState);
 
     if (currentState !== false) {
       // If it is: Get current version history
-      var currentVersionMeta = JSON.parse(currentState['hubVersionHistory']);
+      var currentVersionMeta = currentState['hubVersionHistory'];
 
       if (currentVersionMeta !== false) {
         currentHistory = currentVersionMeta;

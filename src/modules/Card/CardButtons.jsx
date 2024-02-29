@@ -155,10 +155,10 @@ export const CardButtons = (props) => {
         let currentHistory = [];
 
         // Check if current state is JSON
-        currentState = JSON.parse(currentState);
+        currentState = isJson(currentState);
         if (currentState !== false) {
             // If it is: Get current version history
-            const currentVersionMeta = JSON.parse(currentState['hubVersionHistory']);
+            const currentVersionMeta = currentState['hubVersionHistory'];
             if (currentVersionMeta !== false) {
                 currentHistory = currentVersionMeta;
             }

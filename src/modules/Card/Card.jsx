@@ -10,15 +10,15 @@ export const Card = (props) => {
     let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
-    if (props.statuses) {
-        for (let item of props.statuses) {
-            if (item.id == props.data.listMetadata.assetId) {
-                setHubStatus(item.hubStatus);
-                setHubStatusDesc(item.hubStatusDesc);
-                return;
-            }
-        }
-    }
+    // if (props.statuses) {
+    //     for (let item of props.statuses) {
+    //         if (item.id == props.data.listMetadata.assetId) {
+    //             setHubStatus(item.hubStatus);
+    //             setHubStatusDesc(item.hubStatusDesc);
+    //             return;
+    //         }
+    //     }
+    // }
 
     return (
         props.data.listMetadata && (
@@ -55,14 +55,13 @@ export const Card = (props) => {
                     </p>
 
                     {props.page === 'allContent' && window?.data?.user.userType === 'CP' ? null : (
-                        <></>
-                        // <CardButtons
-                        //     listMetadata={props.data.listMetadata}
-                        //     assetId={props.data.listMetadata.assetId[0]}
-                        //     page="card"
-                        //     hubStatus={hubStatus}
-                        //     hubStatusDesc={hubStatusDesc}
-                        // />
+                        <CardButtons
+                            listMetadata={props.data.listMetadata}
+                            assetId={props.data.listMetadata.assetId[0]}
+                            page="card"
+                            hubStatus={hubStatus}
+                            hubStatusDesc={hubStatusDesc}
+                        />
                     )}
                 </div>
             </li>

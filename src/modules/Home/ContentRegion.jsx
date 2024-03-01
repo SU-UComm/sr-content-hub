@@ -43,7 +43,7 @@ export const ContentRegion = () => {
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
+                //setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -71,7 +71,7 @@ export const ContentRegion = () => {
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
+                //setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {

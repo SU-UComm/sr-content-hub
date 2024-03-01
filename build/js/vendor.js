@@ -47,6 +47,8 @@
 
 
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -79,16 +81,29 @@ var Card = function Card(props) {
 
   var url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
-  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_14__/* .decodeHTML */ .p1)(desc); // if (props.statuses) {
-  //     for (let item of props.statuses) {
-  //         if (item.id == props.data.listMetadata.assetId) {
-  //             setHubStatus(item.hubStatus);
-  //             setHubStatusDesc(item.hubStatusDesc);
-  //             return;
-  //         }
-  //     }
-  // }
+  desc = (0,_Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_14__/* .decodeHTML */ .p1)(desc);
+  (0,react__WEBPACK_IMPORTED_MODULE_11__.useEffect)(function () {
+    if (props.statuses) {
+      var _iterator = _createForOfIteratorHelper(props.statuses),
+          _step;
 
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var item = _step.value;
+
+          if (item.id == props.data.listMetadata.assetId) {
+            setHubStatus(item.hubStatus);
+            setHubStatusDesc(item.hubStatusDesc);
+            return;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+  }, []);
   return props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
     className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
     "data-id": props.data.listMetadata.assetId

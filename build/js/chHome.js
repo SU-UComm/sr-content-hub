@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5859:
+/***/ 1186:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -30,8 +30,6 @@ var es_regexp_exec = __webpack_require__(4916);
 var es_string_search = __webpack_require__(4765);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__(2222);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(2526);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -44,6 +42,8 @@ var es_array_iterator = __webpack_require__(6992);
 var es_string_iterator = __webpack_require__(8783);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
 var web_dom_collections_iterator = __webpack_require__(3948);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
+var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
 var es_array_from = __webpack_require__(1038);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
@@ -70,8 +70,15 @@ var dist_module = __webpack_require__(6665);
 var StatusFilter = __webpack_require__(1948);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
 var SelectedFilters = __webpack_require__(5634);
-// EXTERNAL MODULE: ./src/modules/NoContent/NoContent.jsx
-var NoContent = __webpack_require__(1488);
+;// CONCATENATED MODULE: ./src/modules/NoContent/NoContent.jsx
+
+var NoContent = function NoContent() {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "su-mb-12"
+  }, "No results found"), /*#__PURE__*/React.createElement("p", null, "Please search again using different keywords and filters."));
+};
 ;// CONCATENATED MODULE: ./src/modules/Home/ContentRegion.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -191,7 +198,7 @@ var ContentRegion = function ContentRegion() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 28;
+                _context.next = 29;
                 break;
               }
 
@@ -222,31 +229,31 @@ var ContentRegion = function ContentRegion() {
 
             case 16:
               statuses = _context.sent;
-              console.log('Statuses:', statuses); //setHubStatuses(statuses);
-
-              _context.next = 23;
+              console.log('Statuses:', statuses);
+              setHubStatuses(statuses);
+              _context.next = 24;
               break;
 
-            case 20:
-              _context.prev = 20;
+            case 21:
+              _context.prev = 21;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 23:
-              _context.prev = 23;
+            case 24:
+              _context.prev = 24;
               setIsLoading(false);
-              return _context.finish(23);
+              return _context.finish(24);
 
-            case 26:
-              _context.next = 52;
+            case 27:
+              _context.next = 54;
               break;
 
-            case 28:
-              _context.prev = 28;
-              _context.next = 31;
+            case 29:
+              _context.prev = 29;
+              _context.next = 32;
               return (0,requests/* getSearchData */.Im)(url);
 
-            case 31:
+            case 32:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -268,32 +275,32 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 42;
+              _context.next = 43;
               return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
-            case 42:
+            case 43:
               _statuses = _context.sent;
-              console.log('Statuses:', _statuses); //setHubStatuses(statuses);
-
-              _context.next = 49;
+              console.log('Statuses:', _statuses);
+              setHubStatuses(_statuses);
+              _context.next = 51;
               break;
 
-            case 46:
-              _context.prev = 46;
-              _context.t1 = _context["catch"](28);
+            case 48:
+              _context.prev = 48;
+              _context.t1 = _context["catch"](29);
               console.error('Error fetching data:', _context.t1);
 
-            case 49:
-              _context.prev = 49;
+            case 51:
+              _context.prev = 51;
               setIsLoading(false);
-              return _context.finish(49);
+              return _context.finish(51);
 
-            case 52:
+            case 54:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 20, 23, 26], [28, 46, 49, 52]]);
+      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -371,13 +378,7 @@ var ContentRegion = function ContentRegion() {
   }, ((_window8 = window) === null || _window8 === void 0 ? void 0 : (_window8$data = _window8.data) === null || _window8$data === void 0 ? void 0 : (_window8$data$user = _window8$data.user) === null || _window8$data$user === void 0 ? void 0 : _window8$data$user.userType) === 'UCOMM' ? "1-".concat(resultsSummary.totalMatching > 5 ? '5' : resultsSummary.totalMatching, " of ").concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
-  }, results.length > 0 ? results.slice(0, 5).map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(Card/* Card */.Z, {
-      key: index,
-      data: contentItem,
-      statuses: hubStatuses
-    });
-  }) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.d, null)));
+  }));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home/Home.jsx
 
@@ -588,7 +589,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5859); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(1186); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

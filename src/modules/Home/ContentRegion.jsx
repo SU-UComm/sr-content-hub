@@ -43,7 +43,7 @@ export const ContentRegion = () => {
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 console.log('Statuses:', statuses);
-                //setHubStatuses(statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -71,7 +71,7 @@ export const ContentRegion = () => {
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 console.log('Statuses:', statuses);
-                //setHubStatuses(statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -146,7 +146,7 @@ export const ContentRegion = () => {
             </p>
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
-                {results.length > 0 ? results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} />) : <NoContent />}
+                {/* {results.length > 0 ? results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} />) : <NoContent />} */}
             </ul>
         </section>
     );

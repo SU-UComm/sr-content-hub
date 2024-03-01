@@ -128,13 +128,14 @@ var Card = function Card(props) {
     className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
   }, desc), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("p", {
     className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
-  }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(_CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__/* .CardButtons */ .G, {
-    listMetadata: props.data.listMetadata,
-    assetId: props.data.listMetadata.assetId[0],
-    page: "card",
-    hubStatus: hubStatus,
-    hubStatusDesc: hubStatusDesc
-  })));
+  }, "Submitted on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.mtxCreated), " | First published on ", (0,_Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__/* .reformatDate */ .b)(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement(react__WEBPACK_IMPORTED_MODULE_11__.Fragment, null) // <CardButtons
+  //     listMetadata={props.data.listMetadata}
+  //     assetId={props.data.listMetadata.assetId[0]}
+  //     page="card"
+  //     hubStatus={hubStatus}
+  //     hubStatusDesc={hubStatusDesc}
+  // />
+  ));
 };
 Card.propTypes = {
   data: prop_types__WEBPACK_IMPORTED_MODULE_15___default().shape({
@@ -2807,6 +2808,25 @@ var PageHeading = function PageHeading(_ref) {
 PageHeading.propTypes = {
   headingText: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
   subHeadingText: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)
+};
+
+/***/ }),
+
+/***/ 1488:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   d: function() { return /* binding */ NoContent; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+
+var NoContent = function NoContent() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "su-mb-12"
+  }, "No results found"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Please search again using different keywords and filters."));
 };
 
 /***/ }),

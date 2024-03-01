@@ -55,13 +55,14 @@ export const Card = (props) => {
                     </p>
 
                     {props.page === 'allContent' && window?.data?.user.userType === 'CP' ? null : (
-                        <CardButtons
-                            listMetadata={props.data.listMetadata}
-                            assetId={props.data.listMetadata.assetId[0]}
-                            page="card"
-                            hubStatus={hubStatus}
-                            hubStatusDesc={hubStatusDesc}
-                        />
+                        <></>
+                        // <CardButtons
+                        //     listMetadata={props.data.listMetadata}
+                        //     assetId={props.data.listMetadata.assetId[0]}
+                        //     page="card"
+                        //     hubStatus={hubStatus}
+                        //     hubStatusDesc={hubStatusDesc}
+                        // />
                     )}
                 </div>
             </li>

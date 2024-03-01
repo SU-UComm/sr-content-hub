@@ -227,7 +227,7 @@ var NewContent = function NewContent() {
                 }
               });
               _context.next = 18;
-              return getHubStatus(sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
 
             case 18:
               statuses = _context.sent;
@@ -280,7 +280,7 @@ var NewContent = function NewContent() {
               });
 
               _context.next = 47;
-              return getHubStatus(_sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
             case 47:
               _statuses = _context.sent;

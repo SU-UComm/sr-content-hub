@@ -103,7 +103,7 @@ var Card = function Card(props) {
         _iterator.f();
       }
     }
-  }, []);
+  }, [props.statuses]);
   return props.data.listMetadata && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_11__.createElement("li", {
     className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
     "data-id": props.data.listMetadata.assetId

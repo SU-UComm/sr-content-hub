@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {PageHeading} from '../Home/PageHeading.jsx';
 import {CPFilter} from '../Filters/CPFilter.jsx';
-import {fetchFBData, getSearchData} from '../Helpers/requests.js';
+import {fetchFBData, getSearchData, getHubStatus} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../Pagination/Pagination.jsx';

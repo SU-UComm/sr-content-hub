@@ -21,7 +21,7 @@ export const Card = (props) => {
                 }
             }
         }
-    }, []);
+    }, [props.statuses]);
 
     return (
         props.data.listMetadata && (

@@ -14,6 +14,9 @@ export const contentHubAPI = {
         relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
         beaconEndpoint: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
     },
+    vars: {
+        srDrafts: '130757',
+    },
 };
 
 // Bearer token to be replaced with matrix fetch

@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {releaseAsStory, releaseAsTeaser} from '../Helpers/srStoryHelpers';
 import {contentHubAPI} from '../Helpers/requests';
 
 const mockData = {
@@ -137,6 +138,8 @@ export const CardButtons = (props) => {
             },
         });
 
+        releaseAsStory.init(props.assetId, contentHubAPI);
+
         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
     };
 
@@ -148,6 +151,8 @@ export const CardButtons = (props) => {
                 prepareApproveUpdate(props.assetId, 'Teaser', resp);
             },
         });
+
+        releaseAsTeaser.init(props.assetId, contentHubAPI);
 
         closeSendDialog(`dialogTitle-${props.assetId}-approve`);
     };

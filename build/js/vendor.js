@@ -32,7 +32,7 @@
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(7294);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(5697);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(9993);
+/* harmony import */ var _CardButtons_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(5963);
 /* harmony import */ var _Helpers_dateHelpers_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9113);
 /* harmony import */ var _Helpers_helperFunctions_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(6859);
 
@@ -161,41 +161,283 @@ Card.propTypes = {
 
 /***/ }),
 
-/***/ 9993:
+/***/ 5963:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   G: function() { return /* binding */ CardButtons; }
-/* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2222);
-/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2526);
-/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1817);
-/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1539);
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2165);
-/* harmony import */ var core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6992);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8783);
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3948);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7042);
-/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8309);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(1038);
-/* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(4916);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7294);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(5697);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(9072);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  G: function() { return /* binding */ CardButtons; }
+});
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__(2222);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
+var es_symbol = __webpack_require__(2526);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
+var es_symbol_description = __webpack_require__(1817);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
+var es_object_to_string = __webpack_require__(1539);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
+var es_symbol_iterator = __webpack_require__(2165);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
+var es_array_iterator = __webpack_require__(6992);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
+var es_string_iterator = __webpack_require__(8783);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
+var web_dom_collections_iterator = __webpack_require__(3948);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
+var es_array_slice = __webpack_require__(7042);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__(8309);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
+var es_array_from = __webpack_require__(1038);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
+var es_regexp_exec = __webpack_require__(4916);
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(7294);
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
+var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
+;// CONCATENATED MODULE: ./src/modules/Helpers/srStoryHelpers.js
+
+
+
+/* ============================================================================================== */
+
+/**
+ *  @file releaseStories.js
+ *  @description File stores functions for Releasing stories from Content Hub to Stanford Report
+ *  @author [Squiz]
+ **/
+
+/* ============================================================================================== */
+
+/**
+ * @name releaseAsStory
+ * @description Releases specific story to Stanford Report as full story
+ * @author [ Squiz ]
+ **/
+var releaseAsStory = {
+  init: function init(storyId, contentHubAPI) {
+    var _contentHubAPI$vars;
+
+    // Validate input details
+    if (typeof storyId === 'undefined') {
+      return releaseAsStory.err('Story ID is undefined.');
+    } // Check if location on where to put the story is available
+
+
+    var targetLocation = (contentHubAPI === null || contentHubAPI === void 0 ? void 0 : (_contentHubAPI$vars = contentHubAPI.vars) === null || _contentHubAPI$vars === void 0 ? void 0 : _contentHubAPI$vars.srDrafts) || '';
+
+    if (targetLocation === '') {
+      return releaseAsStory.err('Target location is not defined.');
+    }
+
+    return releaseAsStory.linkStory(storyId, targetLocation);
+  },
+  err: function err(errMsg) {
+    console.log(errMsg);
+    return "".concat(errMsg);
+  },
+  linkStory: function linkStory(storyId, targetId) {
+    var _window;
+
+    // Check if JS API is available
+    var jsApi = ((_window = window) === null || _window === void 0 ? void 0 : _window.jsApi) || '';
+
+    if (jsApi === '') {
+      return releaseAsStory.err('JS API is not available.');
+    }
+
+    if (typeof jsApi.createLink !== 'function') {
+      return releaseAsStory.err('createLink function inside JS API is not available.');
+    } // Looks like all the information are in place, we can use the JS API now to release the story
+
+
+    jsApi.createLink({
+      parent_id: targetId,
+      child_id: storyId,
+      link_type: 'SQ_LINK_TYPE_2',
+      link_value: '',
+      sort_order: 1,
+      is_dependant: 0,
+      is_exclusive: 0,
+      dataCallback: function dataCallback(resp) {
+        releaseAsStory.releaseOutput(resp);
+      }
+    });
+    return true;
+  },
+  releaseOutput: function releaseOutput(r) {
+    console.log(r);
+  }
+};
+/* ============================================================================================== */
+
+/**
+ * @name releaseAsTeaser
+ * @description Releases specific story to Stanford Report as teaser
+ * @author [ Squiz ]
+ **/
+
+var releaseAsTeaser = {
+  init: function init(storyId, contentHubAPI) {
+    var _contentHubAPI$vars2;
+
+    // Validate input details
+    if (typeof storyId === 'undefined') {
+      return releaseAsTeaser.err('Story ID is undefined.');
+    } // Check if location on where to put the story is available
+
+
+    var targetLocation = (contentHubAPI === null || contentHubAPI === void 0 ? void 0 : (_contentHubAPI$vars2 = contentHubAPI.vars) === null || _contentHubAPI$vars2 === void 0 ? void 0 : _contentHubAPI$vars2.srDrafts) || '';
+
+    if (targetLocation === '') {
+      return releaseAsTeaser.err('Target location is not defined.');
+    }
+
+    return releaseAsTeaser.makeTeaser(storyId, targetLocation);
+  },
+  err: function err(errMsg) {
+    console.log(errMsg);
+    return "".concat(errMsg);
+  },
+  makeTeaser: function makeTeaser(storyId, targetLocation) {
+    var _window2;
+
+    // Check if JS API is available
+    var jsApi = ((_window2 = window) === null || _window2 === void 0 ? void 0 : _window2.jsApi) || '';
+
+    if (jsApi === '') {
+      return releaseAsStory.err('JS API is not available.');
+    } // Looks like all the information are in place, we can use the JS API now to get all the required details
+    // First we need to get the data about the current story from Matrix
+
+
+    jsApi.batchRequest({
+      functions: {
+        0: {
+          function: 'getAttributes',
+          args: {
+            asset_id: storyId
+          }
+        },
+        1: {
+          function: 'getMetadata',
+          args: {
+            asset_id: storyId
+          }
+        }
+      },
+      dataCallback: function dataCallback(resp) {
+        releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
+      }
+    });
+  },
+  processStoryDetails: function processStoryDetails(resp, storyId, targetLocation) {
+    var _window3;
+
+    // Response is two elements Array: 0 => Attributes, 1 => Metadata
+    // To Create new Teaser/Link: We need title and Link Attribute
+    var teaserTitle = releaseAsTeaser.getTitle(resp[0]);
+    var teaserUrl = releaseAsTeaser.getTargetLink(resp[1]); // Check if information are defined
+
+    if (teaserTitle === '' || teaserUrl === '') {
+      return releaseAsTeaser.err('Title or Link are missing for Teaser');
+    } // Prepare object with metadata fields
+
+
+    var metaDetails = releaseAsTeaser.prepareMetadataObject(resp[1], storyId); // All the details are in place :: We need to create the Link asset and set metadata fields for it
+
+    var extraAttr = 'link_url=' + teaserUrl;
+    var jsApi = ((_window3 = window) === null || _window3 === void 0 ? void 0 : _window3.jsApi) || '';
+    jsApi.createAsset({
+      parent_id: targetLocation,
+      type_code: 'link',
+      asset_name: teaserTitle,
+      link_type: 'SQ_LINK_TYPE_2',
+      extra_attributes: 1,
+      attributes: extraAttr,
+      dataCallback: function dataCallback(resp) {
+        if (typeof resp.id === 'string') {
+          // Get Asset Id of the Teaser
+          var teaserId = resp.id; // Move to set the metadata for the asset
+
+          releaseAsTeaser.setMeta(teaserId, metaDetails);
+        } else {
+          releaseAsTeaser.err('Teaser asset could not be created.');
+        }
+      }
+    });
+  },
+  setMeta: function setMeta(teaserId, metaDetails) {
+    var _window4;
+
+    // Set metadata fields for the teaser
+    var jsApi = ((_window4 = window) === null || _window4 === void 0 ? void 0 : _window4.jsApi) || '';
+    jsApi.setMetadataAllFields({
+      asset_id: teaserId,
+      field_info: metaDetails,
+      dataCallback: function dataCallback(r) {
+        if (typeof r.success === 'undefined') {
+          releaseAsTeaser.err("Setting up metadata for Teaser: ".concat(teaserId, " could not be set successfully."));
+        } else {
+          releaseAsTeaser.endWithSuccess(teaserId, r);
+        }
+      }
+    });
+  },
+  endWithSuccess: function endWithSuccess(teaserId) {
+    // End of the Process :: With Success
+    console.log("New Teaser successfully created, Teaser ID: ".concat(teaserId, "."));
+  },
+  getTitle: function getTitle(storyAttr) {
+    return storyAttr.name || '';
+  },
+  getTargetLink: function getTargetLink(metaObj) {
+    // Target Link is stored inside the canonical metadata field
+    return metaObj.canonicalUrl || '';
+  },
+  prepareMetadataObject: function prepareMetadataObject(metaArray, storyId) {
+    // Map for field IDs :: List of all the fields that needs to be setup for Teaser
+    // "storySource" : "127718" :: Not in use at the moment
+    var bluePrintIdField = '30853';
+    var fieldsArr = [{
+      name: 'canonicalUrl',
+      id: '5989'
+    }, {
+      name: 'publishedDate',
+      id: '4538'
+    }, {
+      name: 'srContentType',
+      id: '60078'
+    }, {
+      name: 'srFeaturedUnit',
+      id: '60079'
+    }, {
+      name: 'featuredImage',
+      id: '5043'
+    }, {
+      name: 'teaser',
+      id: '5047'
+    }];
+    var fieldsOutput = {}; // Loop through all the fields and get metadata values for them
+
+    fieldsArr.forEach(function (thisField) {
+      var thisFieldId = thisField.id;
+      var thisFieldValue = metaArray[thisField.name];
+      fieldsOutput[thisFieldId] = thisFieldValue;
+    }); // Add Blueprint ID :: As Story ID
+
+    fieldsArr[bluePrintIdField] = storyId;
+    return fieldsOutput;
+  }
+};
+// EXTERNAL MODULE: ./src/modules/Helpers/requests.js
+var requests = __webpack_require__(9072);
+;// CONCATENATED MODULE: ./src/modules/Card/CardButtons.jsx
 
 
 
@@ -222,6 +464,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -288,40 +531,40 @@ var chCfg = {
 var CardButtons = function CardButtons(props) {
   var _window, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+  var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isSendDialogOpen = _useState2[0],
       setSendDialogOpen = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+  var _useState3 = (0,react.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       isDeclineDialogOpen = _useState4[0],
       setDeclineDialogOpen = _useState4[1];
 
-  var sendDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(null);
-  var declineDialogRef = (0,react__WEBPACK_IMPORTED_MODULE_12__.useRef)(null);
+  var sendDialogRef = (0,react.useRef)(null);
+  var declineDialogRef = (0,react.useRef)(null);
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+  var _useState5 = (0,react.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       beaconSent = _useState6[0],
       setBeaconSent = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(''),
+  var _useState7 = (0,react.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
       textArea = _useState8[0],
       setTextAreaValue = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(false),
+  var _useState9 = (0,react.useState)(false),
       _useState10 = _slicedToArray(_useState9, 2),
       userMatch = _useState10[0],
       setUserMatch = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus),
+  var _useState11 = (0,react.useState)(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus),
       _useState12 = _slicedToArray(_useState11, 2),
       hubStatus = _useState12[0],
       setHubStatus = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_12__.useState)(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription),
+  var _useState13 = (0,react.useState)(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription),
       _useState14 = _slicedToArray(_useState13, 2),
       hubStatusDesc = _useState14[0],
       setHubStatusDesc = _useState14[1];
@@ -348,7 +591,7 @@ var CardButtons = function CardButtons(props) {
     return data;
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_12__.useEffect)(function () {
+  (0,react.useEffect)(function () {
     var _window2, _window2$data, _window3, _window3$data;
 
     var userDetails = ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.firstName) + ' ' + window.data + ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.lastName);
@@ -394,6 +637,7 @@ var CardButtons = function CardButtons(props) {
         prepareApproveUpdate(props.assetId, 'Story', resp);
       }
     });
+    releaseAsStory.init(props.assetId, requests/* contentHubAPI */.fH);
     closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
   };
 
@@ -405,6 +649,7 @@ var CardButtons = function CardButtons(props) {
         prepareApproveUpdate(props.assetId, 'Teaser', resp);
       }
     });
+    releaseAsTeaser.init(props.assetId, requests/* contentHubAPI */.fH);
     closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
   };
 
@@ -586,7 +831,7 @@ var CardButtons = function CardButtons(props) {
       return;
     }
 
-    var beaconUrl = _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH !== null && _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH !== void 0 && (_contentHubAPI$module = _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH === null || _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH === void 0 ? void 0 : _Helpers_requests__WEBPACK_IMPORTED_MODULE_13__/* .contentHubAPI */ .fH.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
+    var beaconUrl = requests/* contentHubAPI */.fH !== null && requests/* contentHubAPI */.fH !== void 0 && (_contentHubAPI$module = requests/* contentHubAPI */.fH.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? requests/* contentHubAPI */.fH === null || requests/* contentHubAPI */.fH === void 0 ? void 0 : requests/* contentHubAPI */.fH.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
 
     var data = {
       id: props.assetId
@@ -599,33 +844,33 @@ var CardButtons = function CardButtons(props) {
     setBeaconSent(true);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+  return /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
-  }, hubStatus == 'reviewed' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
       return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     }
-  }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "Publishing soon on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement(react__WEBPACK_IMPORTED_MODULE_12__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
       return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     }
-  }, "Send to Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Send to Stanford Report"), /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-decline"),
     className: "js-action--decline c-button-decline",
     onClick: function onClick() {
       return openDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
     }
-  }, "Decline")) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("dialog", {
+  }, "Decline")) : null, /*#__PURE__*/react.createElement("dialog", {
     ref: sendDialogRef,
     "data-id": props.assetId,
     id: "dialogTitle-".concat(props.assetId, "-approve"),
@@ -633,56 +878,56 @@ var CardButtons = function CardButtons(props) {
     open: isSendDialogOpen,
     className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
     "aria-labelledby": "dialogTitle-".concat(props.assetId, "-approve")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     },
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("svg", {
+  }, /*#__PURE__*/react.createElement("svg", {
     className: "",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13",
     height: "13",
     fill: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
+  }, /*#__PURE__*/react.createElement("path", {
     d: "M12.0554 1.9502L1.94434 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
+  }), /*#__PURE__*/react.createElement("path", {
     d: "M1.94434 1.9502L12.0554 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+  }))), /*#__PURE__*/react.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
+  }, /*#__PURE__*/react.createElement("h3", {
     id: "dialogTitle-".concat(props.assetId, "-approve"),
     className: "su-mb-0 su-font-serif su-text-center su-tracking-normal"
-  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return handleSendTeaser();
     },
     "aria-label": "Send Teaser",
     className: "button-green js-send-teaser"
-  }, "Send Teaser"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Send Teaser"), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return handleSendFullContent();
     },
     "aria-label": "Send Full Content",
     className: "button-green js-send-content"
-  }, "Send Full Content"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Send Full Content"), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
     },
     "aria-label": "Cancel",
     className: "js-decline"
-  }, "Cancel")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("dialog", {
+  }, "Cancel")))), /*#__PURE__*/react.createElement("dialog", {
     ref: declineDialogRef,
     role: "dialog",
     open: isDeclineDialogOpen,
@@ -690,42 +935,42 @@ var CardButtons = function CardButtons(props) {
     className: "c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
     "aria-labelledby": "dialogTitle-".concat(props.assetId, "-decline"),
     id: "dialogTitle-".concat(props.assetId, "-decline")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
     },
     className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
     "aria-label": "close"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("svg", {
+  }, /*#__PURE__*/react.createElement("svg", {
     className: "",
     xmlns: "http://www.w3.org/2000/svg",
     width: "13",
     height: "13",
     fill: "none"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
+  }, /*#__PURE__*/react.createElement("path", {
     d: "M12.0554 1.9502L1.94434 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("path", {
+  }), /*#__PURE__*/react.createElement("path", {
     d: "M1.94434 1.9502L12.0554 11.0502",
     stroke: "#E50808",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+  }))), /*#__PURE__*/react.createElement("div", {
     className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("h3", {
+  }, /*#__PURE__*/react.createElement("h3", {
     id: "dialogTitle-".concat(props.assetId, "-decline"),
     className: "su-mb-10 su-font-serif su-leading-[125%] su-text-center"
-  }, "You are declining this story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("p", {
+  }, "You are declining this story"), /*#__PURE__*/react.createElement("p", {
     id: "dialogDescription-".concat(props.assetId, "-decline"),
     className: "su-mb-10 su-leading-[125%] su-text-center"
-  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("label", {
+  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react.createElement("label", {
     className: "sr-only",
     htmlFor: "message-textarea-".concat(props.assetId, "-decline")
-  }, "Optional note"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("textarea", {
+  }, "Optional note"), /*#__PURE__*/react.createElement("textarea", {
     className: "su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]",
     name: "message-".concat(props.assetId),
     rows: "5",
@@ -736,15 +981,15 @@ var CardButtons = function CardButtons(props) {
     onChange: function onChange(e) {
       return onTextAreaValueChange(e.target.value);
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("div", {
+  }), /*#__PURE__*/react.createElement("div", {
     className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return handleDecline("dialogTitle-".concat(props.assetId, "-decline"));
     },
     "aria-label": "Decline",
     className: "button-green js-decline-true"
-  }, "Yes, Decline"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_12__.createElement("button", {
+  }, "Yes, Decline"), /*#__PURE__*/react.createElement("button", {
     onClick: function onClick() {
       return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
     },
@@ -753,17 +998,17 @@ var CardButtons = function CardButtons(props) {
   }, "Cancel")))));
 };
 CardButtons.propTypes = {
-  listMetadata: prop_types__WEBPACK_IMPORTED_MODULE_14___default().shape({
-    hubStatusDescription: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
-    hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
-    assetId: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
-    publishedDate: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array),
-    hubReviewMsg: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().array)
+  listMetadata: prop_types_default().shape({
+    hubStatusDescription: (prop_types_default()).array,
+    hubStatus: (prop_types_default()).array,
+    assetId: (prop_types_default()).array,
+    publishedDate: (prop_types_default()).array,
+    hubReviewMsg: (prop_types_default()).array
   }),
-  assetId: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
-  page: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
-  hubStatusDesc: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string),
-  hubStatus: (prop_types__WEBPACK_IMPORTED_MODULE_14___default().string)
+  assetId: (prop_types_default()).string,
+  page: (prop_types_default()).string,
+  hubStatusDesc: (prop_types_default()).string,
+  hubStatus: (prop_types_default()).string
 };
 
 /***/ }),
@@ -2027,6 +2272,9 @@ var contentHubAPI = {
     relMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
     relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
     beaconEndpoint: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon'
+  },
+  vars: {
+    srDrafts: '130757'
   }
 }; // Bearer token to be replaced with matrix fetch
 
@@ -2233,7 +2481,7 @@ var getTaxonomyTerms = /*#__PURE__*/(/* runtime-dependent pure expression or sup
  * @returns {object} JSON object
  */
 
-var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super */ 690 == __webpack_require__.j ? (function () {
+var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690)$/.test(__webpack_require__.j) ? (function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetIDs) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {

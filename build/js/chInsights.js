@@ -81,8 +81,8 @@ var requests = __webpack_require__(9072);
 var Home_BackToPageButton = __webpack_require__(8220);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
 var dist_module = __webpack_require__(6665);
-// EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx
-var Card_CardButtons = __webpack_require__(9993);
+// EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx + 1 modules
+var Card_CardButtons = __webpack_require__(5963);
 // EXTERNAL MODULE: ./src/modules/Helpers/dateHelpers.js
 var dateHelpers = __webpack_require__(9113);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
@@ -274,7 +274,7 @@ var FullStory_FullStory = function FullStory(props) {
   }, "Author"), /*#__PURE__*/react.createElement("p", {
     className: "su-py-20 su-mb-0"
   }, props.data.metadata.bylineAuthor && props.data.metadata.bylineAuthor.length > 1 ? props.data.metadata.bylineAuthor : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("div", {
-    className: "su-pb-45  su-border-b su-border-gray "
+    className: "su-pb-45 \r su-border-b su-border-gray\r "
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
   }, "Story"), /*#__PURE__*/react.createElement("div", {

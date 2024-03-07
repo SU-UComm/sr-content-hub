@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Card} from '../Card/Card.jsx';
-import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
+import {getLabel} from '../Helpers/helperFunctions.js';
 import {fetchFBData, getSearchData, getHubStatus} from '../Helpers/requests.js';
 import {Oval} from 'react-loader-spinner';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
@@ -31,7 +31,7 @@ export const ContentRegion = () => {
                     }
                 });
                 setFacets(d.response.facets);
-                setData(d);
+                // setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 console.log('REQUEST FUNCTION data in home: ', d);
@@ -59,7 +59,7 @@ export const ContentRegion = () => {
                     }
                 });
                 setFacets(d.response.facets);
-                setData(d);
+                // setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 console.log('REQUEST FUNCTION data in home matrix: ', d);

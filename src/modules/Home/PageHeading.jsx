@@ -18,4 +18,5 @@ export const PageHeading = ({headingText, subHeadingText, homeButton}) => {
 PageHeading.propTypes = {
     headingText: PropTypes.string,
     subHeadingText: PropTypes.string,
+    homeButton: PropTypes.bool,
 };

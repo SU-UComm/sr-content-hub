@@ -3,10 +3,10 @@ import {contentHubAPI, getAPIData, getTaxonomyTerms} from '../Helpers/requests';
 import {BackToPageButton} from '../Home/BackToPageButton.jsx';
 import {Oval} from 'react-loader-spinner';
 import {CardButtons} from '../Card/CardButtons.jsx';
-import {reformatDate} from '../Helpers/dateHelpers';
+// import {reformatDate} from '../Helpers/dateHelpers';
 import {FullStory} from './FullStory.jsx';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
-import {array} from 'prop-types';
+// import {array} from 'prop-types';
 
 const dataObj = {
     id: '128490',
@@ -294,7 +294,6 @@ export const StoryView = () => {
         // Use Beacon API to send update :: on page unload
         setBeaconSent(false);
 
-       
         window.addEventListener(
             'unload',
             function () {

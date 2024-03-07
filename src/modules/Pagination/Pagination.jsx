@@ -3,7 +3,7 @@ import {Oval} from 'react-loader-spinner';
 import {PropTypes} from 'prop-types';
 
 export const Pagination = (props) => {
-    const [summaryData, setSummaryData] = useState([]);
+    // const [summaryData, setSummaryData] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [pagesData, setPagesData] = useState([]);
 
@@ -13,7 +13,7 @@ export const Pagination = (props) => {
 
     useEffect(() => {
         if (props.summary) {
-            setSummaryData(props.summary);
+            // setSummaryData(props.summary);
             setIsLoading(false);
             getPages(props.summary);
         } else {
@@ -172,7 +172,7 @@ export const Pagination = (props) => {
                                         value={item.itemRank}
                                         onClick={(e) => onButtonClick(e)}
                                         data-rank={item.itemRank}
-                                        className="pagination-button hover:su-bg-gray-light hover:su-text-black su-border-none su-flex su-items-center su-justify-center su-w-40 su-h-40 su-border-none"
+                                        className="pagination-button hover:su-bg-gray-light hover:su-text-black su-flex su-items-center su-justify-center su-w-40 su-h-40 su-border-none"
                                     >
                                         {item.label}
                                     </button>

@@ -85,7 +85,7 @@ export const StatusFilter = (props) => {
                                             getLabel(option.label) === selectedStatus ? 'su-bg-gray-light' : ''
                                         }`}
                                         tabIndex="-1"
-                                        onClick={(e) => handleStatusChange(getLabel(option.label), option)}
+                                        onClick={() => handleStatusChange(getLabel(option.label), option)}
                                     >
                                         {getLabel(option.label)}
                                     </li>

@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {PropTypes} from 'prop-types';
+import PropTypes from 'prop-types';
 
 export const CPFilter = (props) => {
     const [selectedPartner, setSelectedPartner] = useState('');
@@ -96,7 +96,7 @@ export const CPFilter = (props) => {
                                     role="button"
                                     className="su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-py-8 su-pl-15 su-pr-20 hover:su-cursor-pointer hover:su-bg-gray-light"
                                     tabIndex="0"
-                                    onClick={(e) => handleChange(partner.label, partner)}
+                                    onClick={() => handleChange(partner.label, partner)}
                                 >
                                     {partner.label.replace(/&amp;/g, '&')}
                                 </li>

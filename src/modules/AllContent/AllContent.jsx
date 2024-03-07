@@ -88,7 +88,7 @@ export const AllContent = () => {
                 setQueryParams(params);
                 setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
                 // Get live Hub Status using IDs from data just fetched
-                let sourceIdsArray = [];
+                // let sourceIdsArray = [];
                 // d.response.resultPacket.results.forEach((item) => {
                 //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
                 //         sourceIdsArray.push(item.listMetadata.assetId[0]);

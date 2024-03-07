@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const BackToPageButton = (props) => {
     let page = props.page;
@@ -19,4 +20,8 @@ export const BackToPageButton = (props) => {
             </a>
         </div>
     );
+};
+
+BackToPageButton.propTypes = {
+    page: PropTypes.string,
 };

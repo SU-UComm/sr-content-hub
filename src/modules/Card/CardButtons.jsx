@@ -287,7 +287,7 @@ export const CardButtons = (props) => {
             },
         });
     };
-    const updateUi = (storyObj, pageType, resp) => {
+    const updateUi = (storyObj, pageType) => {
         // Finalize publishing process with additional functions :: Depending from the page type
         storyObj.pageType = storyObj.pageType || 'story';
         if (storyObj.pageType.toLowerCase() === 'teaser') {
@@ -494,5 +494,5 @@ CardButtons.propTypes = {
     assetId: PropTypes.string,
     page: PropTypes.string,
     hubStatusDesc: PropTypes.string,
-    hubStatus: PropTypes.string,
+    hubStatus: PropTypes.array,
 };

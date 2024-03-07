@@ -1,18 +1,18 @@
 export const contentHubAPI = {
     search: {
-        allContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/all-content',
-        newContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cm/new-content',
-        myContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cp/my-content',
+        allContent: `${window.globalData.urls.contentHub}/r/api/a/all-content`,
+        newContent: `${window.globalData.urls.contentHub}/r/api/cm/new-content`,
+        myContent: `${window.globalData.urls.contentHub}/r/api/cp/my-content`,
     },
     modules: {
-        homeMyContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cp/my-content',
-        homeLatestContent: 'https://sug-web.matrix.squiz.cloud/content/r/api/cm/latest-content',
-        userData: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/usr',
-        hubStatus: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/hub-status?ids=',
-        contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
-        relMedia: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/related-media?id=',
-        relTerms: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/taxonomy-terms?ids=',
-        beaconEndpoint: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
+        homeMyContent: `${window.globalData.urls.contentHub}/r/api/cp/my-content`,
+        homeLatestContent: `${window.globalData.urls.contentHub}/r/api/cm/latest-content`,
+        userData: `${window.globalData.urls.contentHub}/r/api/a/usr`,
+        hubStatus: `${window.globalData.urls.contentHub}/r/api/a/hub-status?ids=`,
+        contentApi: window.globalData.urls.contentApi,
+        relMedia: `${window.globalData.urls.contentHub}/r/api/a/related-media?id=`,
+        relTerms: `${window.globalData.urls.contentHub}/r/api/a/taxonomy-terms?ids=`,
+        beaconEndpoint: `${window.globalData.urls.contentHub}/r/h/ch/beacon`,
     },
     vars: {
         srDrafts: '130757',
@@ -24,7 +24,7 @@ const requestOptions = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer 12d38e8866ffa3dab979d333957477a9',
+        Authorization: `Bearer ${window.globalData.tokens.contentApi}`,
     },
 };
 

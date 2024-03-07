@@ -14,7 +14,7 @@ export const Main = () => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                    `${window.globalData.urls.fb}/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery`,
                 );
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -317,7 +317,7 @@ export const Main = () => {
             <button onClick={() => generateOutput(data, mtxCfg)}>check</button>
             <section className="su-relative su-text-center su-mt-60 su-mb-50 su-pt-60 md:su-mt-45 md:su-pt-70 md:su-mb-100">
                 <div className="su-absolute su-top-0 su-left-0 lg:su-left-[-64px]">
-                    <a className="su-flex su-items-center su-text-[18px] hover:su-underline" href="https://sug-web.matrix.squiz.cloud/content">
+                    <a className="su-flex su-items-center su-text-[18px] hover:su-underline" href={window.globalData.urls.contentHub}>
                         <svg className="su-mr-6" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path
                                 d="M8.33333 15.8337L2.5 10.0003M2.5 10.0003L8.33334 4.16699M2.5 10.0003L17.5 10.0003"

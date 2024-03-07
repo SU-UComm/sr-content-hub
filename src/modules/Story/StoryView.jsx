@@ -37,9 +37,9 @@ const dataObj = {
         user_id: '6004',
     },
     urls: [
-        'https://sug-web.matrix.squiz.cloud/content/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
+        '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
     ],
-    url: 'https://sug-web.matrix.squiz.cloud/content/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
+    url: '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
     attributes: {
         name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
         short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
@@ -152,8 +152,8 @@ const chCfg = {
         approved: `<p class="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15">Publishing soon on Stanford Report</p>`,
     },
     endpoints: {
-        beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
-        loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next',
+        beacon: `${window.globalData.urls.contentHub}/r/h/ch/beacon`,
+        loadNext: `${window.globalData.urls.contentHub}/r/h/ch/next`,
     },
 };
 

@@ -7,7 +7,7 @@ import {decodeHTML} from '../Helpers/helperFunctions.js';
 export const Card = (props) => {
     const [hubStatus, setHubStatus] = useState(props.data.listMetadata.hubStatus);
     const [hubStatusDesc, setHubStatusDesc] = useState('');
-    let url = 'https://sug-web.matrix.squiz.cloud/content/story-view-react?storyId=';
+    let url = `${window.globalData.urls.contentHub}/story-view-react?storyId=`;
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
 

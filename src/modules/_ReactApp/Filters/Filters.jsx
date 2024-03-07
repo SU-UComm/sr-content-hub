@@ -12,7 +12,7 @@ export const Filters = () => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                    `${window.globalData.urls.fb}/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery`,
                 );
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

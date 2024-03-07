@@ -8,14 +8,15 @@ import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const ContentRegion = () => {
+    const baseUrl = `${window.globalData.urls.fb}/s/search.json`;
+
     const [isLoading, setIsLoading] = useState(false); // Loader flag
-    const [data, setData] = useState([]); // data from endpoint
+    // const [data, setData] = useState([]); // data from endpoint
     const [results, setResults] = useState([]); // data from endpoint
     const [resultsSummary, setResultsSummary] = useState([]);
     const [statusLabel, setStatusLabels] = useState([]);
     const [facets, setFacets] = useState([]);
     const [statusSelected, setStatusSelected] = useState('All');
-    const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
     const [dataLocation, setDataLocation] = useState('');
     const [hubStatuses, setHubStatuses] = useState([]);
 
@@ -91,7 +92,7 @@ export const ContentRegion = () => {
             setDataLocation('matrix');
         } else {
             fetchData(
-                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated',
+                `${window.globalData.urls.fb}/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated`,
                 'fb',
             );
             setDataLocation('fb');

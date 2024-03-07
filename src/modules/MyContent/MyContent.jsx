@@ -18,7 +18,7 @@ export const MyContent = () => {
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
-    const [baseUrl, setUrl] = useState('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json');
+    const [baseUrl, setUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
     const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
     const [dataLocation, setDataLocation] = useState('');
@@ -100,7 +100,7 @@ export const MyContent = () => {
         } else {
             fetchData(
                 'fb',
-                'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery',
+                `${window.globalData.urls.fb}/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery`,
             );
             setDataLocation('fb');
         }

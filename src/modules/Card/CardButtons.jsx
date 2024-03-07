@@ -56,8 +56,8 @@ const chCfg = {
         approved: `<p class="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15">Publishing soon on Stanford Report</p>`,
     },
     endpoints: {
-        beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
-        loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next',
+        beacon: `${window.globalData.urls.contentHub}/r/h/ch/beacon`,
+        loadNext: `${window.globalData.urls.contentHub}/r/h/ch/next`,
     },
 };
 

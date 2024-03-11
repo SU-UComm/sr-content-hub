@@ -9,7 +9,7 @@
 <script>
     var globalData = {
         urls: {
-            contentHub: 'https://sug-web.matrix.squiz.cloud/content',
+            contentHub: 'http://127.0.0.1:8888/contentHub', // https://sug-web.matrix.squiz.cloud/content
             contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
             fb: 'https://dxp-us-stage-search.funnelback.squiz.cloud',
         },
@@ -24,4 +24,15 @@
             story: '/story.html',
         },
     };
+</script>
+
+<!-- JS API -->
+<script src="/externals/jsApiMockup/jsApiMockup.js"></script>
+<script>
+    var options = new Array();
+    options['key'] = '1234567890';
+    var jsApi = new Squiz_Matrix_API(options);
+
+    // For mockup jsAPI only
+    window.jsApiMockedURL = 'http://127.0.0.1:8888/matrix-js-api';
 </script>

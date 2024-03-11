@@ -494,5 +494,5 @@ CardButtons.propTypes = {
     assetId: PropTypes.string,
     page: PropTypes.string,
     hubStatusDesc: PropTypes.string,
-    hubStatus: PropTypes.array,
+    hubStatus: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };

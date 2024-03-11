@@ -1,42 +1,42 @@
-const mockHelpers = require('../src/helpers/mockHelpers.js');
-const jsApiMockup = require('../src/helpers/jsApiMockup.js');
+const mockHelpers = require('./helpers/mockHelpers.js');
+const jsApiMockup = require('./helpers/jsApiMockup.js');
 
-exports.handler = async (req) => {
-    if (req.httpMethod === 'OPTIONS') {
-        // Handle OPTIONS
-        return {
-            statusCode: 204,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                Allow: 'OPTIONS, GET, HEAD, POST',
-                'Cache-Control': 'max-age=604800',
-            },
-        };
-    } else if (req.httpMethod === 'GET' && req.queryStringParameters?.SQ_ACTION === 'getToken') {
+/**
+ * Function description string
+ */
+const description = 'jsApi mockup';
+
+/**
+ * Main process function
+ * @param {object} param.req entire request object
+ * @param {object} param.query GET request query
+ * @param {object} param.bodyJSON POST request body
+ * @param {string} param.reqMethod request method
+ * @param {object} param.loco helper functions object
+ * @param {object} param.envVars environment variables
+ * @param {array} param.paths array of wildcard paths
+ * @returns {object} response object consisting of response statusCode, body and headers object
+ */
+const processFunction = async (param) => {
+    if (param.reqMethod === 'GET' && param.query?.SQ_ACTION === 'getToken') {
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Content-Type': 'text/html; charset=UTF-8',
-                'Cache-Control': 'no-cache',
-            },
+            headers: param.loco.corsHeaders({'Content-Type': 'text/plain'}),
             body: '1234TOKEN4321',
         };
     } else {
         // Handle other types
+        console.log('param.bodyJSON', param.bodyJSON);
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Content-Type': 'application/json',
-                'Cache-Control': 'no-cache',
-            },
-            body: await mockHelpers.returnJsonWithDelay(1, jsApiMockup.mockRespone(req.body)),
+            headers: param.loco.corsHeaders(),
+            body: await mockHelpers.returnJsonWithDelay(0.25, jsApiMockup.mockRespone(param.bodyJSON)),
         };
     }
+};
+
+// Export
+module.exports = {
+    processFunction,
+    description,
 };

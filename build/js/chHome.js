@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5859:
+/***/ 5278:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -12,10 +12,92 @@ var react = __webpack_require__(7294);
 var client = __webpack_require__(745);
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
 var PageHeading = __webpack_require__(7774);
-// EXTERNAL MODULE: ./src/modules/Home/HomeInsights.jsx + 1 modules
-var HomeInsights = __webpack_require__(792);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
+var es_object_assign = __webpack_require__(9601);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__(2222);
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
+;// CONCATENATED MODULE: ./src/modules/Home/InsightsCard.jsx
+
+
+
+var InsightsCard_InsightsCard = function InsightsCard(_ref) {
+  var title = _ref.title,
+      value = _ref.value,
+      percentage = _ref.percentage,
+      isPositive = _ref.isPositive;
+  var colorClass = isPositive ? 'su-text-green' : 'su-text-red-dark';
+  var arrowImage = isPositive ? 'chevron-up.svg' : 'chevron-down.svg';
+  return /*#__PURE__*/react.createElement("div", {
+    className: "su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40 lg:su-max-h-[182px]"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-items-center su-justify-between su-mb-30"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-text-16 su-mb-0"
+  }, title), /*#__PURE__*/react.createElement("div", {
+    className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: "su-inline su-mt-1 su-mr-5",
+    src: __webpack_require__(6303)("./".concat(arrowImage)),
+    alt: ""
+  }), /*#__PURE__*/react.createElement("span", null, percentage))), /*#__PURE__*/react.createElement("p", {
+    className: "su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold"
+  }, value));
+};
+InsightsCard_InsightsCard.propTypes = {
+  title: prop_types.PropTypes.string,
+  value: prop_types.PropTypes.string,
+  percentage: prop_types.PropTypes.string,
+  isPositive: prop_types.PropTypes.bool
+};
+;// CONCATENATED MODULE: ./src/modules/Home/HomeInsights.jsx
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+var HomeInsights = function HomeInsights() {
+  var insightsData = [{
+    title: 'Insights placeholder',
+    value: '4,635',
+    percentage: '80%',
+    isPositive: true
+  }, {
+    title: 'Insights placeholder',
+    value: '3.05',
+    percentage: '80%',
+    isPositive: true
+  }, {
+    title: 'Insights placeholder',
+    value: '949',
+    percentage: '9%',
+    isPositive: false
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "su-mb-90"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
+  }, "Insights"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+    href: window.globalData.pageHrefs.insights,
+    className: "su-flex su-items-center su-text-[18px] hover:su-underline"
+  }, "View all Insights", /*#__PURE__*/React.createElement("img", {
+    className: "su-inline su-ml-6",
+    alt: "",
+    src: __webpack_require__(7142)
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs"
+  }, insightsData.map(function (insight, index) {
+    return /*#__PURE__*/React.createElement(InsightsCard, _extends({
+      key: index
+    }, insight));
+  })));
+};
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
@@ -28,8 +110,6 @@ var es_array_join = __webpack_require__(9600);
 var es_regexp_exec = __webpack_require__(4916);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(4765);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(2222);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
@@ -384,7 +464,7 @@ var Home = function Home() {
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
     headingText: (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$texts = _window$data.texts) === null || _window$data$texts === void 0 ? void 0 : (_window$data$texts$ho = _window$data$texts.home) === null || _window$data$texts$ho === void 0 ? void 0 : _window$data$texts$ho.headingText,
     subHeadingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$h = _window2$data$texts.home) === null || _window2$data$texts$h === void 0 ? void 0 : _window2$data$texts$h.subHeadingText
-  }), /*#__PURE__*/react.createElement(HomeInsights/* HomeInsights */.r, null), /*#__PURE__*/react.createElement(ContentRegion, null));
+  }), /*#__PURE__*/react.createElement(ContentRegion, null));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home.jsx
 // Imports
@@ -579,7 +659,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5859); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5278); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

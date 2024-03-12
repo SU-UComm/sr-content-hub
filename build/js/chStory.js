@@ -62,8 +62,6 @@ var BackToPageButton = __webpack_require__(8220);
 var dist_module = __webpack_require__(6665);
 // EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx + 1 modules
 var CardButtons = __webpack_require__(5963);
-// EXTERNAL MODULE: ./src/modules/Helpers/dateHelpers.js
-var dateHelpers = __webpack_require__(9113);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(5697);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
@@ -253,7 +251,7 @@ var FullStory = function FullStory(props) {
   }, "Author"), /*#__PURE__*/react.createElement("p", {
     className: "su-py-20 su-mb-0"
   }, props.data.metadata.bylineAuthor && props.data.metadata.bylineAuthor.length > 1 ? props.data.metadata.bylineAuthor : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("div", {
-    className: "su-pb-45 \r su-border-b su-border-gray\r "
+    className: "su-pb-45  su-border-b su-border-gray "
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
   }, "Story"), /*#__PURE__*/react.createElement("div", {
@@ -372,10 +370,10 @@ function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // import {reformatDate} from '../Helpers/dateHelpers';
 
 
-
-
+ // import {array} from 'prop-types';
 
 var StoryView_dataObj = {
   id: '128490',
@@ -405,8 +403,8 @@ var StoryView_dataObj = {
     date: '2024-01-25T09:36:45-08:00',
     user_id: '6004'
   },
-  urls: ['https://sug-web.matrix.squiz.cloud/content/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
-  url: 'https://sug-web.matrix.squiz.cloud/content/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
+  urls: ['${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
+  url: '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
   attributes: {
     name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
     short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'
@@ -518,8 +516,8 @@ var chCfg = {
     approved: "<p class=\"su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Publishing soon on Stanford Report</p>"
   },
   endpoints: {
-    beacon: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/beacon',
-    loadNext: 'https://sug-web.matrix.squiz.cloud/content/r/h/ch/next'
+    beacon: "".concat(window.globalData.urls.contentHub, "/r/h/ch/beacon"),
+    loadNext: "".concat(window.globalData.urls.contentHub, "/r/h/ch/next")
   }
 };
 var mockData = {
@@ -928,8 +926,8 @@ var StoryView = function StoryView() {
 // Imports
 
 
-
- // const location = useLocation();
+ // import {useLocation} from 'react-router-dom';
+// const location = useLocation();
 
 var rootNode = document.getElementById('content-hub--story');
 

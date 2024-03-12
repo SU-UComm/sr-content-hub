@@ -58,8 +58,8 @@ var es_json_to_string_tag = __webpack_require__(3706);
 var es_math_to_string_tag = __webpack_require__(7059);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-prototype-of.js
 var es_object_get_prototype_of = __webpack_require__(489);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
-var Card = __webpack_require__(8649);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
+var Card = __webpack_require__(832);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
 var helperFunctions = __webpack_require__(6859);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
@@ -127,58 +127,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var ContentRegion = function ContentRegion() {
   var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window8, _window8$data, _window8$data$user;
 
+  var baseUrl = "".concat(window.globalData.urls.fb, "/s/search.json");
+
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isLoading = _useState2[0],
       setIsLoading = _useState2[1]; // Loader flag
+  // const [data, setData] = useState([]); // data from endpoint
 
 
   var _useState3 = (0,react.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      data = _useState4[0],
-      setData = _useState4[1]; // data from endpoint
+      results = _useState4[0],
+      setResults = _useState4[1]; // data from endpoint
 
 
   var _useState5 = (0,react.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      results = _useState6[0],
-      setResults = _useState6[1]; // data from endpoint
-
+      resultsSummary = _useState6[0],
+      setResultsSummary = _useState6[1];
 
   var _useState7 = (0,react.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      resultsSummary = _useState8[0],
-      setResultsSummary = _useState8[1];
+      statusLabel = _useState8[0],
+      setStatusLabels = _useState8[1];
 
   var _useState9 = (0,react.useState)([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      statusLabel = _useState10[0],
-      setStatusLabels = _useState10[1];
+      facets = _useState10[0],
+      setFacets = _useState10[1];
 
-  var _useState11 = (0,react.useState)([]),
+  var _useState11 = (0,react.useState)('All'),
       _useState12 = _slicedToArray(_useState11, 2),
-      facets = _useState12[0],
-      setFacets = _useState12[1];
+      statusSelected = _useState12[0],
+      setStatusSelected = _useState12[1];
 
-  var _useState13 = (0,react.useState)('All'),
+  var _useState13 = (0,react.useState)(''),
       _useState14 = _slicedToArray(_useState13, 2),
-      statusSelected = _useState14[0],
-      setStatusSelected = _useState14[1];
+      dataLocation = _useState14[0],
+      setDataLocation = _useState14[1];
 
-  var _useState15 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState15 = (0,react.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
-      baseUrl = _useState16[0],
-      setUrl = _useState16[1];
-
-  var _useState17 = (0,react.useState)(''),
-      _useState18 = _slicedToArray(_useState17, 2),
-      dataLocation = _useState18[0],
-      setDataLocation = _useState18[1];
-
-  var _useState19 = (0,react.useState)([]),
-      _useState20 = _slicedToArray(_useState19, 2),
-      hubStatuses = _useState20[0],
-      setHubStatuses = _useState20[1];
+      hubStatuses = _useState16[0],
+      setHubStatuses = _useState16[1];
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
@@ -191,7 +183,7 @@ var ContentRegion = function ContentRegion() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 29;
+                _context.next = 28;
                 break;
               }
 
@@ -206,8 +198,8 @@ var ContentRegion = function ContentRegion() {
                   setStatusLabels(item.allValues);
                 }
               });
-              setFacets(d.response.facets);
-              setData(d);
+              setFacets(d.response.facets); // setData(d);
+
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
               console.log('REQUEST FUNCTION data in home: ', d);
@@ -217,36 +209,36 @@ var ContentRegion = function ContentRegion() {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 16;
+              _context.next = 15;
               return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
 
-            case 16:
+            case 15:
               statuses = _context.sent;
               console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 24;
+              _context.next = 23;
               break;
 
-            case 21:
-              _context.prev = 21;
+            case 20:
+              _context.prev = 20;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 24:
-              _context.prev = 24;
+            case 23:
+              _context.prev = 23;
               setIsLoading(false);
-              return _context.finish(24);
+              return _context.finish(23);
 
-            case 27:
-              _context.next = 54;
+            case 26:
+              _context.next = 52;
               break;
 
-            case 29:
-              _context.prev = 29;
-              _context.next = 32;
+            case 28:
+              _context.prev = 28;
+              _context.next = 31;
               return (0,requests/* getSearchData */.Im)(url);
 
-            case 32:
+            case 31:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -255,8 +247,8 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              setFacets(_d2.response.facets);
-              setData(_d2);
+              setFacets(_d2.response.facets); // setData(d);
+
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
               console.log('REQUEST FUNCTION data in home matrix: ', _d2);
@@ -268,32 +260,32 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 43;
+              _context.next = 41;
               return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
-            case 43:
+            case 41:
               _statuses = _context.sent;
               console.log('Statuses:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 51;
+              _context.next = 49;
               break;
 
-            case 48:
-              _context.prev = 48;
-              _context.t1 = _context["catch"](29);
+            case 46:
+              _context.prev = 46;
+              _context.t1 = _context["catch"](28);
               console.error('Error fetching data:', _context.t1);
 
-            case 51:
-              _context.prev = 51;
+            case 49:
+              _context.prev = 49;
               setIsLoading(false);
-              return _context.finish(51);
+              return _context.finish(49);
 
-            case 54:
+            case 52:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
+      }, _callee, null, [[2, 20, 23, 26], [28, 46, 49, 52]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -312,7 +304,7 @@ var ContentRegion = function ContentRegion() {
       fetchData(url, 'matrix');
       setDataLocation('matrix');
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated"), 'fb');
       setDataLocation('fb');
     }
   }, []);
@@ -380,7 +372,6 @@ var ContentRegion = function ContentRegion() {
   }) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.d, null)));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home/Home.jsx
-
 
 
 

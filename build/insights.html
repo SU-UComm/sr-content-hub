@@ -1,4 +1,12 @@
 <!doctype html><html lang="en"><head><title>Content Hub | Insights</title><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&display=swap" rel="stylesheet"/><script>var globalData = {
+        urls: {
+            contentHub: 'http://127.0.0.1:8888/contentHub', // https://sug-web.matrix.squiz.cloud/content
+            contentApi: 'https://sug-web.matrix.squiz.cloud/__api',
+            fb: 'https://dxp-us-stage-search.funnelback.squiz.cloud',
+        },
+        tokens: {
+            contentApi: 'XXXX',
+        },
         pageHrefs: {
             home: '/',
             newContent: '/newContent.html',
@@ -6,7 +14,12 @@
             insights: '/insights.html',
             story: '/story.html',
         },
-    };</script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/vendor.js"></script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/global.js"></script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/tailwind.js"></script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/chInsights.js"></script><link href="/__data/assets/git_bridge/0029/128747/build/tailwind.css" rel="stylesheet"></head><body><script>window.data = {
+    };</script><script src="/externals/jsApiMockup/jsApiMockup.js"></script><script>var options = new Array();
+    options['key'] = '1234567890';
+    var jsApi = new Squiz_Matrix_API(options);
+
+    // For mockup jsAPI only
+    window.jsApiMockedURL = 'http://127.0.0.1:8888/matrix-js-api';</script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/vendor.js"></script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/global.js"></script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/tailwind.js"></script><script defer="defer" src="/__data/assets/git_bridge/0029/128747/build/js/chInsights.js"></script><link href="/__data/assets/git_bridge/0029/128747/build/tailwind.css" rel="stylesheet"></head><body><script>window.data = {
                 user: {
                     loggedIn: true,
                     id: '1234',

@@ -62,8 +62,8 @@ var CPFilter = __webpack_require__(4842);
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
-var Card = __webpack_require__(8649);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
+var Card = __webpack_require__(832);
 // EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
 var Pagination = __webpack_require__(3729);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
@@ -72,6 +72,8 @@ var helperFunctions = __webpack_require__(6859);
 var dist_module = __webpack_require__(6665);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
 var SelectedFilters = __webpack_require__(5634);
+// EXTERNAL MODULE: ./src/modules/Filters/DateFilter.jsx
+var DateFilter = __webpack_require__(7655);
 ;// CONCATENATED MODULE: ./src/modules/NewContent/NewContent.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -115,6 +117,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -172,7 +175,7 @@ var NewContent = function NewContent() {
       dataLocation = _useState16[0],
       setDataLocation = _useState16[1];
 
-  var _useState17 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState17 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState18 = _slicedToArray(_useState17, 2),
       baseUrl = _useState18[0],
       setUrl = _useState18[1];
@@ -187,6 +190,16 @@ var NewContent = function NewContent() {
       hubStatuses = _useState22[0],
       setHubStatuses = _useState22[1];
 
+  var _useState23 = (0,react.useState)('All'),
+      _useState24 = _slicedToArray(_useState23, 2),
+      dateSelected = _useState24[0],
+      setDateSelected = _useState24[1];
+
+  var _useState25 = (0,react.useState)([]),
+      _useState26 = _slicedToArray(_useState25, 2),
+      dateLabel = _useState26[0],
+      setDateLabels = _useState26[1];
+
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
       var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray, _statuses;
@@ -195,10 +208,10 @@ var NewContent = function NewContent() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
+              setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 31;
+                _context.next = 30;
                 break;
               }
 
@@ -211,6 +224,8 @@ var NewContent = function NewContent() {
               d.response.facets.map(function (item) {
                 if (item.name == 'contentPartner') {
                   setCPLabels(item.allValues);
+                } else if (item.name == 'date') {
+                  setDateLabels(item.allValues);
                 }
               });
               setFacets(d.response.facets);
@@ -219,49 +234,50 @@ var NewContent = function NewContent() {
               setResultsSummary(d.response.resultPacket.resultsSummary);
               params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(params);
-              console.log('REQUEST FUNCTION data in all content: ', d);
               sourceIdsArray = [];
               d.response.resultPacket.results.forEach(function (item) {
                 if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 18;
+              _context.next = 17;
               return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
 
-            case 18:
+            case 17:
               statuses = _context.sent;
               console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 26;
+              _context.next = 25;
               break;
 
-            case 23:
-              _context.prev = 23;
+            case 22:
+              _context.prev = 22;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 26:
-              _context.prev = 26;
+            case 25:
+              _context.prev = 25;
               setIsLoading(false);
-              return _context.finish(26);
+              return _context.finish(25);
 
-            case 29:
-              _context.next = 58;
+            case 28:
+              _context.next = 56;
               break;
 
-            case 31:
-              _context.prev = 31;
-              _context.next = 34;
+            case 30:
+              _context.prev = 30;
+              _context.next = 33;
               return (0,requests/* getSearchData */.Im)(url);
 
-            case 34:
+            case 33:
               _d2 = _context.sent;
               setFacets(_d2.response.facets);
 
               _d2.response.facets.map(function (item) {
                 if (item.name == 'contentPartner') {
                   setCPLabels(item.allValues);
+                } else if (item.name == 'date') {
+                  setDateLabels(item.allValues);
                 }
               });
 
@@ -270,7 +286,6 @@ var NewContent = function NewContent() {
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
               _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(_params);
-              console.log('REQUEST FUNCTION data in all content: ', _d2);
               _sourceIdsArray = [];
 
               _d2.response.resultPacket.results.forEach(function (item) {
@@ -279,32 +294,32 @@ var NewContent = function NewContent() {
                 }
               });
 
-              _context.next = 47;
+              _context.next = 45;
               return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
-            case 47:
+            case 45:
               _statuses = _context.sent;
               console.log('Statuses:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 52:
-              _context.prev = 52;
-              _context.t1 = _context["catch"](31);
+            case 50:
+              _context.prev = 50;
+              _context.t1 = _context["catch"](30);
               console.error('Error fetching data:', _context.t1);
 
-            case 55:
-              _context.prev = 55;
+            case 53:
+              _context.prev = 53;
               setIsLoading(false);
-              return _context.finish(55);
+              return _context.finish(53);
 
-            case 58:
+            case 56:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
+      }, _callee, null, [[2, 22, 25, 28], [30, 50, 53, 56]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -315,7 +330,6 @@ var NewContent = function NewContent() {
   (0,react.useEffect)(function () {
     var _window, _window$data, _window$data$contentH;
 
-    // let user = window?.data?.user?.userType;
     var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search.newContent;
 
     if (url) {
@@ -323,13 +337,14 @@ var NewContent = function NewContent() {
       setDataLocation('matrix');
       setUrl(url);
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated"), 'fb');
       setDataLocation('fb');
     }
   }, []);
 
-  var onChange = function onChange(name, value) {
-    console.log('ON CHANGE: ', name, ' || ', value);
+  var onChange = function onChange(name, value, selectedVal) {
+    // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+    var fetchUrl;
 
     if (name == 'search') {
       var newParams = queryParams;
@@ -351,9 +366,7 @@ var NewContent = function NewContent() {
       }
 
       setQueryParams(newParams);
-      var fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
-      console.log('CREATED URL: ', fetchUrl);
-      fetchData(fetchUrl, dataLocation);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
 
@@ -371,11 +384,7 @@ var NewContent = function NewContent() {
       }
 
       setQueryParams(_newParams);
-
-      var _fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
-
-      console.log('CREATED URL: ', _fetchUrl);
-      fetchData(_fetchUrl, dataLocation);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
     } else if (name == 'sortBy') {
       var _newParams2 = queryParams;
       var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
@@ -395,16 +404,22 @@ var NewContent = function NewContent() {
       }
 
       setQueryParams(_newParams2);
-
-      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
-
-      console.log('CREATED URL sort: ', _fetchUrl2);
-      fetchData(_fetchUrl2, dataLocation);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
     } else {
-      var _fetchUrl3 = baseUrl + value;
+      if (name == 'date') {
+        setDateSelected(selectedVal);
+      }
 
-      fetchData(_fetchUrl3, dataLocation);
+      if (name == 'unselect') {
+        if (selectedVal == 'date') {
+          setDateSelected('All');
+        }
+      }
+
+      fetchUrl = baseUrl + value;
     }
+
+    fetchData(fetchUrl, dataLocation);
   };
 
   return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
@@ -421,16 +436,24 @@ var NewContent = function NewContent() {
     subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.subHeadingText,
     homeButton: true
   }), /*#__PURE__*/react.createElement("section", null, /*#__PURE__*/react.createElement("div", {
-    className: "su-mb-20"
+    className: "su-mb-20 "
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-flex-col lg:su-flex-row su-gap-xs"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex-[calc(100%/3)_1_1]"
   }, /*#__PURE__*/react.createElement("label", {
     htmlFor: "cp-filter",
     className: "su-block su-text-18 su-font-bold su-leading-[2] su-mb-10"
-  }, "Content partners"), /*#__PURE__*/react.createElement("div", {
-    className: "su-w-full md:su-w-1/2"
-  }, /*#__PURE__*/react.createElement(CPFilter/* CPFilter */.r, {
+  }, "Content partners"), /*#__PURE__*/react.createElement(CPFilter/* CPFilter */.r, {
     facets: CPLabels,
     onChange: onChange
-  }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
+  })), /*#__PURE__*/react.createElement("div", {
+    className: "su-flex-[calc(100%/3)_1_1]"
+  }, /*#__PURE__*/react.createElement(DateFilter/* DateRangeFilter */.r, {
+    facets: dateLabel,
+    onChange: onChange,
+    selectedValue: dateSelected
+  })))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
     onChange: onChange,
     facets: facets,
     page: "newContent"
@@ -555,7 +578,7 @@ var MyContent = function MyContent() {
       facets = _useState14[0],
       setFacets = _useState14[1];
 
-  var _useState15 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState15 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState16 = MyContent_slicedToArray(_useState15, 2),
       baseUrl = _useState16[0],
       setUrl = _useState16[1];
@@ -715,7 +738,7 @@ var MyContent = function MyContent() {
       setUrl(url);
       setDataLocation('matrix');
     } else {
-      fetchData('fb', 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+      fetchData('fb', "".concat(window.globalData.urls.fb, "/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"));
       setDataLocation('fb');
     }
   }, []);

@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 47:
+/***/ 3685:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -58,11 +58,22 @@ var es_object_get_prototype_of = __webpack_require__(489);
 var PageHeading = __webpack_require__(7774);
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
 var StatusFilter = __webpack_require__(1948);
+// EXTERNAL MODULE: ./src/modules/Filters/DateFilter.jsx
+var DateFilter = __webpack_require__(7655);
+// EXTERNAL MODULE: ./src/modules/Filters/CPFilter.jsx
+var CPFilter = __webpack_require__(4842);
+// EXTERNAL MODULE: ./src/modules/Helpers/requests.js
+var requests = __webpack_require__(9072);
+// EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
+var SortByFilter = __webpack_require__(7009);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
+var Card = __webpack_require__(832);
+// EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
+var Pagination = __webpack_require__(3729);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(5697);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
-;// CONCATENATED MODULE: ./src/modules/Filters/DateFilter.jsx
-
+;// CONCATENATED MODULE: ./src/modules/Search/SearchBar.jsx
 
 
 
@@ -89,155 +100,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var DateRangeFilter = function DateRangeFilter(props) {
-  var _useState = (0,react.useState)(props.selectedValue),
-      _useState2 = _slicedToArray(_useState, 2),
-      selectedRange = _useState2[0],
-      setSelectedRange = _useState2[1];
-
-  var _useState3 = (0,react.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      open = _useState4[0],
-      setOpen = _useState4[1];
-
-  var wrapperRef = (0,react.useRef)(null);
-
-  var _useState5 = (0,react.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      statusOptions = _useState6[0],
-      setStatusOptions = _useState6[1];
-
-  var _useState7 = (0,react.useState)(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      isLoading = _useState8[0],
-      setIsLoading = _useState8[1]; // Loader flag
-
-
-  var handleRangeChange = function handleRangeChange(value, option) {
-    setSelectedRange(value);
-    handleClose();
-    props.onChange('date', option.toggleUrl, option.label);
-  };
-
-  var handleOpen = function handleOpen() {
-    return setOpen(true);
-  };
-
-  var handleClose = function handleClose() {
-    return setOpen(false);
-  };
-
-  (0,react.useEffect)(function () {
-    var handleClickOutside = function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        handleClose();
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return function () {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-  (0,react.useEffect)(function () {
-    if (props.facets) {
-      setStatusOptions(props.facets);
-      setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
-  }, [props.facets]);
-  return !isLoading && /*#__PURE__*/react.createElement("div", {
-    className: "su-flex-[calc(100%/3)_1_1]"
-  }, /*#__PURE__*/react.createElement("label", {
-    htmlFor: "date-filter",
-    className: "su-block su-text-18 su-font-bold su-leading-[2] su-mb-10"
-  }, "Date Range"), /*#__PURE__*/react.createElement("div", {
-    className: "c-select su-min-w-full"
-  }, /*#__PURE__*/react.createElement("select", {
-    className: "su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0",
-    name: "f.date|d",
-    id: "date-filter",
-    value: selectedRange
-  }, statusOptions.map(function (option) {
-    return /*#__PURE__*/react.createElement("option", {
-      key: option.label,
-      value: option.label
-    }, option.label);
-  })), /*#__PURE__*/react.createElement("div", {
-    className: "c-wrapper su-relative su-group ".concat(open ? 'open' : ''),
-    ref: wrapperRef
-  }, /*#__PURE__*/react.createElement("button", {
-    className: "c-button su-transition-none group-[.open]:su-mb-1 group-[.open]:su-border-b-transparent group-[.open]:su-rounded-b-none su-leading-[3.6rem] su-pr-20 su-w-full su-text-18 su-flex su-items-center su-justify-between su-text-left su-bg-white su-font-regular hover:su-bg-white hover:su-border-gray hover:su-text-black",
-    "aria-expanded": "false",
-    onClick: handleOpen
-  }, /*#__PURE__*/react.createElement("span", {
-    className: "su-mr-10"
-  }, selectedRange), /*#__PURE__*/react.createElement("img", {
-    className: "su-inline su-ml-6",
-    alt: "",
-    src: __webpack_require__(1466)
-  })), /*#__PURE__*/react.createElement("div", {
-    className: "su-z-10 ".concat(open ? 'su-block' : 'su-hidden', " su-overflow-y-auto su-absolute su-border-t-0 su-border su-border-gray su-w-full su-bg-white su-rounded-b su-top-full")
-  }, /*#__PURE__*/react.createElement("ul", {
-    className: "su-z-10 c-list su-max-h-[209px] su-overflow-y-auto su-p-0 su-list-none"
-  }, statusOptions.map(function (option) {
-    return /*#__PURE__*/react.createElement("li", {
-      key: option.label,
-      role: "button",
-      "data-value": option.label,
-      className: "su-leading-[3.6rem] su-block su-text-18 su-mb-0 su-py-8 su-pl-15 su-pr-20 hover:su-cursor-pointer hover:su-bg-gray-light ".concat(option.label === selectedRange ? 'su-bg-gray-light' : ''),
-      tabIndex: "-1",
-      onClick: function onClick() {
-        return handleRangeChange(option.label, option);
-      }
-    }, option.label);
-  }))))));
-};
-DateRangeFilter.propTypes = {
-  facets: prop_types.PropTypes.array,
-  onChange: prop_types.PropTypes.func
-};
-// EXTERNAL MODULE: ./src/modules/Filters/CPFilter.jsx
-var CPFilter = __webpack_require__(4842);
-// EXTERNAL MODULE: ./src/modules/Helpers/requests.js
-var requests = __webpack_require__(9072);
-// EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
-var SortByFilter = __webpack_require__(7009);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
-var Card = __webpack_require__(8649);
-// EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
-var Pagination = __webpack_require__(3729);
-;// CONCATENATED MODULE: ./src/modules/Search/SearchBar.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-function SearchBar_slicedToArray(arr, i) { return SearchBar_arrayWithHoles(arr) || SearchBar_iterableToArrayLimit(arr, i) || SearchBar_unsupportedIterableToArray(arr, i) || SearchBar_nonIterableRest(); }
-
-function SearchBar_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function SearchBar_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return SearchBar_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return SearchBar_arrayLikeToArray(o, minLen); }
-
-function SearchBar_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function SearchBar_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function SearchBar_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
 var SearchBar = function SearchBar(props) {
   var _useState = (0,react.useState)(props.selectedValue),
-      _useState2 = SearchBar_slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray(_useState, 2),
       searchQuery = _useState2[0],
       setSearchQuery = _useState2[1];
 
@@ -404,7 +269,7 @@ var AllContent = function AllContent() {
       queryParams = _useState20[0],
       setQueryParams = _useState20[1];
 
-  var _useState21 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState21 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState22 = AllContent_slicedToArray(_useState21, 2),
       baseUrl = _useState22[0],
       setUrl = _useState22[1];
@@ -441,7 +306,7 @@ var AllContent = function AllContent() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray;
+      var d, params, sourceIdsArray, statuses, _d2, _params;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -503,7 +368,7 @@ var AllContent = function AllContent() {
               return _context.finish(26);
 
             case 29:
-              _context.next = 53;
+              _context.next = 52;
               break;
 
             case 31:
@@ -531,8 +396,8 @@ var AllContent = function AllContent() {
               _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(_params);
               setQuery(_d2.question.query == '!nullquery' ? '' : _d2.question.query); // Get live Hub Status using IDs from data just fetched
-
-              _sourceIdsArray = []; // d.response.resultPacket.results.forEach((item) => {
+              // let sourceIdsArray = [];
+              // d.response.resultPacket.results.forEach((item) => {
               //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
               //         sourceIdsArray.push(item.listMetadata.assetId[0]);
               //     }
@@ -541,25 +406,25 @@ var AllContent = function AllContent() {
               // setHubStatuses(statuses);
 
               console.log('ALL CONTENT DATA: ', _d2);
-              _context.next = 50;
+              _context.next = 49;
               break;
 
-            case 47:
-              _context.prev = 47;
+            case 46:
+              _context.prev = 46;
               _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 50:
-              _context.prev = 50;
+            case 49:
+              _context.prev = 49;
               setIsLoading(false);
-              return _context.finish(50);
+              return _context.finish(49);
 
-            case 53:
+            case 52:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 47, 50, 53]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 46, 49, 52]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -580,7 +445,7 @@ var AllContent = function AllContent() {
       setUrl(url);
     } else {
       // backup link for local dev environment
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery', 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"), 'fb');
       setDataLocation('fb');
     }
   }, []);
@@ -708,7 +573,7 @@ var AllContent = function AllContent() {
     facets: statusLabel,
     onChange: onChange,
     selectedValue: statusSelected
-  }) : null, /*#__PURE__*/react.createElement(DateRangeFilter, {
+  }) : null, /*#__PURE__*/react.createElement(DateFilter/* DateRangeFilter */.r, {
     facets: dateLabel,
     onChange: onChange,
     selectedValue: dateSelected
@@ -932,7 +797,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(47); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(3685); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

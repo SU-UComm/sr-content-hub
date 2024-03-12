@@ -44,15 +44,15 @@ export const MyContent = () => {
                 setQueryParams(params);
                 console.log('REQUEST FUNCTION data in MY content: ', d);
                 let sourceIdsArray = [];
-                // d.response.resultPacket.results.forEach((item) => {
-                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
-                //     }
-                // });
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
 
-                // const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
-                // setHubStatuses(statuses);
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                console.log('Statuses:', statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -74,15 +74,15 @@ export const MyContent = () => {
                 setQueryParams(params);
                 console.log('MY content MATRIX FETCH: ', d);
                 let sourceIdsArray = [];
-                // d.response.resultPacket.results.forEach((item) => {
-                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
-                //     }
-                // });
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
 
-                // const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
-                // setHubStatuses(statuses);
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                console.log('Statuses:', statuses);
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {

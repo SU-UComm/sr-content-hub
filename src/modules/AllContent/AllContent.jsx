@@ -55,13 +55,13 @@ export const AllContent = () => {
                 setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
                 console.log('REQUEST FUNCTION data in all content: ', d);
                 let sourceIdsArray = [];
-                // d.response.resultPacket.results.forEach((item) => {
-                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
-                //     }
-                // });
-                // const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // setHubStatuses(statuses);
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -155,7 +155,7 @@ export const AllContent = () => {
             let selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
             setSortBySelected(selected);
             const sortBy = newParams.find((entry) => entry.name === 'sort');
-            if (sortBy === undefined) {
+            if (!sortBy) {
                 queryParams.push({name: 'sort', value});
             } else {
                 sortBy.value = value;
@@ -170,8 +170,8 @@ export const AllContent = () => {
                 let selected = selectedVal;
                 setDateSelected(selected);
             }
-
             if (name == 'unselect') {
+                console.log('check');
                 if (selectedVal == 'hubStatus') {
                     setStatusSelected('All');
                 } else if (selectedVal == 'date') {

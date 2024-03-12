@@ -44,15 +44,15 @@ export const NewContent = () => {
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
                 let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
+                // d.response.resultPacket.results.forEach((item) => {
+                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
+                //     }
+                // });
 
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
+                // const statuses = await getHubStatus(sourceIdsArray.join(','));
+                // console.log('Statuses:', statuses);
+                // setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -75,15 +75,15 @@ export const NewContent = () => {
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
                 let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
+                // d.response.resultPacket.results.forEach((item) => {
+                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
+                //     }
+                // });
 
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
+                // const statuses = await getHubStatus(sourceIdsArray.join(','));
+                // console.log('Statuses:', statuses);
+                // setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {

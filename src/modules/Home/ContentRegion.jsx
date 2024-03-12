@@ -36,15 +36,15 @@ export const ContentRegion = () => {
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 console.log('REQUEST FUNCTION data in home: ', d);
                 let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
+                // d.response.resultPacket.results.forEach((item) => {
+                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
+                //     }
+                // });
 
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
+                // const statuses = await getHubStatus(sourceIdsArray.join(','));
+                // console.log('Statuses:', statuses);
+                // setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -64,15 +64,15 @@ export const ContentRegion = () => {
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 console.log('REQUEST FUNCTION data in home matrix: ', d);
                 let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
+                // d.response.resultPacket.results.forEach((item) => {
+                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
+                //     }
+                // });
 
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
+                // const statuses = await getHubStatus(sourceIdsArray.join(','));
+                // console.log('Statuses:', statuses);
+                // setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {

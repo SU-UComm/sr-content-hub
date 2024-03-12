@@ -2351,14 +2351,13 @@ var HtmlEntities = {
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Im: function() { return /* binding */ getSearchData; },
-/* harmony export */   V9: function() { return /* binding */ getHubStatus; },
 /* harmony export */   fH: function() { return /* binding */ contentHubAPI; },
 /* harmony export */   fP: function() { return /* binding */ getAPIData; },
 /* harmony export */   gV: function() { return /* binding */ fetchFBData; },
 /* harmony export */   mK: function() { return /* binding */ getTaxonomyTerms; },
 /* harmony export */   om: function() { return /* binding */ getMedia; }
 /* harmony export */ });
-/* unused harmony exports getUserData, getMyContent, postData */
+/* unused harmony exports getUserData, getMyContent, getHubStatus, postData */
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1539);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8674);
@@ -2649,7 +2648,7 @@ var getTaxonomyTerms = /*#__PURE__*/(/* runtime-dependent pure expression or sup
  * @returns {object} JSON object
  */
 
-var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super */ /^(441|690|825)$/.test(__webpack_require__.j) ? (function () {
+var getHubStatus = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetIDs) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -2678,7 +2677,7 @@ var getHubStatus = /*#__PURE__*/(/* runtime-dependent pure expression or super *
   return function getHubStatus(_x4) {
     return _ref6.apply(this, arguments);
   };
-}()) : null);
+}()));
 /**
  * GET ContentAPI Data
  * @param {string} module to get endpoint URL

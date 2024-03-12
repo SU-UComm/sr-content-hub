@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5859:
+/***/ 5278:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
@@ -12,10 +12,92 @@ var react = __webpack_require__(7294);
 var client = __webpack_require__(745);
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
 var PageHeading = __webpack_require__(7774);
-// EXTERNAL MODULE: ./src/modules/Home/HomeInsights.jsx + 1 modules
-var HomeInsights = __webpack_require__(792);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
+var es_object_assign = __webpack_require__(9601);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__(2222);
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
+;// CONCATENATED MODULE: ./src/modules/Home/InsightsCard.jsx
+
+
+
+var InsightsCard_InsightsCard = function InsightsCard(_ref) {
+  var title = _ref.title,
+      value = _ref.value,
+      percentage = _ref.percentage,
+      isPositive = _ref.isPositive;
+  var colorClass = isPositive ? 'su-text-green' : 'su-text-red-dark';
+  var arrowImage = isPositive ? 'chevron-up.svg' : 'chevron-down.svg';
+  return /*#__PURE__*/react.createElement("div", {
+    className: "su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40 lg:su-max-h-[182px]"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-items-center su-justify-between su-mb-30"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-text-16 su-mb-0"
+  }, title), /*#__PURE__*/react.createElement("div", {
+    className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: "su-inline su-mt-1 su-mr-5",
+    src: __webpack_require__(6303)("./".concat(arrowImage)),
+    alt: ""
+  }), /*#__PURE__*/react.createElement("span", null, percentage))), /*#__PURE__*/react.createElement("p", {
+    className: "su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold"
+  }, value));
+};
+InsightsCard_InsightsCard.propTypes = {
+  title: prop_types.PropTypes.string,
+  value: prop_types.PropTypes.string,
+  percentage: prop_types.PropTypes.string,
+  isPositive: prop_types.PropTypes.bool
+};
+;// CONCATENATED MODULE: ./src/modules/Home/HomeInsights.jsx
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+var HomeInsights = function HomeInsights() {
+  var insightsData = [{
+    title: 'Insights placeholder',
+    value: '4,635',
+    percentage: '80%',
+    isPositive: true
+  }, {
+    title: 'Insights placeholder',
+    value: '3.05',
+    percentage: '80%',
+    isPositive: true
+  }, {
+    title: 'Insights placeholder',
+    value: '949',
+    percentage: '9%',
+    isPositive: false
+  }];
+  return /*#__PURE__*/React.createElement("section", {
+    className: "su-mb-90"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
+  }, /*#__PURE__*/React.createElement("h2", {
+    className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
+  }, "Insights"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+    href: window.globalData.pageHrefs.insights,
+    className: "su-flex su-items-center su-text-[18px] hover:su-underline"
+  }, "View all Insights", /*#__PURE__*/React.createElement("img", {
+    className: "su-inline su-ml-6",
+    alt: "",
+    src: __webpack_require__(7142)
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs"
+  }, insightsData.map(function (insight, index) {
+    return /*#__PURE__*/React.createElement(InsightsCard, _extends({
+      key: index
+    }, insight));
+  })));
+};
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__(8309);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
@@ -28,8 +110,6 @@ var es_array_join = __webpack_require__(9600);
 var es_regexp_exec = __webpack_require__(4916);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(4765);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(2222);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__(7042);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
@@ -58,8 +138,8 @@ var es_json_to_string_tag = __webpack_require__(3706);
 var es_math_to_string_tag = __webpack_require__(7059);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-prototype-of.js
 var es_object_get_prototype_of = __webpack_require__(489);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
-var Card = __webpack_require__(8649);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
+var Card = __webpack_require__(832);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
 var helperFunctions = __webpack_require__(6859);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
@@ -127,58 +207,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var ContentRegion = function ContentRegion() {
   var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window8, _window8$data, _window8$data$user;
 
+  var baseUrl = "".concat(window.globalData.urls.fb, "/s/search.json");
+
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       isLoading = _useState2[0],
       setIsLoading = _useState2[1]; // Loader flag
+  // const [data, setData] = useState([]); // data from endpoint
 
 
   var _useState3 = (0,react.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      data = _useState4[0],
-      setData = _useState4[1]; // data from endpoint
+      results = _useState4[0],
+      setResults = _useState4[1]; // data from endpoint
 
 
   var _useState5 = (0,react.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      results = _useState6[0],
-      setResults = _useState6[1]; // data from endpoint
-
+      resultsSummary = _useState6[0],
+      setResultsSummary = _useState6[1];
 
   var _useState7 = (0,react.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      resultsSummary = _useState8[0],
-      setResultsSummary = _useState8[1];
+      statusLabel = _useState8[0],
+      setStatusLabels = _useState8[1];
 
   var _useState9 = (0,react.useState)([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      statusLabel = _useState10[0],
-      setStatusLabels = _useState10[1];
+      facets = _useState10[0],
+      setFacets = _useState10[1];
 
-  var _useState11 = (0,react.useState)([]),
+  var _useState11 = (0,react.useState)('All'),
       _useState12 = _slicedToArray(_useState11, 2),
-      facets = _useState12[0],
-      setFacets = _useState12[1];
+      statusSelected = _useState12[0],
+      setStatusSelected = _useState12[1];
 
-  var _useState13 = (0,react.useState)('All'),
+  var _useState13 = (0,react.useState)(''),
       _useState14 = _slicedToArray(_useState13, 2),
-      statusSelected = _useState14[0],
-      setStatusSelected = _useState14[1];
+      dataLocation = _useState14[0],
+      setDataLocation = _useState14[1];
 
-  var _useState15 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState15 = (0,react.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
-      baseUrl = _useState16[0],
-      setUrl = _useState16[1];
-
-  var _useState17 = (0,react.useState)(''),
-      _useState18 = _slicedToArray(_useState17, 2),
-      dataLocation = _useState18[0],
-      setDataLocation = _useState18[1];
-
-  var _useState19 = (0,react.useState)([]),
-      _useState20 = _slicedToArray(_useState19, 2),
-      hubStatuses = _useState20[0],
-      setHubStatuses = _useState20[1];
+      hubStatuses = _useState16[0],
+      setHubStatuses = _useState16[1];
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
@@ -191,7 +263,7 @@ var ContentRegion = function ContentRegion() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 29;
+                _context.next = 28;
                 break;
               }
 
@@ -206,8 +278,8 @@ var ContentRegion = function ContentRegion() {
                   setStatusLabels(item.allValues);
                 }
               });
-              setFacets(d.response.facets);
-              setData(d);
+              setFacets(d.response.facets); // setData(d);
+
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
               console.log('REQUEST FUNCTION data in home: ', d);
@@ -217,36 +289,36 @@ var ContentRegion = function ContentRegion() {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 16;
+              _context.next = 15;
               return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
 
-            case 16:
+            case 15:
               statuses = _context.sent;
               console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 24;
+              _context.next = 23;
               break;
 
-            case 21:
-              _context.prev = 21;
+            case 20:
+              _context.prev = 20;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 24:
-              _context.prev = 24;
+            case 23:
+              _context.prev = 23;
               setIsLoading(false);
-              return _context.finish(24);
+              return _context.finish(23);
 
-            case 27:
-              _context.next = 54;
+            case 26:
+              _context.next = 52;
               break;
 
-            case 29:
-              _context.prev = 29;
-              _context.next = 32;
+            case 28:
+              _context.prev = 28;
+              _context.next = 31;
               return (0,requests/* getSearchData */.Im)(url);
 
-            case 32:
+            case 31:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -255,8 +327,8 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              setFacets(_d2.response.facets);
-              setData(_d2);
+              setFacets(_d2.response.facets); // setData(d);
+
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
               console.log('REQUEST FUNCTION data in home matrix: ', _d2);
@@ -268,32 +340,32 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 43;
+              _context.next = 41;
               return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
 
-            case 43:
+            case 41:
               _statuses = _context.sent;
               console.log('Statuses:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 51;
+              _context.next = 49;
               break;
 
-            case 48:
-              _context.prev = 48;
-              _context.t1 = _context["catch"](29);
+            case 46:
+              _context.prev = 46;
+              _context.t1 = _context["catch"](28);
               console.error('Error fetching data:', _context.t1);
 
-            case 51:
-              _context.prev = 51;
+            case 49:
+              _context.prev = 49;
               setIsLoading(false);
-              return _context.finish(51);
+              return _context.finish(49);
 
-            case 54:
+            case 52:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
+      }, _callee, null, [[2, 20, 23, 26], [28, 46, 49, 52]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -312,7 +384,7 @@ var ContentRegion = function ContentRegion() {
       fetchData(url, 'matrix');
       setDataLocation('matrix');
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated"), 'fb');
       setDataLocation('fb');
     }
   }, []);
@@ -384,7 +456,6 @@ var ContentRegion = function ContentRegion() {
 
 
 
-
 var Home = function Home() {
   var _window, _window$data, _window$data$texts, _window$data$texts$ho, _window2, _window2$data, _window2$data$texts, _window2$data$texts$h;
 
@@ -393,7 +464,7 @@ var Home = function Home() {
   }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
     headingText: (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$texts = _window$data.texts) === null || _window$data$texts === void 0 ? void 0 : (_window$data$texts$ho = _window$data$texts.home) === null || _window$data$texts$ho === void 0 ? void 0 : _window$data$texts$ho.headingText,
     subHeadingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$h = _window2$data$texts.home) === null || _window2$data$texts$h === void 0 ? void 0 : _window2$data$texts$h.subHeadingText
-  }), /*#__PURE__*/react.createElement(HomeInsights/* HomeInsights */.r, null), /*#__PURE__*/react.createElement(ContentRegion, null));
+  }), /*#__PURE__*/react.createElement(ContentRegion, null));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home.jsx
 // Imports
@@ -588,7 +659,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5859); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5278); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

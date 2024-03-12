@@ -195,8 +195,9 @@ var DateRangeFilter = function DateRangeFilter(props) {
   }))))));
 };
 DateRangeFilter.propTypes = {
-  facets: prop_types.PropTypes.array,
-  onChange: prop_types.PropTypes.func
+  facets: (prop_types_default()).array,
+  onChange: (prop_types_default()).func,
+  selectedValue: (prop_types_default()).string
 };
 // EXTERNAL MODULE: ./src/modules/Filters/CPFilter.jsx
 var CPFilter = __webpack_require__(4842);
@@ -204,8 +205,8 @@ var CPFilter = __webpack_require__(4842);
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
-var Card = __webpack_require__(8649);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
+var Card = __webpack_require__(832);
 // EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
 var Pagination = __webpack_require__(3729);
 ;// CONCATENATED MODULE: ./src/modules/Search/SearchBar.jsx
@@ -404,7 +405,7 @@ var AllContent = function AllContent() {
       queryParams = _useState20[0],
       setQueryParams = _useState20[1];
 
-  var _useState21 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState21 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState22 = AllContent_slicedToArray(_useState21, 2),
       baseUrl = _useState22[0],
       setUrl = _useState22[1];
@@ -441,7 +442,7 @@ var AllContent = function AllContent() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray;
+      var d, params, sourceIdsArray, statuses, _d2, _params;
 
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -503,7 +504,7 @@ var AllContent = function AllContent() {
               return _context.finish(26);
 
             case 29:
-              _context.next = 53;
+              _context.next = 52;
               break;
 
             case 31:
@@ -531,8 +532,8 @@ var AllContent = function AllContent() {
               _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
               setQueryParams(_params);
               setQuery(_d2.question.query == '!nullquery' ? '' : _d2.question.query); // Get live Hub Status using IDs from data just fetched
-
-              _sourceIdsArray = []; // d.response.resultPacket.results.forEach((item) => {
+              // let sourceIdsArray = [];
+              // d.response.resultPacket.results.forEach((item) => {
               //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
               //         sourceIdsArray.push(item.listMetadata.assetId[0]);
               //     }
@@ -541,25 +542,25 @@ var AllContent = function AllContent() {
               // setHubStatuses(statuses);
 
               console.log('ALL CONTENT DATA: ', _d2);
-              _context.next = 50;
+              _context.next = 49;
               break;
 
-            case 47:
-              _context.prev = 47;
+            case 46:
+              _context.prev = 46;
               _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 50:
-              _context.prev = 50;
+            case 49:
+              _context.prev = 49;
               setIsLoading(false);
-              return _context.finish(50);
+              return _context.finish(49);
 
-            case 53:
+            case 52:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 47, 50, 53]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 46, 49, 52]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -580,7 +581,7 @@ var AllContent = function AllContent() {
       setUrl(url);
     } else {
       // backup link for local dev environment
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery', 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"), 'fb');
       setDataLocation('fb');
     }
   }, []);

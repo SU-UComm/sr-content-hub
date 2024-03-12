@@ -62,8 +62,8 @@ var CPFilter = __webpack_require__(4842);
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
 var SortByFilter = __webpack_require__(7009);
-// EXTERNAL MODULE: ./src/modules/Card/Card.jsx
-var Card = __webpack_require__(8649);
+// EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
+var Card = __webpack_require__(832);
 // EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
 var Pagination = __webpack_require__(3729);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
@@ -172,7 +172,7 @@ var NewContent = function NewContent() {
       dataLocation = _useState16[0],
       setDataLocation = _useState16[1];
 
-  var _useState17 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState17 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState18 = _slicedToArray(_useState17, 2),
       baseUrl = _useState18[0],
       setUrl = _useState18[1];
@@ -323,7 +323,7 @@ var NewContent = function NewContent() {
       setDataLocation('matrix');
       setUrl(url);
     } else {
-      fetchData('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated', 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated"), 'fb');
       setDataLocation('fb');
     }
   }, []);
@@ -555,7 +555,7 @@ var MyContent = function MyContent() {
       facets = _useState14[0],
       setFacets = _useState14[1];
 
-  var _useState15 = (0,react.useState)('https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json'),
+  var _useState15 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState16 = MyContent_slicedToArray(_useState15, 2),
       baseUrl = _useState16[0],
       setUrl = _useState16[1];
@@ -715,7 +715,7 @@ var MyContent = function MyContent() {
       setUrl(url);
       setDataLocation('matrix');
     } else {
-      fetchData('fb', 'https://dxp-us-stage-search.funnelback.squiz.cloud/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery');
+      fetchData('fb', "".concat(window.globalData.urls.fb, "/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"));
       setDataLocation('fb');
     }
   }, []);

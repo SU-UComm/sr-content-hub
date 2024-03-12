@@ -445,7 +445,7 @@ var AllContent = function AllContent() {
       setUrl(url);
     } else {
       // backup link for local dev environment
-      fetchData("".concat(window.globalData.urls.fb, "/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"), 'fb');
+      fetchData("".concat(window.globalData.urls.fb, "?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"), 'fb');
       setDataLocation('fb');
     }
   }, []);

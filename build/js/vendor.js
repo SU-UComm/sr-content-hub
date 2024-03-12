@@ -2846,6 +2846,107 @@ BackToPageButton.propTypes = {
 
 /***/ }),
 
+/***/ 792:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  r: function() { return /* binding */ HomeInsights; }
+});
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__(1249);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
+var es_object_assign = __webpack_require__(9601);
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(7294);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__(2222);
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(5697);
+;// CONCATENATED MODULE: ./src/modules/Home/InsightsCard.jsx
+
+
+
+var InsightsCard = function InsightsCard(_ref) {
+  var title = _ref.title,
+      value = _ref.value,
+      percentage = _ref.percentage,
+      isPositive = _ref.isPositive;
+  var colorClass = isPositive ? 'su-text-green' : 'su-text-red-dark';
+  var arrowImage = isPositive ? 'chevron-up.svg' : 'chevron-down.svg';
+  return /*#__PURE__*/react.createElement("div", {
+    className: "su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40 lg:su-max-h-[182px]"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-items-center su-justify-between su-mb-30"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-text-16 su-mb-0"
+  }, title), /*#__PURE__*/react.createElement("div", {
+    className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
+  }, /*#__PURE__*/react.createElement("img", {
+    className: "su-inline su-mt-1 su-mr-5",
+    src: __webpack_require__(6303)("./".concat(arrowImage)),
+    alt: ""
+  }), /*#__PURE__*/react.createElement("span", null, percentage))), /*#__PURE__*/react.createElement("p", {
+    className: "su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold"
+  }, value));
+};
+InsightsCard.propTypes = {
+  title: prop_types.PropTypes.string,
+  value: prop_types.PropTypes.string,
+  percentage: prop_types.PropTypes.string,
+  isPositive: prop_types.PropTypes.bool
+};
+;// CONCATENATED MODULE: ./src/modules/Home/HomeInsights.jsx
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+var HomeInsights = function HomeInsights() {
+  var insightsData = [{
+    title: 'Insights placeholder',
+    value: '4,635',
+    percentage: '80%',
+    isPositive: true
+  }, {
+    title: 'Insights placeholder',
+    value: '3.05',
+    percentage: '80%',
+    isPositive: true
+  }, {
+    title: 'Insights placeholder',
+    value: '949',
+    percentage: '9%',
+    isPositive: false
+  }];
+  return /*#__PURE__*/react.createElement("section", {
+    className: "su-mb-90"
+  }, /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
+  }, /*#__PURE__*/react.createElement("h2", {
+    className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
+  }, "Insights"), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
+    href: window.globalData.pageHrefs.insights,
+    className: "su-flex su-items-center su-text-[18px] hover:su-underline"
+  }, "View all Insights", /*#__PURE__*/react.createElement("img", {
+    className: "su-inline su-ml-6",
+    alt: "",
+    src: __webpack_require__(7142)
+  })))), /*#__PURE__*/react.createElement("div", {
+    className: "su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs"
+  }, insightsData.map(function (insight, index) {
+    return /*#__PURE__*/react.createElement(InsightsCard, _extends({
+      key: index
+    }, insight));
+  })));
+};
+
+/***/ }),
+
 /***/ 7774:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 

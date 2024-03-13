@@ -113,11 +113,7 @@ var Insights = function Insights() {
     homeButton: true
   }), /*#__PURE__*/react.createElement("section", {
     className: "su-relative su-text-center su-mt-60 su-mb-50 su-pt-60 md:su-mt-45 md:su-pt-70 md:su-mb-100"
-<<<<<<< HEAD
   }, /*#__PURE__*/react.createElement(HomeInsights, null), /*#__PURE__*/react.createElement(HomeInsights, null), /*#__PURE__*/react.createElement(HomeInsights, null)));
-=======
-  }, /*#__PURE__*/react.createElement(HomeInsights/* HomeInsights */.r, null), /*#__PURE__*/react.createElement(HomeInsights/* HomeInsights */.r, null), /*#__PURE__*/react.createElement(HomeInsights/* HomeInsights */.r, null)));
->>>>>>> origin/master
 };
 ;// CONCATENATED MODULE: ./src/modules/Insights.jsx
 // Imports

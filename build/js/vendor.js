@@ -1254,8 +1254,6 @@ var CPFilter = function CPFilter(props) {
 CPFilter.propTypes = {
   facets: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().array),
   onChange: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().func)
-<<<<<<< HEAD
-=======
 };
 
 /***/ }),
@@ -1430,7 +1428,6 @@ DateRangeFilter.propTypes = {
   facets: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().array),
   onChange: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().func),
   selectedValue: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().string)
->>>>>>> origin/master
 };
 
 /***/ }),

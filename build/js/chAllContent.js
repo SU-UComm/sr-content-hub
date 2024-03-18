@@ -16196,7 +16196,7 @@ var AllContent = function AllContent() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 31;
+                _context.next = 32;
                 break;
               }
 
@@ -16235,29 +16235,30 @@ var AllContent = function AllContent() {
             case 19:
               statuses = _context.sent;
               setHubStatuses(statuses);
-              _context.next = 26;
+              console.log('Statuses:', statuses);
+              _context.next = 27;
               break;
 
-            case 23:
-              _context.prev = 23;
+            case 24:
+              _context.prev = 24;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 26:
-              _context.prev = 26;
+            case 27:
+              _context.prev = 27;
               setIsLoading(false);
-              return _context.finish(26);
+              return _context.finish(27);
 
-            case 29:
-              _context.next = 58;
+            case 30:
+              _context.next = 59;
               break;
 
-            case 31:
-              _context.prev = 31;
-              _context.next = 34;
+            case 32:
+              _context.prev = 32;
+              _context.next = 35;
               return getSearchData(url);
 
-            case 34:
+            case 35:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -16286,32 +16287,32 @@ var AllContent = function AllContent() {
                 }
               });
 
-              _context.next = 47;
+              _context.next = 48;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 47:
+            case 48:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
               console.log('ALL CONTENT DATA: ', _d2);
-              _context.next = 55;
+              _context.next = 56;
               break;
 
-            case 52:
-              _context.prev = 52;
-              _context.t1 = _context["catch"](31);
+            case 53:
+              _context.prev = 53;
+              _context.t1 = _context["catch"](32);
               console.error('Error fetching data:', _context.t1);
 
-            case 55:
-              _context.prev = 55;
+            case 56:
+              _context.prev = 56;
               setIsLoading(false);
-              return _context.finish(55);
+              return _context.finish(56);
 
-            case 58:
+            case 59:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
+      }, _callee, null, [[2, 24, 27, 30], [32, 53, 56, 59]]);
     }));
 
     return function fetchData(_x, _x2) {

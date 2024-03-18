@@ -10294,7 +10294,7 @@ function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Card = function Card(props) {
-  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data;
+  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window2, _window2$data, _window3, _window3$data;
 
   var _useState = (0,react.useState)(props.data.listMetadata.hubStatus),
       _useState2 = Card_slicedToArray(_useState, 2),
@@ -10367,9 +10367,9 @@ var Card = function Card(props) {
     page: "card",
     hubStatus: hubStatus,
     hubStatusDesc: hubStatusDesc
-  }), hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
+  }), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'CP' && props.page == 'myContent' || ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.userType) == 'UCOMM' ? hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
-  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null));
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null : null));
 };
 Card.propTypes = {
   data: prop_types_default().shape({
@@ -16750,6 +16750,7 @@ var MyContent = function MyContent() {
     return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
+      page: "myContent",
       statuses: hubStatuses
     });
   }))) : /*#__PURE__*/react.createElement(NoContent, null), /*#__PURE__*/react.createElement(Pagination, {

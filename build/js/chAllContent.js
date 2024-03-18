@@ -10663,7 +10663,7 @@ var Card = function Card(props) {
     hubStatusDesc: hubStatusDesc
   }), hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
-  }, /*#__PURE__*/react.createElement("b", null, "Note:"), " ", hubReviewMsg.length > 58 ? "".concat(hubReviewMsg.substring(0, 58), "...") : hubReviewMsg) : null));
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 80 ? "".concat(hubReviewMsg.substring(0, 80), "...") : hubReviewMsg) : null));
 };
 Card.propTypes = {
   data: prop_types_default().shape({

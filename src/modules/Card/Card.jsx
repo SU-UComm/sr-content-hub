@@ -71,7 +71,7 @@ export const Card = (props) => {
                     )}
                     {hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? (
                         <p className="su-rounded su-text-gray-dark su-text-16 su-mb-0">
-                            <b>Note:</b> {hubReviewMsg.length > 58 ? `${hubReviewMsg.substring(0, 58)}...` : hubReviewMsg}
+                            <b>Review Note:</b> {hubReviewMsg.length > 80 ? `${hubReviewMsg.substring(0, 80)}...` : hubReviewMsg}
                         </p>
                     ) : null}
                 </div>

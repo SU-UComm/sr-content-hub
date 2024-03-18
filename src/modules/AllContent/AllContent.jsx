@@ -88,14 +88,14 @@ export const AllContent = () => {
                 setQueryParams(params);
                 setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
                 // Get live Hub Status using IDs from data just fetched
-                // let sourceIdsArray = [];
-                // d.response.resultPacket.results.forEach((item) => {
-                //     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                //         sourceIdsArray.push(item.listMetadata.assetId[0]);
-                //     }
-                // });
-                // const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // setHubStatuses(statuses);
+                let sourceIdsArray = [];
+                d.response.resultPacket.results.forEach((item) => {
+                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                        sourceIdsArray.push(item.listMetadata.assetId[0]);
+                    }
+                });
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                setHubStatuses(statuses);
                 console.log('ALL CONTENT DATA: ', d);
             } catch (error) {
                 console.error('Error fetching data:', error);

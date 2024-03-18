@@ -463,6 +463,37 @@ export const StoryView = () => {
                                 ></path>
                             </svg>
                         </button>
+
+                        <a
+                            id="story-mtx-link"
+                            className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
+                            href={`https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=${data.id}`}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            View story on Matrix
+                            <svg
+                                className="su-ml-5 su-transition-colors su-text-red group-hover:su-text-white"
+                                width="18"
+                                height="18"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <g clipPath="url(#a)">
+                                    <path
+                                        fillRule="evenodd"
+                                        clipRule="evenodd"
+                                        d="M4.918 4.546a.9.9 0 0 1 .9-.9h7.637a.9.9 0 0 1 .9.9v7.636a.9.9 0 0 1-1.8 0V6.718l-7.373 7.373a.9.9 0 1 1-1.273-1.272l7.373-7.373H5.818a.9.9 0 0 1-.9-.9Z"
+                                        fill="currentColor"
+                                    ></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="a">
+                                        <path fill="#fff" d="M0 0h18v18H0z"></path>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
                     </div>
                 </div>
 

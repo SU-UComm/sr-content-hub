@@ -14032,7 +14032,31 @@ var StoryView = function StoryView() {
     clipRule: "evenodd",
     d: "M11.654 11.9889L7.9512 15.6917C7.93577 15.7071 7.91977 15.722 7.90384 15.7356C6.60616 16.9476 4.5902 16.9476 3.35708 15.7145C2.12397 14.4814 2.12397 12.4654 3.33594 11.1677C3.34958 11.1518 3.36444 11.1358 3.37987 11.1204L4.34092 10.1593C4.69641 9.80384 5.23918 9.77192 5.55518 10.0879C5.87117 10.4039 5.83924 10.9467 5.48375 11.3022L4.56063 12.2253C3.97628 12.8096 4.0125 13.7985 4.64277 14.4288C5.27304 15.0591 6.26195 15.0953 6.84629 14.511L10.5111 10.8461C11.0955 10.2618 11.0586 9.2735 10.4284 8.64323C10.1124 8.32723 10.1449 7.78382 10.4998 7.42897C10.8553 7.07347 11.3981 7.04155 11.714 7.35754C12.9746 8.61808 12.948 10.6949 11.654 11.9889Z",
     fill: "currentColor"
-  }))))), /*#__PURE__*/react.createElement("div", {
+  }))), /*#__PURE__*/react.createElement("a", {
+    id: "story-mtx-link",
+    className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
+    href: "https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=".concat(data.id),
+    target: "_blank",
+    rel: "noreferrer"
+  }, "View story on Matrix", /*#__PURE__*/react.createElement("svg", {
+    className: "su-ml-5 su-transition-colors su-text-red group-hover:su-text-white",
+    width: "18",
+    height: "18",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react.createElement("g", {
+    clipPath: "url(#a)"
+  }, /*#__PURE__*/react.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M4.918 4.546a.9.9 0 0 1 .9-.9h7.637a.9.9 0 0 1 .9.9v7.636a.9.9 0 0 1-1.8 0V6.718l-7.373 7.373a.9.9 0 1 1-1.273-1.272l7.373-7.373H5.818a.9.9 0 0 1-.9-.9Z",
+    fill: "currentColor"
+  })), /*#__PURE__*/react.createElement("defs", null, /*#__PURE__*/react.createElement("clipPath", {
+    id: "a"
+  }, /*#__PURE__*/react.createElement("path", {
+    fill: "#fff",
+    d: "M0 0h18v18H0z"
+  }))))))), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col su-gap-[10px]"
   }, versionHistory && /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-p-0 su-m-0"

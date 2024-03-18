@@ -76,7 +76,7 @@ module.exports = (env) => {
                     },
                 },
             },
-            sideEffects: false,
+            // sideEffects: false,
         },
     });
 };

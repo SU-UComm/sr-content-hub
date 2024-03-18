@@ -144,8 +144,8 @@ var Card = __webpack_require__(6438);
 var helperFunctions = __webpack_require__(7904);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
 var requests = __webpack_require__(1787);
-// EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 13 modules
-var dist_module = __webpack_require__(5298);
+// EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
+var dist_module = __webpack_require__(1994);
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
 var StatusFilter = __webpack_require__(6749);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx

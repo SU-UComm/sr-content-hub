@@ -155,6 +155,6 @@ module.exports = {
     optimization: {
         minimize: false,
         runtimeChunk: false,
-        sideEffects: false,
+        // sideEffects: false,
     },
 };

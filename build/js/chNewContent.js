@@ -68,8 +68,8 @@ var Card = __webpack_require__(6438);
 var Pagination = __webpack_require__(3982);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
 var helperFunctions = __webpack_require__(7904);
-// EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 13 modules
-var dist_module = __webpack_require__(5298);
+// EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
+var dist_module = __webpack_require__(1994);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
 var SelectedFilters = __webpack_require__(25);
 // EXTERNAL MODULE: ./src/modules/Filters/DateFilter.jsx

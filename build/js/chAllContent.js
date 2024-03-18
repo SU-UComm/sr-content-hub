@@ -10600,6 +10600,11 @@ var Card = function Card(props) {
       hubStatusDesc = _useState4[0],
       setHubStatusDesc = _useState4[1];
 
+  var _useState5 = (0,react.useState)(''),
+      _useState6 = Card_slicedToArray(_useState5, 2),
+      hubReviewMsg = _useState6[0],
+      setHubReviewMsg = _useState6[1];
+
   var url = "".concat(window.globalData.urls.contentHub, "/story-view-react?storyId=");
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
   desc = decodeHTML(desc);
@@ -10615,6 +10620,7 @@ var Card = function Card(props) {
           if (item.id == props.data.listMetadata.assetId) {
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
+            setHubReviewMsg(item.hubReviewMsg);
             return;
           }
         }
@@ -10655,7 +10661,9 @@ var Card = function Card(props) {
     page: "card",
     hubStatus: hubStatus,
     hubStatusDesc: hubStatusDesc
-  })));
+  }), hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
+  }, /*#__PURE__*/react.createElement("b", null, "Note:"), " ", hubReviewMsg.length > 58 ? "".concat(hubReviewMsg.substring(0, 58), "...") : hubReviewMsg) : null));
 };
 Card.propTypes = {
   data: prop_types_default().shape({
@@ -16196,7 +16204,7 @@ var AllContent = function AllContent() {
               setIsLoading(true);
 
               if (!(func == 'fb')) {
-                _context.next = 32;
+                _context.next = 31;
                 break;
               }
 
@@ -16235,30 +16243,29 @@ var AllContent = function AllContent() {
             case 19:
               statuses = _context.sent;
               setHubStatuses(statuses);
-              console.log('Statuses:', statuses);
-              _context.next = 27;
+              _context.next = 26;
               break;
 
-            case 24:
-              _context.prev = 24;
+            case 23:
+              _context.prev = 23;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 27:
-              _context.prev = 27;
+            case 26:
+              _context.prev = 26;
               setIsLoading(false);
-              return _context.finish(27);
+              return _context.finish(26);
 
-            case 30:
-              _context.next = 59;
+            case 29:
+              _context.next = 58;
               break;
 
-            case 32:
-              _context.prev = 32;
-              _context.next = 35;
+            case 31:
+              _context.prev = 31;
+              _context.next = 34;
               return getSearchData(url);
 
-            case 35:
+            case 34:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -16287,32 +16294,32 @@ var AllContent = function AllContent() {
                 }
               });
 
-              _context.next = 48;
+              _context.next = 47;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 48:
+            case 47:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
-              console.log('ALL CONTENT DATA: ', _d2);
-              _context.next = 56;
+              console.log('Statuses:', _statuses);
+              _context.next = 55;
               break;
 
-            case 53:
-              _context.prev = 53;
-              _context.t1 = _context["catch"](32);
+            case 52:
+              _context.prev = 52;
+              _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 56:
-              _context.prev = 56;
+            case 55:
+              _context.prev = 55;
               setIsLoading(false);
-              return _context.finish(56);
+              return _context.finish(55);
 
-            case 59:
+            case 58:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 24, 27, 30], [32, 53, 56, 59]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
     }));
 
     return function fetchData(_x, _x2) {

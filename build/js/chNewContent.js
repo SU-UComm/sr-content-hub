@@ -10306,6 +10306,11 @@ var Card = function Card(props) {
       hubStatusDesc = _useState4[0],
       setHubStatusDesc = _useState4[1];
 
+  var _useState5 = (0,react.useState)(''),
+      _useState6 = Card_slicedToArray(_useState5, 2),
+      hubReviewMsg = _useState6[0],
+      setHubReviewMsg = _useState6[1];
+
   var url = "".concat(window.globalData.urls.contentHub, "/story-view-react?storyId=");
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
   desc = decodeHTML(desc);
@@ -10321,6 +10326,7 @@ var Card = function Card(props) {
           if (item.id == props.data.listMetadata.assetId) {
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
+            setHubReviewMsg(item.hubReviewMsg);
             return;
           }
         }
@@ -10361,7 +10367,9 @@ var Card = function Card(props) {
     page: "card",
     hubStatus: hubStatus,
     hubStatusDesc: hubStatusDesc
-  })));
+  }), hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
+  }, /*#__PURE__*/react.createElement("b", null, "Note:"), " ", hubReviewMsg.length > 58 ? "".concat(hubReviewMsg.substring(0, 58), "...") : hubReviewMsg) : null));
 };
 Card.propTypes = {
   data: prop_types_default().shape({

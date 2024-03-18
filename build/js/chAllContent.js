@@ -10361,7 +10361,7 @@ var CardButtons = function CardButtons(props) {
   };
 
   return /*#__PURE__*/react.createElement("div", {
-    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
+    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react.createElement("button", {
@@ -10663,7 +10663,7 @@ var Card = function Card(props) {
     hubStatusDesc: hubStatusDesc
   }), hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
-  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 80 ? "".concat(hubReviewMsg.substring(0, 80), "...") : hubReviewMsg) : null));
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null));
 };
 Card.propTypes = {
   data: prop_types_default().shape({
@@ -16257,7 +16257,7 @@ var AllContent = function AllContent() {
               return _context.finish(26);
 
             case 29:
-              _context.next = 58;
+              _context.next = 59;
               break;
 
             case 31:
@@ -16301,25 +16301,26 @@ var AllContent = function AllContent() {
               _statuses = _context.sent;
               setHubStatuses(_statuses);
               console.log('Statuses:', _statuses);
-              _context.next = 55;
+              console.log('All data:', _d2);
+              _context.next = 56;
               break;
 
-            case 52:
-              _context.prev = 52;
+            case 53:
+              _context.prev = 53;
               _context.t1 = _context["catch"](31);
               console.error('Error fetching data:', _context.t1);
 
-            case 55:
-              _context.prev = 55;
+            case 56:
+              _context.prev = 56;
               setIsLoading(false);
-              return _context.finish(55);
+              return _context.finish(56);
 
-            case 58:
+            case 59:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
+      }, _callee, null, [[2, 23, 26, 29], [31, 53, 56, 59]]);
     }));
 
     return function fetchData(_x, _x2) {

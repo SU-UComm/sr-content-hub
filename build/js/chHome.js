@@ -9539,7 +9539,7 @@ var CardButtons = function CardButtons(props) {
   };
 
   return /*#__PURE__*/react.createElement("div", {
-    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]"
+    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react.createElement("button", {
@@ -10190,7 +10190,7 @@ var Card = function Card(props) {
     hubStatusDesc: hubStatusDesc
   }), hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
-  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 80 ? "".concat(hubReviewMsg.substring(0, 80), "...") : hubReviewMsg) : null));
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null));
 };
 Card.propTypes = {
   data: prop_types_default().shape({

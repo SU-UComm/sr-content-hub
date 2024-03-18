@@ -352,7 +352,7 @@ export const CardButtons = (props) => {
     };
 
     return (
-        <div className="su-flex su-flex-col sm:su-flex-row su-gap-[10px] su-h-[40px]">
+        <div className="su-flex su-flex-col sm:su-flex-row su-gap-[10px]">
             {hubStatus == 'reviewed' ? (
                 <>
                     <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>

@@ -2,22 +2,22 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 6993:
+/***/ 3082:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
+var react = __webpack_require__(6540);
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(3935);
+var react_dom = __webpack_require__(961);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
+var es_array_map = __webpack_require__(9581);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
-var es_object_assign = __webpack_require__(9601);
+var es_object_assign = __webpack_require__(9218);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(2222);
+var es_array_concat = __webpack_require__(115);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(5697);
+var prop_types = __webpack_require__(5556);
 ;// CONCATENATED MODULE: ./src/modules/Home/InsightsCard.jsx
 
 
@@ -39,7 +39,7 @@ var InsightsCard = function InsightsCard(_ref) {
     className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
   }, /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-mt-1 su-mr-5",
-    src: __webpack_require__(6303)("./".concat(arrowImage)),
+    src: __webpack_require__(3907)("./".concat(arrowImage)),
     alt: ""
   }), /*#__PURE__*/react.createElement("span", null, percentage))), /*#__PURE__*/react.createElement("p", {
     className: "su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold"
@@ -87,7 +87,7 @@ var HomeInsights = function HomeInsights() {
   }, "View all Insights", /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     alt: "",
-    src: __webpack_require__(7142)
+    src: __webpack_require__(1205)
   })))), /*#__PURE__*/react.createElement("div", {
     className: "su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs"
   }, insightsData.map(function (insight, index) {
@@ -97,7 +97,7 @@ var HomeInsights = function HomeInsights() {
   })));
 };
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
-var PageHeading = __webpack_require__(7774);
+var PageHeading = __webpack_require__(4244);
 ;// CONCATENATED MODULE: ./src/modules/Insights/Insights.jsx
 
 
@@ -107,7 +107,7 @@ var Insights = function Insights() {
 
   return /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
-  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
+  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.A, {
     headingText: (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$texts = _window$data.texts) === null || _window$data$texts === void 0 ? void 0 : (_window$data$texts$in = _window$data$texts.insights) === null || _window$data$texts$in === void 0 ? void 0 : _window$data$texts$in.headingText,
     subHeadingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$i = _window2$data$texts.insights) === null || _window2$data$texts$i === void 0 ? void 0 : _window2$data$texts$i.subHeadingText,
     homeButton: true
@@ -236,7 +236,7 @@ if (rootNode) {
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
 /******/ 	!function() {
-/******/ 		__webpack_require__.j = 906;
+/******/ 		__webpack_require__.j = 289;
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
@@ -252,7 +252,7 @@ if (rootNode) {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			906: 0
+/******/ 			289: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -309,7 +309,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(6993); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [121], function() { return __webpack_require__(3082); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

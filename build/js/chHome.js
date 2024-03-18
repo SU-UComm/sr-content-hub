@@ -2,24 +2,24 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5278:
+/***/ 6130:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
+var react = __webpack_require__(6540);
 // EXTERNAL MODULE: ./node_modules/react-dom/client.js
-var client = __webpack_require__(745);
+var client = __webpack_require__(5338);
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
-var PageHeading = __webpack_require__(7774);
+var PageHeading = __webpack_require__(4244);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
+var es_array_map = __webpack_require__(9581);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
-var es_object_assign = __webpack_require__(9601);
+var es_object_assign = __webpack_require__(9218);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(2222);
+var es_array_concat = __webpack_require__(115);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(5697);
+var prop_types = __webpack_require__(5556);
 ;// CONCATENATED MODULE: ./src/modules/Home/InsightsCard.jsx
 
 
@@ -41,7 +41,7 @@ var InsightsCard_InsightsCard = function InsightsCard(_ref) {
     className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
   }, /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-mt-1 su-mr-5",
-    src: __webpack_require__(6303)("./".concat(arrowImage)),
+    src: __webpack_require__(3907)("./".concat(arrowImage)),
     alt: ""
   }), /*#__PURE__*/react.createElement("span", null, percentage))), /*#__PURE__*/react.createElement("p", {
     className: "su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold"
@@ -89,7 +89,7 @@ var HomeInsights = function HomeInsights() {
   }, "View all Insights", /*#__PURE__*/React.createElement("img", {
     className: "su-inline su-ml-6",
     alt: "",
-    src: __webpack_require__(7142)
+    src: __webpack_require__(1205)
   })))), /*#__PURE__*/React.createElement("div", {
     className: "su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs"
   }, insightsData.map(function (insight, index) {
@@ -99,59 +99,59 @@ var HomeInsights = function HomeInsights() {
   })));
 };
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
+var es_function_name = __webpack_require__(8741);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
-var es_object_to_string = __webpack_require__(1539);
+var es_object_to_string = __webpack_require__(5086);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__(4747);
+var web_dom_collections_for_each = __webpack_require__(8379);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
-var es_array_join = __webpack_require__(9600);
+var es_array_join = __webpack_require__(475);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__(4916);
+var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
-var es_string_search = __webpack_require__(4765);
+var es_string_search = __webpack_require__(785);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __webpack_require__(7042);
+var es_array_slice = __webpack_require__(4913);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
-var es_symbol = __webpack_require__(2526);
+var es_symbol = __webpack_require__(3534);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
-var es_symbol_description = __webpack_require__(1817);
+var es_symbol_description = __webpack_require__(590);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
-var es_symbol_iterator = __webpack_require__(2165);
+var es_symbol_iterator = __webpack_require__(4216);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
-var es_array_iterator = __webpack_require__(6992);
+var es_array_iterator = __webpack_require__(8665);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
-var es_string_iterator = __webpack_require__(8783);
+var es_string_iterator = __webpack_require__(9979);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__(3948);
+var web_dom_collections_iterator = __webpack_require__(4602);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
-var es_array_from = __webpack_require__(1038);
+var es_array_from = __webpack_require__(5195);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
-var es_promise = __webpack_require__(8674);
+var es_promise = __webpack_require__(9193);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.async-iterator.js
-var es_symbol_async_iterator = __webpack_require__(2443);
+var es_symbol_async_iterator = __webpack_require__(7727);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.to-string-tag.js
-var es_symbol_to_string_tag = __webpack_require__(3680);
+var es_symbol_to_string_tag = __webpack_require__(9576);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.json.to-string-tag.js
-var es_json_to_string_tag = __webpack_require__(3706);
+var es_json_to_string_tag = __webpack_require__(1586);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.math.to-string-tag.js
-var es_math_to_string_tag = __webpack_require__(7059);
+var es_math_to_string_tag = __webpack_require__(6982);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-prototype-of.js
-var es_object_get_prototype_of = __webpack_require__(489);
+var es_object_get_prototype_of = __webpack_require__(1412);
 // EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
-var Card = __webpack_require__(832);
+var Card = __webpack_require__(6438);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
-var helperFunctions = __webpack_require__(6859);
+var helperFunctions = __webpack_require__(7904);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
-var requests = __webpack_require__(9072);
+var requests = __webpack_require__(1787);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 13 modules
-var dist_module = __webpack_require__(5093);
+var dist_module = __webpack_require__(5298);
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
-var StatusFilter = __webpack_require__(1948);
+var StatusFilter = __webpack_require__(6749);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
-var SelectedFilters = __webpack_require__(5634);
+var SelectedFilters = __webpack_require__(25);
 // EXTERNAL MODULE: ./src/modules/NoContent/NoContent.jsx
-var NoContent = __webpack_require__(1488);
+var NoContent = __webpack_require__(5984);
 ;// CONCATENATED MODULE: ./src/modules/Home/ContentRegion.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -269,7 +269,7 @@ var ContentRegion = function ContentRegion() {
 
               _context.prev = 2;
               _context.next = 5;
-              return (0,requests/* fetchFBData */.gV)(url);
+              return (0,requests/* fetchFBData */.j2)(url);
 
             case 5:
               d = _context.sent;
@@ -290,7 +290,7 @@ var ContentRegion = function ContentRegion() {
                 }
               });
               _context.next = 15;
-              return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.cL)(sourceIdsArray.join(','));
 
             case 15:
               statuses = _context.sent;
@@ -316,7 +316,7 @@ var ContentRegion = function ContentRegion() {
             case 28:
               _context.prev = 28;
               _context.next = 31;
-              return (0,requests/* getSearchData */.Im)(url);
+              return (0,requests/* getSearchData */.DW)(url);
 
             case 31:
               _d2 = _context.sent;
@@ -341,7 +341,7 @@ var ContentRegion = function ContentRegion() {
               });
 
               _context.next = 41;
-              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.cL)(_sourceIdsArray.join(','));
 
             case 41:
               _statuses = _context.sent;
@@ -393,7 +393,7 @@ var ContentRegion = function ContentRegion() {
     console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
 
     if (name == 'status') {
-      var selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
+      var selected = (0,helperFunctions/* getLabel */.p9)(selectedVal);
       setStatusSelected(selected);
     }
 
@@ -409,7 +409,7 @@ var ContentRegion = function ContentRegion() {
     fetchData(fetchUrl, dataLocation);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
+  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.BM, {
     visible: true,
     height: "80",
     width: "80",
@@ -425,16 +425,16 @@ var ContentRegion = function ContentRegion() {
     className: "su-flex su-items-center su-text-[18px] hover:su-underline"
   }, "View all ", ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
-    src: __webpack_require__(7142)
+    src: __webpack_require__(1205)
   })))), ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'CP' && results.length > 1 ? /*#__PURE__*/react.createElement("div", {
     className: "su-mb-60"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"
-  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
+  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.B, {
     facets: statusLabel,
     onChange: onChange,
     selectedValue: statusSelected
-  })), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
+  })), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.e, {
     onChange: onChange,
     facets: facets,
     page: ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : _window7$data.user.userType) == 'CP' ? 'myContent' : 'newContent'
@@ -449,7 +449,7 @@ var ContentRegion = function ContentRegion() {
       data: contentItem,
       statuses: hubStatuses
     });
-  }) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.d, null)));
+  }) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.R, null)));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home/Home.jsx
 
@@ -461,7 +461,7 @@ var Home = function Home() {
 
   return /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
-  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
+  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.A, {
     headingText: (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$texts = _window$data.texts) === null || _window$data$texts === void 0 ? void 0 : (_window$data$texts$ho = _window$data$texts.home) === null || _window$data$texts$ho === void 0 ? void 0 : _window$data$texts$ho.headingText,
     subHeadingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$h = _window2$data$texts.home) === null || _window2$data$texts$h === void 0 ? void 0 : _window2$data$texts$h.subHeadingText
   }), /*#__PURE__*/react.createElement(ContentRegion, null));
@@ -586,7 +586,7 @@ if (rootNode) {
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
 /******/ 	!function() {
-/******/ 		__webpack_require__.j = 441;
+/******/ 		__webpack_require__.j = 171;
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
@@ -602,7 +602,7 @@ if (rootNode) {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			441: 0
+/******/ 			171: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -659,7 +659,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(5278); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [121], function() { return __webpack_require__(6130); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

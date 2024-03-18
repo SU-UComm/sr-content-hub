@@ -2,68 +2,68 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 6079:
+/***/ 9479:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
+var react = __webpack_require__(6540);
 // EXTERNAL MODULE: ./node_modules/react-dom/client.js
-var client = __webpack_require__(745);
+var client = __webpack_require__(5338);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__(4916);
+var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
-var es_string_search = __webpack_require__(4765);
+var es_string_search = __webpack_require__(785);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.match.js
-var es_string_match = __webpack_require__(4723);
+var es_string_match = __webpack_require__(6255);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
-var es_array_join = __webpack_require__(9600);
+var es_array_join = __webpack_require__(475);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
+var es_array_map = __webpack_require__(9581);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
+var es_function_name = __webpack_require__(8741);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __webpack_require__(7042);
+var es_array_slice = __webpack_require__(4913);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
-var es_symbol = __webpack_require__(2526);
+var es_symbol = __webpack_require__(3534);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
-var es_symbol_description = __webpack_require__(1817);
+var es_symbol_description = __webpack_require__(590);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
-var es_object_to_string = __webpack_require__(1539);
+var es_object_to_string = __webpack_require__(5086);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
-var es_symbol_iterator = __webpack_require__(2165);
+var es_symbol_iterator = __webpack_require__(4216);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
-var es_array_iterator = __webpack_require__(6992);
+var es_array_iterator = __webpack_require__(8665);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
-var es_string_iterator = __webpack_require__(8783);
+var es_string_iterator = __webpack_require__(9979);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__(3948);
+var web_dom_collections_iterator = __webpack_require__(4602);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
-var es_array_from = __webpack_require__(1038);
+var es_array_from = __webpack_require__(5195);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
-var es_promise = __webpack_require__(8674);
+var es_promise = __webpack_require__(9193);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.async-iterator.js
-var es_symbol_async_iterator = __webpack_require__(2443);
+var es_symbol_async_iterator = __webpack_require__(7727);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.to-string-tag.js
-var es_symbol_to_string_tag = __webpack_require__(3680);
+var es_symbol_to_string_tag = __webpack_require__(9576);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.json.to-string-tag.js
-var es_json_to_string_tag = __webpack_require__(3706);
+var es_json_to_string_tag = __webpack_require__(1586);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.math.to-string-tag.js
-var es_math_to_string_tag = __webpack_require__(7059);
+var es_math_to_string_tag = __webpack_require__(6982);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-prototype-of.js
-var es_object_get_prototype_of = __webpack_require__(489);
+var es_object_get_prototype_of = __webpack_require__(1412);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__(4747);
+var web_dom_collections_for_each = __webpack_require__(8379);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
-var requests = __webpack_require__(9072);
+var requests = __webpack_require__(1787);
 // EXTERNAL MODULE: ./src/modules/Home/BackToPageButton.jsx
-var BackToPageButton = __webpack_require__(8220);
+var BackToPageButton = __webpack_require__(7734);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 13 modules
-var dist_module = __webpack_require__(5093);
+var dist_module = __webpack_require__(5298);
 // EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx + 1 modules
-var CardButtons = __webpack_require__(5963);
+var CardButtons = __webpack_require__(8297);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(5697);
+var prop_types = __webpack_require__(5556);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 ;// CONCATENATED MODULE: ./src/modules/Story/FullStory.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
@@ -160,7 +160,7 @@ var FullStory = function FullStory(props) {
 
               _context.prev = 1;
               _context.next = 4;
-              return (0,requests/* getMedia */.om)(id);
+              return (0,requests/* getMedia */.xM)(id);
 
             case 4:
               d = _context.sent;
@@ -209,7 +209,7 @@ var FullStory = function FullStory(props) {
     setIsOpen(!isOpen);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
+  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.BM, {
     visible: true,
     height: "80",
     width: "80",
@@ -321,7 +321,7 @@ FullStory.propTypes = {
   frameUrl: (prop_types_default()).string
 };
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
-var helperFunctions = __webpack_require__(6859);
+var helperFunctions = __webpack_require__(7904);
 ;// CONCATENATED MODULE: ./src/modules/Story/StoryView.jsx
 function StoryView_typeof(obj) { "@babel/helpers - typeof"; return StoryView_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, StoryView_typeof(obj); }
 
@@ -619,7 +619,7 @@ var StoryView = function StoryView() {
       fetchData('33190');
       console.log('default load');
 
-      var _summary = (0,helperFunctions/* decodeHTML */.p1)(data.metadata.srcSummary[0]);
+      var _summary = (0,helperFunctions/* decodeHTML */.Gz)(data.metadata.srcSummary[0]);
 
       setSummary(_summary);
       setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
@@ -638,18 +638,18 @@ var StoryView = function StoryView() {
 
               _context.prev = 1;
               _context.next = 4;
-              return (0,requests/* getAPIData */.fP)(id);
+              return (0,requests/* getAPIData */.V0)(id);
 
             case 4:
               d = _context.sent;
               console.log('Story data: ', d);
               setData(d);
-              _summary2 = (0,helperFunctions/* decodeHTML */.p1)(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
+              _summary2 = (0,helperFunctions/* decodeHTML */.Gz)(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary2);
               setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
               assetIDs = d.metadata.topics.join(',');
               _context.next = 13;
-              return (0,requests/* getTaxonomyTerms */.mK)(assetIDs);
+              return (0,requests/* getTaxonomyTerms */.NX)(assetIDs);
 
             case 13:
               taxonomyTerms = _context.sent;
@@ -757,7 +757,7 @@ var StoryView = function StoryView() {
       return;
     }
 
-    var beaconUrl = requests/* contentHubAPI */.fH !== null && requests/* contentHubAPI */.fH !== void 0 && (_contentHubAPI$module = requests/* contentHubAPI */.fH.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? requests/* contentHubAPI */.fH === null || requests/* contentHubAPI */.fH === void 0 ? void 0 : requests/* contentHubAPI */.fH.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
+    var beaconUrl = requests/* contentHubAPI */.Tk !== null && requests/* contentHubAPI */.Tk !== void 0 && (_contentHubAPI$module = requests/* contentHubAPI */.Tk.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? requests/* contentHubAPI */.Tk === null || requests/* contentHubAPI */.Tk === void 0 ? void 0 : requests/* contentHubAPI */.Tk.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
 
     var data = {
       id: id
@@ -770,7 +770,7 @@ var StoryView = function StoryView() {
     setBeaconSent(true);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
+  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.BM, {
     visible: true,
     height: "80",
     width: "80",
@@ -783,7 +783,7 @@ var StoryView = function StoryView() {
     "data-id": data.id
   }, /*#__PURE__*/react.createElement("section", {
     className: "su-relative su-border-b su-border-gray su-mt-60 su-mb-50 su-pb-[5.5rem] su-pt-60 md:su-mt-45 md:su-pt-70"
-  }, /*#__PURE__*/react.createElement(BackToPageButton/* BackToPageButton */.G, {
+  }, /*#__PURE__*/react.createElement(BackToPageButton/* BackToPageButton */.o, {
     page: "home"
   }), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center"
@@ -791,7 +791,7 @@ var StoryView = function StoryView() {
     className: "su-font-serif su-mb-0"
   }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
-  }, /*#__PURE__*/react.createElement(CardButtons/* CardButtons */.G, {
+  }, /*#__PURE__*/react.createElement(CardButtons/* CardButtons */.I, {
     listMetadata: data.metadata,
     assetId: data.id,
     page: "story"
@@ -1044,7 +1044,7 @@ if (rootNode) {
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
 /******/ 	!function() {
-/******/ 		__webpack_require__.j = 202;
+/******/ 		__webpack_require__.j = 73;
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
@@ -1060,7 +1060,7 @@ if (rootNode) {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			202: 0
+/******/ 			73: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -1117,7 +1117,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(6079); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [121], function() { return __webpack_require__(9479); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

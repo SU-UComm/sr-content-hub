@@ -2,78 +2,78 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7397:
+/***/ 1580:
 /***/ (function(__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) {
 
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
+var react = __webpack_require__(6540);
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(3935);
+var react_dom = __webpack_require__(961);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(1249);
+var es_array_map = __webpack_require__(9581);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
-var es_function_name = __webpack_require__(8309);
+var es_function_name = __webpack_require__(8741);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
-var es_object_to_string = __webpack_require__(1539);
+var es_object_to_string = __webpack_require__(5086);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__(4747);
+var web_dom_collections_for_each = __webpack_require__(8379);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
-var es_array_join = __webpack_require__(9600);
+var es_array_join = __webpack_require__(475);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__(4916);
+var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
-var es_string_search = __webpack_require__(4765);
+var es_string_search = __webpack_require__(785);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find.js
-var es_array_find = __webpack_require__(9826);
+var es_array_find = __webpack_require__(8636);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
-var es_symbol = __webpack_require__(2526);
+var es_symbol = __webpack_require__(3534);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
-var es_symbol_description = __webpack_require__(1817);
+var es_symbol_description = __webpack_require__(590);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.iterator.js
-var es_symbol_iterator = __webpack_require__(2165);
+var es_symbol_iterator = __webpack_require__(4216);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.iterator.js
-var es_array_iterator = __webpack_require__(6992);
+var es_array_iterator = __webpack_require__(8665);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.iterator.js
-var es_string_iterator = __webpack_require__(8783);
+var es_string_iterator = __webpack_require__(9979);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.iterator.js
-var web_dom_collections_iterator = __webpack_require__(3948);
+var web_dom_collections_iterator = __webpack_require__(4602);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
-var es_array_slice = __webpack_require__(7042);
+var es_array_slice = __webpack_require__(4913);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.from.js
-var es_array_from = __webpack_require__(1038);
+var es_array_from = __webpack_require__(5195);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.promise.js
-var es_promise = __webpack_require__(8674);
+var es_promise = __webpack_require__(9193);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.async-iterator.js
-var es_symbol_async_iterator = __webpack_require__(2443);
+var es_symbol_async_iterator = __webpack_require__(7727);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.to-string-tag.js
-var es_symbol_to_string_tag = __webpack_require__(3680);
+var es_symbol_to_string_tag = __webpack_require__(9576);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.json.to-string-tag.js
-var es_json_to_string_tag = __webpack_require__(3706);
+var es_json_to_string_tag = __webpack_require__(1586);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.math.to-string-tag.js
-var es_math_to_string_tag = __webpack_require__(7059);
+var es_math_to_string_tag = __webpack_require__(6982);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-prototype-of.js
-var es_object_get_prototype_of = __webpack_require__(489);
+var es_object_get_prototype_of = __webpack_require__(1412);
 // EXTERNAL MODULE: ./src/modules/Home/PageHeading.jsx
-var PageHeading = __webpack_require__(7774);
+var PageHeading = __webpack_require__(4244);
 // EXTERNAL MODULE: ./src/modules/Filters/CPFilter.jsx
-var CPFilter = __webpack_require__(4842);
+var CPFilter = __webpack_require__(8742);
 // EXTERNAL MODULE: ./src/modules/Helpers/requests.js
-var requests = __webpack_require__(9072);
+var requests = __webpack_require__(1787);
 // EXTERNAL MODULE: ./src/modules/Filters/SortByFilter.jsx
-var SortByFilter = __webpack_require__(7009);
+var SortByFilter = __webpack_require__(2132);
 // EXTERNAL MODULE: ./src/modules/Card/Card.jsx + 1 modules
-var Card = __webpack_require__(832);
+var Card = __webpack_require__(6438);
 // EXTERNAL MODULE: ./src/modules/Pagination/Pagination.jsx
-var Pagination = __webpack_require__(3729);
+var Pagination = __webpack_require__(3982);
 // EXTERNAL MODULE: ./src/modules/Helpers/helperFunctions.js
-var helperFunctions = __webpack_require__(6859);
+var helperFunctions = __webpack_require__(7904);
 // EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 13 modules
-var dist_module = __webpack_require__(5093);
+var dist_module = __webpack_require__(5298);
 // EXTERNAL MODULE: ./src/modules/Filters/SelectedFilters.jsx
-var SelectedFilters = __webpack_require__(5634);
+var SelectedFilters = __webpack_require__(25);
 // EXTERNAL MODULE: ./src/modules/Filters/DateFilter.jsx
-var DateFilter = __webpack_require__(7655);
+var DateFilter = __webpack_require__(7159);
 ;// CONCATENATED MODULE: ./src/modules/NewContent/NewContent.jsx
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -217,7 +217,7 @@ var NewContent = function NewContent() {
 
               _context.prev = 2;
               _context.next = 5;
-              return (0,requests/* fetchFBData */.gV)(url);
+              return (0,requests/* fetchFBData */.j2)(url);
 
             case 5:
               d = _context.sent;
@@ -232,7 +232,7 @@ var NewContent = function NewContent() {
               setData(d);
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
-              params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
+              params = (0,helperFunctions/* getQueryStringParams */.CH)(url);
               setQueryParams(params);
               sourceIdsArray = [];
               d.response.resultPacket.results.forEach(function (item) {
@@ -241,7 +241,7 @@ var NewContent = function NewContent() {
                 }
               });
               _context.next = 17;
-              return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.cL)(sourceIdsArray.join(','));
 
             case 17:
               statuses = _context.sent;
@@ -267,7 +267,7 @@ var NewContent = function NewContent() {
             case 30:
               _context.prev = 30;
               _context.next = 33;
-              return (0,requests/* getSearchData */.Im)(url);
+              return (0,requests/* getSearchData */.DW)(url);
 
             case 33:
               _d2 = _context.sent;
@@ -284,7 +284,7 @@ var NewContent = function NewContent() {
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
+              _params = (0,helperFunctions/* getQueryStringParams */.CH)(url);
               setQueryParams(_params);
               _sourceIdsArray = [];
 
@@ -295,7 +295,7 @@ var NewContent = function NewContent() {
               });
 
               _context.next = 45;
-              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.cL)(_sourceIdsArray.join(','));
 
             case 45:
               _statuses = _context.sent;
@@ -366,7 +366,7 @@ var NewContent = function NewContent() {
       }
 
       setQueryParams(newParams);
-      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.cO)(queryParams);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
 
@@ -384,7 +384,7 @@ var NewContent = function NewContent() {
       }
 
       setQueryParams(_newParams);
-      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.cO)(queryParams);
     } else if (name == 'sortBy') {
       var _newParams2 = queryParams;
       var selected = value === 'dmetamtxCreated' ? 'Newest to Oldest' : 'Oldest to Newest';
@@ -404,7 +404,7 @@ var NewContent = function NewContent() {
       }
 
       setQueryParams(_newParams2);
-      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+      fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.cO)(queryParams);
     } else {
       if (name == 'date') {
         setDateSelected(selectedVal);
@@ -422,7 +422,7 @@ var NewContent = function NewContent() {
     fetchData(fetchUrl, dataLocation);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
+  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.BM, {
     visible: true,
     height: "80",
     width: "80",
@@ -431,7 +431,7 @@ var NewContent = function NewContent() {
     ariaLabel: "oval-loading"
   }) : /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
-  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
+  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.A, {
     headingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$n = _window2$data$texts.newcontent) === null || _window2$data$texts$n === void 0 ? void 0 : _window2$data$texts$n.headingText,
     subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$n = _window3$data$texts.newcontent) === null || _window3$data$texts$n === void 0 ? void 0 : _window3$data$texts$n.subHeadingText,
     homeButton: true
@@ -444,16 +444,16 @@ var NewContent = function NewContent() {
   }, /*#__PURE__*/react.createElement("label", {
     htmlFor: "cp-filter",
     className: "su-block su-text-18 su-font-bold su-leading-[2] su-mb-10"
-  }, "Content partners"), /*#__PURE__*/react.createElement(CPFilter/* CPFilter */.r, {
+  }, "Content partners"), /*#__PURE__*/react.createElement(CPFilter/* CPFilter */.i, {
     facets: CPLabels,
     onChange: onChange
   })), /*#__PURE__*/react.createElement("div", {
     className: "su-flex-[calc(100%/3)_1_1]"
-  }, /*#__PURE__*/react.createElement(DateFilter/* DateRangeFilter */.r, {
+  }, /*#__PURE__*/react.createElement(DateFilter/* DateRangeFilter */._, {
     facets: dateLabel,
     onChange: onChange,
     selectedValue: dateSelected
-  })))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
+  })))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.e, {
     onChange: onChange,
     facets: facets,
     page: "newContent"
@@ -472,16 +472,16 @@ var NewContent = function NewContent() {
       data: contentItem,
       statuses: hubStatuses
     });
-  })), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
+  })), /*#__PURE__*/react.createElement(Pagination/* Pagination */.d, {
     data: data,
     summary: resultsSummary,
     onChange: onChange
   })));
 };
 // EXTERNAL MODULE: ./src/modules/Filters/StatusFilter.jsx
-var StatusFilter = __webpack_require__(1948);
+var StatusFilter = __webpack_require__(6749);
 // EXTERNAL MODULE: ./src/modules/NoContent/NoContent.jsx
-var NoContent = __webpack_require__(1488);
+var NoContent = __webpack_require__(5984);
 ;// CONCATENATED MODULE: ./src/modules/MyContent/MyContent.jsx
 function MyContent_typeof(obj) { "@babel/helpers - typeof"; return MyContent_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, MyContent_typeof(obj); }
 
@@ -620,7 +620,7 @@ var MyContent = function MyContent() {
 
               _context.prev = 2;
               _context.next = 5;
-              return (0,requests/* fetchFBData */.gV)(url);
+              return (0,requests/* fetchFBData */.j2)(url);
 
             case 5:
               d = _context.sent;
@@ -633,7 +633,7 @@ var MyContent = function MyContent() {
               setData(d);
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
-              params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
+              params = (0,helperFunctions/* getQueryStringParams */.CH)(url);
               setQueryParams(params);
               console.log('REQUEST FUNCTION data in MY content: ', d);
               sourceIdsArray = [];
@@ -643,7 +643,7 @@ var MyContent = function MyContent() {
                 }
               });
               _context.next = 18;
-              return (0,requests/* getHubStatus */.V9)(sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.cL)(sourceIdsArray.join(','));
 
             case 18:
               statuses = _context.sent;
@@ -669,7 +669,7 @@ var MyContent = function MyContent() {
             case 31:
               _context.prev = 31;
               _context.next = 34;
-              return (0,requests/* getSearchData */.Im)(url);
+              return (0,requests/* getSearchData */.DW)(url);
 
             case 34:
               _d2 = _context.sent;
@@ -684,7 +684,7 @@ var MyContent = function MyContent() {
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              _params = (0,helperFunctions/* getQueryStringParams */.hp)(url);
+              _params = (0,helperFunctions/* getQueryStringParams */.CH)(url);
               setQueryParams(_params);
               console.log('MY content MATRIX FETCH: ', _d2);
               _sourceIdsArray = [];
@@ -696,7 +696,7 @@ var MyContent = function MyContent() {
               });
 
               _context.next = 47;
-              return (0,requests/* getHubStatus */.V9)(_sourceIdsArray.join(','));
+              return (0,requests/* getHubStatus */.cL)(_sourceIdsArray.join(','));
 
             case 47:
               _statuses = _context.sent;
@@ -766,7 +766,7 @@ var MyContent = function MyContent() {
       }
 
       setQueryParams(newParams);
-      var fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+      var fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.cO)(queryParams);
       console.log('CREATED URL: ', fetchUrl);
       fetchData(fetchUrl, dataLocation);
     } else if (name == 'pagination') {
@@ -787,7 +787,7 @@ var MyContent = function MyContent() {
 
       setQueryParams(_newParams);
 
-      var _fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+      var _fetchUrl = baseUrl + '?' + (0,helperFunctions/* createUrl */.cO)(queryParams);
 
       console.log('CREATED URL: ', _fetchUrl);
       fetchData(_fetchUrl, dataLocation);
@@ -811,13 +811,13 @@ var MyContent = function MyContent() {
 
       setQueryParams(_newParams2);
 
-      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.uJ)(queryParams);
+      var _fetchUrl2 = baseUrl + '?' + (0,helperFunctions/* createUrl */.cO)(queryParams);
 
       console.log('CREATED URL sort: ', _fetchUrl2);
       fetchData(_fetchUrl2, dataLocation);
     } else {
       if (name == 'status') {
-        var _selected = (0,helperFunctions/* getLabel */.id)(selectedVal);
+        var _selected = (0,helperFunctions/* getLabel */.p9)(selectedVal);
 
         setStatusSelected(_selected);
       }
@@ -828,7 +828,7 @@ var MyContent = function MyContent() {
     }
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.iT, {
+  return isLoading ? /*#__PURE__*/react.createElement(dist_module/* Oval */.BM, {
     visible: true,
     height: "80",
     width: "80",
@@ -837,7 +837,7 @@ var MyContent = function MyContent() {
     ariaLabel: "oval-loading"
   }) : /*#__PURE__*/react.createElement("div", {
     className: "su-col-span-full xl:su-col-start-2 xl:su-col-span-10"
-  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.C, {
+  }, /*#__PURE__*/react.createElement(PageHeading/* PageHeading */.A, {
     headingText: (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$texts = _window2$data.texts) === null || _window2$data$texts === void 0 ? void 0 : (_window2$data$texts$m = _window2$data$texts.mycontent) === null || _window2$data$texts$m === void 0 ? void 0 : _window2$data$texts$m.headingText,
     subHeadingText: (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$texts = _window3$data.texts) === null || _window3$data$texts === void 0 ? void 0 : (_window3$data$texts$m = _window3$data$texts.mycontent) === null || _window3$data$texts$m === void 0 ? void 0 : _window3$data$texts$m.subHeadingText,
     homeButton: true
@@ -845,11 +845,11 @@ var MyContent = function MyContent() {
     className: "su-mb-20"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"
-  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.r, {
+  }, /*#__PURE__*/react.createElement(StatusFilter/* StatusFilter */.B, {
     onChange: onChange,
     facets: statusLabel,
     selectedValue: statusSelected
-  }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.w, {
+  }))), /*#__PURE__*/react.createElement(SelectedFilters/* SelectedFacets */.e, {
     onChange: onChange,
     facets: facets,
     page: "myContent"
@@ -868,7 +868,7 @@ var MyContent = function MyContent() {
       data: contentItem,
       statuses: hubStatuses
     });
-  }))) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.d, null), /*#__PURE__*/react.createElement(Pagination/* Pagination */.t, {
+  }))) : /*#__PURE__*/react.createElement(NoContent/* NoContent */.R, null), /*#__PURE__*/react.createElement(Pagination/* Pagination */.d, {
     data: data,
     summary: resultsSummary,
     onChange: onChange
@@ -997,7 +997,7 @@ if (rootNode) {
 /******/ 	
 /******/ 	/* webpack/runtime/runtimeId */
 /******/ 	!function() {
-/******/ 		__webpack_require__.j = 825;
+/******/ 		__webpack_require__.j = 559;
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/publicPath */
@@ -1013,7 +1013,7 @@ if (rootNode) {
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			825: 0
+/******/ 			559: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -1070,7 +1070,7 @@ if (rootNode) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [736], function() { return __webpack_require__(7397); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [121], function() { return __webpack_require__(1580); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

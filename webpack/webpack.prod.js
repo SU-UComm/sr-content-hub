@@ -61,21 +61,21 @@ module.exports = (env) => {
         ],
         optimization: {
             minimize: env.minify === 'true' ? true : false,
-            splitChunks: {
-                chunks: 'all',
-                name: 'vendor',
-                cacheGroups: {
-                    vendors: {
-                        test: /[\\/]node_modules[\\/]/,
-                        priority: -10,
-                    },
-                    default: {
-                        minChunks: 2,
-                        priority: -20,
-                        reuseExistingChunk: true,
-                    },
-                },
-            },
+            // splitChunks: {
+            //     chunks: 'all',
+            //     name: 'vendor',
+            //     cacheGroups: {
+            //         vendors: {
+            //             test: /[\\/]node_modules[\\/]/,
+            //             priority: -10,
+            //         },
+            //         default: {
+            //             minChunks: 2,
+            //             priority: -20,
+            //             reuseExistingChunk: true,
+            //         },
+            //     },
+            // },
             // sideEffects: false,
         },
     });

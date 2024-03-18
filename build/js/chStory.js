@@ -58,8 +58,8 @@ var web_dom_collections_for_each = __webpack_require__(4747);
 var requests = __webpack_require__(9072);
 // EXTERNAL MODULE: ./src/modules/Home/BackToPageButton.jsx
 var BackToPageButton = __webpack_require__(8220);
-// EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 5 modules
-var dist_module = __webpack_require__(6665);
+// EXTERNAL MODULE: ./node_modules/react-loader-spinner/dist/module.js + 13 modules
+var dist_module = __webpack_require__(5093);
 // EXTERNAL MODULE: ./src/modules/Card/CardButtons.jsx + 1 modules
 var CardButtons = __webpack_require__(5963);
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js

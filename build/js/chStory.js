@@ -12689,7 +12689,9 @@ var CardButtons = function CardButtons(props) {
     }
   }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
@@ -13680,7 +13682,7 @@ var StoryView_mockData = {
   }
 };
 var StoryView = function StoryView() {
-  var _window, _window3, _window3$data, _window3$data$user;
+  var _window, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window5, _window5$data, _window6, _window6$data;
 
   var _useState = (0,react.useState)(StoryView_dataObj),
       _useState2 = StoryView_slicedToArray(_useState, 2),
@@ -13922,7 +13924,9 @@ var StoryView = function StoryView() {
     page: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
-  }, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
+  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM' ? data.metadata.hubReviewMsg && data.metadata.hubReviewMsg.length > 1 ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note: "), data.metadata.hubReviewMsg) : null : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
   }, "Headline"), /*#__PURE__*/react.createElement("h2", {
     className: "su-py-20 su-mb-0"

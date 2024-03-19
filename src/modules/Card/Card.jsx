@@ -69,7 +69,8 @@ export const Card = (props) => {
                             hubStatusDesc={hubStatusDesc}
                         />
                     )}
-                    {(window?.data?.user.userType == 'CP' && props.page == 'myContent') || window?.data?.user.userType == 'UCOMM' ? (
+                    {(window?.data?.user.userType == 'CP' && props.page == 'myContent' && props.data.listMetadata.taxonomyContentPartnerId == window?.data?.user.contentPartner) ||
+                    window?.data?.user.userType == 'UCOMM' ? (
                         hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? (
                             <p className="su-rounded su-text-gray-dark su-text-16 su-mb-0">
                                 <b>Review Note:</b> {hubReviewMsg.length > 70 ? `${hubReviewMsg.substring(0, 70)}...` : hubReviewMsg}
@@ -99,6 +100,7 @@ Card.propTypes = {
             assetId: PropTypes.array,
             hubStatusDescription: PropTypes.array,
             hubStatus: PropTypes.array,
+            taxonomyContentPartnerId: PropTypes.array,
         }),
     }),
     page: PropTypes.string,

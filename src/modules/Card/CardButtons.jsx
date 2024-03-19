@@ -371,6 +371,8 @@ export const CardButtons = (props) => {
                 </>
             ) : hubStatus == 'sent-to-sr' ? (
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>
+            ) : hubStatus == 'published' ? (
+                <p className="su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15">Published on Stanford Report</p>
             ) : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && window?.data?.user?.userType === 'UCOMM' ? (
                 <p className="su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15">
                     {props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription}

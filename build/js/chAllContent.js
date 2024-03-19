@@ -10372,7 +10372,9 @@ var CardButtons = function CardButtons(props) {
     }
   }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
@@ -10588,7 +10590,7 @@ function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Card = function Card(props) {
-  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window2, _window2$data, _window3, _window3$data;
+  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window2, _window2$data, _window3, _window3$data, _window4, _window4$data;
 
   var _useState = (0,react.useState)(props.data.listMetadata.hubStatus),
       _useState2 = Card_slicedToArray(_useState, 2),
@@ -10661,7 +10663,7 @@ var Card = function Card(props) {
     page: "card",
     hubStatus: hubStatus,
     hubStatusDesc: hubStatusDesc
-  }), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'CP' && props.page == 'myContent' || ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.userType) == 'UCOMM' ? hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
+  }), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'CP' && props.page == 'myContent' && props.data.listMetadata.taxonomyContentPartnerId == ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.contentPartner) || ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'UCOMM' ? hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
   }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null : null));
 };
@@ -10681,7 +10683,8 @@ Card.propTypes = {
       srcPublishedDate: (prop_types_default()).array,
       assetId: (prop_types_default()).array,
       hubStatusDescription: (prop_types_default()).array,
-      hubStatus: (prop_types_default()).array
+      hubStatus: (prop_types_default()).array,
+      taxonomyContentPartnerId: (prop_types_default()).array
     })
   }),
   page: (prop_types_default()).string,

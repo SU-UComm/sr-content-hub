@@ -356,6 +356,15 @@ export const StoryView = () => {
             </section>
 
             <section className="su-flex su-flex-col su-gap-[30px] su-mb-80">
+                {/* checking if CP is the same as submitted */}
+                {(window?.data?.user.userType == 'CP' && data.metadata.contentPartners == window?.data?.user.contentPartner) || window?.data?.user.userType == 'UCOMM' ? (
+                    data.metadata.hubReviewMsg && data.metadata.hubReviewMsg.length > 1 ? (
+                        <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">
+                            <b>Review Note: </b>
+                            {data.metadata.hubReviewMsg}
+                        </p>
+                    ) : null
+                ) : null}
                 <div>
                     <p className="small-heading">Headline</p>
                     <h2 className="su-py-20 su-mb-0">{data.name}</h2>

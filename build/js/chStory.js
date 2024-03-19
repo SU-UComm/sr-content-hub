@@ -13924,9 +13924,9 @@ var StoryView = function StoryView() {
     page: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
-  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM' ? data.metadata.hubReviewMsg && data.metadata.hubReviewMsg.length > 1 ? /*#__PURE__*/react.createElement("p", {
+  }, (((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM') && data.metadata.hubReviewMsg && data.metadata.hubReviewMsg.length > 1 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, /*#__PURE__*/react.createElement("b", null, "Review Note: "), data.metadata.hubReviewMsg) : null : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note: "), data.metadata.hubReviewMsg) : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
   }, "Headline"), /*#__PURE__*/react.createElement("h2", {
     className: "su-py-20 su-mb-0"

@@ -13,10 +13,27 @@ export const contentHubAPI = {
         relMedia: `${window.globalData.urls.contentHub}/r/api/a/related-media?id=`,
         relTerms: `${window.globalData.urls.contentHub}/r/api/a/taxonomy-terms?ids=`,
         beaconEndpoint: `${window.globalData.urls.contentHub}/r/h/ch/beacon`,
+        authorization: `${window.globalData.urls.contentHub}/r/api/a/authorization`,
     },
     vars: {
         srDrafts: '130757',
     },
+};
+
+export const fetchToken = async (url) => {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const res = await response.json();
+        console.log('RESULT: ', res);
+        return res;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        console.log('ERROR: ', error);
+        return error;
+    }
 };
 
 // Bearer token to be replaced with matrix fetch

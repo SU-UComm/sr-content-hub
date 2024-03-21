@@ -3,7 +3,7 @@ import {PageHeading} from '../Home/PageHeading.jsx';
 import {StatusFilter} from '../Filters/StatusFilter.jsx';
 import {DateRangeFilter} from '../Filters/DateFilter.jsx';
 import {CPFilter} from '../Filters/CPFilter.jsx';
-import {fetchFBData, getHubStatus} from '../Helpers/requests.js';
+import {fetchFBData, fetchToken, getHubStatus} from '../Helpers/requests.js';
 import {SortByFilter} from '../Filters/SortByFilter.jsx';
 import {Card} from '../Card/Card.jsx';
 import {Pagination} from '../Pagination/Pagination.jsx';
@@ -36,6 +36,7 @@ export const AllContent = () => {
         setIsLoading(true);
         if (func == 'fb') {
             try {
+                fetchToken();
                 const d = await fetchFBData(url);
                 d.response.facets.map((item) => {
                     if (item.name == 'hubStatus') {

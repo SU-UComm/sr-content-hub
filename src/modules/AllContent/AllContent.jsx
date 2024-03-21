@@ -70,6 +70,7 @@ export const AllContent = () => {
             }
         } else {
             try {
+                fetchToken();
                 const d = await getSearchData(url);
 
                 d.response.facets.map((item) => {

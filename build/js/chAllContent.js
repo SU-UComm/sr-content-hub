@@ -16311,15 +16311,16 @@ var AllContent = function AllContent() {
               return _context.finish(27);
 
             case 30:
-              _context.next = 60;
+              _context.next = 61;
               break;
 
             case 32:
               _context.prev = 32;
-              _context.next = 35;
+              fetchToken();
+              _context.next = 36;
               return getSearchData(url);
 
-            case 35:
+            case 36:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -16348,33 +16349,33 @@ var AllContent = function AllContent() {
                 }
               });
 
-              _context.next = 48;
+              _context.next = 49;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 48:
+            case 49:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
               console.log('Statuses:', _statuses);
               console.log('All data:', _d2);
-              _context.next = 57;
+              _context.next = 58;
               break;
 
-            case 54:
-              _context.prev = 54;
+            case 55:
+              _context.prev = 55;
               _context.t1 = _context["catch"](32);
               console.error('Error fetching data:', _context.t1);
 
-            case 57:
-              _context.prev = 57;
+            case 58:
+              _context.prev = 58;
               setIsLoading(false);
-              return _context.finish(57);
+              return _context.finish(58);
 
-            case 60:
+            case 61:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 24, 27, 30], [32, 54, 57, 60]]);
+      }, _callee, null, [[2, 24, 27, 30], [32, 55, 58, 61]]);
     }));
 
     return function fetchData(_x, _x2) {

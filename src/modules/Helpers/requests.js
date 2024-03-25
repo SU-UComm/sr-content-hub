@@ -9,7 +9,7 @@ export const contentHubAPI = {
         homeLatestContent: `${window.globalData.urls.contentHub}/r/api/cm/latest-content`,
         userData: `${window.globalData.urls.contentHub}/r/api/a/usr`,
         hubStatus: `${window.globalData.urls.contentHub}/r/api/a/hub-status?ids=`,
-        contentApi: window.globalData.urls.contentApi,
+        contentApi: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/content-api',
         relMedia: `${window.globalData.urls.contentHub}/r/api/a/related-media?id=`,
         relTerms: `${window.globalData.urls.contentHub}/r/api/a/taxonomy-terms?ids=`,
         beaconEndpoint: `${window.globalData.urls.contentHub}/r/h/ch/beacon`,
@@ -20,21 +20,8 @@ export const contentHubAPI = {
     },
 };
 
-export const fetchToken = async (url) => {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const res = await response.json();
-        console.log('RESULT: ', res);
-        return res;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        console.log('ERROR: ', error);
-        return error;
-    }
-};
+//   contentHub: 'https://sug-web.matrix.squiz.cloud/content',
+//   contentApi: 'https://sug-web.matrix.squiz.cloud/__api'
 
 // Bearer token to be replaced with matrix fetch
 const requestOptions = {
@@ -134,9 +121,10 @@ export const getHubStatus = async (assetIDs) => {
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
  */
+// `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata,urls`;
 export const getAPIData = async (assetID) => {
-    const requestUrl = `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata,urls`;
-    console.log('URL,', requestUrl);
+    const requestUrl = `${contentHubAPI.modules.contentApi}?id=${assetID}`;
+    console.log('API DATA URL,', requestUrl);
     const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });

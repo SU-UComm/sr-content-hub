@@ -9,7 +9,7 @@ export const contentHubAPI = {
         homeLatestContent: `${window.globalData.urls.contentHub}/r/api/cm/latest-content`,
         userData: `${window.globalData.urls.contentHub}/r/api/a/usr`,
         hubStatus: `${window.globalData.urls.contentHub}/r/api/a/hub-status?ids=`,
-        contentApi: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/content-api',
+        contentApi: `${window.globalData.urls.contentApi}`,
         relMedia: `${window.globalData.urls.contentHub}/r/api/a/related-media?id=`,
         relTerms: `${window.globalData.urls.contentHub}/r/api/a/taxonomy-terms?ids=`,
         beaconEndpoint: `${window.globalData.urls.contentHub}/r/h/ch/beacon`,
@@ -20,15 +20,10 @@ export const contentHubAPI = {
     },
 };
 
-//   contentHub: 'https://sug-web.matrix.squiz.cloud/content',
-//   contentApi: 'https://sug-web.matrix.squiz.cloud/__api'
-
-// Bearer token to be replaced with matrix fetch
 const requestOptions = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${window.globalData.tokens.contentApi}`,
     },
 };
 

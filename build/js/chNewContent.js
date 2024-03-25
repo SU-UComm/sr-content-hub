@@ -8590,7 +8590,7 @@ var contentHubAPI = {
     homeLatestContent: "".concat(window.globalData.urls.contentHub, "/r/api/cm/latest-content"),
     userData: "".concat(window.globalData.urls.contentHub, "/r/api/a/usr"),
     hubStatus: "".concat(window.globalData.urls.contentHub, "/r/api/a/hub-status?ids="),
-    contentApi: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/content-api',
+    contentApi: "".concat(window.globalData.urls.contentApi),
     relMedia: "".concat(window.globalData.urls.contentHub, "/r/api/a/related-media?id="),
     relTerms: "".concat(window.globalData.urls.contentHub, "/r/api/a/taxonomy-terms?ids="),
     beaconEndpoint: "".concat(window.globalData.urls.contentHub, "/r/h/ch/beacon"),
@@ -8599,15 +8599,11 @@ var contentHubAPI = {
   vars: {
     srDrafts: '130757'
   }
-}; //   contentHub: 'https://sug-web.matrix.squiz.cloud/content',
-//   contentApi: 'https://sug-web.matrix.squiz.cloud/__api'
-// Bearer token to be replaced with matrix fetch
-
+};
 var requestOptions = {
   method: 'GET',
   headers: {
-    'Content-Type': 'application/json',
-    Authorization: "Bearer ".concat(window.globalData.tokens.contentApi)
+    'Content-Type': 'application/json'
   }
 };
 var fetchFBData = /*#__PURE__*/function () {

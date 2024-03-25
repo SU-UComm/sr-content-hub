@@ -6753,7 +6753,7 @@ var contentHubAPI = {
     homeLatestContent: "".concat(window.globalData.urls.contentHub, "/r/api/cm/latest-content"),
     userData: "".concat(window.globalData.urls.contentHub, "/r/api/a/usr"),
     hubStatus: "".concat(window.globalData.urls.contentHub, "/r/api/a/hub-status?ids="),
-    contentApi: window.globalData.urls.contentApi,
+    contentApi: 'https://sug-web.matrix.squiz.cloud/content/r/api/a/content-api',
     relMedia: "".concat(window.globalData.urls.contentHub, "/r/api/a/related-media?id="),
     relTerms: "".concat(window.globalData.urls.contentHub, "/r/api/a/taxonomy-terms?ids="),
     beaconEndpoint: "".concat(window.globalData.urls.contentHub, "/r/h/ch/beacon"),
@@ -6762,8 +6762,18 @@ var contentHubAPI = {
   vars: {
     srDrafts: '130757'
   }
+}; //   contentHub: 'https://sug-web.matrix.squiz.cloud/content',
+//   contentApi: 'https://sug-web.matrix.squiz.cloud/__api'
+// Bearer token to be replaced with matrix fetch
+
+var requestOptions = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: "Bearer ".concat(window.globalData.tokens.contentApi)
+  }
 };
-var fetchToken = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
+var fetchFBData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(url) {
     var response, res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -6790,81 +6800,24 @@ var fetchToken = /*#__PURE__*/(/* unused pure expression or super */ null && (fu
 
           case 8:
             res = _context.sent;
-            console.log('RESULT: ', res);
             return _context.abrupt("return", res);
 
-          case 13:
-            _context.prev = 13;
+          case 12:
+            _context.prev = 12;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching data:', _context.t0);
-            console.log('ERROR: ', _context.t0);
             return _context.abrupt("return", _context.t0);
 
-          case 18:
+          case 16:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 13]]);
+    }, _callee, null, [[0, 12]]);
   }));
 
-  return function fetchToken(_x) {
+  return function fetchFBData(_x) {
     return _ref.apply(this, arguments);
-  };
-}())); // Bearer token to be replaced with matrix fetch
-
-var requestOptions = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: "Bearer ".concat(window.globalData.tokens.contentApi)
-  }
-};
-var fetchFBData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(url) {
-    var response, res;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return fetch(url);
-
-          case 3:
-            response = _context2.sent;
-
-            if (response.ok) {
-              _context2.next = 6;
-              break;
-            }
-
-            throw new Error('Network response was not ok');
-
-          case 6:
-            _context2.next = 8;
-            return response.json();
-
-          case 8:
-            res = _context2.sent;
-            return _context2.abrupt("return", res);
-
-          case 12:
-            _context2.prev = 12;
-            _context2.t0 = _context2["catch"](0);
-            console.error('Error fetching data:', _context2.t0);
-            return _context2.abrupt("return", _context2.t0);
-
-          case 16:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 12]]);
-  }));
-
-  return function fetchFBData(_x2) {
-    return _ref2.apply(this, arguments);
   };
 }()));
 /**
@@ -6875,15 +6828,51 @@ var fetchFBData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
  */
 
 var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
     var url, response;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            url = contentHubAPI.modules.userData;
+            _context2.next = 3;
+            return fetch(url, requestOptions).then(function (res) {
+              return res = res.json();
+            });
+
+          case 3:
+            response = _context2.sent;
+            return _context2.abrupt("return", response);
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function getUserData() {
+    return _ref2.apply(this, arguments);
+  };
+}()));
+/**
+ * GET myContent Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
+ * @returns {object} JSON object
+ */
+
+var getMyContent = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+    var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            url = contentHubAPI.modules.userData;
+            requestUrl = contentHubAPI.search.myContent;
             _context3.next = 3;
-            return fetch(url, requestOptions).then(function (res) {
+            return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
@@ -6899,25 +6888,24 @@ var getUserData = /*#__PURE__*/(/* unused pure expression or super */ null && (f
     }, _callee3);
   }));
 
-  return function getUserData() {
+  return function getMyContent() {
     return _ref3.apply(this, arguments);
   };
 }()));
 /**
- * GET myContent Data
- * @param {string} module to get endpoint URL
+ * GET related Media Data
  * @param {string} assetID request asset ID
  * @returns {object} JSON object
  */
 
-var getMyContent = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+var getMedia = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(assetID) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            requestUrl = contentHubAPI.search.myContent;
+            requestUrl = "".concat(contentHubAPI.modules.relMedia).concat(assetID);
             _context4.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
@@ -6935,43 +6923,8 @@ var getMyContent = /*#__PURE__*/(/* unused pure expression or super */ null && (
     }, _callee4);
   }));
 
-  return function getMyContent() {
+  return function getMedia(_x2) {
     return _ref4.apply(this, arguments);
-  };
-}()));
-/**
- * GET related Media Data
- * @param {string} assetID request asset ID
- * @returns {object} JSON object
- */
-
-var getMedia = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(assetID) {
-    var requestUrl, response;
-    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            requestUrl = "".concat(contentHubAPI.modules.relMedia).concat(assetID);
-            _context5.next = 3;
-            return fetch(requestUrl, requestOptions).then(function (res) {
-              return res = res.json();
-            });
-
-          case 3:
-            response = _context5.sent;
-            return _context5.abrupt("return", response);
-
-          case 5:
-          case "end":
-            return _context5.stop();
-        }
-      }
-    }, _callee5);
-  }));
-
-  return function getMedia(_x3) {
-    return _ref5.apply(this, arguments);
   };
 }();
 /**
@@ -6981,13 +6934,49 @@ var getMedia = /*#__PURE__*/function () {
  */
 
 var getTaxonomyTerms = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(assetIDs) {
+    var requestUrl, response;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
+            console.log('URL,', requestUrl);
+            _context5.next = 4;
+            return fetch(requestUrl, requestOptions).then(function (res) {
+              return res = res.json();
+            });
+
+          case 4:
+            response = _context5.sent;
+            return _context5.abrupt("return", response);
+
+          case 6:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function getTaxonomyTerms(_x3) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+/**
+ * GET Hub Status Data
+ * @param {string} assetIDs array of asset IDs
+ * @returns {object} JSON object
+ */
+
+var getHubStatus = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(assetIDs) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
+            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
             console.log('URL,', requestUrl);
             _context6.next = 4;
             return fetch(requestUrl, requestOptions).then(function (res) {
@@ -7006,25 +6995,27 @@ var getTaxonomyTerms = /*#__PURE__*/function () {
     }, _callee6);
   }));
 
-  return function getTaxonomyTerms(_x4) {
+  return function getHubStatus(_x4) {
     return _ref6.apply(this, arguments);
   };
-}();
+}()));
 /**
- * GET Hub Status Data
- * @param {string} assetIDs array of asset IDs
+ * GET ContentAPI Data
+ * @param {string} module to get endpoint URL
+ * @param {string} assetID request asset ID
  * @returns {object} JSON object
  */
+// `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata,urls`;
 
-var getHubStatus = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(assetIDs) {
+var getAPIData = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(assetID) {
     var requestUrl, response;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
-            console.log('URL,', requestUrl);
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID);
+            console.log('API DATA URL,', requestUrl);
             _context7.next = 4;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
@@ -7042,45 +7033,8 @@ var getHubStatus = /*#__PURE__*/(/* unused pure expression or super */ null && (
     }, _callee7);
   }));
 
-  return function getHubStatus(_x5) {
+  return function getAPIData(_x5) {
     return _ref7.apply(this, arguments);
-  };
-}()));
-/**
- * GET ContentAPI Data
- * @param {string} module to get endpoint URL
- * @param {string} assetID request asset ID
- * @returns {object} JSON object
- */
-
-var getAPIData = /*#__PURE__*/function () {
-  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(assetID) {
-    var requestUrl, response;
-    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-      while (1) {
-        switch (_context8.prev = _context8.next) {
-          case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "/assets/").concat(assetID, "?data=attributes,metadata,urls");
-            console.log('URL,', requestUrl);
-            _context8.next = 4;
-            return fetch(requestUrl, requestOptions).then(function (res) {
-              return res = res.json();
-            });
-
-          case 4:
-            response = _context8.sent;
-            return _context8.abrupt("return", response);
-
-          case 6:
-          case "end":
-            return _context8.stop();
-        }
-      }
-    }, _callee8);
-  }));
-
-  return function getAPIData(_x6) {
-    return _ref8.apply(this, arguments);
   };
 }();
 /**
@@ -7090,33 +7044,33 @@ var getAPIData = /*#__PURE__*/function () {
  */
 
 var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(url) {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(url) {
     var response;
-    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+    return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context9.prev = _context9.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
             // let url = contentHubAPI.search[pageName];
             console.log('URL,', url);
-            _context9.next = 3;
+            _context8.next = 3;
             return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
           case 3:
-            response = _context9.sent;
-            return _context9.abrupt("return", response);
+            response = _context8.sent;
+            return _context8.abrupt("return", response);
 
           case 5:
           case "end":
-            return _context9.stop();
+            return _context8.stop();
         }
       }
-    }, _callee9);
+    }, _callee8);
   }));
 
-  return function getSearchData(_x7) {
-    return _ref9.apply(this, arguments);
+  return function getSearchData(_x6) {
+    return _ref8.apply(this, arguments);
   };
 }()));
 /**
@@ -7128,18 +7082,18 @@ var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && 
  */
 
 var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (function () {
-  var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(url) {
+  var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(url) {
     var queryString,
         requestData,
         response,
-        _args10 = arguments;
-    return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+        _args9 = arguments;
+    return _regeneratorRuntime().wrap(function _callee9$(_context9) {
       while (1) {
-        switch (_context10.prev = _context10.next) {
+        switch (_context9.prev = _context9.next) {
           case 0:
-            queryString = _args10.length > 1 && _args10[1] !== undefined ? _args10[1] : '';
-            requestData = _args10.length > 2 && _args10[2] !== undefined ? _args10[2] : {};
-            _context10.next = 4;
+            queryString = _args9.length > 1 && _args9[1] !== undefined ? _args9[1] : '';
+            requestData = _args9.length > 2 && _args9[2] !== undefined ? _args9[2] : {};
+            _context9.next = 4;
             return fetch("".concat(url).concat(queryString ? "?".concat(queryString) : ''), {
               method: 'POST',
               headers: {
@@ -7151,19 +7105,19 @@ var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (func
             });
 
           case 4:
-            response = _context10.sent;
-            return _context10.abrupt("return", response);
+            response = _context9.sent;
+            return _context9.abrupt("return", response);
 
           case 6:
           case "end":
-            return _context10.stop();
+            return _context9.stop();
         }
       }
-    }, _callee10);
+    }, _callee9);
   }));
 
-  return function postData(_x8) {
-    return _ref10.apply(this, arguments);
+  return function postData(_x7) {
+    return _ref9.apply(this, arguments);
   };
 }()));
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js

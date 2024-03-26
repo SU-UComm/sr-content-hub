@@ -9667,8 +9667,11 @@ var CardButtons = function CardButtons(props) {
     // const latestNewsEl = document.querySelector('#latest-content');
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
-    //     window.location.reload()
-    // }
+
+    if (props.page == 'newContent') {
+      window.location.reload();
+    } // }
+
   };
 
   var sendAsStory = function sendAsStory(storyObj) {
@@ -9686,13 +9689,19 @@ var CardButtons = function CardButtons(props) {
 
 
     setBeaconSent(false);
-    window.addEventListener('unload', sendBeacon(), {
+    window.addEventListener('unload', function () {
+      sendBeacon();
+    }, {
       capture: true
     });
-    window.addEventListener('beforeunload', sendBeacon(), {
+    window.addEventListener('beforeunload', function () {
+      sendBeacon();
+    }, {
       capture: true
     });
-    window.addEventListener('pagehide', sendBeacon(), {
+    window.addEventListener('pagehide', function () {
+      sendBeacon();
+    }, {
       capture: true
     });
   };
@@ -9723,7 +9732,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react.createElement("button", {
+  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -9733,7 +9742,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
@@ -9883,6 +9892,7 @@ CardButtons.propTypes = {
     hubReviewMsg: (prop_types_default()).array
   }),
   assetId: (prop_types_default()).string,
+  type: (prop_types_default()).string,
   page: (prop_types_default()).string,
   hubStatusDesc: (prop_types_default()).string,
   hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array])
@@ -10366,9 +10376,11 @@ var Card = function Card(props) {
   }, "Submitted on ", reformatDate(props.data.listMetadata.mtxCreated), " | First published on ", reformatDate(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: props.data.listMetadata,
     assetId: props.data.listMetadata.assetId[0],
-    page: "card",
+    type: "card",
     hubStatus: hubStatus,
-    hubStatusDesc: hubStatusDesc
+    hubStatusDesc: hubStatusDesc,
+    fetchData: props.fetchData,
+    page: props.page
   }), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'CP' && props.page == 'myContent' && props.data.listMetadata.taxonomyContentPartnerId == ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.contentPartner) || ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'UCOMM' ? hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
   }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null : null));
@@ -10394,7 +10406,8 @@ Card.propTypes = {
     })
   }),
   page: (prop_types_default()).string,
-  statuses: (prop_types_default()).array
+  statuses: (prop_types_default()).array,
+  fetchData: (prop_types_default()).func
 };
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__(4848);
@@ -16211,7 +16224,9 @@ var NewContent = function NewContent() {
     return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
-      statuses: hubStatuses
+      statuses: hubStatuses,
+      fetchData: fetchData,
+      page: "newContent"
     });
   })), /*#__PURE__*/react.createElement(Pagination, {
     data: data,

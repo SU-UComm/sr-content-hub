@@ -12625,8 +12625,11 @@ var CardButtons = function CardButtons(props) {
     // const latestNewsEl = document.querySelector('#latest-content');
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
-    //     window.location.reload()
-    // }
+
+    if (props.page == 'newContent') {
+      window.location.reload();
+    } // }
+
   };
 
   var sendAsStory = function sendAsStory(storyObj) {
@@ -12644,13 +12647,19 @@ var CardButtons = function CardButtons(props) {
 
 
     setBeaconSent(false);
-    window.addEventListener('unload', sendBeacon(), {
+    window.addEventListener('unload', function () {
+      sendBeacon();
+    }, {
       capture: true
     });
-    window.addEventListener('beforeunload', sendBeacon(), {
+    window.addEventListener('beforeunload', function () {
+      sendBeacon();
+    }, {
       capture: true
     });
-    window.addEventListener('pagehide', sendBeacon(), {
+    window.addEventListener('pagehide', function () {
+      sendBeacon();
+    }, {
       capture: true
     });
   };
@@ -12681,7 +12690,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.page == 'story' ? /*#__PURE__*/react.createElement("button", {
+  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -12691,7 +12700,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
@@ -12841,6 +12850,7 @@ CardButtons.propTypes = {
     hubReviewMsg: (prop_types_default()).array
   }),
   assetId: (prop_types_default()).string,
+  type: (prop_types_default()).string,
   page: (prop_types_default()).string,
   hubStatusDesc: (prop_types_default()).string,
   hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array])
@@ -13921,7 +13931,7 @@ var StoryView = function StoryView() {
   }, /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: data.metadata,
     assetId: data.id,
-    page: "story"
+    type: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
   }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0].length > 0 ? /*#__PURE__*/react.createElement("p", {

@@ -64,9 +64,11 @@ export const Card = (props) => {
                         <CardButtons
                             listMetadata={props.data.listMetadata}
                             assetId={props.data.listMetadata.assetId[0]}
-                            page="card"
+                            type="card"
                             hubStatus={hubStatus}
                             hubStatusDesc={hubStatusDesc}
+                            fetchData={props.fetchData}
+                            page={props.page}
                         />
                     )}
                     {(window?.data?.user.userType == 'CP' && props.page == 'myContent' && props.data.listMetadata.taxonomyContentPartnerId == window?.data?.user.contentPartner) ||
@@ -105,4 +107,5 @@ Card.propTypes = {
     }),
     page: PropTypes.string,
     statuses: PropTypes.array,
+    fetchData: PropTypes.func,
 };

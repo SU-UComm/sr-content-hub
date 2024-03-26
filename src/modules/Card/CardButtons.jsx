@@ -309,7 +309,9 @@ export const CardButtons = (props) => {
         // const latestNewsEl = document.querySelector('#latest-content');
         // // IF it is then we need to trigger loading one additional result instead of current item
         // if (latestNewsEl !== null) {
-        //     window.location.reload()
+        if (props.page == 'newContent') {
+            window.location.reload();
+        }
         // }
     };
     const sendAsStory = (storyObj) => {
@@ -326,9 +328,29 @@ export const CardButtons = (props) => {
         // Use Beacon API to send update :: on page unload
         setBeaconSent(false);
 
-        window.addEventListener('unload', sendBeacon(), {capture: true});
-        window.addEventListener('beforeunload', sendBeacon(), {capture: true});
-        window.addEventListener('pagehide', sendBeacon(), {capture: true});
+        window.addEventListener(
+            'unload',
+            function () {
+                sendBeacon();
+            },
+            {capture: true},
+        );
+
+        window.addEventListener(
+            'beforeunload',
+            function () {
+                sendBeacon();
+            },
+            {capture: true},
+        );
+
+        window.addEventListener(
+            'pagehide',
+            function () {
+                sendBeacon();
+            },
+            {capture: true},
+        );
     };
 
     const sendBeacon = () => {
@@ -356,7 +378,7 @@ export const CardButtons = (props) => {
             {hubStatus == 'reviewed' ? (
                 <>
                     <p className="su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15">Reviewed</p>
-                    {window?.data?.user?.userType === 'UCOMM' && props.page == 'story' ? (
+                    {window?.data?.user?.userType === 'UCOMM' && props.type == 'story' ? (
                         <button
                             data-id={`dialogTitle-${props.assetId}-approve`}
                             className="js-action--send-to-sr button-green c-button-send"
@@ -373,7 +395,7 @@ export const CardButtons = (props) => {
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>
             ) : hubStatus == 'published' ? (
                 <p className="su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15">Published on Stanford Report</p>
-            ) : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.page !== 'story' && window?.data?.user?.userType === 'UCOMM' ? (
+            ) : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && window?.data?.user?.userType === 'UCOMM' ? (
                 <p className="su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15">
                     {props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription}
                 </p>
@@ -494,6 +516,7 @@ CardButtons.propTypes = {
         hubReviewMsg: PropTypes.array,
     }),
     assetId: PropTypes.string,
+    type: PropTypes.string,
     page: PropTypes.string,
     hubStatusDesc: PropTypes.string,
     hubStatus: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),

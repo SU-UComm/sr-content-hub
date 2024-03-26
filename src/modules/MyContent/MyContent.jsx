@@ -26,7 +26,7 @@ export const MyContent = () => {
 
     const fetchData = async (func, url) => {
         setIsLoading(true);
-        // replace with getSearchData from requests.js with blank query once CORS is resolved
+        // backup for local environment
         if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);

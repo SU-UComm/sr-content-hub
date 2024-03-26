@@ -22,6 +22,7 @@ export const ContentRegion = () => {
 
     const fetchData = async (url, func) => {
         setIsLoading(true);
+        // backup for local environment
         if (func == 'fb') {
             try {
                 const d = await fetchFBData(url);

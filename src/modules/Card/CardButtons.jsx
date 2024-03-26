@@ -311,7 +311,7 @@ export const CardButtons = (props) => {
         // if (latestNewsEl !== null) {
         if (props.page == 'newContent') {
             console.log('card btn- fetch Data');
-            props.fetchData();
+            props.fetchData(window?.data?.contentHubAPI?.search.newContent);
         }
         // }
     };

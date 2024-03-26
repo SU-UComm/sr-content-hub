@@ -12627,7 +12627,8 @@ var CardButtons = function CardButtons(props) {
     // if (latestNewsEl !== null) {
 
     if (props.page == 'newContent') {
-      window.location.reload();
+      console.log('card btn- fetch Data');
+      props.fetchData();
     } // }
 
   };
@@ -12853,7 +12854,8 @@ CardButtons.propTypes = {
   type: (prop_types_default()).string,
   page: (prop_types_default()).string,
   hubStatusDesc: (prop_types_default()).string,
-  hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array])
+  hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array]),
+  fetchData: (prop_types_default()).func
 };
 ;// CONCATENATED MODULE: ./src/modules/Story/FullStory.jsx
 function FullStory_typeof(obj) { "@babel/helpers - typeof"; return FullStory_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, FullStory_typeof(obj); }

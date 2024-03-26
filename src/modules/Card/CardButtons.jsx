@@ -310,7 +310,8 @@ export const CardButtons = (props) => {
         // // IF it is then we need to trigger loading one additional result instead of current item
         // if (latestNewsEl !== null) {
         if (props.page == 'newContent') {
-            window.location.reload();
+            console.log('card btn- fetch Data');
+            props.fetchData();
         }
         // }
     };
@@ -520,4 +521,5 @@ CardButtons.propTypes = {
     page: PropTypes.string,
     hubStatusDesc: PropTypes.string,
     hubStatus: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    fetchData: PropTypes.func,
 };

@@ -10310,7 +10310,8 @@ var CardButtons = function CardButtons(props) {
     // if (latestNewsEl !== null) {
 
     if (props.page == 'newContent') {
-      window.location.reload();
+      console.log('card btn- fetch Data');
+      props.fetchData();
     } // }
 
   };
@@ -10536,7 +10537,8 @@ CardButtons.propTypes = {
   type: (prop_types_default()).string,
   page: (prop_types_default()).string,
   hubStatusDesc: (prop_types_default()).string,
-  hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array])
+  hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array]),
+  fetchData: (prop_types_default()).func
 };
 ;// CONCATENATED MODULE: ./src/modules/Helpers/dateHelpers.js
 

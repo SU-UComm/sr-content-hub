@@ -13934,6 +13934,7 @@ var StoryView = function StoryView() {
   }, /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: data.metadata,
     assetId: data.id,
+    hubStatus: data.metadata.hubStatus,
     type: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"

@@ -350,7 +350,7 @@ export const StoryView = () => {
                     <h2 className="su-font-serif su-mb-0">{window?.data?.user?.userType == 'UCOMM' ? 'Review Story' : 'View Story'}</h2>
 
                     <div className="su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]">
-                        <CardButtons listMetadata={data.metadata} assetId={data.id} type="story" />
+                        <CardButtons listMetadata={data.metadata} assetId={data.id} hubStatus={data.metadata.hubStatus} type="story" />
                     </div>
                 </div>
             </section>

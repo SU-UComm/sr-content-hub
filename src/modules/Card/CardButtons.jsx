@@ -69,8 +69,8 @@ export const CardButtons = (props) => {
     const [beaconSent, setBeaconSent] = useState(false);
     const [textArea, setTextAreaValue] = useState('');
     const [userMatch, setUserMatch] = useState(false);
-    const [hubStatus, setHubStatus] = useState(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus);
-    const [hubStatusDesc, setHubStatusDesc] = useState(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription);
+    const [hubStatus, setHubStatus] = useState('');
+    const [hubStatusDesc, setHubStatusDesc] = useState('');
     let jsApi = window?.jsApi ? window.jsApi : mockData;
 
     const onTextAreaValueChange = (val) => {
@@ -100,7 +100,9 @@ export const CardButtons = (props) => {
         if (userDetails === pageUserDetails) {
             setUserMatch(true);
         }
-        console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
+        setHubStatus(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus);
+        setHubStatusDesc(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription);
+        console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
     }, []);
 
     const openSendDialog = (id) => {

@@ -9434,12 +9434,12 @@ var CardButtons = function CardButtons(props) {
       userMatch = _useState10[0],
       setUserMatch = _useState10[1];
 
-  var _useState11 = (0,react.useState)(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus),
+  var _useState11 = (0,react.useState)(''),
       _useState12 = CardButtons_slicedToArray(_useState11, 2),
       hubStatus = _useState12[0],
       setHubStatus = _useState12[1];
 
-  var _useState13 = (0,react.useState)(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription),
+  var _useState13 = (0,react.useState)(''),
       _useState14 = CardButtons_slicedToArray(_useState13, 2),
       hubStatusDesc = _useState14[0],
       setHubStatusDesc = _useState14[1];
@@ -9477,7 +9477,9 @@ var CardButtons = function CardButtons(props) {
       setUserMatch(true);
     }
 
-    console.log('Card status: ', props.hubStatusDesc, props.hubStatus);
+    setHubStatus(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription);
+    console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, []);
 
   var openSendDialog = function openSendDialog(id) {
@@ -10337,7 +10339,6 @@ var Card = function Card(props) {
           var item = _step.value;
 
           if (item.id == props.data.listMetadata.assetId) {
-            console.log('item.id == props.data.listMetadata.assetId', item.id == props.data.listMetadata.assetId);
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
             setHubReviewMsg(item.hubReviewMsg);

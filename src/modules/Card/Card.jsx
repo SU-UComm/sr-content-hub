@@ -17,7 +17,6 @@ export const Card = (props) => {
         if (props.statuses) {
             for (let item of props.statuses) {
                 if (item.id == props.data.listMetadata.assetId) {
-                    console.log('item.id == props.data.listMetadata.assetId', item.id == props.data.listMetadata.assetId);
                     setHubStatus(item.hubStatus);
                     setHubStatusDesc(item.hubStatusDesc);
                     setHubReviewMsg(item.hubReviewMsg);

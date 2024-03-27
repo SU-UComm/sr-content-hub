@@ -100,8 +100,8 @@ export const CardButtons = (props) => {
         if (userDetails === pageUserDetails) {
             setUserMatch(true);
         }
-        setHubStatus(props.hubStatus ? props.hubStatus : props.listMetadata.hubStatus);
-        setHubStatusDesc(props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription);
+        setHubStatus(props.hubStatus);
+        setHubStatusDesc(props.hubStatusDesc);
         console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
     }, []);
 
@@ -311,10 +311,10 @@ export const CardButtons = (props) => {
         // const latestNewsEl = document.querySelector('#latest-content');
         // // IF it is then we need to trigger loading one additional result instead of current item
         // if (latestNewsEl !== null) {
-        if (props.page == 'newContent') {
-            console.log('card btn- fetch Data');
-            props.fetchData(window?.data?.contentHubAPI?.search.newContent);
-        }
+        // if (props.page == 'newContent') {
+        //     console.log('card btn- fetch Data');
+        //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
+        // }
         // }
     };
     const sendAsStory = (storyObj) => {

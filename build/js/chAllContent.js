@@ -10631,6 +10631,7 @@ var Card = function Card(props) {
           var item = _step.value;
 
           if (item.id == props.data.listMetadata.assetId) {
+            console.log('item.id == props.data.listMetadata.assetId', item.id == props.data.listMetadata.assetId);
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
             setHubReviewMsg(item.hubReviewMsg);
@@ -16218,7 +16219,7 @@ var AllContent = function AllContent() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true);
+              setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
                 _context.next = 31;

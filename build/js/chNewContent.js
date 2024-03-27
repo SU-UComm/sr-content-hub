@@ -10337,6 +10337,7 @@ var Card = function Card(props) {
           var item = _step.value;
 
           if (item.id == props.data.listMetadata.assetId) {
+            console.log('item.id == props.data.listMetadata.assetId', item.id == props.data.listMetadata.assetId);
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
             setHubReviewMsg(item.hubReviewMsg);
@@ -15963,7 +15964,7 @@ var NewContent = function NewContent() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true);
+              setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
                 _context.next = 30;
@@ -16514,7 +16515,7 @@ var MyContent = function MyContent() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
+              setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
                 _context.next = 31;

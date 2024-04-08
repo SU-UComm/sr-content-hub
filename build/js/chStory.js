@@ -12167,6 +12167,7 @@ var releaseAsTeaser = {
         }
       },
       dataCallback: function dataCallback(resp) {
+        console.log('resp: ', resp);
         releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
       }
     });
@@ -12267,6 +12268,7 @@ var releaseAsTeaser = {
     }); // Add Blueprint ID :: As Story ID
 
     fieldsArr[bluePrintIdField] = storyId;
+    console.log('fieldsOutput: ', fieldsOutput);
     return fieldsOutput;
   }
 };

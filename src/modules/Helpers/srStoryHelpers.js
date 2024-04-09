@@ -138,16 +138,20 @@ export const releaseAsTeaser = {
                     // Get Asset Id of the Teaser
                     const teaserId = resp.id;
                     // Move to set the metadata for the asset
-                    releaseAsTeaser.setMeta(teaserId, metaDetails);
+                    releaseAsTeaser.setMeta(teaserId, metaDetails, storyId);
                 } else {
                     releaseAsTeaser.err('Teaser asset could not be created.');
                 }
             },
         });
     },
-    setMeta: (teaserId, metaDetails) => {
+    setMeta: (teaserId, metaDetails, storyId) => {
+        const debugTeaserId = '134758';
+
         // Set metadata fields for the teaser
         const jsApi = window?.jsApi || '';
+        metaDetails[debugTeaserId] = teaserId;
+        // setting metadata fields for teaser
         jsApi.setMetadataAllFields({
             asset_id: teaserId,
             field_info: metaDetails,
@@ -156,6 +160,20 @@ export const releaseAsTeaser = {
                     releaseAsTeaser.err(`Setting up metadata for Teaser: ${teaserId} could not be set successfully.`);
                 } else {
                     releaseAsTeaser.endWithSuccess(teaserId, r);
+                }
+            },
+        });
+
+        // set story metadata to have teaserID
+        jsApi.setMetadata({
+            asset_id: storyId,
+            field_id: debugTeaserId,
+            field_val: teaserId,
+            dataCallback: function (r) {
+                if (typeof r.success === 'undefined') {
+                    releaseAsTeaser.err(`Setting metadata of Story with teaserID: could not be set successfully.`);
+                } else {
+                    console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
                 }
             },
         });
@@ -175,6 +193,7 @@ export const releaseAsTeaser = {
         // Map for field IDs :: List of all the fields that needs to be setup for Teaser
         // "storySource" : "127718" :: Not in use at the moment
         const bluePrintIdField = '30853';
+        const debugTeaserId = '134758';
         const fieldsArr = [
             {name: 'canonicalUrl', id: '5989'},
             {name: 'publishedDate', id: '4538'},
@@ -183,6 +202,7 @@ export const releaseAsTeaser = {
             {name: 'featuredImage', id: '5043'},
             {name: 'teaser', id: '5047'},
             {name: 'debugBlueprintId', id: bluePrintIdField},
+            {name: 'debugTeaserId', id: debugTeaserId},
         ];
         const fieldsOutput = {};
         // Loop through all the fields and get metadata values for them

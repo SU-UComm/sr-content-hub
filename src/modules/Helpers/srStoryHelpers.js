@@ -182,6 +182,7 @@ export const releaseAsTeaser = {
             {name: 'srFeaturedUnit', id: '60079'},
             {name: 'featuredImage', id: '5043'},
             {name: 'teaser', id: '5047'},
+            {name: 'debugBlueprintId', id: bluePrintIdField},
         ];
         const fieldsOutput = {};
         // Loop through all the fields and get metadata values for them

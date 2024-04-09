@@ -9300,6 +9300,9 @@ var releaseAsTeaser = {
     }, {
       name: 'teaser',
       id: '5047'
+    }, {
+      name: 'debugBlueprintId',
+      id: bluePrintIdField
     }];
     var fieldsOutput = {}; // Loop through all the fields and get metadata values for them
 

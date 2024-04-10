@@ -12294,8 +12294,8 @@ var releaseAsTeaser = {
       fieldsOutput[thisFieldId] = thisFieldValue;
     }); // Add Blueprint ID :: As Story ID
 
-    fieldsArr[bluePrintIdField] = storyId;
-    fieldsArr[hubStatus] = 'sent-to-sr';
+    fieldsOutput[bluePrintIdField] = storyId;
+    fieldsOutput[hubStatus] = 'sent-to-sr';
     console.log('fieldsOutput: ', fieldsOutput);
     return fieldsOutput;
   }

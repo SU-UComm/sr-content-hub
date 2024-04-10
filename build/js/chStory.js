@@ -12257,6 +12257,7 @@ var releaseAsTeaser = {
     // "storySource" : "127718" :: Not in use at the moment
     var bluePrintIdField = '30853';
     var debugTeaserId = '134758';
+    var hubStatus = '31822';
     var fieldsArr = [{
       name: 'canonicalUrl',
       id: '5989'
@@ -12281,6 +12282,9 @@ var releaseAsTeaser = {
     }, {
       name: 'debugTeaserId',
       id: debugTeaserId
+    }, {
+      name: 'hubStatus',
+      id: hubStatus
     }];
     var fieldsOutput = {}; // Loop through all the fields and get metadata values for them
 
@@ -12291,6 +12295,7 @@ var releaseAsTeaser = {
     }); // Add Blueprint ID :: As Story ID
 
     fieldsArr[bluePrintIdField] = storyId;
+    fieldsArr[hubStatus] = 'sent-to-sr';
     console.log('fieldsOutput: ', fieldsOutput);
     return fieldsOutput;
   }

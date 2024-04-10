@@ -194,6 +194,7 @@ export const releaseAsTeaser = {
         // "storySource" : "127718" :: Not in use at the moment
         const bluePrintIdField = '30853';
         const debugTeaserId = '134758';
+        const hubStatus = '31822';
         const fieldsArr = [
             {name: 'canonicalUrl', id: '5989'},
             {name: 'publishedDate', id: '4538'},
@@ -203,6 +204,7 @@ export const releaseAsTeaser = {
             {name: 'teaser', id: '5047'},
             {name: 'debugBlueprintId', id: bluePrintIdField},
             {name: 'debugTeaserId', id: debugTeaserId},
+            {name: 'hubStatus', id: hubStatus},
         ];
         const fieldsOutput = {};
         // Loop through all the fields and get metadata values for them
@@ -213,6 +215,7 @@ export const releaseAsTeaser = {
         });
         // Add Blueprint ID :: As Story ID
         fieldsArr[bluePrintIdField] = storyId;
+        fieldsArr[hubStatus] = 'sent-to-sr';
         console.log('fieldsOutput: ', fieldsOutput);
         return fieldsOutput;
     },

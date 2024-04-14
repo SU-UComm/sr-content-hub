@@ -242,7 +242,7 @@ export const StoryView = () => {
             let terms = taxonomyTerms.map((item) => item.name.charAt(0).toUpperCase() + item.name.slice(1));
             setTaxonomy(terms);
             // if user is ucomm & status is submitted, send in review status
-            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType == 'UCOMM') {
+            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType === 'UCOMM') {
                 sendInReview(id);
             }
         } catch (error) {
@@ -284,7 +284,7 @@ export const StoryView = () => {
             dataCallback: (resp) => {
                 if (typeof resp === 'object') {
                     resp = JSON.stringify(resp);
-                    console.log('RESP sendBeacon1: ', resp);
+                    console.log('RESP send review msg: ', resp);
                 }
                 clearReviewState(id);
             },

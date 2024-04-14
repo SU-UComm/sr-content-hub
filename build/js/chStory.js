@@ -13826,7 +13826,7 @@ var StoryView = function StoryView() {
               });
               setTaxonomy(terms); // if user is ucomm & status is submitted, send in review status
 
-              if (data.metadata.hubStatus[0] === 'submitted' && ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM') {
+              if (data.metadata.hubStatus[0] === 'submitted' && ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM') {
                 sendInReview(id);
               }
 
@@ -13889,7 +13889,7 @@ var StoryView = function StoryView() {
       dataCallback: function dataCallback(resp) {
         if (StoryView_typeof(resp) === 'object') {
           resp = JSON.stringify(resp);
-          console.log('RESP sendBeacon1: ', resp);
+          console.log('RESP send review msg: ', resp);
         }
 
         clearReviewState(id);

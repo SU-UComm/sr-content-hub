@@ -13725,7 +13725,7 @@ var StoryView_mockData = {
   }
 };
 var StoryView = function StoryView() {
-  var _window, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window5, _window5$data, _window6, _window6$data;
+  var _window, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window6, _window6$data, _window7, _window7$data;
 
   var _useState = (0,react.useState)(StoryView_dataObj),
       _useState2 = StoryView_slicedToArray(_useState, 2),
@@ -13780,11 +13780,9 @@ var StoryView = function StoryView() {
 
     if (id) {
       fetchData(id);
-      console.log('fetch');
-
-      if (userType === 'UCOMM') {
-        sendInReview(id);
-      }
+      console.log('fetch'); // if (userType === 'UCOMM') {
+      //     sendInReview(id);
+      // }
     } else {
       fetchData('33190');
       console.log('default load');
@@ -13798,7 +13796,7 @@ var StoryView = function StoryView() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
-      var d, _summary2, assetIDs, taxonomyTerms, terms;
+      var _window3, _window3$data, _window3$data$user, d, _summary2, assetIDs, taxonomyTerms, terms;
 
       return StoryView_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -13826,26 +13824,31 @@ var StoryView = function StoryView() {
               terms = taxonomyTerms.map(function (item) {
                 return item.name.charAt(0).toUpperCase() + item.name.slice(1);
               });
-              setTaxonomy(terms);
-              _context.next = 21;
+              setTaxonomy(terms); // if user is ucomm & status is submitted, send in review status
+
+              if (data.metadata.hubStatus[0] === 'submitted' && ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM') {
+                sendInReview(id);
+              }
+
+              _context.next = 22;
               break;
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 21:
-              _context.prev = 21;
+            case 22:
+              _context.prev = 22;
               setIsLoading(false);
-              return _context.finish(21);
+              return _context.finish(22);
 
-            case 24:
+            case 25:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 18, 21, 24]]);
+      }, _callee, null, [[1, 19, 22, 25]]);
     }));
 
     return function fetchData(_x) {
@@ -13959,7 +13962,7 @@ var StoryView = function StoryView() {
     className: "su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-font-serif su-mb-0"
-  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
+  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
   }, /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: data.metadata,
@@ -13968,7 +13971,7 @@ var StoryView = function StoryView() {
     type: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
-  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
+  }, ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.contentPartner) || ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : _window7$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", data.metadata.hubReviewMsg) : null : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"

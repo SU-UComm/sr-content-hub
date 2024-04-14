@@ -215,9 +215,9 @@ export const StoryView = () => {
         if (id) {
             fetchData(id);
             console.log('fetch');
-            if (userType === 'UCOMM') {
-                sendInReview(id);
-            }
+            // if (userType === 'UCOMM') {
+            //     sendInReview(id);
+            // }
         } else {
             fetchData('33190');
             console.log('default load');
@@ -241,6 +241,10 @@ export const StoryView = () => {
             const taxonomyTerms = await getTaxonomyTerms(assetIDs);
             let terms = taxonomyTerms.map((item) => item.name.charAt(0).toUpperCase() + item.name.slice(1));
             setTaxonomy(terms);
+            // if user is ucomm & status is submitted, send in review status
+            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType == 'UCOMM') {
+                sendInReview(id);
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {

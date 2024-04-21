@@ -9192,41 +9192,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // const mockData = {
+//     name: 'Mockup name',
+//     short_name: 'Mockup name',
+//     asset_id: 'inputQuery.id',
+//     id: 'inputQuery.id',
+//     type_code: 'folder',
+//     type: 'Folder',
+//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+//     web_path: 'https://mockup.url/mockup_name',
+//     urls: ['https://mockup.url/mockup_name'],
+//     status: 'Under Construction',
+//     statusId: '2',
+//     created: 1637857729,
+//     created_userid: '65',
+//     created_username: 'John Doe (Squiz)',
+//     updated: 1637857730,
+//     updated_userid: '65',
+//     updated_username: 'John Doe (Squiz)',
+//     published: 'Never Published',
+//     published_userid: 'Never Published',
+//     published_username: 'Never Published',
+//     status_changed: 1637857729,
+//     status_changed_userid: '65',
+//     status_changed_username: 'John Doe (Squiz)',
+//     maximum_perm_on_asset: 'Admin Access',
+//     can_live_edit: true,
+//     effective_write: true,
+//     attribute_contextualised: true,
+//     metadata_contextualised: true,
+//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
+// };
 
-var mockData = {
-  name: 'Mockup name',
-  short_name: 'Mockup name',
-  asset_id: 'inputQuery.id',
-  id: 'inputQuery.id',
-  type_code: 'folder',
-  type: 'Folder',
-  icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-  web_path: 'https://mockup.url/mockup_name',
-  urls: ['https://mockup.url/mockup_name'],
-  status: 'Under Construction',
-  statusId: '2',
-  created: 1637857729,
-  created_userid: '65',
-  created_username: 'John Doe (Squiz)',
-  updated: 1637857730,
-  updated_userid: '65',
-  updated_username: 'John Doe (Squiz)',
-  published: 'Never Published',
-  published_userid: 'Never Published',
-  published_username: 'Never Published',
-  status_changed: 1637857729,
-  status_changed_userid: '65',
-  status_changed_username: 'John Doe (Squiz)',
-  maximum_perm_on_asset: 'Admin Access',
-  can_live_edit: true,
-  effective_write: true,
-  attribute_contextualised: true,
-  metadata_contextualised: true,
-  contextualable_screens: {
-    details: 'attribute',
-    metadata: 'metadata'
-  }
-};
 var chCfg = {
   metaFields: {
     hubStatusDescription: 31823,
@@ -9253,7 +9250,7 @@ var chCfg = {
   }
 };
 var CardButtons = function CardButtons(props) {
-  var _window, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
+  var _window$jsApi, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -9291,9 +9288,10 @@ var CardButtons = function CardButtons(props) {
   var _useState13 = (0,react.useState)(''),
       _useState14 = _slicedToArray(_useState13, 2),
       hubStatusDesc = _useState14[0],
-      setHubStatusDesc = _useState14[1];
+      setHubStatusDesc = _useState14[1]; //let jsApi = window?.jsApi ? window.jsApi : mockData;
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
+
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var onTextAreaValueChange = function onTextAreaValueChange(val) {
     setTextAreaValue(val);
@@ -9316,9 +9314,9 @@ var CardButtons = function CardButtons(props) {
   };
 
   (0,react.useEffect)(function () {
-    var _window2, _window2$data, _window3, _window3$data;
+    var _window, _window$data, _window2, _window2$data;
 
-    var userDetails = ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.firstName) + ' ' + window.data + ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.lastName);
+    var userDetails = ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.firstName) + ' ' + window.data + ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.lastName);
     var userEl = document.querySelector('#user-status');
     var pageUserDetails = userEl.getAttribute('data-fullname');
 
@@ -9327,9 +9325,8 @@ var CardButtons = function CardButtons(props) {
     }
 
     setHubStatus(props.hubStatus);
-    setHubStatusDesc(props.hubStatusDesc);
-    console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
-  }, []);
+    setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+  }, [hubStatus]);
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -9583,7 +9580,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
+  }, "Reviewed"), ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -9593,9 +9590,9 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
+  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -10190,6 +10187,7 @@ var Card = function Card(props) {
           var item = _step.value;
 
           if (item.id == props.data.listMetadata.assetId) {
+            //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
             setHubReviewMsg(item.hubReviewMsg);
@@ -15561,7 +15559,7 @@ var ContentRegion = function ContentRegion() {
               setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
-                _context.next = 28;
+                _context.next = 26;
                 break;
               }
 
@@ -15579,44 +15577,44 @@ var ContentRegion = function ContentRegion() {
               setFacets(d.response.facets); // setData(d);
 
               setResults(d.response.resultPacket.results);
-              setResultsSummary(d.response.resultPacket.resultsSummary);
-              console.log('REQUEST FUNCTION data in home: ', d);
+              setResultsSummary(d.response.resultPacket.resultsSummary); //console.log('REQUEST FUNCTION data in home: ', d);
+
               sourceIdsArray = [];
               d.response.resultPacket.results.forEach(function (item) {
                 if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 15;
+              _context.next = 14;
               return getHubStatus(sourceIdsArray.join(','));
 
-            case 15:
+            case 14:
               statuses = _context.sent;
-              console.log('Statuses:', statuses);
+              //console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 23;
+              _context.next = 21;
               break;
 
-            case 20:
-              _context.prev = 20;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 23:
-              _context.prev = 23;
+            case 21:
+              _context.prev = 21;
               setIsLoading(false);
-              return _context.finish(23);
+              return _context.finish(21);
 
-            case 26:
-              _context.next = 52;
+            case 24:
+              _context.next = 49;
               break;
 
-            case 28:
-              _context.prev = 28;
-              _context.next = 31;
+            case 26:
+              _context.prev = 26;
+              _context.next = 29;
               return getSearchData(url);
 
-            case 31:
+            case 29:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -15628,8 +15626,8 @@ var ContentRegion = function ContentRegion() {
               setFacets(_d2.response.facets); // setData(d);
 
               setResults(_d2.response.resultPacket.results);
-              setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              console.log('REQUEST FUNCTION data in home matrix: ', _d2);
+              setResultsSummary(_d2.response.resultPacket.resultsSummary); //console.log('REQUEST FUNCTION data in home matrix: ', d);
+
               _sourceIdsArray = [];
 
               _d2.response.resultPacket.results.forEach(function (item) {
@@ -15638,32 +15636,32 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 41;
+              _context.next = 38;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 41:
+            case 38:
               _statuses = _context.sent;
-              console.log('Statuses:', _statuses);
+              console.log('Statuses2:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 49;
+              _context.next = 46;
               break;
+
+            case 43:
+              _context.prev = 43;
+              _context.t1 = _context["catch"](26);
+              console.error('Error fetching data:', _context.t1);
 
             case 46:
               _context.prev = 46;
-              _context.t1 = _context["catch"](28);
-              console.error('Error fetching data:', _context.t1);
+              setIsLoading(false);
+              return _context.finish(46);
 
             case 49:
-              _context.prev = 49;
-              setIsLoading(false);
-              return _context.finish(49);
-
-            case 52:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 20, 23, 26], [28, 46, 49, 52]]);
+      }, _callee, null, [[2, 18, 21, 24], [26, 43, 46, 49]]);
     }));
 
     return function fetchData(_x, _x2) {

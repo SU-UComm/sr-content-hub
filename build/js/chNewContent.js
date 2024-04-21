@@ -9373,41 +9373,38 @@ function CardButtons_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // const mockData = {
+//     name: 'Mockup name',
+//     short_name: 'Mockup name',
+//     asset_id: 'inputQuery.id',
+//     id: 'inputQuery.id',
+//     type_code: 'folder',
+//     type: 'Folder',
+//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+//     web_path: 'https://mockup.url/mockup_name',
+//     urls: ['https://mockup.url/mockup_name'],
+//     status: 'Under Construction',
+//     statusId: '2',
+//     created: 1637857729,
+//     created_userid: '65',
+//     created_username: 'John Doe (Squiz)',
+//     updated: 1637857730,
+//     updated_userid: '65',
+//     updated_username: 'John Doe (Squiz)',
+//     published: 'Never Published',
+//     published_userid: 'Never Published',
+//     published_username: 'Never Published',
+//     status_changed: 1637857729,
+//     status_changed_userid: '65',
+//     status_changed_username: 'John Doe (Squiz)',
+//     maximum_perm_on_asset: 'Admin Access',
+//     can_live_edit: true,
+//     effective_write: true,
+//     attribute_contextualised: true,
+//     metadata_contextualised: true,
+//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
+// };
 
-var mockData = {
-  name: 'Mockup name',
-  short_name: 'Mockup name',
-  asset_id: 'inputQuery.id',
-  id: 'inputQuery.id',
-  type_code: 'folder',
-  type: 'Folder',
-  icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-  web_path: 'https://mockup.url/mockup_name',
-  urls: ['https://mockup.url/mockup_name'],
-  status: 'Under Construction',
-  statusId: '2',
-  created: 1637857729,
-  created_userid: '65',
-  created_username: 'John Doe (Squiz)',
-  updated: 1637857730,
-  updated_userid: '65',
-  updated_username: 'John Doe (Squiz)',
-  published: 'Never Published',
-  published_userid: 'Never Published',
-  published_username: 'Never Published',
-  status_changed: 1637857729,
-  status_changed_userid: '65',
-  status_changed_username: 'John Doe (Squiz)',
-  maximum_perm_on_asset: 'Admin Access',
-  can_live_edit: true,
-  effective_write: true,
-  attribute_contextualised: true,
-  metadata_contextualised: true,
-  contextualable_screens: {
-    details: 'attribute',
-    metadata: 'metadata'
-  }
-};
 var chCfg = {
   metaFields: {
     hubStatusDescription: 31823,
@@ -9434,7 +9431,7 @@ var chCfg = {
   }
 };
 var CardButtons = function CardButtons(props) {
-  var _window, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
+  var _window$jsApi, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = CardButtons_slicedToArray(_useState, 2),
@@ -9472,9 +9469,10 @@ var CardButtons = function CardButtons(props) {
   var _useState13 = (0,react.useState)(''),
       _useState14 = CardButtons_slicedToArray(_useState13, 2),
       hubStatusDesc = _useState14[0],
-      setHubStatusDesc = _useState14[1];
+      setHubStatusDesc = _useState14[1]; //let jsApi = window?.jsApi ? window.jsApi : mockData;
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
+
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var onTextAreaValueChange = function onTextAreaValueChange(val) {
     setTextAreaValue(val);
@@ -9497,9 +9495,9 @@ var CardButtons = function CardButtons(props) {
   };
 
   (0,react.useEffect)(function () {
-    var _window2, _window2$data, _window3, _window3$data;
+    var _window, _window$data, _window2, _window2$data;
 
-    var userDetails = ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.firstName) + ' ' + window.data + ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.lastName);
+    var userDetails = ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.firstName) + ' ' + window.data + ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.lastName);
     var userEl = document.querySelector('#user-status');
     var pageUserDetails = userEl.getAttribute('data-fullname');
 
@@ -9508,9 +9506,8 @@ var CardButtons = function CardButtons(props) {
     }
 
     setHubStatus(props.hubStatus);
-    setHubStatusDesc(props.hubStatusDesc);
-    console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
-  }, []);
+    setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+  }, [hubStatus]);
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -9764,7 +9761,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
+  }, "Reviewed"), ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -9774,9 +9771,9 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
+  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -10369,6 +10366,7 @@ var Card = function Card(props) {
           var item = _step.value;
 
           if (item.id == props.data.listMetadata.assetId) {
+            //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
             setHubReviewMsg(item.hubReviewMsg);

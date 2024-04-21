@@ -12424,10 +12424,15 @@ var CardButtons = function CardButtons(props) {
       hubStatus = _useState12[0],
       setHubStatus = _useState12[1];
 
-  var _useState13 = (0,react.useState)(''),
+  var _useState13 = (0,react.useState)(null),
       _useState14 = _slicedToArray(_useState13, 2),
-      hubStatusDesc = _useState14[0],
-      setHubStatusDesc = _useState14[1]; //let jsApi = window?.jsApi ? window.jsApi : mockData;
+      fixedHubStatus = _useState14[0],
+      setFixedHubStatus = _useState14[1];
+
+  var _useState15 = (0,react.useState)(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      hubStatusDesc = _useState16[0],
+      setHubStatusDesc = _useState16[1]; //let jsApi = window?.jsApi ? window.jsApi : mockData;
 
 
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
@@ -12450,7 +12455,8 @@ var CardButtons = function CardButtons(props) {
     }
 
     return data;
-  };
+  }; // Update status when hubStatus change
+
 
   (0,react.useEffect)(function () {
     var _window, _window$data, _window2, _window2$data;
@@ -12463,9 +12469,15 @@ var CardButtons = function CardButtons(props) {
       setUserMatch(true);
     }
 
-    setHubStatus(props.hubStatus);
+    !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
+
     setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
-  }, [hubStatus]);
+  }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
+  // This will get updated by real status on page refresh
+
+  (0,react.useEffect)(function () {
+    setHubStatus(fixedHubStatus);
+  }, [fixedHubStatus]);
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -12572,6 +12584,7 @@ var CardButtons = function CardButtons(props) {
 
     setHubStatusDesc(historyMessage);
     setHubStatus('reviewed');
+    setFixedHubStatus('reviewed');
     var newEntry = {
       date: thisDate,
       message: historyMessage
@@ -12650,6 +12663,7 @@ var CardButtons = function CardButtons(props) {
     props.listMetadata.hubStatusDescription = historyMessage;
     setHubStatusDesc(historyMessage);
     setHubStatus('sent-to-sr');
+    setFixedHubStatus('sent-to-sr');
     clearReviewState(); // // Check if this is Home Page or New Content
     // const latestNewsEl = document.querySelector('#latest-content');
     // // IF it is then we need to trigger loading one additional result instead of current item

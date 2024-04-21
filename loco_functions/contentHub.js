@@ -1,9 +1,11 @@
+const statuses = ['submitted', 'reviewed', 'sent-to-sr', 'published'];
+
 const hubStatus = (ids) => {
     return ids.split(',').map((id, i) => {
         return {
             id: id,
             name: `Mockup name #${i}`,
-            hubStatus: 'submitted',
+            hubStatus: statuses[Math.floor(Math.random() * statuses.length)], // get random status
             hubStatusDesc: '',
             hubReviewMsg: '',
         };

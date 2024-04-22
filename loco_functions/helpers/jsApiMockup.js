@@ -33,6 +33,8 @@ const pickRequestType = (inputQuery) => {
             return batchRequest(inputQuery);
         case 'createAsset':
             return createAsset(inputQuery);
+        case 'createLink':
+            return createLink(inputQuery);
         default:
             throw new Error(`Unhandled type: ${inputQuery.type}`);
     }
@@ -335,6 +337,14 @@ const createAsset = (inputQuery) => {
         return mockedErrorResponse;
     } else {
         return {name: 'Getting to the Heart of Criminal Defense', id: '131055', link_id: 159435};
+    }
+};
+
+const createLink = (inputQuery) => {
+    if (inputQuery.id === mockErrorId) {
+        return mockedErrorResponse;
+    } else {
+        return {link_id: '180382'};
     }
 };
 

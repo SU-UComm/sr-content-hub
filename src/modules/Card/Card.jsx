@@ -17,6 +17,7 @@ export const Card = (props) => {
         if (props.statuses) {
             for (let item of props.statuses) {
                 if (item.id == props.data.listMetadata.assetId) {
+                    //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
                     setHubStatus(item.hubStatus);
                     setHubStatusDesc(item.hubStatusDesc);
                     setHubReviewMsg(item.hubReviewMsg);
@@ -54,12 +55,10 @@ export const Card = (props) => {
                             {props.data.title}
                         </a>
                     </h3>
-
                     <p className="su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]">{desc}</p>
                     <p className="su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto">
                         Submitted on {reformatDate(props.data.listMetadata.mtxCreated)} | First published on {reformatDate(props.data.listMetadata.srcPublishedDate)}
                     </p>
-
                     {props.page === 'allContent' && window?.data?.user.userType === 'CP' ? null : (
                         <CardButtons
                             listMetadata={props.data.listMetadata}

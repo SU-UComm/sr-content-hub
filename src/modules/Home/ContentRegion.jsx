@@ -35,7 +35,7 @@ export const ContentRegion = () => {
                 // setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                console.log('REQUEST FUNCTION data in home: ', d);
+                //console.log('REQUEST FUNCTION data in home: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -44,7 +44,7 @@ export const ContentRegion = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                //console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -63,7 +63,7 @@ export const ContentRegion = () => {
                 // setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                console.log('REQUEST FUNCTION data in home matrix: ', d);
+                //console.log('REQUEST FUNCTION data in home matrix: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -72,7 +72,7 @@ export const ContentRegion = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                console.log('Statuses2:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);

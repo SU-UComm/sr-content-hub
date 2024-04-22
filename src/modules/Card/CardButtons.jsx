@@ -3,37 +3,37 @@ import PropTypes from 'prop-types';
 import {releaseAsStory, releaseAsTeaser} from '../Helpers/srStoryHelpers';
 import {contentHubAPI} from '../Helpers/requests';
 
-const mockData = {
-    name: 'Mockup name',
-    short_name: 'Mockup name',
-    asset_id: 'inputQuery.id',
-    id: 'inputQuery.id',
-    type_code: 'folder',
-    type: 'Folder',
-    icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-    web_path: 'https://mockup.url/mockup_name',
-    urls: ['https://mockup.url/mockup_name'],
-    status: 'Under Construction',
-    statusId: '2',
-    created: 1637857729,
-    created_userid: '65',
-    created_username: 'John Doe (Squiz)',
-    updated: 1637857730,
-    updated_userid: '65',
-    updated_username: 'John Doe (Squiz)',
-    published: 'Never Published',
-    published_userid: 'Never Published',
-    published_username: 'Never Published',
-    status_changed: 1637857729,
-    status_changed_userid: '65',
-    status_changed_username: 'John Doe (Squiz)',
-    maximum_perm_on_asset: 'Admin Access',
-    can_live_edit: true,
-    effective_write: true,
-    attribute_contextualised: true,
-    metadata_contextualised: true,
-    contextualable_screens: {details: 'attribute', metadata: 'metadata'},
-};
+// const mockData = {
+//     name: 'Mockup name',
+//     short_name: 'Mockup name',
+//     asset_id: 'inputQuery.id',
+//     id: 'inputQuery.id',
+//     type_code: 'folder',
+//     type: 'Folder',
+//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+//     web_path: 'https://mockup.url/mockup_name',
+//     urls: ['https://mockup.url/mockup_name'],
+//     status: 'Under Construction',
+//     statusId: '2',
+//     created: 1637857729,
+//     created_userid: '65',
+//     created_username: 'John Doe (Squiz)',
+//     updated: 1637857730,
+//     updated_userid: '65',
+//     updated_username: 'John Doe (Squiz)',
+//     published: 'Never Published',
+//     published_userid: 'Never Published',
+//     published_username: 'Never Published',
+//     status_changed: 1637857729,
+//     status_changed_userid: '65',
+//     status_changed_username: 'John Doe (Squiz)',
+//     maximum_perm_on_asset: 'Admin Access',
+//     can_live_edit: true,
+//     effective_write: true,
+//     attribute_contextualised: true,
+//     metadata_contextualised: true,
+//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
+// };
 
 const chCfg = {
     metaFields: {
@@ -70,8 +70,10 @@ export const CardButtons = (props) => {
     const [textArea, setTextAreaValue] = useState('');
     const [userMatch, setUserMatch] = useState(false);
     const [hubStatus, setHubStatus] = useState('');
+    const [fixedHubStatus, setFixedHubStatus] = useState(null);
     const [hubStatusDesc, setHubStatusDesc] = useState('');
-    let jsApi = window?.jsApi ? window.jsApi : mockData;
+    //let jsApi = window?.jsApi ? window.jsApi : mockData;
+    let jsApi = window.jsApi ?? {};
 
     const onTextAreaValueChange = (val) => {
         setTextAreaValue(val);
@@ -93,6 +95,7 @@ export const CardButtons = (props) => {
         return data;
     };
 
+    // Update status when hubStatus change
     useEffect(() => {
         let userDetails = window?.data?.user.firstName + ' ' + window.data + window?.data?.user.lastName;
         const userEl = document.querySelector('#user-status');
@@ -100,10 +103,16 @@ export const CardButtons = (props) => {
         if (userDetails === pageUserDetails) {
             setUserMatch(true);
         }
-        setHubStatus(props.hubStatus);
+        !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
         setHubStatusDesc(props.hubStatusDesc);
-        console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
-    }, []);
+        //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    }, [hubStatus]);
+
+    // Set temp status when action "Send to Stanford Report" action is fired
+    // This will get updated by real status on page refresh
+    useEffect(() => {
+        setHubStatus(fixedHubStatus);
+    }, [fixedHubStatus]);
 
     const openSendDialog = (id) => {
         setSendDialogOpen(true);
@@ -220,6 +229,7 @@ export const CardButtons = (props) => {
         // Update status on front end
         setHubStatusDesc(historyMessage);
         setHubStatus('reviewed');
+        setFixedHubStatus('reviewed');
 
         const newEntry = {date: thisDate, message: historyMessage};
         currentHistory.unshift(newEntry);
@@ -305,6 +315,7 @@ export const CardButtons = (props) => {
         props.listMetadata.hubStatusDescription = historyMessage;
         setHubStatusDesc(historyMessage);
         setHubStatus('sent-to-sr');
+        setFixedHubStatus('sent-to-sr');
         clearReviewState();
 
         // // Check if this is Home Page or New Content

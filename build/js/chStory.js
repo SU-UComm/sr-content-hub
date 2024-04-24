@@ -13590,7 +13590,7 @@ var StoryView = function StoryView() {
       versionHistory = _useState10[0],
       setVersionHistory = _useState10[1];
 
-  var _useState11 = (0,react.useState)(''),
+  var _useState11 = (0,react.useState)([]),
       _useState12 = StoryView_slicedToArray(_useState11, 2),
       taxonomy = _useState12[0],
       setTaxonomy = _useState12[1];
@@ -13630,7 +13630,7 @@ var StoryView = function StoryView() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
-      var _window2, _window2$data, _window2$data$user, d, _summary, assetIDs, taxonomyTerms, terms;
+      var _d$metadata$topics$jo, _d$metadata, _window2, _window2$data, _window2$data$user, d, _summary, assetIDs, taxonomyTerms, terms;
 
       return StoryView_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -13649,40 +13649,48 @@ var StoryView = function StoryView() {
               _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);
               setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
-              assetIDs = d.metadata.topics.join(',');
-              _context.next = 13;
+              assetIDs = (_d$metadata$topics$jo = (_d$metadata = d.metadata) === null || _d$metadata === void 0 ? void 0 : _d$metadata.topics.join(',')) !== null && _d$metadata$topics$jo !== void 0 ? _d$metadata$topics$jo : false;
+
+              if (!assetIDs) {
+                _context.next = 17;
+                break;
+              }
+
+              _context.next = 14;
               return getTaxonomyTerms(assetIDs);
 
-            case 13:
+            case 14:
               taxonomyTerms = _context.sent;
               terms = taxonomyTerms.map(function (item) {
                 return item.name.charAt(0).toUpperCase() + item.name.slice(1);
               });
-              setTaxonomy(terms); // if user is ucomm & status is submitted, send in review status
+              setTaxonomy(terms);
 
+            case 17:
+              // if user is ucomm & status is submitted, send in review status
               if (data.metadata.hubStatus[0] === 'submitted' && ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM') {
                 sendInReview(id);
               }
 
-              _context.next = 22;
+              _context.next = 23;
               break;
 
-            case 19:
-              _context.prev = 19;
+            case 20:
+              _context.prev = 20;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 22:
-              _context.prev = 22;
+            case 23:
+              _context.prev = 23;
               setIsLoading(false);
-              return _context.finish(22);
+              return _context.finish(23);
 
-            case 25:
+            case 26:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 19, 22, 25]]);
+      }, _callee, null, [[1, 20, 23, 26]]);
     }));
 
     return function fetchData(_x) {

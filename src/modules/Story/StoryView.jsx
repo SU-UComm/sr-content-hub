@@ -40,7 +40,7 @@ export const StoryView = () => {
     const [summary, setSummary] = useState('');
     const [beaconSent, setBeaconSent] = useState(false);
     const [versionHistory, setVersionHistory] = useState(null);
-    const [taxonomy, setTaxonomy] = useState('');
+    const [taxonomy, setTaxonomy] = useState([]);
 
     let jsApi = window.jsApi ?? {};
 
@@ -82,10 +82,12 @@ export const StoryView = () => {
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
             setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
-            let assetIDs = d.metadata.topics.join(',');
-            const taxonomyTerms = await getTaxonomyTerms(assetIDs);
-            let terms = taxonomyTerms.map((item) => item.name.charAt(0).toUpperCase() + item.name.slice(1));
-            setTaxonomy(terms);
+            let assetIDs = d.metadata?.topics.join(',') ?? false;
+            if (assetIDs) {
+                const taxonomyTerms = await getTaxonomyTerms(assetIDs);
+                let terms = taxonomyTerms.map((item) => item.name.charAt(0).toUpperCase() + item.name.slice(1));
+                setTaxonomy(terms);
+            }
             // if user is ucomm & status is submitted, send in review status
             if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType === 'UCOMM') {
                 sendInReview(id);

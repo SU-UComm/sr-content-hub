@@ -41,6 +41,7 @@ export const StoryView = () => {
     const [beaconSent, setBeaconSent] = useState(false);
     const [versionHistory, setVersionHistory] = useState(null);
     const [taxonomy, setTaxonomy] = useState([]);
+    const [storyId, setStoryId] = useState(null);
 
     let jsApi = window.jsApi ?? {};
 
@@ -54,6 +55,7 @@ export const StoryView = () => {
         let match = id.match(/=(\d+)/);
         if (match && match[1]) {
             id = parseInt(match[1], 10);
+            setStoryId(id);
         }
         let userType = window?.data?.user?.userType;
 
@@ -88,16 +90,21 @@ export const StoryView = () => {
                 let terms = taxonomyTerms.map((item) => item.name.charAt(0).toUpperCase() + item.name.slice(1));
                 setTaxonomy(terms);
             }
-            // if user is ucomm & status is submitted, send in review status
-            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType === 'UCOMM') {
-                sendInReview(id);
-            }
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
             setIsLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (data?.metadata && storyId) {
+            // if user is ucomm & status is submitted, send in review status
+            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType === 'UCOMM') {
+                sendInReview(storyId);
+            }
+        }
+    }, [data, storyId]);
 
     const convertISOToReadableDate = (isoDate) => {
         const date = new Date(isoDate);

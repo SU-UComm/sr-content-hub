@@ -13595,6 +13595,11 @@ var StoryView = function StoryView() {
       taxonomy = _useState12[0],
       setTaxonomy = _useState12[1];
 
+  var _useState13 = (0,react.useState)(null),
+      _useState14 = StoryView_slicedToArray(_useState13, 2),
+      storyId = _useState14[0],
+      setStoryId = _useState14[1];
+
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var copyUrl = function copyUrl() {
@@ -13610,6 +13615,7 @@ var StoryView = function StoryView() {
 
     if (match && match[1]) {
       id = parseInt(match[1], 10);
+      setStoryId(id);
     }
 
     var userType = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType;
@@ -13630,7 +13636,7 @@ var StoryView = function StoryView() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
-      var _d$metadata$topics$jo, _d$metadata, _window2, _window2$data, _window2$data$user, d, _summary, assetIDs, taxonomyTerms, terms;
+      var _d$metadata$topics$jo, _d$metadata, d, _summary, assetIDs, taxonomyTerms, terms;
 
       return StoryView_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -13667,36 +13673,42 @@ var StoryView = function StoryView() {
               setTaxonomy(terms);
 
             case 17:
-              // if user is ucomm & status is submitted, send in review status
-              if (data.metadata.hubStatus[0] === 'submitted' && ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM') {
-                sendInReview(id);
-              }
-
-              _context.next = 23;
+              _context.next = 22;
               break;
 
-            case 20:
-              _context.prev = 20;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 23:
-              _context.prev = 23;
+            case 22:
+              _context.prev = 22;
               setIsLoading(false);
-              return _context.finish(23);
+              return _context.finish(22);
 
-            case 26:
+            case 25:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 20, 23, 26]]);
+      }, _callee, null, [[1, 19, 22, 25]]);
     }));
 
     return function fetchData(_x) {
       return _ref.apply(this, arguments);
     };
   }();
+
+  (0,react.useEffect)(function () {
+    if (data !== null && data !== void 0 && data.metadata && storyId) {
+      var _window2, _window2$data, _window2$data$user;
+
+      // if user is ucomm & status is submitted, send in review status
+      if (data.metadata.hubStatus[0] === 'submitted' && ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM') {
+        sendInReview(storyId);
+      }
+    }
+  }, [data, storyId]);
 
   var convertISOToReadableDate = function convertISOToReadableDate(isoDate) {
     var date = new Date(isoDate);

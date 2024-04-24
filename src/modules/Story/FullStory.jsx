@@ -3,34 +3,9 @@ import PropTypes from 'prop-types';
 import {Oval} from 'react-loader-spinner';
 import {getMedia} from '../Helpers/requests';
 
-const dataObj = [
-    {
-        id: '26353',
-        url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih.png',
-        name: 'Nih.png',
-        title: 'Nih.png',
-        alt: 'NIH logo',
-        caption: '',
-        height: '969',
-        width: '969',
-        mediaCredit: '',
-    },
-    {
-        id: '26354',
-        url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih_0.png',
-        name: 'Nih_0.png',
-        title: 'nih_0.png',
-        alt: '',
-        caption: '',
-        height: '480',
-        width: '480',
-        mediaCredit: '',
-    },
-];
-
 export const FullStory = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [data, setData] = useState(dataObj); // data from endpoint
+    const [data, setData] = useState(false); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
     const fetchData = async (id) => {
@@ -61,7 +36,7 @@ export const FullStory = (props) => {
         setIsOpen(!isOpen);
     };
 
-    return isLoading ? (
+    return isLoading || !data ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (
         <section id="full-story" className={`su-group full-width-bg su-relative ${isOpen ? 'su-pb-120 open' : ''}  su-bg-gray-bg before:su-bg-gray-bg after:su-bg-gray-bg`}>
@@ -97,7 +72,7 @@ export const FullStory = (props) => {
                     </p>
                 </div>
                 <div
-                    className="su-pb-45 
+                    className="su-pb-45
                                     su-border-b su-border-gray
                 "
                 >

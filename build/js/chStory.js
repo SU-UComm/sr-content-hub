@@ -12944,34 +12944,13 @@ function FullStory_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var dataObj = [{
-  id: '26353',
-  url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih.png',
-  name: 'Nih.png',
-  title: 'Nih.png',
-  alt: 'NIH logo',
-  caption: '',
-  height: '969',
-  width: '969',
-  mediaCredit: ''
-}, {
-  id: '26354',
-  url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih_0.png',
-  name: 'Nih_0.png',
-  title: 'nih_0.png',
-  alt: '',
-  caption: '',
-  height: '480',
-  width: '480',
-  mediaCredit: ''
-}];
 var FullStory = function FullStory(props) {
   var _useState = (0,react.useState)(false),
       _useState2 = FullStory_slicedToArray(_useState, 2),
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
 
-  var _useState3 = (0,react.useState)(dataObj),
+  var _useState3 = (0,react.useState)(false),
       _useState4 = FullStory_slicedToArray(_useState3, 2),
       data = _useState4[0],
       setData = _useState4[1]; // data from endpoint
@@ -13043,7 +13022,7 @@ var FullStory = function FullStory(props) {
     setIsOpen(!isOpen);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
+  return isLoading || !data ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
     visible: true,
     height: "80",
     width: "80",
@@ -13085,7 +13064,7 @@ var FullStory = function FullStory(props) {
   }, "Author"), /*#__PURE__*/react.createElement("p", {
     className: "su-py-20 su-mb-0"
   }, props.data.metadata.bylineAuthor && props.data.metadata.bylineAuthor.length > 1 ? props.data.metadata.bylineAuthor : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("div", {
-    className: "su-pb-45 \r su-border-b su-border-gray\r "
+    className: "su-pb-45 su-border-b su-border-gray "
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
   }, "Story"), /*#__PURE__*/react.createElement("div", {

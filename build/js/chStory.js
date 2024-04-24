@@ -13556,126 +13556,6 @@ function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // import {array} from 'prop-types';
 
-var StoryView_dataObj = {
-  id: '128490',
-  type: 'page_standard',
-  type_name: 'Standard Page',
-  version: '0.0.26',
-  name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-  short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-  status: {
-    id: 2,
-    code: 'under_construction',
-    name: 'Under Construction'
-  },
-  created: {
-    date: '2024-01-25T09:36:45-08:00',
-    user_id: '6004'
-  },
-  updated: {
-    date: '2024-02-22T02:02:26-08:00',
-    user_id: '8993'
-  },
-  published: {
-    date: null,
-    user_id: null
-  },
-  status_changed: {
-    date: '2024-01-25T09:36:45-08:00',
-    user_id: '6004'
-  },
-  urls: ['${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
-  url: '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
-  attributes: {
-    name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-    short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'
-  },
-  metadata: {
-    hubStatus: ['submitted'],
-    hubStatusDescription: [],
-    hubVersionHistory: ['[{"date":1706204337603,"message":"New version of story pushed from source"}]'],
-    hubReviewMsg: [],
-    seoTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
-    canonicalUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
-    seoDescription: [],
-    seoKeywords: ['Students'],
-    robots: [],
-    publishedDate: ['2023-11-03 12:03:55'],
-    modifiedDate: ['2023-11-03 14:47:06'],
-    includePageTopMargin: ['yes'],
-    includePageBottomMargin: ['yes'],
-    includePageHero: ['yes'],
-    srAudience: [],
-    srMessage: [],
-    srContentType: [],
-    srFeaturedUnit: [],
-    srContentCategory: [],
-    srContentMainTopic: [],
-    srContentTopic: [],
-    srContentSubtopic: [],
-    srAllCategories: [],
-    embargoFlag: [],
-    embargoPublishDate: ['2023-01-01 00:00:00'],
-    pageType: ['story'],
-    teaser: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-    featuredImage: ['128494'],
-    featuredVideo: [],
-    featuredMediaCaption: [],
-    featuredMediaCredit: [],
-    mediaContacts: [],
-    featuredMediaOrientation: ['vertical'],
-    storyLayout: ['Basic'],
-    bannerImg: [],
-    bannerCaption: [],
-    basicStoryBannerType: ['image'],
-    bannerImgType: ['normal'],
-    summary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-    storyFormat: ['standard'],
-    mediaAttachments: ['128494'],
-    featuredImageTwitter: [],
-    featuredImageOg: [],
-    hideSocialMedia: [],
-    hideBottomBox: [],
-    contributorsAuthors: [],
-    contributorsProducers: [],
-    contributorsWriters: [],
-    contributorsEditors: [],
-    contributorsVideographers: [],
-    contributorsPhotographyDirector: [],
-    contributorsMediaContacts: [],
-    bylineAuthor: [],
-    bylineText: [],
-    bylineUrl: [],
-    ogLocale: ['en_US'],
-    ogType: ['article'],
-    twitterCard: ['summary_large_image'],
-    authorId: [],
-    authorName: [],
-    srcOrigin: ['acceleratelearning.stanford.edu'],
-    srcOriginType: ['Wordpress'],
-    srcContentSource: ['Accelerator For Learning'],
-    srcTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
-    srcSummary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-    srcPublishedDate: ['2023-11-03 12:03:55'],
-    srcFeaturedImage: [],
-    slug: ['joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
-    srcKeywords: ['Students'],
-    srcPostId: ['2705'],
-    srcUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
-    srcStatus: ['publish'],
-    debugFeedUrl: ['https://acceleratelearning.stanford.edu/wp-json/wp/v2/story/2705'],
-    debugPushTs: ['1706204277313'],
-    debugBlueprintId: ['128490'],
-    storyType: ['5981'],
-    sections: [],
-    topics: ['5692'],
-    messages: [],
-    feeds: [],
-    contentPartners: [],
-    storyAudience: [],
-    debug: []
-  }
-};
 var StoryView_chCfg = {
   metaFields: {
     hubStatusDescription: 31823,
@@ -13701,44 +13581,10 @@ var StoryView_chCfg = {
     loadNext: "".concat(window.globalData.urls.contentHub, "/r/h/ch/next")
   }
 };
-var mockData = {
-  name: 'Mockup name',
-  short_name: 'Mockup name',
-  asset_id: 'inputQuery.id',
-  id: 'inputQuery.id',
-  type_code: 'folder',
-  type: 'Folder',
-  icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-  web_path: 'https://mockup.url/mockup_name',
-  urls: ['https://mockup.url/mockup_name'],
-  status: 'Under Construction',
-  statusId: '2',
-  created: 1637857729,
-  created_userid: '65',
-  created_username: 'John Doe (Squiz)',
-  updated: 1637857730,
-  updated_userid: '65',
-  updated_username: 'John Doe (Squiz)',
-  published: 'Never Published',
-  published_userid: 'Never Published',
-  published_username: 'Never Published',
-  status_changed: 1637857729,
-  status_changed_userid: '65',
-  status_changed_username: 'John Doe (Squiz)',
-  maximum_perm_on_asset: 'Admin Access',
-  can_live_edit: true,
-  effective_write: true,
-  attribute_contextualised: true,
-  metadata_contextualised: true,
-  contextualable_screens: {
-    details: 'attribute',
-    metadata: 'metadata'
-  }
-};
 var StoryView = function StoryView() {
-  var _window, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window6, _window6$data, _window7, _window7$data;
+  var _window$jsApi, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window5, _window5$data, _window6, _window6$data;
 
-  var _useState = (0,react.useState)(StoryView_dataObj),
+  var _useState = (0,react.useState)(false),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
@@ -13770,14 +13616,14 @@ var StoryView = function StoryView() {
       taxonomy = _useState12[0],
       setTaxonomy = _useState12[1];
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var copyUrl = function copyUrl() {
     navigator.clipboard.writeText(data.url);
   };
 
   (0,react.useEffect)(function () {
-    var _window2, _window2$data, _window2$data$user;
+    var _window, _window$data, _window$data$user;
 
     // setIsLoading(true);
     var id = window.location.search;
@@ -13787,27 +13633,25 @@ var StoryView = function StoryView() {
       id = parseInt(match[1], 10);
     }
 
-    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType;
+    var userType = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType;
 
     if (id) {
-      fetchData(id);
-      console.log('fetch'); // if (userType === 'UCOMM') {
+      fetchData(id); // if (userType === 'UCOMM') {
       //     sendInReview(id);
       // }
     } else {
-      fetchData('33190');
-      console.log('default load');
-
-      var _summary = decodeHTML(data.metadata.srcSummary[0]);
-
-      setSummary(_summary);
-      setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+      // fetchData('33190');
+      // console.log('default load');
+      // let summary = decodeHTML(data.metadata.srcSummary[0]);
+      // setSummary(summary);
+      // setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+      throw new Error('No ?storyId not supported');
     }
   }, []);
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
-      var _window3, _window3$data, _window3$data$user, d, _summary2, assetIDs, taxonomyTerms, terms;
+      var _window2, _window2$data, _window2$data$user, d, _summary, assetIDs, taxonomyTerms, terms;
 
       return StoryView_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -13823,8 +13667,8 @@ var StoryView = function StoryView() {
               d = _context.sent;
               console.log('Story data: ', d);
               setData(d);
-              _summary2 = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
-              setSummary(_summary2);
+              _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
+              setSummary(_summary);
               setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
               assetIDs = d.metadata.topics.join(',');
               _context.next = 13;
@@ -13837,7 +13681,7 @@ var StoryView = function StoryView() {
               });
               setTaxonomy(terms); // if user is ucomm & status is submitted, send in review status
 
-              if (data.metadata.hubStatus[0] === 'submitted' && ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM') {
+              if (data.metadata.hubStatus[0] === 'submitted' && ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM') {
                 sendInReview(id);
               }
 
@@ -13954,7 +13798,7 @@ var StoryView = function StoryView() {
     setBeaconSent(true);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
+  return isLoading || !data ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
     visible: true,
     height: "80",
     width: "80",
@@ -13973,7 +13817,7 @@ var StoryView = function StoryView() {
     className: "su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-font-serif su-mb-0"
-  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
+  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
   }, /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: data.metadata,
@@ -13982,7 +13826,7 @@ var StoryView = function StoryView() {
     type: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
-  }, ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.contentPartner) || ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : _window7$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
+  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", data.metadata.hubReviewMsg) : null : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"

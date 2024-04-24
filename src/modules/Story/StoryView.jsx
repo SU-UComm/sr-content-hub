@@ -8,129 +8,6 @@ import {FullStory} from './FullStory.jsx';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
 // import {array} from 'prop-types';
 
-const dataObj = {
-    id: '128490',
-    type: 'page_standard',
-    type_name: 'Standard Page',
-    version: '0.0.26',
-    name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-    short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-    status: {
-        id: 2,
-        code: 'under_construction',
-        name: 'Under Construction',
-    },
-    created: {
-        date: '2024-01-25T09:36:45-08:00',
-        user_id: '6004',
-    },
-    updated: {
-        date: '2024-02-22T02:02:26-08:00',
-        user_id: '8993',
-    },
-    published: {
-        date: null,
-        user_id: null,
-    },
-    status_changed: {
-        date: '2024-01-25T09:36:45-08:00',
-        user_id: '6004',
-    },
-    urls: [
-        '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
-    ],
-    url: '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
-    attributes: {
-        name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-        short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-    },
-    metadata: {
-        hubStatus: ['submitted'],
-        hubStatusDescription: [],
-        hubVersionHistory: ['[{"date":1706204337603,"message":"New version of story pushed from source"}]'],
-        hubReviewMsg: [],
-        seoTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
-        canonicalUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
-        seoDescription: [],
-        seoKeywords: ['Students'],
-        robots: [],
-        publishedDate: ['2023-11-03 12:03:55'],
-        modifiedDate: ['2023-11-03 14:47:06'],
-        includePageTopMargin: ['yes'],
-        includePageBottomMargin: ['yes'],
-        includePageHero: ['yes'],
-        srAudience: [],
-        srMessage: [],
-        srContentType: [],
-        srFeaturedUnit: [],
-        srContentCategory: [],
-        srContentMainTopic: [],
-        srContentTopic: [],
-        srContentSubtopic: [],
-        srAllCategories: [],
-        embargoFlag: [],
-        embargoPublishDate: ['2023-01-01 00:00:00'],
-        pageType: ['story'],
-        teaser: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-        featuredImage: ['128494'],
-        featuredVideo: [],
-        featuredMediaCaption: [],
-        featuredMediaCredit: [],
-        mediaContacts: [],
-        featuredMediaOrientation: ['vertical'],
-        storyLayout: ['Basic'],
-        bannerImg: [],
-        bannerCaption: [],
-        basicStoryBannerType: ['image'],
-        bannerImgType: ['normal'],
-        summary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-        storyFormat: ['standard'],
-        mediaAttachments: ['128494'],
-        featuredImageTwitter: [],
-        featuredImageOg: [],
-        hideSocialMedia: [],
-        hideBottomBox: [],
-        contributorsAuthors: [],
-        contributorsProducers: [],
-        contributorsWriters: [],
-        contributorsEditors: [],
-        contributorsVideographers: [],
-        contributorsPhotographyDirector: [],
-        contributorsMediaContacts: [],
-        bylineAuthor: [],
-        bylineText: [],
-        bylineUrl: [],
-        ogLocale: ['en_US'],
-        ogType: ['article'],
-        twitterCard: ['summary_large_image'],
-        authorId: [],
-        authorName: [],
-        srcOrigin: ['acceleratelearning.stanford.edu'],
-        srcOriginType: ['Wordpress'],
-        srcContentSource: ['Accelerator For Learning'],
-        srcTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
-        srcSummary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-        srcPublishedDate: ['2023-11-03 12:03:55'],
-        srcFeaturedImage: [],
-        slug: ['joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
-        srcKeywords: ['Students'],
-        srcPostId: ['2705'],
-        srcUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
-        srcStatus: ['publish'],
-        debugFeedUrl: ['https://acceleratelearning.stanford.edu/wp-json/wp/v2/story/2705'],
-        debugPushTs: ['1706204277313'],
-        debugBlueprintId: ['128490'],
-        storyType: ['5981'],
-        sections: [],
-        topics: ['5692'],
-        messages: [],
-        feeds: [],
-        contentPartners: [],
-        storyAudience: [],
-        debug: [],
-    },
-};
-
 const chCfg = {
     metaFields: {
         hubStatusDescription: 31823,
@@ -157,47 +34,15 @@ const chCfg = {
     },
 };
 
-const mockData = {
-    name: 'Mockup name',
-    short_name: 'Mockup name',
-    asset_id: 'inputQuery.id',
-    id: 'inputQuery.id',
-    type_code: 'folder',
-    type: 'Folder',
-    icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-    web_path: 'https://mockup.url/mockup_name',
-    urls: ['https://mockup.url/mockup_name'],
-    status: 'Under Construction',
-    statusId: '2',
-    created: 1637857729,
-    created_userid: '65',
-    created_username: 'John Doe (Squiz)',
-    updated: 1637857730,
-    updated_userid: '65',
-    updated_username: 'John Doe (Squiz)',
-    published: 'Never Published',
-    published_userid: 'Never Published',
-    published_username: 'Never Published',
-    status_changed: 1637857729,
-    status_changed_userid: '65',
-    status_changed_username: 'John Doe (Squiz)',
-    maximum_perm_on_asset: 'Admin Access',
-    can_live_edit: true,
-    effective_write: true,
-    attribute_contextualised: true,
-    metadata_contextualised: true,
-    contextualable_screens: {details: 'attribute', metadata: 'metadata'},
-};
-
 export const StoryView = () => {
-    const [data, setData] = useState(dataObj); // data from endpoint
+    const [data, setData] = useState(false); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [summary, setSummary] = useState('');
     const [beaconSent, setBeaconSent] = useState(false);
     const [versionHistory, setVersionHistory] = useState(null);
     const [taxonomy, setTaxonomy] = useState('');
 
-    let jsApi = window?.jsApi ? window.jsApi : mockData;
+    let jsApi = window.jsApi ?? {};
 
     const copyUrl = () => {
         navigator.clipboard.writeText(data.url);
@@ -214,16 +59,16 @@ export const StoryView = () => {
 
         if (id) {
             fetchData(id);
-            console.log('fetch');
             // if (userType === 'UCOMM') {
             //     sendInReview(id);
             // }
         } else {
-            fetchData('33190');
-            console.log('default load');
-            let summary = decodeHTML(data.metadata.srcSummary[0]);
-            setSummary(summary);
-            setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+            // fetchData('33190');
+            // console.log('default load');
+            // let summary = decodeHTML(data.metadata.srcSummary[0]);
+            // setSummary(summary);
+            // setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+            throw new Error('No ?storyId not supported');
         }
     }, []);
 
@@ -343,7 +188,7 @@ export const StoryView = () => {
         setBeaconSent(true);
     };
 
-    return isLoading ? (
+    return isLoading || !data ? (
         <Oval visible={true} height="80" width="80" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
     ) : (
         <div className="su-col-span-full xl:su-col-start-2 xl:su-col-span-10" id="view-story" data-id={data.id}>

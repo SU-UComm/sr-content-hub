@@ -9414,18 +9414,18 @@ var getTaxonomyTerms = /*#__PURE__*/(/* unused pure expression or super */ null 
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
-            console.log('URL,', requestUrl);
-            _context5.next = 4;
+            requestUrl = contentHubAPI.modules.relTerms + assetIDs; // console.log('URL,', requestUrl);
+
+            _context5.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context5.sent;
             return _context5.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context5.stop();
         }
@@ -9450,18 +9450,18 @@ var getHubStatus = /*#__PURE__*/function () {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
-            console.log('URL,', requestUrl);
-            _context6.next = 4;
+            requestUrl = contentHubAPI.modules.hubStatus + assetIDs; // console.log('URL,', requestUrl);
+
+            _context6.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context6.sent;
             return _context6.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context6.stop();
         }
@@ -9488,18 +9488,18 @@ var getAPIData = /*#__PURE__*/(/* unused pure expression or super */ null && (fu
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID);
-            console.log('API DATA URL,', requestUrl);
-            _context7.next = 4;
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID); // console.log('API DATA URL,', requestUrl);
+
+            _context7.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context7.sent;
             return _context7.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context7.stop();
         }
@@ -9524,18 +9524,16 @@ var getSearchData = /*#__PURE__*/function () {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            // let url = contentHubAPI.search[pageName];
-            console.log('URL,', url);
-            _context8.next = 3;
+            _context8.next = 2;
             return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 3:
+          case 2:
             response = _context8.sent;
             return _context8.abrupt("return", response);
 
-          case 5:
+          case 4:
           case "end":
             return _context8.stop();
         }
@@ -9756,7 +9754,7 @@ var releaseAsStory = {
     return releaseAsStory.linkStory(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   linkStory: function linkStory(storyId, targetId) {
@@ -9788,8 +9786,7 @@ var releaseAsStory = {
     });
     return true;
   },
-  releaseOutput: function releaseOutput(r) {
-    console.log(r);
+  releaseOutput: function releaseOutput(r) {// console.log(r);
   }
 };
 /* ============================================================================================== */
@@ -9819,7 +9816,7 @@ var releaseAsTeaser = {
     return releaseAsTeaser.makeTeaser(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   makeTeaser: function makeTeaser(storyId, targetLocation) {
@@ -9850,7 +9847,7 @@ var releaseAsTeaser = {
         }
       },
       dataCallback: function dataCallback(resp) {
-        console.log('resp: ', resp);
+        // console.log('resp: ', resp);
         releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
       }
     });
@@ -9918,15 +9915,13 @@ var releaseAsTeaser = {
       dataCallback: function dataCallback(r) {
         if (typeof r.success === 'undefined') {
           releaseAsTeaser.err("Setting metadata of Story with teaserID: could not be set successfully.");
-        } else {
-          console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
+        } else {// console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
         }
       }
     });
   },
-  endWithSuccess: function endWithSuccess(teaserId) {
-    // End of the Process :: With Success
-    console.log("New Teaser successfully created, Teaser ID: ".concat(teaserId, "."));
+  endWithSuccess: function endWithSuccess(teaserId) {// End of the Process :: With Success
+    // console.log(`New Teaser successfully created, Teaser ID: ${teaserId}.`);
   },
   getTitle: function getTitle(storyAttr) {
     return storyAttr.name || '';
@@ -9978,8 +9973,8 @@ var releaseAsTeaser = {
     }); // Add Blueprint ID :: As Story ID
 
     fieldsOutput[bluePrintIdField] = storyId;
-    fieldsOutput[hubStatus] = 'sent-to-sr';
-    console.log('fieldsOutput: ', fieldsOutput);
+    fieldsOutput[hubStatus] = 'sent-to-sr'; // console.log('fieldsOutput: ', fieldsOutput);
+
     return fieldsOutput;
   }
 };
@@ -10154,7 +10149,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -10283,8 +10278,7 @@ var CardButtons = function CardButtons(props) {
     jsApi.setMetadataAllFields({
       asset_id: id,
       field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        console.log('Decline resp: ', resp);
+      dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
       }
     });
   };
@@ -10352,18 +10346,16 @@ var CardButtons = function CardButtons(props) {
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
     // if (props.page == 'newContent') {
-    //     console.log('card btn- fetch Data');
+    // console.log('card btn- fetch Data');
     //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
     // }
     // }
   };
 
-  var sendAsStory = function sendAsStory(storyObj) {
-    console.log("Published as story: ".concat(JSON.stringify(storyObj)));
+  var sendAsStory = function sendAsStory(storyObj) {// console.log(`Published as story: ${JSON.stringify(storyObj)}`);
   };
 
-  var sendAsTeaser = function sendAsTeaser(storyObj) {
-    console.log("Published as teaser: ".concat(JSON.stringify(storyObj)));
+  var sendAsTeaser = function sendAsTeaser(storyObj) {// console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
   };
 
   var clearReviewState = function clearReviewState() {
@@ -10393,8 +10385,7 @@ var CardButtons = function CardButtons(props) {
   var sendBeacon = function sendBeacon() {
     var _contentHubAPI$module;
 
-    console.log('Send Beacon!');
-
+    // console.log('Send Beacon!');
     if (beaconSent !== false) {
       return;
     }
@@ -10406,8 +10397,8 @@ var CardButtons = function CardButtons(props) {
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-
-    console.log('Beacon triggered...'); // Store beacon state
+    // console.log('Beacon triggered...');
+    // Store beacon state
 
     setBeaconSent(true);
   };
@@ -16265,7 +16256,7 @@ var AllContent = function AllContent() {
               setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
-                _context.next = 31;
+                _context.next = 30;
                 break;
               }
 
@@ -16290,43 +16281,43 @@ var AllContent = function AllContent() {
               setResultsSummary(d.response.resultPacket.resultsSummary);
               params = getQueryStringParams(url);
               setQueryParams(params);
-              setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
-              console.log('REQUEST FUNCTION data in all content: ', d);
+              setQuery(d.question.query == '!nullquery' ? '' : d.question.query); // console.log('REQUEST FUNCTION data in all content: ', d);
+
               sourceIdsArray = [];
               d.response.resultPacket.results.forEach(function (item) {
                 if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 19;
+              _context.next = 18;
               return getHubStatus(sourceIdsArray.join(','));
 
-            case 19:
+            case 18:
               statuses = _context.sent;
               setHubStatuses(statuses);
-              _context.next = 26;
+              _context.next = 25;
               break;
 
-            case 23:
-              _context.prev = 23;
+            case 22:
+              _context.prev = 22;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 26:
-              _context.prev = 26;
+            case 25:
+              _context.prev = 25;
               setIsLoading(false);
-              return _context.finish(26);
+              return _context.finish(25);
 
-            case 29:
-              _context.next = 59;
+            case 28:
+              _context.next = 56;
               break;
 
-            case 31:
-              _context.prev = 31;
-              _context.next = 34;
+            case 30:
+              _context.prev = 30;
+              _context.next = 33;
               return getSearchData(url);
 
-            case 34:
+            case 33:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -16355,33 +16346,33 @@ var AllContent = function AllContent() {
                 }
               });
 
-              _context.next = 47;
+              _context.next = 46;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 47:
+            case 46:
               _statuses = _context.sent;
-              setHubStatuses(_statuses);
-              console.log('Statuses:', _statuses);
-              console.log('All data:', _d2);
-              _context.next = 56;
+              setHubStatuses(_statuses); // console.log('Statuses:', statuses);
+              // console.log('All data:', d);
+
+              _context.next = 53;
               break;
+
+            case 50:
+              _context.prev = 50;
+              _context.t1 = _context["catch"](30);
+              console.error('Error fetching data:', _context.t1);
 
             case 53:
               _context.prev = 53;
-              _context.t1 = _context["catch"](31);
-              console.error('Error fetching data:', _context.t1);
+              setIsLoading(false);
+              return _context.finish(53);
 
             case 56:
-              _context.prev = 56;
-              setIsLoading(false);
-              return _context.finish(56);
-
-            case 59:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 53, 56, 59]]);
+      }, _callee, null, [[2, 22, 25, 28], [30, 50, 53, 56]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -16408,7 +16399,7 @@ var AllContent = function AllContent() {
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
-    console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+    // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
     var fetchUrl;
 
     if (name == 'search') {
@@ -16481,8 +16472,7 @@ var AllContent = function AllContent() {
       }
 
       if (name == 'unselect') {
-        console.log('check');
-
+        // console.log('check');
         if (selectedVal == 'hubStatus') {
           setStatusSelected('All');
         } else if (selectedVal == 'date') {

@@ -72,7 +72,7 @@ export const ContentRegion = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses2:', statuses);
+                // console.log('Statuses2:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -101,13 +101,13 @@ export const ContentRegion = () => {
     }, []);
 
     const onChange = (name, value, selectedVal) => {
-        console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
         if (name == 'status') {
             let selected = getLabel(selectedVal);
             setStatusSelected(selected);
         }
         if (name == 'unselect') {
-            console.log('check');
+            // console.log('check');
             if (selectedVal == 'hubStatus') {
                 setStatusSelected('All');
             }

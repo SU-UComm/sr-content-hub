@@ -6936,18 +6936,18 @@ var getTaxonomyTerms = /*#__PURE__*/function () {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
-            console.log('URL,', requestUrl);
-            _context5.next = 4;
+            requestUrl = contentHubAPI.modules.relTerms + assetIDs; // console.log('URL,', requestUrl);
+
+            _context5.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context5.sent;
             return _context5.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context5.stop();
         }
@@ -6972,18 +6972,18 @@ var getHubStatus = /*#__PURE__*/(/* unused pure expression or super */ null && (
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
-            console.log('URL,', requestUrl);
-            _context6.next = 4;
+            requestUrl = contentHubAPI.modules.hubStatus + assetIDs; // console.log('URL,', requestUrl);
+
+            _context6.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context6.sent;
             return _context6.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context6.stop();
         }
@@ -7010,18 +7010,18 @@ var getAPIData = /*#__PURE__*/function () {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID);
-            console.log('API DATA URL,', requestUrl);
-            _context7.next = 4;
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID); // console.log('API DATA URL,', requestUrl);
+
+            _context7.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context7.sent;
             return _context7.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context7.stop();
         }
@@ -7046,18 +7046,16 @@ var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && 
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            // let url = contentHubAPI.search[pageName];
-            console.log('URL,', url);
-            _context8.next = 3;
+            _context8.next = 2;
             return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 3:
+          case 2:
             response = _context8.sent;
             return _context8.abrupt("return", response);
 
-          case 5:
+          case 4:
           case "end":
             return _context8.stop();
         }
@@ -12073,7 +12071,7 @@ var releaseAsStory = {
     return releaseAsStory.linkStory(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   linkStory: function linkStory(storyId, targetId) {
@@ -12105,8 +12103,7 @@ var releaseAsStory = {
     });
     return true;
   },
-  releaseOutput: function releaseOutput(r) {
-    console.log(r);
+  releaseOutput: function releaseOutput(r) {// console.log(r);
   }
 };
 /* ============================================================================================== */
@@ -12136,7 +12133,7 @@ var releaseAsTeaser = {
     return releaseAsTeaser.makeTeaser(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   makeTeaser: function makeTeaser(storyId, targetLocation) {
@@ -12167,7 +12164,7 @@ var releaseAsTeaser = {
         }
       },
       dataCallback: function dataCallback(resp) {
-        console.log('resp: ', resp);
+        // console.log('resp: ', resp);
         releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
       }
     });
@@ -12235,15 +12232,13 @@ var releaseAsTeaser = {
       dataCallback: function dataCallback(r) {
         if (typeof r.success === 'undefined') {
           releaseAsTeaser.err("Setting metadata of Story with teaserID: could not be set successfully.");
-        } else {
-          console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
+        } else {// console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
         }
       }
     });
   },
-  endWithSuccess: function endWithSuccess(teaserId) {
-    // End of the Process :: With Success
-    console.log("New Teaser successfully created, Teaser ID: ".concat(teaserId, "."));
+  endWithSuccess: function endWithSuccess(teaserId) {// End of the Process :: With Success
+    // console.log(`New Teaser successfully created, Teaser ID: ${teaserId}.`);
   },
   getTitle: function getTitle(storyAttr) {
     return storyAttr.name || '';
@@ -12295,8 +12290,8 @@ var releaseAsTeaser = {
     }); // Add Blueprint ID :: As Story ID
 
     fieldsOutput[bluePrintIdField] = storyId;
-    fieldsOutput[hubStatus] = 'sent-to-sr';
-    console.log('fieldsOutput: ', fieldsOutput);
+    fieldsOutput[hubStatus] = 'sent-to-sr'; // console.log('fieldsOutput: ', fieldsOutput);
+
     return fieldsOutput;
   }
 };
@@ -12471,7 +12466,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -12600,8 +12595,7 @@ var CardButtons = function CardButtons(props) {
     jsApi.setMetadataAllFields({
       asset_id: id,
       field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        console.log('Decline resp: ', resp);
+      dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
       }
     });
   };
@@ -12669,18 +12663,16 @@ var CardButtons = function CardButtons(props) {
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
     // if (props.page == 'newContent') {
-    //     console.log('card btn- fetch Data');
+    // console.log('card btn- fetch Data');
     //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
     // }
     // }
   };
 
-  var sendAsStory = function sendAsStory(storyObj) {
-    console.log("Published as story: ".concat(JSON.stringify(storyObj)));
+  var sendAsStory = function sendAsStory(storyObj) {// console.log(`Published as story: ${JSON.stringify(storyObj)}`);
   };
 
-  var sendAsTeaser = function sendAsTeaser(storyObj) {
-    console.log("Published as teaser: ".concat(JSON.stringify(storyObj)));
+  var sendAsTeaser = function sendAsTeaser(storyObj) {// console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
   };
 
   var clearReviewState = function clearReviewState() {
@@ -12710,8 +12702,7 @@ var CardButtons = function CardButtons(props) {
   var sendBeacon = function sendBeacon() {
     var _contentHubAPI$module;
 
-    console.log('Send Beacon!');
-
+    // console.log('Send Beacon!');
     if (beaconSent !== false) {
       return;
     }
@@ -12723,8 +12714,8 @@ var CardButtons = function CardButtons(props) {
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-
-    console.log('Beacon triggered...'); // Store beacon state
+    // console.log('Beacon triggered...');
+    // Store beacon state
 
     setBeaconSent(true);
   };
@@ -12944,34 +12935,13 @@ function FullStory_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var dataObj = [{
-  id: '26353',
-  url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih.png',
-  name: 'Nih.png',
-  title: 'Nih.png',
-  alt: 'NIH logo',
-  caption: '',
-  height: '969',
-  width: '969',
-  mediaCredit: ''
-}, {
-  id: '26354',
-  url: 'https://sug-web.matrix.squiz.cloud/_media/images/content-partners/drupal-tests/nih_0.png',
-  name: 'Nih_0.png',
-  title: 'nih_0.png',
-  alt: '',
-  caption: '',
-  height: '480',
-  width: '480',
-  mediaCredit: ''
-}];
 var FullStory = function FullStory(props) {
   var _useState = (0,react.useState)(false),
       _useState2 = FullStory_slicedToArray(_useState, 2),
       isOpen = _useState2[0],
       setIsOpen = _useState2[1];
 
-  var _useState3 = (0,react.useState)(dataObj),
+  var _useState3 = (0,react.useState)(false),
       _useState4 = FullStory_slicedToArray(_useState3, 2),
       data = _useState4[0],
       setData = _useState4[1]; // data from endpoint
@@ -12998,27 +12968,27 @@ var FullStory = function FullStory(props) {
 
             case 4:
               d = _context.sent;
-              setData(d);
-              console.log('full story fetched media: ', d);
-              _context.next = 12;
+              setData(d); // console.log('full story fetched media: ', d);
+
+              _context.next = 11;
               break;
 
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 12:
-              _context.prev = 12;
+            case 11:
+              _context.prev = 11;
               setIsLoading(false);
-              return _context.finish(12);
+              return _context.finish(11);
 
-            case 15:
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9, 12, 15]]);
+      }, _callee, null, [[1, 8, 11, 14]]);
     }));
 
     return function fetchData(_x) {
@@ -13033,9 +13003,8 @@ var FullStory = function FullStory(props) {
 
     if (url) {
       fetchData(props.data.id);
-    } else {
-      // setData(dataObj);
-      console.log('full story data: ', data);
+    } else {// setData(dataObj);
+      // console.log('full story data: ', data);
     }
   }, []);
 
@@ -13043,7 +13012,7 @@ var FullStory = function FullStory(props) {
     setIsOpen(!isOpen);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
+  return isLoading || !data ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
     visible: true,
     height: "80",
     width: "80",
@@ -13085,7 +13054,7 @@ var FullStory = function FullStory(props) {
   }, "Author"), /*#__PURE__*/react.createElement("p", {
     className: "su-py-20 su-mb-0"
   }, props.data.metadata.bylineAuthor && props.data.metadata.bylineAuthor.length > 1 ? props.data.metadata.bylineAuthor : /*#__PURE__*/react.createElement("em", null, "N/A"))), /*#__PURE__*/react.createElement("div", {
-    className: "su-pb-45 \r su-border-b su-border-gray\r "
+    className: "su-pb-45 su-border-b su-border-gray "
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"
   }, "Story"), /*#__PURE__*/react.createElement("div", {
@@ -13556,126 +13525,6 @@ function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
  // import {array} from 'prop-types';
 
-var StoryView_dataObj = {
-  id: '128490',
-  type: 'page_standard',
-  type_name: 'Standard Page',
-  version: '0.0.26',
-  name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-  short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-  status: {
-    id: 2,
-    code: 'under_construction',
-    name: 'Under Construction'
-  },
-  created: {
-    date: '2024-01-25T09:36:45-08:00',
-    user_id: '6004'
-  },
-  updated: {
-    date: '2024-02-22T02:02:26-08:00',
-    user_id: '8993'
-  },
-  published: {
-    date: null,
-    user_id: null
-  },
-  status_changed: {
-    date: '2024-01-25T09:36:45-08:00',
-    user_id: '6004'
-  },
-  urls: ['${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
-  url: '${window.globalData.urls.contentHub}/stories/content-partners/accelerator-for-learning/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business',
-  attributes: {
-    name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business',
-    short_name: 'Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'
-  },
-  metadata: {
-    hubStatus: ['submitted'],
-    hubStatusDescription: [],
-    hubVersionHistory: ['[{"date":1706204337603,"message":"New version of story pushed from source"}]'],
-    hubReviewMsg: [],
-    seoTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
-    canonicalUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
-    seoDescription: [],
-    seoKeywords: ['Students'],
-    robots: [],
-    publishedDate: ['2023-11-03 12:03:55'],
-    modifiedDate: ['2023-11-03 14:47:06'],
-    includePageTopMargin: ['yes'],
-    includePageBottomMargin: ['yes'],
-    includePageHero: ['yes'],
-    srAudience: [],
-    srMessage: [],
-    srContentType: [],
-    srFeaturedUnit: [],
-    srContentCategory: [],
-    srContentMainTopic: [],
-    srContentTopic: [],
-    srContentSubtopic: [],
-    srAllCategories: [],
-    embargoFlag: [],
-    embargoPublishDate: ['2023-01-01 00:00:00'],
-    pageType: ['story'],
-    teaser: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-    featuredImage: ['128494'],
-    featuredVideo: [],
-    featuredMediaCaption: [],
-    featuredMediaCredit: [],
-    mediaContacts: [],
-    featuredMediaOrientation: ['vertical'],
-    storyLayout: ['Basic'],
-    bannerImg: [],
-    bannerCaption: [],
-    basicStoryBannerType: ['image'],
-    bannerImgType: ['normal'],
-    summary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-    storyFormat: ['standard'],
-    mediaAttachments: ['128494'],
-    featuredImageTwitter: [],
-    featuredImageOg: [],
-    hideSocialMedia: [],
-    hideBottomBox: [],
-    contributorsAuthors: [],
-    contributorsProducers: [],
-    contributorsWriters: [],
-    contributorsEditors: [],
-    contributorsVideographers: [],
-    contributorsPhotographyDirector: [],
-    contributorsMediaContacts: [],
-    bylineAuthor: [],
-    bylineText: [],
-    bylineUrl: [],
-    ogLocale: ['en_US'],
-    ogType: ['article'],
-    twitterCard: ['summary_large_image'],
-    authorId: [],
-    authorName: [],
-    srcOrigin: ['acceleratelearning.stanford.edu'],
-    srcOriginType: ['Wordpress'],
-    srcContentSource: ['Accelerator For Learning'],
-    srcTitle: ['Joy Chen, Entrepreneur in Residence, creates a bridge between education and business'],
-    srcSummary: ['<p>With decades of experience in the pursuit of academic improvement, Chen hopes to help education scholars and industry move toward shared goals.</p>\n'],
-    srcPublishedDate: ['2023-11-03 12:03:55'],
-    srcFeaturedImage: [],
-    slug: ['joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business'],
-    srcKeywords: ['Students'],
-    srcPostId: ['2705'],
-    srcUrl: ['https://acceleratelearning.stanford.edu/story/joy-chen-entrepreneur-in-residence-creates-a-bridge-between-education-and-business/'],
-    srcStatus: ['publish'],
-    debugFeedUrl: ['https://acceleratelearning.stanford.edu/wp-json/wp/v2/story/2705'],
-    debugPushTs: ['1706204277313'],
-    debugBlueprintId: ['128490'],
-    storyType: ['5981'],
-    sections: [],
-    topics: ['5692'],
-    messages: [],
-    feeds: [],
-    contentPartners: [],
-    storyAudience: [],
-    debug: []
-  }
-};
 var StoryView_chCfg = {
   metaFields: {
     hubStatusDescription: 31823,
@@ -13701,44 +13550,10 @@ var StoryView_chCfg = {
     loadNext: "".concat(window.globalData.urls.contentHub, "/r/h/ch/next")
   }
 };
-var mockData = {
-  name: 'Mockup name',
-  short_name: 'Mockup name',
-  asset_id: 'inputQuery.id',
-  id: 'inputQuery.id',
-  type_code: 'folder',
-  type: 'Folder',
-  icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-  web_path: 'https://mockup.url/mockup_name',
-  urls: ['https://mockup.url/mockup_name'],
-  status: 'Under Construction',
-  statusId: '2',
-  created: 1637857729,
-  created_userid: '65',
-  created_username: 'John Doe (Squiz)',
-  updated: 1637857730,
-  updated_userid: '65',
-  updated_username: 'John Doe (Squiz)',
-  published: 'Never Published',
-  published_userid: 'Never Published',
-  published_username: 'Never Published',
-  status_changed: 1637857729,
-  status_changed_userid: '65',
-  status_changed_username: 'John Doe (Squiz)',
-  maximum_perm_on_asset: 'Admin Access',
-  can_live_edit: true,
-  effective_write: true,
-  attribute_contextualised: true,
-  metadata_contextualised: true,
-  contextualable_screens: {
-    details: 'attribute',
-    metadata: 'metadata'
-  }
-};
 var StoryView = function StoryView() {
-  var _window, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window6, _window6$data, _window7, _window7$data;
+  var _window$jsApi, _window2, _window2$data, _window2$data$user, _window3, _window3$data, _window4, _window4$data, _window5, _window5$data;
 
-  var _useState = (0,react.useState)(StoryView_dataObj),
+  var _useState = (0,react.useState)(false),
       _useState2 = StoryView_slicedToArray(_useState, 2),
       data = _useState2[0],
       setData = _useState2[1]; // data from endpoint
@@ -13765,49 +13580,50 @@ var StoryView = function StoryView() {
       versionHistory = _useState10[0],
       setVersionHistory = _useState10[1];
 
-  var _useState11 = (0,react.useState)(''),
+  var _useState11 = (0,react.useState)([]),
       _useState12 = StoryView_slicedToArray(_useState11, 2),
       taxonomy = _useState12[0],
       setTaxonomy = _useState12[1];
 
-  var jsApi = (_window = window) !== null && _window !== void 0 && _window.jsApi ? window.jsApi : mockData;
+  var _useState13 = (0,react.useState)(null),
+      _useState14 = StoryView_slicedToArray(_useState13, 2),
+      storyId = _useState14[0],
+      setStoryId = _useState14[1];
+
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var copyUrl = function copyUrl() {
     navigator.clipboard.writeText(data.url);
   };
 
   (0,react.useEffect)(function () {
-    var _window2, _window2$data, _window2$data$user;
-
     // setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
 
     if (match && match[1]) {
       id = parseInt(match[1], 10);
-    }
+      setStoryId(id);
+    } // let userType = window?.data?.user?.userType;
 
-    var userType = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType;
 
     if (id) {
-      fetchData(id);
-      console.log('fetch'); // if (userType === 'UCOMM') {
+      fetchData(id); // if (userType === 'UCOMM') {
       //     sendInReview(id);
       // }
     } else {
-      fetchData('33190');
-      console.log('default load');
-
-      var _summary = decodeHTML(data.metadata.srcSummary[0]);
-
-      setSummary(_summary);
-      setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+      // fetchData('33190');
+      // console.log('default load');
+      // let summary = decodeHTML(data.metadata.srcSummary[0]);
+      // setSummary(summary);
+      // setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
+      throw new Error('No ?storyId not supported');
     }
   }, []);
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
-      var _window3, _window3$data, _window3$data$user, d, _summary2, assetIDs, taxonomyTerms, terms;
+      var _d$metadata$topics$jo, _d$metadata, d, _summary, assetIDs, taxonomyTerms, terms;
 
       return StoryView_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -13821,12 +13637,18 @@ var StoryView = function StoryView() {
 
             case 4:
               d = _context.sent;
-              console.log('Story data: ', d);
+              // console.log('Story data: ', d);
               setData(d);
-              _summary2 = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
-              setSummary(_summary2);
+              _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
+              setSummary(_summary);
               setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
-              assetIDs = d.metadata.topics.join(',');
+              assetIDs = (_d$metadata$topics$jo = (_d$metadata = d.metadata) === null || _d$metadata === void 0 ? void 0 : _d$metadata.topics.join(',')) !== null && _d$metadata$topics$jo !== void 0 ? _d$metadata$topics$jo : false;
+
+              if (!assetIDs) {
+                _context.next = 16;
+                break;
+              }
+
               _context.next = 13;
               return getTaxonomyTerms(assetIDs);
 
@@ -13835,37 +13657,45 @@ var StoryView = function StoryView() {
               terms = taxonomyTerms.map(function (item) {
                 return item.name.charAt(0).toUpperCase() + item.name.slice(1);
               });
-              setTaxonomy(terms); // if user is ucomm & status is submitted, send in review status
+              setTaxonomy(terms);
 
-              if (data.metadata.hubStatus[0] === 'submitted' && ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM') {
-                sendInReview(id);
-              }
-
-              _context.next = 22;
+            case 16:
+              _context.next = 21;
               break;
 
-            case 19:
-              _context.prev = 19;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 22:
-              _context.prev = 22;
+            case 21:
+              _context.prev = 21;
               setIsLoading(false);
-              return _context.finish(22);
+              return _context.finish(21);
 
-            case 25:
+            case 24:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 19, 22, 25]]);
+      }, _callee, null, [[1, 18, 21, 24]]);
     }));
 
     return function fetchData(_x) {
       return _ref.apply(this, arguments);
     };
   }();
+
+  (0,react.useEffect)(function () {
+    if (data !== null && data !== void 0 && data.metadata && storyId) {
+      var _window, _window$data, _window$data$user;
+
+      // if user is ucomm & status is submitted, send in review status
+      if (data.metadata.hubStatus[0] === 'submitted' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM') {
+        sendInReview(storyId);
+      }
+    }
+  }, [data, storyId]);
 
   var convertISOToReadableDate = function convertISOToReadableDate(isoDate) {
     var date = new Date(isoDate);
@@ -13899,8 +13729,7 @@ var StoryView = function StoryView() {
       field_info: fieldsActions,
       dataCallback: function dataCallback(resp) {
         if (StoryView_typeof(resp) === 'object') {
-          resp = JSON.stringify(resp);
-          console.log('RESP send review msg: ', resp);
+          resp = JSON.stringify(resp); // console.log('RESP send review msg: ', resp);
         }
 
         clearReviewState(id);
@@ -13935,8 +13764,7 @@ var StoryView = function StoryView() {
   var sendBeacon = function sendBeacon(id) {
     var _contentHubAPI$module;
 
-    console.log('Send Beacon unload!');
-
+    // console.log('Send Beacon unload!');
     if (beaconSent !== false) {
       return;
     }
@@ -13948,13 +13776,13 @@ var StoryView = function StoryView() {
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-
-    console.log('beacon triggered'); // Store beacon state
+    // console.log('beacon triggered');
+    // Store beacon state
 
     setBeaconSent(true);
   };
 
-  return isLoading ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
+  return isLoading || !data ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
     visible: true,
     height: "80",
     width: "80",
@@ -13973,7 +13801,7 @@ var StoryView = function StoryView() {
     className: "su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-font-serif su-mb-0"
-  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
+  }, ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
   }, /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: data.metadata,
@@ -13982,7 +13810,7 @@ var StoryView = function StoryView() {
     type: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
-  }, ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.contentPartner) || ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : _window7$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
+  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.contentPartner) || ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", data.metadata.hubReviewMsg) : null : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"

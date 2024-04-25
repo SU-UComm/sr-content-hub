@@ -24,7 +24,7 @@ export const Main = () => {
                 // const resp0Code = response['info']['http_code'];
                 setData(result);
                 setFacetData(result.response.facets);
-                console.log('main data', result);
+                // console.log('main data', result);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -182,7 +182,7 @@ export const Main = () => {
 
             // Push item to output
             output.items.push(hItem);
-            console.log('reformat', output);
+            // console.log('reformat', output);
         });
         return output;
     };
@@ -288,7 +288,7 @@ export const Main = () => {
                 <DateFilter data={data} facets={facets} cfg={mtxCfg} />
             </div>
         );
-        console.log('div', div);
+        // console.log('div', div);
         // outputHtml.push(div);
         // // Get Content Partner Filters
         // outputHtml.push(renderFiltersArea(processedJson, cfg));
@@ -307,7 +307,7 @@ export const Main = () => {
         // }
 
         outputHtml.push(`</section>`);
-        console.log(outputHtml.join('\n'));
+        // console.log(outputHtml.join('\n'));
 
         return outputHtml.join('\n');
     };

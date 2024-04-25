@@ -105,7 +105,7 @@ export const CardButtons = (props) => {
         }
         !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
         setHubStatusDesc(props.hubStatusDesc);
-        //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+        //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
     }, [hubStatus]);
 
     // Set temp status when action "Send to Stanford Report" action is fired
@@ -247,7 +247,7 @@ export const CardButtons = (props) => {
             asset_id: id,
             field_info: fieldsActions,
             dataCallback: (resp) => {
-                console.log('Decline resp: ', resp);
+                // console.log('Decline resp: ', resp);
             },
         });
     };
@@ -323,16 +323,16 @@ export const CardButtons = (props) => {
         // // IF it is then we need to trigger loading one additional result instead of current item
         // if (latestNewsEl !== null) {
         // if (props.page == 'newContent') {
-        //     console.log('card btn- fetch Data');
+        // console.log('card btn- fetch Data');
         //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
         // }
         // }
     };
     const sendAsStory = (storyObj) => {
-        console.log(`Published as story: ${JSON.stringify(storyObj)}`);
+        // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
     };
     const sendAsTeaser = (storyObj) => {
-        console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
+        // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
     };
 
     const clearReviewState = () => {
@@ -368,7 +368,7 @@ export const CardButtons = (props) => {
     };
 
     const sendBeacon = () => {
-        console.log('Send Beacon!');
+        // console.log('Send Beacon!');
         if (beaconSent !== false) {
             return;
         }
@@ -381,7 +381,7 @@ export const CardButtons = (props) => {
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
 
         // Add log msg to see if this was triggered
-        console.log('Beacon triggered...');
+        // console.log('Beacon triggered...');
 
         // Store beacon state
         setBeaconSent(true);

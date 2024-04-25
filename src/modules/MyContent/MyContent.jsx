@@ -42,7 +42,7 @@ export const MyContent = () => {
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
-                console.log('REQUEST FUNCTION data in MY content: ', d);
+                // console.log('REQUEST FUNCTION data in MY content: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -51,7 +51,7 @@ export const MyContent = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -72,7 +72,7 @@ export const MyContent = () => {
                 setResultsSummary(d.response.resultPacket.resultsSummary);
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
-                console.log('MY content MATRIX FETCH: ', d);
+                // console.log('MY content MATRIX FETCH: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -81,7 +81,7 @@ export const MyContent = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -107,7 +107,7 @@ export const MyContent = () => {
     }, []);
 
     const onChange = (name, value, selectedVal) => {
-        console.log('ON CHANGE: ', name, ' || ', value);
+        // console.log('ON CHANGE: ', name, ' || ', value);
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -122,7 +122,7 @@ export const MyContent = () => {
             }
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            console.log('CREATED URL: ', fetchUrl);
+            // console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         } else if (name == 'pagination') {
             let newParams = queryParams;
@@ -134,7 +134,7 @@ export const MyContent = () => {
             }
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            console.log('CREATED URL: ', fetchUrl);
+            // console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         } else if (name == 'sortBy') {
             let newParams = queryParams;
@@ -148,7 +148,7 @@ export const MyContent = () => {
             }
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            console.log('CREATED URL sort: ', fetchUrl);
+            // console.log('CREATED URL sort: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         } else {
             if (name == 'status') {

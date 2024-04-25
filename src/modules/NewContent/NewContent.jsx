@@ -52,7 +52,7 @@ export const NewContent = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -83,7 +83,7 @@ export const NewContent = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);

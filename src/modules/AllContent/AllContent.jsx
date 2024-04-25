@@ -54,7 +54,7 @@ export const AllContent = () => {
                 let params = getQueryStringParams(url);
                 setQueryParams(params);
                 setQuery(d.question.query == '!nullquery' ? '' : d.question.query);
-                console.log('REQUEST FUNCTION data in all content: ', d);
+                // console.log('REQUEST FUNCTION data in all content: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -97,8 +97,8 @@ export const AllContent = () => {
                 });
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 setHubStatuses(statuses);
-                console.log('Statuses:', statuses);
-                console.log('All data:', d);
+                // console.log('Statuses:', statuses);
+                // console.log('All data:', d);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -126,7 +126,7 @@ export const AllContent = () => {
     }, []);
 
     const onChange = (name, value, selectedVal) => {
-        console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
         let fetchUrl;
         if (name == 'search') {
             let newParams = queryParams;
@@ -173,7 +173,7 @@ export const AllContent = () => {
                 setDateSelected(selected);
             }
             if (name == 'unselect') {
-                console.log('check');
+                // console.log('check');
                 if (selectedVal == 'hubStatus') {
                     setStatusSelected('All');
                 } else if (selectedVal == 'date') {

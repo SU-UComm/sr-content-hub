@@ -31,7 +31,7 @@ export const StatusFilter = (props) => {
             }
         });
 
-        console.log('optionsView', props.defaultData);
+        // console.log('optionsView', props.defaultData);
         return optionsList.join('\n');
     };
 
@@ -121,7 +121,7 @@ export const StatusFilter = (props) => {
             });
         }
 
-        console.log('facetsOutput', facetsOutput);
+        // console.log('facetsOutput', facetsOutput);
         setFacets(facetsOutput);
 
         // let optionsList = optionsView(facetsOutput, props.cfg);

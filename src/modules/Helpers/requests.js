@@ -89,7 +89,7 @@ export const getMedia = async (assetID) => {
  */
 export const getTaxonomyTerms = async (assetIDs) => {
     const requestUrl = contentHubAPI.modules.relTerms + assetIDs;
-    console.log('URL,', requestUrl);
+    // console.log('URL,', requestUrl);
     const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
@@ -103,7 +103,7 @@ export const getTaxonomyTerms = async (assetIDs) => {
  */
 export const getHubStatus = async (assetIDs) => {
     const requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
-    console.log('URL,', requestUrl);
+    // console.log('URL,', requestUrl);
     const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
@@ -119,7 +119,7 @@ export const getHubStatus = async (assetIDs) => {
 // `${contentHubAPI.modules.contentApi}/assets/${assetID}?data=attributes,metadata,urls`;
 export const getAPIData = async (assetID) => {
     const requestUrl = `${contentHubAPI.modules.contentApi}?id=${assetID}`;
-    console.log('API DATA URL,', requestUrl);
+    // console.log('API DATA URL,', requestUrl);
     const response = await fetch(requestUrl, requestOptions).then((res) => {
         return (res = res.json());
     });
@@ -133,7 +133,7 @@ export const getAPIData = async (assetID) => {
  */
 export const getSearchData = async (url) => {
     // let url = contentHubAPI.search[pageName];
-    console.log('URL,', url);
+    // console.log('URL,', url);
     const response = await fetch(url, requestOptions).then((res) => {
         return (res = res.json());
     });

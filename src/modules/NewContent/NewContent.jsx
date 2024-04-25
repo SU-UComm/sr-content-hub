@@ -70,6 +70,7 @@ export const NewContent = () => {
                         setDateLabels(item.allValues);
                     }
                 });
+                console.log(d);
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -83,7 +84,7 @@ export const NewContent = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
+                console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -198,9 +199,9 @@ export const NewContent = () => {
                     <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results.map((contentItem, index) =>
-                        hubStatuses[index] === 'sent-to-sr' ? null : <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="newContent" />,
-                    )}
+                    {results.map((contentItem, index) => (
+                        <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="newContent" />
+                    ))}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>

@@ -16054,7 +16054,7 @@ var NewContent = function NewContent() {
               return _context.finish(24);
 
             case 27:
-              _context.next = 54;
+              _context.next = 56;
               break;
 
             case 29:
@@ -16074,6 +16074,7 @@ var NewContent = function NewContent() {
                 }
               });
 
+              console.log(_d2);
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
@@ -16087,32 +16088,32 @@ var NewContent = function NewContent() {
                 }
               });
 
-              _context.next = 44;
+              _context.next = 45;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 44:
+            case 45:
               _statuses = _context.sent;
-              // console.log('Statuses:', statuses);
+              console.log('Statuses:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 51;
+              _context.next = 53;
               break;
 
-            case 48:
-              _context.prev = 48;
+            case 50:
+              _context.prev = 50;
               _context.t1 = _context["catch"](29);
               console.error('Error fetching data:', _context.t1);
 
-            case 51:
-              _context.prev = 51;
+            case 53:
+              _context.prev = 53;
               setIsLoading(false);
-              return _context.finish(51);
+              return _context.finish(53);
 
-            case 54:
+            case 56:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
+      }, _callee, null, [[2, 21, 24, 27], [29, 50, 53, 56]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -16260,7 +16261,7 @@ var NewContent = function NewContent() {
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {
-    return hubStatuses[index] === 'sent-to-sr' ? null : /*#__PURE__*/react.createElement(Card, {
+    return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
       statuses: hubStatuses,

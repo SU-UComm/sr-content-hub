@@ -16232,14 +16232,18 @@ var NewContent = function NewContent() {
   }, []);
 
   var checkStatus = function checkStatus(statuses) {
+    setIsLoading(true);
+
     for (var i = 0; i < statuses.length; i++) {
       console.log(statuses[i].hubStatus);
 
-      if (statuses[i].hubStatus == 'sent-to-sr') {
+      if (statuses[i].hubStatus === 'sent-to-sr') {
         setResults(results.splice(i, 1));
         console.log('results', results);
       }
     }
+
+    setIsLoading(false);
   };
 
   var onChange = function onChange(name, value, selectedVal) {

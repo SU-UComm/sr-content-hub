@@ -112,13 +112,15 @@ export const NewContent = () => {
     }, []);
 
     const checkStatus = (statuses) => {
+        setIsLoading(true);
         for (let i = 0; i < statuses.length; i++) {
             console.log(statuses[i].hubStatus);
-            if (statuses[i].hubStatus == 'sent-to-sr') {
+            if (statuses[i].hubStatus === 'sent-to-sr') {
                 setResults(results.splice(i, 1));
                 console.log('results', results);
             }
         }
+        setIsLoading(false);
     };
 
     const onChange = (name, value, selectedVal) => {

@@ -60,7 +60,7 @@ export const SelectedFacets = (props) => {
         if (props.facets) {
             // setFacets(props.facets);
             setIsLoading(false);
-            console.log('facets selected Data: ', props.facets);
+            // console.log('facets selected Data: ', props.facets);
             let selectedItems = getSelected(props.facets);
             setSelectedFacets(selectedItems);
         } else {

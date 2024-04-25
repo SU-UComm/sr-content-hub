@@ -9992,6 +9992,7 @@ var releaseAsTeaser = {
 
 
 
+
 function CardButtons_typeof(obj) { "@babel/helpers - typeof"; return CardButtons_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, CardButtons_typeof(obj); }
 
 function CardButtons_slicedToArray(arr, i) { return CardButtons_arrayWithHoles(arr) || CardButtons_iterableToArrayLimit(arr, i) || CardButtons_unsupportedIterableToArray(arr, i) || CardButtons_nonIterableRest(); }
@@ -10067,7 +10068,7 @@ var chCfg = {
   }
 };
 var CardButtons = function CardButtons(props) {
-  var _window$jsApi, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user;
+  var _window$jsApi, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = CardButtons_slicedToArray(_useState, 2),
@@ -10345,11 +10346,13 @@ var CardButtons = function CardButtons(props) {
     // const latestNewsEl = document.querySelector('#latest-content');
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
-    // if (props.page == 'newContent') {
-    // console.log('card btn- fetch Data');
-    //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
-    // }
-    // }
+
+    if (props.page == 'newContent') {
+      var _window3, _window3$data, _window3$data$content;
+
+      props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
+    } // }
+
   };
 
   var sendAsStory = function sendAsStory(storyObj) {// console.log(`Published as story: ${JSON.stringify(storyObj)}`);
@@ -10407,7 +10410,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
+  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -10417,9 +10420,9 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
+  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -16047,8 +16050,8 @@ var SelectedFacets = function SelectedFacets(props) {
   (0,react.useEffect)(function () {
     if (props.facets) {
       // setFacets(props.facets);
-      setIsLoading(false);
-      console.log('facets selected Data: ', props.facets);
+      setIsLoading(false); // console.log('facets selected Data: ', props.facets);
+
       var selectedItems = getSelected(props.facets);
       setSelectedFacets(selectedItems);
     } else {

@@ -6936,18 +6936,18 @@ var getTaxonomyTerms = /*#__PURE__*/function () {
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
-            console.log('URL,', requestUrl);
-            _context5.next = 4;
+            requestUrl = contentHubAPI.modules.relTerms + assetIDs; // console.log('URL,', requestUrl);
+
+            _context5.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context5.sent;
             return _context5.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context5.stop();
         }
@@ -6972,18 +6972,18 @@ var getHubStatus = /*#__PURE__*/(/* unused pure expression or super */ null && (
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
-            console.log('URL,', requestUrl);
-            _context6.next = 4;
+            requestUrl = contentHubAPI.modules.hubStatus + assetIDs; // console.log('URL,', requestUrl);
+
+            _context6.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context6.sent;
             return _context6.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context6.stop();
         }
@@ -7010,18 +7010,18 @@ var getAPIData = /*#__PURE__*/function () {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID);
-            console.log('API DATA URL,', requestUrl);
-            _context7.next = 4;
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID); // console.log('API DATA URL,', requestUrl);
+
+            _context7.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context7.sent;
             return _context7.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context7.stop();
         }
@@ -7046,18 +7046,16 @@ var getSearchData = /*#__PURE__*/(/* unused pure expression or super */ null && 
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            // let url = contentHubAPI.search[pageName];
-            console.log('URL,', url);
-            _context8.next = 3;
+            _context8.next = 2;
             return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 3:
+          case 2:
             response = _context8.sent;
             return _context8.abrupt("return", response);
 
-          case 5:
+          case 4:
           case "end":
             return _context8.stop();
         }
@@ -12073,7 +12071,7 @@ var releaseAsStory = {
     return releaseAsStory.linkStory(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   linkStory: function linkStory(storyId, targetId) {
@@ -12105,8 +12103,7 @@ var releaseAsStory = {
     });
     return true;
   },
-  releaseOutput: function releaseOutput(r) {
-    console.log(r);
+  releaseOutput: function releaseOutput(r) {// console.log(r);
   }
 };
 /* ============================================================================================== */
@@ -12136,7 +12133,7 @@ var releaseAsTeaser = {
     return releaseAsTeaser.makeTeaser(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   makeTeaser: function makeTeaser(storyId, targetLocation) {
@@ -12167,7 +12164,7 @@ var releaseAsTeaser = {
         }
       },
       dataCallback: function dataCallback(resp) {
-        console.log('resp: ', resp);
+        // console.log('resp: ', resp);
         releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
       }
     });
@@ -12235,15 +12232,13 @@ var releaseAsTeaser = {
       dataCallback: function dataCallback(r) {
         if (typeof r.success === 'undefined') {
           releaseAsTeaser.err("Setting metadata of Story with teaserID: could not be set successfully.");
-        } else {
-          console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
+        } else {// console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
         }
       }
     });
   },
-  endWithSuccess: function endWithSuccess(teaserId) {
-    // End of the Process :: With Success
-    console.log("New Teaser successfully created, Teaser ID: ".concat(teaserId, "."));
+  endWithSuccess: function endWithSuccess(teaserId) {// End of the Process :: With Success
+    // console.log(`New Teaser successfully created, Teaser ID: ${teaserId}.`);
   },
   getTitle: function getTitle(storyAttr) {
     return storyAttr.name || '';
@@ -12295,8 +12290,8 @@ var releaseAsTeaser = {
     }); // Add Blueprint ID :: As Story ID
 
     fieldsOutput[bluePrintIdField] = storyId;
-    fieldsOutput[hubStatus] = 'sent-to-sr';
-    console.log('fieldsOutput: ', fieldsOutput);
+    fieldsOutput[hubStatus] = 'sent-to-sr'; // console.log('fieldsOutput: ', fieldsOutput);
+
     return fieldsOutput;
   }
 };
@@ -12471,7 +12466,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -12600,8 +12595,7 @@ var CardButtons = function CardButtons(props) {
     jsApi.setMetadataAllFields({
       asset_id: id,
       field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        console.log('Decline resp: ', resp);
+      dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
       }
     });
   };
@@ -12669,18 +12663,16 @@ var CardButtons = function CardButtons(props) {
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
     // if (props.page == 'newContent') {
-    //     console.log('card btn- fetch Data');
+    // console.log('card btn- fetch Data');
     //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
     // }
     // }
   };
 
-  var sendAsStory = function sendAsStory(storyObj) {
-    console.log("Published as story: ".concat(JSON.stringify(storyObj)));
+  var sendAsStory = function sendAsStory(storyObj) {// console.log(`Published as story: ${JSON.stringify(storyObj)}`);
   };
 
-  var sendAsTeaser = function sendAsTeaser(storyObj) {
-    console.log("Published as teaser: ".concat(JSON.stringify(storyObj)));
+  var sendAsTeaser = function sendAsTeaser(storyObj) {// console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
   };
 
   var clearReviewState = function clearReviewState() {
@@ -12710,8 +12702,7 @@ var CardButtons = function CardButtons(props) {
   var sendBeacon = function sendBeacon() {
     var _contentHubAPI$module;
 
-    console.log('Send Beacon!');
-
+    // console.log('Send Beacon!');
     if (beaconSent !== false) {
       return;
     }
@@ -12723,8 +12714,8 @@ var CardButtons = function CardButtons(props) {
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-
-    console.log('Beacon triggered...'); // Store beacon state
+    // console.log('Beacon triggered...');
+    // Store beacon state
 
     setBeaconSent(true);
   };
@@ -12977,27 +12968,27 @@ var FullStory = function FullStory(props) {
 
             case 4:
               d = _context.sent;
-              setData(d);
-              console.log('full story fetched media: ', d);
-              _context.next = 12;
+              setData(d); // console.log('full story fetched media: ', d);
+
+              _context.next = 11;
               break;
 
-            case 9:
-              _context.prev = 9;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 12:
-              _context.prev = 12;
+            case 11:
+              _context.prev = 11;
               setIsLoading(false);
-              return _context.finish(12);
+              return _context.finish(11);
 
-            case 15:
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 9, 12, 15]]);
+      }, _callee, null, [[1, 8, 11, 14]]);
     }));
 
     return function fetchData(_x) {
@@ -13012,9 +13003,8 @@ var FullStory = function FullStory(props) {
 
     if (url) {
       fetchData(props.data.id);
-    } else {
-      // setData(dataObj);
-      console.log('full story data: ', data);
+    } else {// setData(dataObj);
+      // console.log('full story data: ', data);
     }
   }, []);
 
@@ -13561,7 +13551,7 @@ var StoryView_chCfg = {
   }
 };
 var StoryView = function StoryView() {
-  var _window$jsApi, _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window5, _window5$data, _window6, _window6$data;
+  var _window$jsApi, _window2, _window2$data, _window2$data$user, _window3, _window3$data, _window4, _window4$data, _window5, _window5$data;
 
   var _useState = (0,react.useState)(false),
       _useState2 = StoryView_slicedToArray(_useState, 2),
@@ -13607,8 +13597,6 @@ var StoryView = function StoryView() {
   };
 
   (0,react.useEffect)(function () {
-    var _window, _window$data, _window$data$user;
-
     // setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
@@ -13616,9 +13604,8 @@ var StoryView = function StoryView() {
     if (match && match[1]) {
       id = parseInt(match[1], 10);
       setStoryId(id);
-    }
+    } // let userType = window?.data?.user?.userType;
 
-    var userType = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType;
 
     if (id) {
       fetchData(id); // if (userType === 'UCOMM') {
@@ -13650,7 +13637,7 @@ var StoryView = function StoryView() {
 
             case 4:
               d = _context.sent;
-              console.log('Story data: ', d);
+              // console.log('Story data: ', d);
               setData(d);
               _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);
@@ -13658,40 +13645,40 @@ var StoryView = function StoryView() {
               assetIDs = (_d$metadata$topics$jo = (_d$metadata = d.metadata) === null || _d$metadata === void 0 ? void 0 : _d$metadata.topics.join(',')) !== null && _d$metadata$topics$jo !== void 0 ? _d$metadata$topics$jo : false;
 
               if (!assetIDs) {
-                _context.next = 17;
+                _context.next = 16;
                 break;
               }
 
-              _context.next = 14;
+              _context.next = 13;
               return getTaxonomyTerms(assetIDs);
 
-            case 14:
+            case 13:
               taxonomyTerms = _context.sent;
               terms = taxonomyTerms.map(function (item) {
                 return item.name.charAt(0).toUpperCase() + item.name.slice(1);
               });
               setTaxonomy(terms);
 
-            case 17:
-              _context.next = 22;
+            case 16:
+              _context.next = 21;
               break;
 
-            case 19:
-              _context.prev = 19;
+            case 18:
+              _context.prev = 18;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 22:
-              _context.prev = 22;
+            case 21:
+              _context.prev = 21;
               setIsLoading(false);
-              return _context.finish(22);
+              return _context.finish(21);
 
-            case 25:
+            case 24:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 19, 22, 25]]);
+      }, _callee, null, [[1, 18, 21, 24]]);
     }));
 
     return function fetchData(_x) {
@@ -13701,10 +13688,10 @@ var StoryView = function StoryView() {
 
   (0,react.useEffect)(function () {
     if (data !== null && data !== void 0 && data.metadata && storyId) {
-      var _window2, _window2$data, _window2$data$user;
+      var _window, _window$data, _window$data$user;
 
       // if user is ucomm & status is submitted, send in review status
-      if (data.metadata.hubStatus[0] === 'submitted' && ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) === 'UCOMM') {
+      if (data.metadata.hubStatus[0] === 'submitted' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM') {
         sendInReview(storyId);
       }
     }
@@ -13742,8 +13729,7 @@ var StoryView = function StoryView() {
       field_info: fieldsActions,
       dataCallback: function dataCallback(resp) {
         if (StoryView_typeof(resp) === 'object') {
-          resp = JSON.stringify(resp);
-          console.log('RESP send review msg: ', resp);
+          resp = JSON.stringify(resp); // console.log('RESP send review msg: ', resp);
         }
 
         clearReviewState(id);
@@ -13778,8 +13764,7 @@ var StoryView = function StoryView() {
   var sendBeacon = function sendBeacon(id) {
     var _contentHubAPI$module;
 
-    console.log('Send Beacon unload!');
-
+    // console.log('Send Beacon unload!');
     if (beaconSent !== false) {
       return;
     }
@@ -13791,8 +13776,8 @@ var StoryView = function StoryView() {
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-
-    console.log('beacon triggered'); // Store beacon state
+    // console.log('beacon triggered');
+    // Store beacon state
 
     setBeaconSent(true);
   };
@@ -13816,7 +13801,7 @@ var StoryView = function StoryView() {
     className: "su-flex su-flex-col lg:su-flex-row su-gap-xs su-justify-between su-items-center"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-font-serif su-mb-0"
-  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
+  }, ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$user = _window2$data.user) === null || _window2$data$user === void 0 ? void 0 : _window2$data$user.userType) == 'UCOMM' ? 'Review Story' : 'View Story'), /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-items-center su-gap-[10px]"
   }, /*#__PURE__*/react.createElement(CardButtons, {
     listMetadata: data.metadata,
@@ -13825,7 +13810,7 @@ var StoryView = function StoryView() {
     type: "story"
   })))), /*#__PURE__*/react.createElement("section", {
     className: "su-flex su-flex-col su-gap-[30px] su-mb-80"
-  }, ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.contentPartner) || ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : _window6$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
+  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.userType) == 'CP' && data.metadata.contentPartners[0] == ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.contentPartner) || ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : _window5$data.user.userType) == 'UCOMM' ? data.metadata.hubStatus[0] === 'reviewed' && data.metadata.hubReviewMsg[0] ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", data.metadata.hubReviewMsg) : null : null, /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("p", {
     className: "small-heading"

@@ -57,7 +57,7 @@ export const StoryView = () => {
             id = parseInt(match[1], 10);
             setStoryId(id);
         }
-        let userType = window?.data?.user?.userType;
+        // let userType = window?.data?.user?.userType;
 
         if (id) {
             fetchData(id);
@@ -79,7 +79,7 @@ export const StoryView = () => {
         // replace with getSearchData from requests.js with blank query once CORS is resolved
         try {
             const d = await getAPIData(id);
-            console.log('Story data: ', d);
+            // console.log('Story data: ', d);
             setData(d);
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
@@ -138,7 +138,7 @@ export const StoryView = () => {
             dataCallback: (resp) => {
                 if (typeof resp === 'object') {
                     resp = JSON.stringify(resp);
-                    console.log('RESP send review msg: ', resp);
+                    // console.log('RESP send review msg: ', resp);
                 }
                 clearReviewState(id);
             },
@@ -178,7 +178,7 @@ export const StoryView = () => {
     };
 
     const sendBeacon = (id) => {
-        console.log('Send Beacon unload!');
+        // console.log('Send Beacon unload!');
         if (beaconSent !== false) {
             return;
         }
@@ -191,7 +191,7 @@ export const StoryView = () => {
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
 
         // Add log msg to see if this was triggered
-        console.log('beacon triggered');
+        // console.log('beacon triggered');
 
         // Store beacon state
         setBeaconSent(true);

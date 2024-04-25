@@ -14,7 +14,7 @@ export const FullStory = (props) => {
         try {
             const d = await getMedia(id);
             setData(d);
-            console.log('full story fetched media: ', d);
+            // console.log('full story fetched media: ', d);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -28,7 +28,7 @@ export const FullStory = (props) => {
             fetchData(props.data.id);
         } else {
             // setData(dataObj);
-            console.log('full story data: ', data);
+            // console.log('full story data: ', data);
         }
     }, []);
 

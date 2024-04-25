@@ -8773,18 +8773,18 @@ var getTaxonomyTerms = /*#__PURE__*/(/* unused pure expression or super */ null 
       while (1) {
         switch (_context5.prev = _context5.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.relTerms + assetIDs;
-            console.log('URL,', requestUrl);
-            _context5.next = 4;
+            requestUrl = contentHubAPI.modules.relTerms + assetIDs; // console.log('URL,', requestUrl);
+
+            _context5.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context5.sent;
             return _context5.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context5.stop();
         }
@@ -8809,18 +8809,18 @@ var getHubStatus = /*#__PURE__*/function () {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            requestUrl = contentHubAPI.modules.hubStatus + assetIDs;
-            console.log('URL,', requestUrl);
-            _context6.next = 4;
+            requestUrl = contentHubAPI.modules.hubStatus + assetIDs; // console.log('URL,', requestUrl);
+
+            _context6.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context6.sent;
             return _context6.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context6.stop();
         }
@@ -8847,18 +8847,18 @@ var getAPIData = /*#__PURE__*/(/* unused pure expression or super */ null && (fu
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID);
-            console.log('API DATA URL,', requestUrl);
-            _context7.next = 4;
+            requestUrl = "".concat(contentHubAPI.modules.contentApi, "?id=").concat(assetID); // console.log('API DATA URL,', requestUrl);
+
+            _context7.next = 3;
             return fetch(requestUrl, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 4:
+          case 3:
             response = _context7.sent;
             return _context7.abrupt("return", response);
 
-          case 6:
+          case 5:
           case "end":
             return _context7.stop();
         }
@@ -8883,18 +8883,16 @@ var getSearchData = /*#__PURE__*/function () {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
-            // let url = contentHubAPI.search[pageName];
-            console.log('URL,', url);
-            _context8.next = 3;
+            _context8.next = 2;
             return fetch(url, requestOptions).then(function (res) {
               return res = res.json();
             });
 
-          case 3:
+          case 2:
             response = _context8.sent;
             return _context8.abrupt("return", response);
 
-          case 5:
+          case 4:
           case "end":
             return _context8.stop();
         }
@@ -9115,7 +9113,7 @@ var releaseAsStory = {
     return releaseAsStory.linkStory(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   linkStory: function linkStory(storyId, targetId) {
@@ -9147,8 +9145,7 @@ var releaseAsStory = {
     });
     return true;
   },
-  releaseOutput: function releaseOutput(r) {
-    console.log(r);
+  releaseOutput: function releaseOutput(r) {// console.log(r);
   }
 };
 /* ============================================================================================== */
@@ -9178,7 +9175,7 @@ var releaseAsTeaser = {
     return releaseAsTeaser.makeTeaser(storyId, targetLocation);
   },
   err: function err(errMsg) {
-    console.log(errMsg);
+    // console.log(errMsg);
     return "".concat(errMsg);
   },
   makeTeaser: function makeTeaser(storyId, targetLocation) {
@@ -9209,7 +9206,7 @@ var releaseAsTeaser = {
         }
       },
       dataCallback: function dataCallback(resp) {
-        console.log('resp: ', resp);
+        // console.log('resp: ', resp);
         releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
       }
     });
@@ -9277,15 +9274,13 @@ var releaseAsTeaser = {
       dataCallback: function dataCallback(r) {
         if (typeof r.success === 'undefined') {
           releaseAsTeaser.err("Setting metadata of Story with teaserID: could not be set successfully.");
-        } else {
-          console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
+        } else {// console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
         }
       }
     });
   },
-  endWithSuccess: function endWithSuccess(teaserId) {
-    // End of the Process :: With Success
-    console.log("New Teaser successfully created, Teaser ID: ".concat(teaserId, "."));
+  endWithSuccess: function endWithSuccess(teaserId) {// End of the Process :: With Success
+    // console.log(`New Teaser successfully created, Teaser ID: ${teaserId}.`);
   },
   getTitle: function getTitle(storyAttr) {
     return storyAttr.name || '';
@@ -9337,8 +9332,8 @@ var releaseAsTeaser = {
     }); // Add Blueprint ID :: As Story ID
 
     fieldsOutput[bluePrintIdField] = storyId;
-    fieldsOutput[hubStatus] = 'sent-to-sr';
-    console.log('fieldsOutput: ', fieldsOutput);
+    fieldsOutput[hubStatus] = 'sent-to-sr'; // console.log('fieldsOutput: ', fieldsOutput);
+
     return fieldsOutput;
   }
 };
@@ -9513,7 +9508,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -9642,8 +9637,7 @@ var CardButtons = function CardButtons(props) {
     jsApi.setMetadataAllFields({
       asset_id: id,
       field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        console.log('Decline resp: ', resp);
+      dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
       }
     });
   };
@@ -9711,18 +9705,16 @@ var CardButtons = function CardButtons(props) {
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
     // if (props.page == 'newContent') {
-    //     console.log('card btn- fetch Data');
+    // console.log('card btn- fetch Data');
     //     props.fetchData(window?.data?.contentHubAPI?.search.newContent);
     // }
     // }
   };
 
-  var sendAsStory = function sendAsStory(storyObj) {
-    console.log("Published as story: ".concat(JSON.stringify(storyObj)));
+  var sendAsStory = function sendAsStory(storyObj) {// console.log(`Published as story: ${JSON.stringify(storyObj)}`);
   };
 
-  var sendAsTeaser = function sendAsTeaser(storyObj) {
-    console.log("Published as teaser: ".concat(JSON.stringify(storyObj)));
+  var sendAsTeaser = function sendAsTeaser(storyObj) {// console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
   };
 
   var clearReviewState = function clearReviewState() {
@@ -9752,8 +9744,7 @@ var CardButtons = function CardButtons(props) {
   var sendBeacon = function sendBeacon() {
     var _contentHubAPI$module;
 
-    console.log('Send Beacon!');
-
+    // console.log('Send Beacon!');
     if (beaconSent !== false) {
       return;
     }
@@ -9765,8 +9756,8 @@ var CardButtons = function CardButtons(props) {
     }; // Send beacon to update the state
 
     navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-
-    console.log('Beacon triggered...'); // Store beacon state
+    // console.log('Beacon triggered...');
+    // Store beacon state
 
     setBeaconSent(true);
   };
@@ -16010,7 +16001,7 @@ var NewContent = function NewContent() {
               setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
-                _context.next = 30;
+                _context.next = 29;
                 break;
               }
 
@@ -16044,31 +16035,31 @@ var NewContent = function NewContent() {
 
             case 17:
               statuses = _context.sent;
-              console.log('Statuses:', statuses);
+              // console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 25;
+              _context.next = 24;
               break;
 
-            case 22:
-              _context.prev = 22;
+            case 21:
+              _context.prev = 21;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 25:
-              _context.prev = 25;
+            case 24:
+              _context.prev = 24;
               setIsLoading(false);
-              return _context.finish(25);
+              return _context.finish(24);
 
-            case 28:
-              _context.next = 56;
+            case 27:
+              _context.next = 54;
               break;
 
-            case 30:
-              _context.prev = 30;
-              _context.next = 33;
+            case 29:
+              _context.prev = 29;
+              _context.next = 32;
               return getSearchData(url);
 
-            case 33:
+            case 32:
               _d2 = _context.sent;
               setFacets(_d2.response.facets);
 
@@ -16093,32 +16084,32 @@ var NewContent = function NewContent() {
                 }
               });
 
-              _context.next = 45;
+              _context.next = 44;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 45:
+            case 44:
               _statuses = _context.sent;
-              console.log('Statuses:', _statuses);
+              // console.log('Statuses:', statuses);
               setHubStatuses(_statuses);
-              _context.next = 53;
+              _context.next = 51;
               break;
 
-            case 50:
-              _context.prev = 50;
-              _context.t1 = _context["catch"](30);
+            case 48:
+              _context.prev = 48;
+              _context.t1 = _context["catch"](29);
               console.error('Error fetching data:', _context.t1);
 
-            case 53:
-              _context.prev = 53;
+            case 51:
+              _context.prev = 51;
               setIsLoading(false);
-              return _context.finish(53);
+              return _context.finish(51);
 
-            case 56:
+            case 54:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 22, 25, 28], [30, 50, 53, 56]]);
+      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -16561,7 +16552,7 @@ var MyContent = function MyContent() {
               setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
-                _context.next = 31;
+                _context.next = 29;
                 break;
               }
 
@@ -16581,44 +16572,44 @@ var MyContent = function MyContent() {
               setResults(d.response.resultPacket.results);
               setResultsSummary(d.response.resultPacket.resultsSummary);
               params = getQueryStringParams(url);
-              setQueryParams(params);
-              console.log('REQUEST FUNCTION data in MY content: ', d);
+              setQueryParams(params); // console.log('REQUEST FUNCTION data in MY content: ', d);
+
               sourceIdsArray = [];
               d.response.resultPacket.results.forEach(function (item) {
                 if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
                   sourceIdsArray.push(item.listMetadata.assetId[0]);
                 }
               });
-              _context.next = 18;
+              _context.next = 17;
               return getHubStatus(sourceIdsArray.join(','));
 
-            case 18:
+            case 17:
               statuses = _context.sent;
-              console.log('Statuses:', statuses);
+              // console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 26;
+              _context.next = 24;
               break;
 
-            case 23:
-              _context.prev = 23;
+            case 21:
+              _context.prev = 21;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 26:
-              _context.prev = 26;
+            case 24:
+              _context.prev = 24;
               setIsLoading(false);
-              return _context.finish(26);
+              return _context.finish(24);
 
-            case 29:
-              _context.next = 58;
+            case 27:
+              _context.next = 54;
               break;
 
-            case 31:
-              _context.prev = 31;
-              _context.next = 34;
+            case 29:
+              _context.prev = 29;
+              _context.next = 32;
               return getSearchData(url);
 
-            case 34:
+            case 32:
               _d2 = _context.sent;
               setFacets(_d2.response.facets);
 
@@ -16632,8 +16623,8 @@ var MyContent = function MyContent() {
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
               _params = getQueryStringParams(url);
-              setQueryParams(_params);
-              console.log('MY content MATRIX FETCH: ', _d2);
+              setQueryParams(_params); // console.log('MY content MATRIX FETCH: ', d);
+
               _sourceIdsArray = [];
 
               _d2.response.resultPacket.results.forEach(function (item) {
@@ -16642,32 +16633,32 @@ var MyContent = function MyContent() {
                 }
               });
 
-              _context.next = 47;
+              _context.next = 44;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 47:
+            case 44:
               _statuses = _context.sent;
-              console.log('Statuses:', _statuses);
+              // console.log('Statuses:', statuses);
               setHubStatuses(_statuses);
-              _context.next = 55;
+              _context.next = 51;
               break;
 
-            case 52:
-              _context.prev = 52;
-              _context.t1 = _context["catch"](31);
+            case 48:
+              _context.prev = 48;
+              _context.t1 = _context["catch"](29);
               console.error('Error fetching data:', _context.t1);
 
-            case 55:
-              _context.prev = 55;
+            case 51:
+              _context.prev = 51;
               setIsLoading(false);
-              return _context.finish(55);
+              return _context.finish(51);
 
-            case 58:
+            case 54:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 23, 26, 29], [31, 52, 55, 58]]);
+      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -16691,8 +16682,7 @@ var MyContent = function MyContent() {
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
-    console.log('ON CHANGE: ', name, ' || ', value);
-
+    // console.log('ON CHANGE: ', name, ' || ', value);
     if (name == 'search') {
       var newParams = queryParams;
       var queryParam = newParams.find(function (param) {
@@ -16713,8 +16703,8 @@ var MyContent = function MyContent() {
       }
 
       setQueryParams(newParams);
-      var fetchUrl = baseUrl + '?' + createUrl(queryParams);
-      console.log('CREATED URL: ', fetchUrl);
+      var fetchUrl = baseUrl + '?' + createUrl(queryParams); // console.log('CREATED URL: ', fetchUrl);
+
       fetchData(fetchUrl, dataLocation);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
@@ -16734,9 +16724,9 @@ var MyContent = function MyContent() {
 
       setQueryParams(_newParams);
 
-      var _fetchUrl = baseUrl + '?' + createUrl(queryParams);
+      var _fetchUrl = baseUrl + '?' + createUrl(queryParams); // console.log('CREATED URL: ', fetchUrl);
 
-      console.log('CREATED URL: ', _fetchUrl);
+
       fetchData(_fetchUrl, dataLocation);
     } else if (name == 'sortBy') {
       var _newParams2 = queryParams;
@@ -16758,9 +16748,9 @@ var MyContent = function MyContent() {
 
       setQueryParams(_newParams2);
 
-      var _fetchUrl2 = baseUrl + '?' + createUrl(queryParams);
+      var _fetchUrl2 = baseUrl + '?' + createUrl(queryParams); // console.log('CREATED URL sort: ', fetchUrl);
 
-      console.log('CREATED URL sort: ', _fetchUrl2);
+
       fetchData(_fetchUrl2, dataLocation);
     } else {
       if (name == 'status') {

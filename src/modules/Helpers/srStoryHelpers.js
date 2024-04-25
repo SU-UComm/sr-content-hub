@@ -25,7 +25,7 @@ export const releaseAsStory = {
         return releaseAsStory.linkStory(storyId, targetLocation);
     },
     err: (errMsg) => {
-        console.log(errMsg);
+        // console.log(errMsg);
         return `${errMsg}`;
     },
     linkStory: (storyId, targetId) => {
@@ -54,7 +54,7 @@ export const releaseAsStory = {
         return true;
     },
     releaseOutput: (r) => {
-        console.log(r);
+        // console.log(r);
     },
 };
 /* ============================================================================================== */
@@ -78,7 +78,7 @@ export const releaseAsTeaser = {
         return releaseAsTeaser.makeTeaser(storyId, targetLocation);
     },
     err: (errMsg) => {
-        console.log(errMsg);
+        // console.log(errMsg);
         return `${errMsg}`;
     },
     makeTeaser: (storyId, targetLocation) => {
@@ -106,7 +106,7 @@ export const releaseAsTeaser = {
                 },
             },
             dataCallback: (resp) => {
-                console.log('resp: ', resp);
+                // console.log('resp: ', resp);
                 releaseAsTeaser.processStoryDetails(resp, storyId, targetLocation);
             },
         });
@@ -173,14 +173,14 @@ export const releaseAsTeaser = {
                 if (typeof r.success === 'undefined') {
                     releaseAsTeaser.err(`Setting metadata of Story with teaserID: could not be set successfully.`);
                 } else {
-                    console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
+                    // console.log('Teaser ID (', +teaserId + ') saved in Story (', +storyId + ') metadata');
                 }
             },
         });
     },
     endWithSuccess: (teaserId) => {
         // End of the Process :: With Success
-        console.log(`New Teaser successfully created, Teaser ID: ${teaserId}.`);
+        // console.log(`New Teaser successfully created, Teaser ID: ${teaserId}.`);
     },
     getTitle: (storyAttr) => {
         return storyAttr.name || '';
@@ -216,7 +216,7 @@ export const releaseAsTeaser = {
         // Add Blueprint ID :: As Story ID
         fieldsOutput[bluePrintIdField] = storyId;
         fieldsOutput[hubStatus] = 'sent-to-sr';
-        console.log('fieldsOutput: ', fieldsOutput);
+        // console.log('fieldsOutput: ', fieldsOutput);
         return fieldsOutput;
     },
 };

@@ -54,6 +54,7 @@ export const NewContent = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
+                checkStatus(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -86,6 +87,7 @@ export const NewContent = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
+                checkStatus(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -108,6 +110,16 @@ export const NewContent = () => {
             setDataLocation('fb');
         }
     }, []);
+
+    const checkStatus = (statuses) => {
+        for (let i = 0; i < statuses.length; i++) {
+            console.log(statuses[i].hubStatus);
+            if (statuses[i].hubStatus == 'sent-to-sr') {
+                setResults(results.splice(i, 1));
+                console.log('results', results);
+            }
+        }
+    };
 
     const onChange = (name, value, selectedVal) => {
         // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);

@@ -858,6 +858,22 @@ module.exports = function (NAME) {
 
 /***/ }),
 
+/***/ 4881:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var tryToString = __webpack_require__(3838);
+
+var $TypeError = TypeError;
+
+module.exports = function (O, P) {
+  if (!delete O[P]) throw $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
+};
+
+
+/***/ }),
+
 /***/ 5077:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -4154,6 +4170,80 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
     for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
     result.length = n;
     return result;
+  }
+});
+
+
+/***/ }),
+
+/***/ 8763:
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(1605);
+var toObject = __webpack_require__(2612);
+var toAbsoluteIndex = __webpack_require__(6539);
+var toIntegerOrInfinity = __webpack_require__(9328);
+var lengthOfArrayLike = __webpack_require__(3493);
+var doesNotExceedSafeInteger = __webpack_require__(7242);
+var arraySpeciesCreate = __webpack_require__(2998);
+var createProperty = __webpack_require__(2057);
+var deletePropertyOrThrow = __webpack_require__(4881);
+var arrayMethodHasSpeciesSupport = __webpack_require__(5634);
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
+
+var max = Math.max;
+var min = Math.min;
+
+// `Array.prototype.splice` method
+// https://tc39.es/ecma262/#sec-array.prototype.splice
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  splice: function splice(start, deleteCount /* , ...items */) {
+    var O = toObject(this);
+    var len = lengthOfArrayLike(O);
+    var actualStart = toAbsoluteIndex(start, len);
+    var argumentsLength = arguments.length;
+    var insertCount, actualDeleteCount, A, k, from, to;
+    if (argumentsLength === 0) {
+      insertCount = actualDeleteCount = 0;
+    } else if (argumentsLength === 1) {
+      insertCount = 0;
+      actualDeleteCount = len - actualStart;
+    } else {
+      insertCount = argumentsLength - 2;
+      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
+    }
+    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
+    A = arraySpeciesCreate(O, actualDeleteCount);
+    for (k = 0; k < actualDeleteCount; k++) {
+      from = actualStart + k;
+      if (from in O) createProperty(A, k, O[from]);
+    }
+    A.length = actualDeleteCount;
+    if (insertCount < actualDeleteCount) {
+      for (k = actualStart; k < len - actualDeleteCount; k++) {
+        from = k + actualDeleteCount;
+        to = k + insertCount;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
+    } else if (insertCount > actualDeleteCount) {
+      for (k = len - actualDeleteCount; k > actualStart; k--) {
+        from = k + actualDeleteCount - 1;
+        to = k + insertCount - 1;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+    }
+    for (k = 0; k < insertCount; k++) {
+      O[k + actualStart] = arguments[k + 2];
+    }
+    O.length = len - actualDeleteCount + insertCount;
+    return A;
   }
 });
 
@@ -8288,6 +8378,8 @@ var es_array_join = __webpack_require__(475);
 var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(785);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.splice.js
+var es_array_splice = __webpack_require__(8763);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find.js
 var es_array_find = __webpack_require__(8636);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
@@ -15895,6 +15987,7 @@ function NewContent_regeneratorRuntime() { "use strict"; /*! regenerator-runtime
 
 
 
+
 function NewContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function NewContent_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { NewContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { NewContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -16004,7 +16097,7 @@ var NewContent = function NewContent() {
               setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
-                _context.next = 29;
+                _context.next = 30;
                 break;
               }
 
@@ -16040,29 +16133,30 @@ var NewContent = function NewContent() {
               statuses = _context.sent;
               // console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 24;
+              checkStatus(statuses);
+              _context.next = 25;
               break;
 
-            case 21:
-              _context.prev = 21;
+            case 22:
+              _context.prev = 22;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 24:
-              _context.prev = 24;
+            case 25:
+              _context.prev = 25;
               setIsLoading(false);
-              return _context.finish(24);
+              return _context.finish(25);
 
-            case 27:
-              _context.next = 56;
+            case 28:
+              _context.next = 58;
               break;
 
-            case 29:
-              _context.prev = 29;
-              _context.next = 32;
+            case 30:
+              _context.prev = 30;
+              _context.next = 33;
               return getSearchData(url);
 
-            case 32:
+            case 33:
               _d2 = _context.sent;
               setFacets(_d2.response.facets);
 
@@ -16088,32 +16182,33 @@ var NewContent = function NewContent() {
                 }
               });
 
-              _context.next = 45;
+              _context.next = 46;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 45:
+            case 46:
               _statuses = _context.sent;
               console.log('Statuses:', _statuses);
               setHubStatuses(_statuses);
-              _context.next = 53;
+              checkStatus(_statuses);
+              _context.next = 55;
               break;
 
-            case 50:
-              _context.prev = 50;
-              _context.t1 = _context["catch"](29);
+            case 52:
+              _context.prev = 52;
+              _context.t1 = _context["catch"](30);
               console.error('Error fetching data:', _context.t1);
 
-            case 53:
-              _context.prev = 53;
+            case 55:
+              _context.prev = 55;
               setIsLoading(false);
-              return _context.finish(53);
+              return _context.finish(55);
 
-            case 56:
+            case 58:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 21, 24, 27], [29, 50, 53, 56]]);
+      }, _callee, null, [[2, 22, 25, 28], [30, 52, 55, 58]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -16135,6 +16230,17 @@ var NewContent = function NewContent() {
       setDataLocation('fb');
     }
   }, []);
+
+  var checkStatus = function checkStatus(statuses) {
+    for (var i = 0; i < statuses.length; i++) {
+      console.log(statuses[i].hubStatus);
+
+      if (statuses[i].hubStatus == 'sent-to-sr') {
+        setResults(results.splice(i, 1));
+        console.log('results', results);
+      }
+    }
+  };
 
   var onChange = function onChange(name, value, selectedVal) {
     // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);

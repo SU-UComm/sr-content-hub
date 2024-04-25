@@ -13523,10 +13523,8 @@ function StoryView_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import {reformatDate} from '../Helpers/dateHelpers';
 
 
- // import {array} from 'prop-types';
 
 var StoryView_chCfg = {
   metaFields: {
@@ -13607,13 +13605,10 @@ var StoryView = function StoryView() {
     if (match && match[1]) {
       id = parseInt(match[1], 10);
       setStoryId(id);
-    } // let userType = window?.data?.user?.userType;
-
+    }
 
     if (id) {
-      fetchData(id); // if (userType === 'UCOMM') {
-      //     sendInReview(id);
-      // }
+      fetchData(id);
     } else {
       // fetchData('33190');
       // console.log('default load');
@@ -13632,15 +13627,13 @@ var StoryView = function StoryView() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
-
+              setIsLoading(true);
               _context.prev = 1;
               _context.next = 4;
               return getAPIData(id);
 
             case 4:
               d = _context.sent;
-              // console.log('Story data: ', d);
               setData(d);
               _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);

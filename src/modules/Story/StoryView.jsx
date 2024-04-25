@@ -3,10 +3,8 @@ import {contentHubAPI, getAPIData, getTaxonomyTerms} from '../Helpers/requests';
 import {BackToPageButton} from '../Home/BackToPageButton.jsx';
 import {Oval} from 'react-loader-spinner';
 import {CardButtons} from '../Card/CardButtons.jsx';
-// import {reformatDate} from '../Helpers/dateHelpers';
 import {FullStory} from './FullStory.jsx';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
-// import {array} from 'prop-types';
 
 const chCfg = {
     metaFields: {
@@ -57,13 +55,8 @@ export const StoryView = () => {
             id = parseInt(match[1], 10);
             setStoryId(id);
         }
-        // let userType = window?.data?.user?.userType;
-
         if (id) {
             fetchData(id);
-            // if (userType === 'UCOMM') {
-            //     sendInReview(id);
-            // }
         } else {
             // fetchData('33190');
             // console.log('default load');
@@ -76,10 +69,8 @@ export const StoryView = () => {
 
     const fetchData = async (id) => {
         setIsLoading(true);
-        // replace with getSearchData from requests.js with blank query once CORS is resolved
         try {
             const d = await getAPIData(id);
-            // console.log('Story data: ', d);
             setData(d);
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);

@@ -16260,7 +16260,7 @@ var NewContent = function NewContent() {
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
   }, results.map(function (contentItem, index) {
-    return /*#__PURE__*/react.createElement(Card, {
+    return hubStatuses[index] !== 'submitted' ? null : /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
       statuses: hubStatuses,

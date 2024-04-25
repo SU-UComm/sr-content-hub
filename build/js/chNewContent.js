@@ -16232,13 +16232,14 @@ var NewContent = function NewContent() {
   }, []);
 
   var checkStatus = function checkStatus(statuses) {
-    setIsLoading(true);
+    setIsLoading(false);
 
     for (var i = 0; i < statuses.length; i++) {
       console.log(statuses[i].hubStatus);
 
       if (statuses[i].hubStatus === 'sent-to-sr') {
-        setResults(results.splice(i, 1));
+        results.splice(i, 1);
+        setResults(results);
         console.log('results', results);
       }
     }

@@ -44,7 +44,7 @@ export const StoryView = () => {
     let jsApi = window.jsApi ?? {};
 
     const copyUrl = () => {
-        if (data.metadata.debugTeaserId[0].length > 1) {
+        if (data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0) {
             navigator.clipboard.writeText(data.metadata.srcUrl);
         } else {
             navigator.clipboard.writeText(data.url);
@@ -226,7 +226,6 @@ export const StoryView = () => {
                     <p className="small-heading">Summary</p>
                     <p className="su-mb-0 su-py-20 su-leading-normal">{summary}</p>
                 </div>
-
                 <div>
                     <ul className="su-m-0 su-p-0 su-list-none su-gap-y-[12px] sm:su-gap-y-[24px] su-gap-x-[24px] md:su-gap-x-2xl su-grid su-grid-cols-1 sm:su-grid-cols-2">
                         <li className="mb-0">
@@ -261,7 +260,7 @@ export const StoryView = () => {
                         </li>
                     </ul>
                 </div>
-
+                d
                 <div className="su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray">
                     <p className="small-heading su-m-0 su-p-0">Original URL</p>
                     <p className="su-mb-10 su-py-20">
@@ -273,7 +272,7 @@ export const StoryView = () => {
                         <a
                             id="story-mtx-link"
                             className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
-                            href={data.metadata.debugTeaserId[0].length > 1 ? data.metadata.srcUrl : data.url}
+                            href={data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? data.metadata.srcUrl : data.url}
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -330,12 +329,12 @@ export const StoryView = () => {
                             id="story-mtx-link"
                             className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
                             href={`https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=${
-                                data.metadata.debugTeaserId[0].length > 1 ? data.metadata.debugTeaserId : data.id
+                                data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? data.metadata.debugTeaserId : data.id
                             }`}
                             target="_blank"
                             rel="noreferrer"
                         >
-                            {data.metadata.debugTeaserId[0].length > 1 ? 'View teaser on Matrix' : 'View story on Matrix'}
+                            {data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? 'View teaser on Matrix' : 'View story on Matrix'}
                             <svg
                                 className="su-ml-5 su-transition-colors su-text-red group-hover:su-text-white"
                                 width="18"
@@ -360,7 +359,6 @@ export const StoryView = () => {
                         </a>
                     </div>
                 </div>
-
                 <div className="su-flex su-flex-col su-gap-[10px]">
                     {versionHistory && <p className="small-heading su-p-0 su-m-0">Version History</p>}
                     <ul className="su-py-20 su-p-0 su-m-0 su-list-none su-text-[18px] su-leading-[100%]">

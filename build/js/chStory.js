@@ -13616,7 +13616,7 @@ var StoryView = function StoryView() {
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var copyUrl = function copyUrl() {
-    if (data.metadata.debugTeaserId[0].length > 1) {
+    if (data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0) {
       navigator.clipboard.writeText(data.metadata.srcUrl);
     } else {
       navigator.clipboard.writeText(data.url);
@@ -13887,7 +13887,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Other keywords"), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : /*#__PURE__*/react.createElement("em", null, "N/A"))))), /*#__PURE__*/react.createElement("div", {
+  }, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : /*#__PURE__*/react.createElement("em", null, "N/A"))))), "d", /*#__PURE__*/react.createElement("div", {
     className: "su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray"
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-m-0 su-p-0"
@@ -13904,7 +13904,7 @@ var StoryView = function StoryView() {
   }, /*#__PURE__*/react.createElement("a", {
     id: "story-mtx-link",
     className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
-    href: data.metadata.debugTeaserId[0].length > 1 ? data.metadata.srcUrl : data.url,
+    href: data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? data.metadata.srcUrl : data.url,
     target: "_blank",
     rel: "noreferrer"
   }, "View full story", /*#__PURE__*/react.createElement("svg", {
@@ -13948,10 +13948,10 @@ var StoryView = function StoryView() {
   }))), /*#__PURE__*/react.createElement("a", {
     id: "story-mtx-link",
     className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
-    href: "https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=".concat(data.metadata.debugTeaserId[0].length > 1 ? data.metadata.debugTeaserId : data.id),
+    href: "https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=".concat(data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? data.metadata.debugTeaserId : data.id),
     target: "_blank",
     rel: "noreferrer"
-  }, data.metadata.debugTeaserId[0].length > 1 ? 'View teaser on Matrix' : 'View story on Matrix', /*#__PURE__*/react.createElement("svg", {
+  }, data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? 'View teaser on Matrix' : 'View story on Matrix', /*#__PURE__*/react.createElement("svg", {
     className: "su-ml-5 su-transition-colors su-text-red group-hover:su-text-white",
     width: "18",
     height: "18",

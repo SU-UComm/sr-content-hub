@@ -76,7 +76,6 @@ export const StoryView = () => {
         try {
             const d = await getAPIData(id);
             setData(d);
-            console.log(d);
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
             setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));

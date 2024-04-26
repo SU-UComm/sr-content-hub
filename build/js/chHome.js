@@ -836,22 +836,6 @@ module.exports = function (NAME) {
 
 /***/ }),
 
-/***/ 4881:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var tryToString = __webpack_require__(3838);
-
-var $TypeError = TypeError;
-
-module.exports = function (O, P) {
-  if (!delete O[P]) throw $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
-};
-
-
-/***/ }),
-
 /***/ 5077:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -2291,71 +2275,6 @@ var PromiseCapability = function (C) {
 module.exports.f = function (C) {
   return new PromiseCapability(C);
 };
-
-
-/***/ }),
-
-/***/ 1688:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var DESCRIPTORS = __webpack_require__(5077);
-var uncurryThis = __webpack_require__(281);
-var call = __webpack_require__(2368);
-var fails = __webpack_require__(2074);
-var objectKeys = __webpack_require__(1641);
-var getOwnPropertySymbolsModule = __webpack_require__(8916);
-var propertyIsEnumerableModule = __webpack_require__(9304);
-var toObject = __webpack_require__(2612);
-var IndexedObject = __webpack_require__(8664);
-
-// eslint-disable-next-line es-x/no-object-assign -- safe
-var $assign = Object.assign;
-// eslint-disable-next-line es-x/no-object-defineproperty -- required for testing
-var defineProperty = Object.defineProperty;
-var concat = uncurryThis([].concat);
-
-// `Object.assign` method
-// https://tc39.es/ecma262/#sec-object.assign
-module.exports = !$assign || fails(function () {
-  // should have correct order of operations (Edge bug)
-  if (DESCRIPTORS && $assign({ b: 1 }, $assign(defineProperty({}, 'a', {
-    enumerable: true,
-    get: function () {
-      defineProperty(this, 'b', {
-        value: 3,
-        enumerable: false
-      });
-    }
-  }), { b: 2 })).b !== 1) return true;
-  // should work with symbols and should have deterministic property order (V8 bug)
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line es-x/no-symbol -- safe
-  var symbol = Symbol();
-  var alphabet = 'abcdefghijklmnopqrst';
-  A[symbol] = 7;
-  alphabet.split('').forEach(function (chr) { B[chr] = chr; });
-  return $assign({}, A)[symbol] != 7 || objectKeys($assign({}, B)).join('') != alphabet;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars -- required for `.length`
-  var T = toObject(target);
-  var argumentsLength = arguments.length;
-  var index = 1;
-  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-  var propertyIsEnumerable = propertyIsEnumerableModule.f;
-  while (argumentsLength > index) {
-    var S = IndexedObject(arguments[index++]);
-    var keys = getOwnPropertySymbols ? concat(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) {
-      key = keys[j++];
-      if (!DESCRIPTORS || call(propertyIsEnumerable, S, key)) T[key] = S[key];
-    }
-  } return T;
-} : $assign;
 
 
 /***/ }),
@@ -4145,80 +4064,6 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
 
 /***/ }),
 
-/***/ 8763:
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(1605);
-var toObject = __webpack_require__(2612);
-var toAbsoluteIndex = __webpack_require__(6539);
-var toIntegerOrInfinity = __webpack_require__(9328);
-var lengthOfArrayLike = __webpack_require__(3493);
-var doesNotExceedSafeInteger = __webpack_require__(7242);
-var arraySpeciesCreate = __webpack_require__(2998);
-var createProperty = __webpack_require__(2057);
-var deletePropertyOrThrow = __webpack_require__(4881);
-var arrayMethodHasSpeciesSupport = __webpack_require__(5634);
-
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
-
-var max = Math.max;
-var min = Math.min;
-
-// `Array.prototype.splice` method
-// https://tc39.es/ecma262/#sec-array.prototype.splice
-// with adding support of @@species
-$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-  splice: function splice(start, deleteCount /* , ...items */) {
-    var O = toObject(this);
-    var len = lengthOfArrayLike(O);
-    var actualStart = toAbsoluteIndex(start, len);
-    var argumentsLength = arguments.length;
-    var insertCount, actualDeleteCount, A, k, from, to;
-    if (argumentsLength === 0) {
-      insertCount = actualDeleteCount = 0;
-    } else if (argumentsLength === 1) {
-      insertCount = 0;
-      actualDeleteCount = len - actualStart;
-    } else {
-      insertCount = argumentsLength - 2;
-      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
-    }
-    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
-    A = arraySpeciesCreate(O, actualDeleteCount);
-    for (k = 0; k < actualDeleteCount; k++) {
-      from = actualStart + k;
-      if (from in O) createProperty(A, k, O[from]);
-    }
-    A.length = actualDeleteCount;
-    if (insertCount < actualDeleteCount) {
-      for (k = actualStart; k < len - actualDeleteCount; k++) {
-        from = k + actualDeleteCount;
-        to = k + insertCount;
-        if (from in O) O[to] = O[from];
-        else deletePropertyOrThrow(O, to);
-      }
-      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
-    } else if (insertCount > actualDeleteCount) {
-      for (k = len - actualDeleteCount; k > actualStart; k--) {
-        from = k + actualDeleteCount - 1;
-        to = k + insertCount - 1;
-        if (from in O) O[to] = O[from];
-        else deletePropertyOrThrow(O, to);
-      }
-    }
-    for (k = 0; k < insertCount; k++) {
-      O[k + actualStart] = arguments[k + 2];
-    }
-    O.length = len - actualDeleteCount + insertCount;
-    return A;
-  }
-});
-
-
-/***/ }),
-
 /***/ 8741:
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
@@ -4351,22 +4196,6 @@ var setToStringTag = __webpack_require__(5282);
 // Math[@@toStringTag] property
 // https://tc39.es/ecma262/#sec-math-@@tostringtag
 setToStringTag(Math, 'Math', true);
-
-
-/***/ }),
-
-/***/ 9218:
-/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
-
-var $ = __webpack_require__(1605);
-var assign = __webpack_require__(1688);
-
-// `Object.assign` method
-// https://tc39.es/ecma262/#sec-object.assign
-// eslint-disable-next-line es-x/no-object-assign -- required for testing
-$({ target: 'Object', stat: true, arity: 2, forced: Object.assign !== assign }, {
-  assign: assign
-});
 
 
 /***/ }),
@@ -8239,39 +8068,6 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
 /***/ }),
 
-/***/ 3907:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-var map = {
-	"./arrow-right.svg": 1205,
-	"./chevron-down.svg": 663,
-	"./chevron-up.svg": 8808,
-	"./logo-footer.png": 7347,
-	"./stanford-ch.svg": 5410
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 3907;
-
-/***/ }),
-
 /***/ 1205:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -8285,30 +8081,6 @@ module.exports = __webpack_require__.p + "mysource_files/arrow-right.svg";
 
 "use strict";
 module.exports = __webpack_require__.p + "mysource_files/chevron-down.svg";
-
-/***/ }),
-
-/***/ 8808:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-module.exports = __webpack_require__.p + "mysource_files/chevron-up.svg";
-
-/***/ }),
-
-/***/ 7347:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-module.exports = __webpack_require__.p + "mysource_files/logo-footer.png";
-
-/***/ }),
-
-/***/ 5410:
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-"use strict";
-module.exports = __webpack_require__.p + "mysource_files/stanford-ch.svg";
 
 /***/ })
 
@@ -8463,88 +8235,6 @@ PageHeading.propTypes = {
 };
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__(9581);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
-var es_object_assign = __webpack_require__(9218);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__(115);
-;// CONCATENATED MODULE: ./src/modules/Home/InsightsCard.jsx
-
-
-
-var InsightsCard_InsightsCard = function InsightsCard(_ref) {
-  var title = _ref.title,
-      value = _ref.value,
-      percentage = _ref.percentage,
-      isPositive = _ref.isPositive;
-  var colorClass = isPositive ? 'su-text-green' : 'su-text-red-dark';
-  var arrowImage = isPositive ? 'chevron-up.svg' : 'chevron-down.svg';
-  return /*#__PURE__*/react.createElement("div", {
-    className: "su-rounded su-border su-border-gray su-bg-white su-shadow-sm su-p-30 su-pb-40 lg:su-max-h-[182px]"
-  }, /*#__PURE__*/react.createElement("div", {
-    className: "su-flex su-items-center su-justify-between su-mb-30"
-  }, /*#__PURE__*/react.createElement("p", {
-    className: "su-text-16 su-mb-0"
-  }, title), /*#__PURE__*/react.createElement("div", {
-    className: "".concat(colorClass, " su-text-14 su-font-semibold ").concat(isPositive ? 'su-bg-green/10' : 'su-bg-red-dark/10', " su-flex su-items-center su-px-10 su-py-8 su-rounded")
-  }, /*#__PURE__*/react.createElement("img", {
-    className: "su-inline su-mt-1 su-mr-5",
-    src: __webpack_require__(3907)("./".concat(arrowImage)),
-    alt: ""
-  }), /*#__PURE__*/react.createElement("span", null, percentage))), /*#__PURE__*/react.createElement("p", {
-    className: "su-text-m5 su-leading-[0.7] su-mb-0 su-font-bold"
-  }, value));
-};
-InsightsCard_InsightsCard.propTypes = {
-  title: prop_types.PropTypes.string,
-  value: prop_types.PropTypes.string,
-  percentage: prop_types.PropTypes.string,
-  isPositive: prop_types.PropTypes.bool
-};
-;// CONCATENATED MODULE: ./src/modules/Home/HomeInsights.jsx
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-
-
-var HomeInsights = function HomeInsights() {
-  var insightsData = [{
-    title: 'Insights placeholder',
-    value: '4,635',
-    percentage: '80%',
-    isPositive: true
-  }, {
-    title: 'Insights placeholder',
-    value: '3.05',
-    percentage: '80%',
-    isPositive: true
-  }, {
-    title: 'Insights placeholder',
-    value: '949',
-    percentage: '9%',
-    isPositive: false
-  }];
-  return /*#__PURE__*/React.createElement("section", {
-    className: "su-mb-90"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
-  }, /*#__PURE__*/React.createElement("h2", {
-    className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
-  }, "Insights"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-    href: window.globalData.pageHrefs.insights,
-    className: "su-flex su-items-center su-text-[18px] hover:su-underline"
-  }, "View all Insights", /*#__PURE__*/React.createElement("img", {
-    className: "su-inline su-ml-6",
-    alt: "",
-    src: __webpack_require__(1205)
-  })))), /*#__PURE__*/React.createElement("div", {
-    className: "su-grid su-grid-cols-1 lg:su-grid-cols-3 su-gap-xs"
-  }, insightsData.map(function (insight, index) {
-    return /*#__PURE__*/React.createElement(InsightsCard, _extends({
-      key: index
-    }, insight));
-  })));
-};
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__(8741);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.to-string.js
@@ -8557,8 +8247,10 @@ var es_array_join = __webpack_require__(475);
 var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(785);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.splice.js
-var es_array_splice = __webpack_require__(8763);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
+var es_array_filter = __webpack_require__(17);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__(115);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(3534);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -15357,8 +15049,6 @@ StatusFilter.propTypes = {
   onChange: prop_types.PropTypes.func,
   selectedValue: prop_types.PropTypes.string
 };
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
-var es_array_filter = __webpack_require__(17);
 ;// CONCATENATED MODULE: ./src/modules/Filters/SelectedFilters.jsx
 
 
@@ -15760,18 +15450,22 @@ var ContentRegion = function ContentRegion() {
   }, []);
 
   var checkStatus = function checkStatus(statuses) {
-    setIsLoading(false);
+    setIsLoading(true); // for (let i = 0; i < statuses.length; i++) {
+    //     console.log('statuses[i].hubStatus', statuses[i].hubStatus);
+    //     if (statuses[i].hubStatus !== 'submitted') {
+    //         results.splice(i, 1);
+    //         setResults(results);
+    //         console.log('results',results);
+    //     }
+    // }
 
-    for (var i = 0; i < statuses.length; i++) {
-      console.log('statuses[i].hubStatus', statuses[i].hubStatus);
-
-      if (statuses[i].hubStatus !== 'submitted') {
-        results.splice(i, 1);
-        setResults(results);
-        console.log('results', results);
-      }
-    }
-
+    console.log('results', results);
+    console.log('statuses', statuses);
+    var filteredResults = statuses.filter(function (result) {
+      return result.hubStatus === 'submitted';
+    });
+    setResults(filteredResults);
+    console.log('setRESULTS', filteredResults);
     setIsLoading(false);
   };
 
@@ -15837,7 +15531,6 @@ var ContentRegion = function ContentRegion() {
   }) : /*#__PURE__*/react.createElement(NoContent, null)));
 };
 ;// CONCATENATED MODULE: ./src/modules/Home/Home.jsx
-
 
 
 

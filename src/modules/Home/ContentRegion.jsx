@@ -103,11 +103,9 @@ export const ContentRegion = () => {
     const checkStatus = (statuses) => {
         setIsLoading(false);
         for (let i = 0; i < statuses.length; i++) {
-            console.log(statuses[i].hubStatus);
             if (statuses[i].hubStatus !== 'submitted') {
                 results.splice(i, 1);
                 setResults(results);
-                console.log('results', results);
             }
         }
         setIsLoading(false);

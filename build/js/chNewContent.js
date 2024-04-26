@@ -14494,7 +14494,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); // console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -16170,7 +16170,7 @@ var NewContent = function NewContent() {
               return _context.finish(25);
 
             case 28:
-              _context.next = 58;
+              _context.next = 56;
               break;
 
             case 30:
@@ -16190,7 +16190,6 @@ var NewContent = function NewContent() {
                 }
               });
 
-              console.log(_d2);
               setData(_d2);
               setResults(_d2.response.resultPacket.results);
               setResultsSummary(_d2.response.resultPacket.resultsSummary);
@@ -16204,33 +16203,33 @@ var NewContent = function NewContent() {
                 }
               });
 
-              _context.next = 46;
+              _context.next = 45;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 46:
+            case 45:
               _statuses = _context.sent;
-              console.log('Statuses:', _statuses);
+              // console.log('Statuses:', statuses);
               setHubStatuses(_statuses);
               checkStatus(_statuses);
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 52:
-              _context.prev = 52;
+            case 50:
+              _context.prev = 50;
               _context.t1 = _context["catch"](30);
               console.error('Error fetching data:', _context.t1);
 
-            case 55:
-              _context.prev = 55;
+            case 53:
+              _context.prev = 53;
               setIsLoading(false);
-              return _context.finish(55);
+              return _context.finish(53);
 
-            case 58:
+            case 56:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 22, 25, 28], [30, 52, 55, 58]]);
+      }, _callee, null, [[2, 22, 25, 28], [30, 50, 53, 56]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -16257,12 +16256,9 @@ var NewContent = function NewContent() {
     setIsLoading(false);
 
     for (var i = 0; i < statuses.length; i++) {
-      console.log(statuses[i].hubStatus);
-
       if (statuses[i].hubStatus === 'sent-to-sr') {
         results.splice(i, 1);
-        setResults(results);
-        console.log('results', results);
+        setResults(results); // console.log('results', results);
       }
     }
 

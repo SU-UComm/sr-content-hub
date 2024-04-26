@@ -107,7 +107,7 @@ export const CardButtons = (props) => {
         }
         !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
         setHubStatusDesc(props.hubStatusDesc);
-        //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+        // console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
     }, [hubStatus]);
 
     // Set temp status when action "Send to Stanford Report" action is fired

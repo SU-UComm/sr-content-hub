@@ -71,7 +71,6 @@ export const NewContent = () => {
                         setDateLabels(item.allValues);
                     }
                 });
-                console.log(d);
                 setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
@@ -85,7 +84,7 @@ export const NewContent = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                console.log('Statuses:', statuses);
+                // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
                 checkStatus(statuses);
             } catch (error) {
@@ -114,11 +113,10 @@ export const NewContent = () => {
     const checkStatus = (statuses) => {
         setIsLoading(false);
         for (let i = 0; i < statuses.length; i++) {
-            console.log(statuses[i].hubStatus);
             if (statuses[i].hubStatus === 'sent-to-sr') {
                 results.splice(i, 1);
                 setResults(results);
-                console.log('results', results);
+                // console.log('results', results);
             }
         }
         setIsLoading(false);

@@ -12474,7 +12474,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); // console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -13657,46 +13657,47 @@ var StoryView = function StoryView() {
             case 4:
               d = _context.sent;
               setData(d);
+              console.log(d);
               _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);
               setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
               assetIDs = (_d$metadata$topics$jo = (_d$metadata = d.metadata) === null || _d$metadata === void 0 ? void 0 : _d$metadata.topics.join(',')) !== null && _d$metadata$topics$jo !== void 0 ? _d$metadata$topics$jo : false;
 
               if (!assetIDs) {
-                _context.next = 16;
+                _context.next = 17;
                 break;
               }
 
-              _context.next = 13;
+              _context.next = 14;
               return getTaxonomyTerms(assetIDs);
 
-            case 13:
+            case 14:
               taxonomyTerms = _context.sent;
               terms = taxonomyTerms.map(function (item) {
                 return item.name.charAt(0).toUpperCase() + item.name.slice(1);
               });
               setTaxonomy(terms);
 
-            case 16:
-              _context.next = 21;
+            case 17:
+              _context.next = 22;
               break;
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](1);
               console.error('Error fetching data:', _context.t0);
 
-            case 21:
-              _context.prev = 21;
+            case 22:
+              _context.prev = 22;
               setIsLoading(false);
-              return _context.finish(21);
+              return _context.finish(22);
 
-            case 24:
+            case 25:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 18, 21, 24]]);
+      }, _callee, null, [[1, 19, 22, 25]]);
     }));
 
     return function fetchData(_x) {

@@ -14313,7 +14313,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc); // console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -15816,12 +15816,9 @@ var ContentRegion = function ContentRegion() {
     setIsLoading(false);
 
     for (var i = 0; i < statuses.length; i++) {
-      console.log(statuses[i].hubStatus);
-
       if (statuses[i].hubStatus !== 'submitted') {
         results.splice(i, 1);
         setResults(results);
-        console.log('results', results);
       }
     }
 

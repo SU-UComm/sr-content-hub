@@ -52,7 +52,6 @@ export const StoryView = () => {
     };
 
     useEffect(() => {
-        // setIsLoading(true);
         let id = window.location.search;
         let match = id.match(/=(\d+)/);
         if (match && match[1]) {
@@ -78,7 +77,9 @@ export const StoryView = () => {
             setData(d);
             let summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
             setSummary(summary);
-            setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
+            if (d.metadata.hubVersionHistory.length > 0) {
+                setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
+            }
             let assetIDs = d.metadata?.topics.join(',') ?? false;
             if (assetIDs) {
                 const taxonomyTerms = await getTaxonomyTerms(assetIDs);
@@ -116,8 +117,7 @@ export const StoryView = () => {
             return false;
         }
 
-        // Looks like we have all the informatin in place
-
+        // Looks like we have all the information in place
         // Build in review message
         const msg = `${userDetails} is reviewing`;
 
@@ -133,7 +133,6 @@ export const StoryView = () => {
             dataCallback: (resp) => {
                 if (typeof resp === 'object') {
                     resp = JSON.stringify(resp);
-                    // console.log('RESP send review msg: ', resp);
                 }
                 clearReviewState(id);
             },
@@ -173,7 +172,6 @@ export const StoryView = () => {
     };
 
     const sendBeacon = (id) => {
-        // console.log('Send Beacon unload!');
         if (beaconSent !== false) {
             return;
         }
@@ -184,9 +182,6 @@ export const StoryView = () => {
 
         // Send beacon to update the state
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
-
-        // Add log msg to see if this was triggered
-        // console.log('beacon triggered');
 
         // Store beacon state
         setBeaconSent(true);
@@ -327,8 +322,10 @@ export const StoryView = () => {
                         <a
                             id="story-mtx-link"
                             className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
-                            href={`https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=${
-                                data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? data.metadata.debugTeaserId : data.id
+                            href={`${
+                                data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0
+                                    ? 'https://sug-web.matrix.squiz.cloud/_admin/?screen=details&assetid=' + data.metadata.debugTeaserId
+                                    : 'https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=' + data.id
                             }`}
                             target="_blank"
                             rel="noreferrer"

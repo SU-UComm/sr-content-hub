@@ -15449,32 +15449,28 @@ var ContentRegion = function ContentRegion() {
   }, []); // const checkStatus = (statuses) => {
   //     setIsLoading(true);
   //     for (let i = 0; i < statuses.length; i++) {
-  //         console.log('statuses[i].hubStatus', statuses[i].hubStatus);
   //         if (statuses[i].hubStatus !== 'submitted') {
   //             results.splice(i, 1);
   //             setResults(results);
-  //             console.log('results', results);
   //         }
   //     }
   //     setIsLoading(false);
   // };
 
   var checkStatus = function checkStatus(statuses, resultsArray) {
-    console.log('1 results', resultsArray);
+    // console.log('1 results', resultsArray);
     setIsLoading(true);
     var filteredResults = [];
     var idx = 0;
     statuses.forEach(function (status) {
-      console.log('status.hubStatus', status.hubStatus);
-
       if (status.hubStatus === 'submitted') {
         filteredResults.push(resultsArray[idx]);
       }
 
       idx = idx + 1;
     });
-    setResults(filteredResults);
-    console.log('2 results', filteredResults);
+    setResults(filteredResults); // console.log('2 results', filteredResults);
+
     setIsLoading(false);
   };
 

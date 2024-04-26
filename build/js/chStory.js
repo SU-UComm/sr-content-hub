@@ -13571,7 +13571,6 @@ var StoryView = function StoryView() {
   };
 
   (0,react.useEffect)(function () {
-    // setIsLoading(true);
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
 
@@ -13610,7 +13609,11 @@ var StoryView = function StoryView() {
               setData(d);
               _summary = decodeHTML(d.metadata.srcSummary[0] ? d.metadata.srcSummary[0] : 'N/A');
               setSummary(_summary);
-              setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
+
+              if (d.metadata.hubVersionHistory.length > 0) {
+                setVersionHistory(JSON.parse(d.metadata.hubVersionHistory));
+              }
+
               assetIDs = (_d$metadata$topics$jo = (_d$metadata = d.metadata) === null || _d$metadata === void 0 ? void 0 : _d$metadata.topics.join(',')) !== null && _d$metadata$topics$jo !== void 0 ? _d$metadata$topics$jo : false;
 
               if (!assetIDs) {
@@ -13684,7 +13687,7 @@ var StoryView = function StoryView() {
     if (userDetails === '') {
       // logMsg('Tried to update the story status description but information about the user are missing...');
       return false;
-    } // Looks like we have all the informatin in place
+    } // Looks like we have all the information in place
     // Build in review message
 
 
@@ -13698,7 +13701,7 @@ var StoryView = function StoryView() {
       field_info: fieldsActions,
       dataCallback: function dataCallback(resp) {
         if (StoryView_typeof(resp) === 'object') {
-          resp = JSON.stringify(resp); // console.log('RESP send review msg: ', resp);
+          resp = JSON.stringify(resp);
         }
 
         clearReviewState(id);
@@ -13733,7 +13736,6 @@ var StoryView = function StoryView() {
   var sendBeacon = function sendBeacon(id) {
     var _contentHubAPI$module;
 
-    // console.log('Send Beacon unload!');
     if (beaconSent !== false) {
       return;
     }
@@ -13744,9 +13746,7 @@ var StoryView = function StoryView() {
       id: id
     }; // Send beacon to update the state
 
-    navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-    // console.log('beacon triggered');
-    // Store beacon state
+    navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Store beacon state
 
     setBeaconSent(true);
   };
@@ -13894,7 +13894,7 @@ var StoryView = function StoryView() {
   }))), /*#__PURE__*/react.createElement("a", {
     id: "story-mtx-link",
     className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
-    href: "https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=".concat(data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? data.metadata.debugTeaserId : data.id),
+    href: "".concat(data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? 'https://sug-web.matrix.squiz.cloud/_admin/?screen=details&assetid=' + data.metadata.debugTeaserId : 'https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=' + data.id),
     target: "_blank",
     rel: "noreferrer"
   }, data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0 ? 'View teaser on Matrix' : 'View story on Matrix', /*#__PURE__*/react.createElement("svg", {

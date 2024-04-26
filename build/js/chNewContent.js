@@ -9634,6 +9634,8 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleSendFullContent = function handleSendFullContent() {
+    setHubStatus('sent-to-sr');
+    setFixedHubStatus('sent-to-sr');
     jsApi.getMetadata({
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
@@ -9646,6 +9648,8 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleSendTeaser = function handleSendTeaser() {
+    setHubStatus('sent-to-sr');
+    setFixedHubStatus('sent-to-sr');
     jsApi.getMetadata({
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
@@ -9737,9 +9741,9 @@ var CardButtons = function CardButtons(props) {
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
     // disable button
-    setHubStatus('sent-to-sr');
-    setFixedHubStatus('sent-to-sr'); // Define Metadata Fields Actions Object
-
+    // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+    // Define Metadata Fields Actions Object
     var fieldsActions = {}; // Action #1: Status Update:
 
     var statusField = chCfg.metaFields.hubStatus;

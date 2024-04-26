@@ -141,6 +141,8 @@ export const CardButtons = (props) => {
     };
 
     const handleSendFullContent = () => {
+        setHubStatus('sent-to-sr');
+        setFixedHubStatus('sent-to-sr');
         jsApi.getMetadata({
             asset_id: props.assetId,
             dataCallback: (resp) => {
@@ -155,6 +157,8 @@ export const CardButtons = (props) => {
     };
 
     const handleSendTeaser = () => {
+        setHubStatus('sent-to-sr');
+        setFixedHubStatus('sent-to-sr');
         jsApi.getMetadata({
             asset_id: props.assetId,
             dataCallback: (resp) => {
@@ -254,8 +258,8 @@ export const CardButtons = (props) => {
 
     const prepareApproveUpdate = (storyId, pageType, currentState) => {
         // disable button
-        setHubStatus('sent-to-sr');
-        setFixedHubStatus('sent-to-sr');
+        // setHubStatus('sent-to-sr');
+        // setFixedHubStatus('sent-to-sr');
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
 

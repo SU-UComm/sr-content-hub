@@ -100,16 +100,33 @@ export const ContentRegion = () => {
         }
     }, []);
 
+    // const checkStatus = (statuses) => {
+    //     setIsLoading(true);
+    //     for (let i = 0; i < statuses.length; i++) {
+    //         console.log('statuses[i].hubStatus', statuses[i].hubStatus);
+    //         if (statuses[i].hubStatus !== 'submitted') {
+    //             results.splice(i, 1);
+    //             setResults(results);
+    //             console.log('results', results);
+    //         }
+    //     }
+    //     setIsLoading(false);
+    // };
+
     const checkStatus = (statuses) => {
-        setIsLoading(false);
-        for (let i = 0; i < statuses.length; i++) {
-            console.log('statuses[i].hubStatus', statuses[i].hubStatus);
-            if (statuses[i].hubStatus !== 'submitted') {
-                results.splice(i, 1);
-                setResults(results);
-                console.log('results', results);
+        console.log('1 results', results);
+        setIsLoading(true);
+        const filteredResults = [];
+        let idx = 0;
+        statuses.forEach((status) => {
+            console.log('status.hubStatus', status.hubStatus);
+            if (status.hubStatus === 'submitted') {
+                filteredResults.push(results[idx]);
             }
-        }
+            idx = idx + 1;
+        });
+        setResults(filteredResults);
+        console.log('2 results', filteredResults);
         setIsLoading(false);
     };
 

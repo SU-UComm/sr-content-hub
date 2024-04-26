@@ -54,7 +54,7 @@ export const NewContent = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
-                checkStatus(statuses);
+                // checkStatus(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -86,7 +86,7 @@ export const NewContent = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 // console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
-                checkStatus(statuses);
+                // checkStatus(statuses);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -110,17 +110,17 @@ export const NewContent = () => {
         }
     }, []);
 
-    const checkStatus = (statuses) => {
-        setIsLoading(false);
-        for (let i = 0; i < statuses.length; i++) {
-            if (statuses[i].hubStatus === 'sent-to-sr') {
-                results.splice(i, 1);
-                setResults(results);
-                // console.log('results', results);
-            }
-        }
-        setIsLoading(false);
-    };
+    // const checkStatus = (statuses) => {
+    //     setIsLoading(false);
+    //     for (let i = 0; i < statuses.length; i++) {
+    //         if (statuses[i].hubStatus === 'sent-to-sr') {
+    //             results.splice(i, 1);
+    //             setResults(results);
+    //             // console.log('results', results);
+    //         }
+    //     }
+    //     setIsLoading(false);
+    // };
 
     const onChange = (name, value, selectedVal) => {
         // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);

@@ -15403,7 +15403,7 @@ var ContentRegion = function ContentRegion() {
               setHubStatuses(_statuses);
 
               if (((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'UCOMM') {
-                checkStatus(_statuses);
+                checkStatus(_statuses, _d2.response.resultPacket.results);
               }
 
               _context.next = 47;
@@ -15459,8 +15459,8 @@ var ContentRegion = function ContentRegion() {
   //     setIsLoading(false);
   // };
 
-  var checkStatus = function checkStatus(statuses) {
-    console.log('1 results', results);
+  var checkStatus = function checkStatus(statuses, resultsArray) {
+    console.log('1 results', resultsArray);
     setIsLoading(true);
     var filteredResults = [];
     var idx = 0;
@@ -15468,7 +15468,7 @@ var ContentRegion = function ContentRegion() {
       console.log('status.hubStatus', status.hubStatus);
 
       if (status.hubStatus === 'submitted') {
-        filteredResults.push(results[idx]);
+        filteredResults.push(resultsArray[idx]);
       }
 
       idx = idx + 1;

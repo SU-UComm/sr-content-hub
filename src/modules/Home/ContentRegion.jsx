@@ -72,7 +72,7 @@ export const ContentRegion = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 setHubStatuses(statuses);
                 if (window?.data?.user.userType == 'UCOMM') {
-                    checkStatus(statuses);
+                    checkStatus(statuses, d.response.resultPacket.results);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -113,15 +113,15 @@ export const ContentRegion = () => {
     //     setIsLoading(false);
     // };
 
-    const checkStatus = (statuses) => {
-        console.log('1 results', results);
+    const checkStatus = (statuses, resultsArray) => {
+        console.log('1 results', resultsArray);
         setIsLoading(true);
         const filteredResults = [];
         let idx = 0;
         statuses.forEach((status) => {
             console.log('status.hubStatus', status.hubStatus);
             if (status.hubStatus === 'submitted') {
-                filteredResults.push(results[idx]);
+                filteredResults.push(resultsArray[idx]);
             }
             idx = idx + 1;
         });

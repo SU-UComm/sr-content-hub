@@ -322,7 +322,7 @@ export const CardButtons = (props) => {
         // const latestNewsEl = document.querySelector('#latest-content');
         // // IF it is then we need to trigger loading one additional result instead of current item
         // if (latestNewsEl !== null) {
-        if (props.page == 'newContent') {
+        if (props.page == 'home') {
             props.fetchData(window?.data?.contentHubAPI?.search.newContent);
         }
         // }

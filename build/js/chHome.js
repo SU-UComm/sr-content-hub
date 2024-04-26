@@ -836,6 +836,22 @@ module.exports = function (NAME) {
 
 /***/ }),
 
+/***/ 4881:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var tryToString = __webpack_require__(3838);
+
+var $TypeError = TypeError;
+
+module.exports = function (O, P) {
+  if (!delete O[P]) throw $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
+};
+
+
+/***/ }),
+
 /***/ 5077:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -4123,6 +4139,80 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
     for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
     result.length = n;
     return result;
+  }
+});
+
+
+/***/ }),
+
+/***/ 8763:
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(1605);
+var toObject = __webpack_require__(2612);
+var toAbsoluteIndex = __webpack_require__(6539);
+var toIntegerOrInfinity = __webpack_require__(9328);
+var lengthOfArrayLike = __webpack_require__(3493);
+var doesNotExceedSafeInteger = __webpack_require__(7242);
+var arraySpeciesCreate = __webpack_require__(2998);
+var createProperty = __webpack_require__(2057);
+var deletePropertyOrThrow = __webpack_require__(4881);
+var arrayMethodHasSpeciesSupport = __webpack_require__(5634);
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
+
+var max = Math.max;
+var min = Math.min;
+
+// `Array.prototype.splice` method
+// https://tc39.es/ecma262/#sec-array.prototype.splice
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  splice: function splice(start, deleteCount /* , ...items */) {
+    var O = toObject(this);
+    var len = lengthOfArrayLike(O);
+    var actualStart = toAbsoluteIndex(start, len);
+    var argumentsLength = arguments.length;
+    var insertCount, actualDeleteCount, A, k, from, to;
+    if (argumentsLength === 0) {
+      insertCount = actualDeleteCount = 0;
+    } else if (argumentsLength === 1) {
+      insertCount = 0;
+      actualDeleteCount = len - actualStart;
+    } else {
+      insertCount = argumentsLength - 2;
+      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
+    }
+    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
+    A = arraySpeciesCreate(O, actualDeleteCount);
+    for (k = 0; k < actualDeleteCount; k++) {
+      from = actualStart + k;
+      if (from in O) createProperty(A, k, O[from]);
+    }
+    A.length = actualDeleteCount;
+    if (insertCount < actualDeleteCount) {
+      for (k = actualStart; k < len - actualDeleteCount; k++) {
+        from = k + actualDeleteCount;
+        to = k + insertCount;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
+    } else if (insertCount > actualDeleteCount) {
+      for (k = len - actualDeleteCount; k > actualStart; k--) {
+        from = k + actualDeleteCount - 1;
+        to = k + insertCount - 1;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+    }
+    for (k = 0; k < insertCount; k++) {
+      O[k + actualStart] = arguments[k + 2];
+    }
+    O.length = len - actualDeleteCount + insertCount;
+    return A;
   }
 });
 
@@ -8467,6 +8557,8 @@ var es_array_join = __webpack_require__(475);
 var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(785);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.splice.js
+var es_array_splice = __webpack_require__(8763);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
 var es_symbol = __webpack_require__(3534);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.description.js
@@ -9525,7 +9617,7 @@ var CardButtons = function CardButtons(props) {
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
 
-    if (props.page == 'newContent') {
+    if (props.page == 'home') {
       var _window3, _window3$data, _window3$data$content;
 
       props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
@@ -15484,6 +15576,7 @@ function ContentRegion_regeneratorRuntime() { "use strict"; /*! regenerator-runt
 
 
 
+
 function ContentRegion_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function ContentRegion_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { ContentRegion_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { ContentRegion_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -15509,7 +15602,7 @@ function ContentRegion_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr;
 
 
 var ContentRegion = function ContentRegion() {
-  var _window3, _window3$data, _window3$data$user, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window8, _window8$data, _window8$data$user;
+  var _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window7$data$user, _window8, _window8$data, _window8$data$user, _window9, _window9$data, _window10, _window10$data, _window10$data$user;
 
   var baseUrl = "".concat(window.globalData.urls.fb, "/s/search.json");
 
@@ -15558,7 +15651,7 @@ var ContentRegion = function ContentRegion() {
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = ContentRegion_asyncToGenerator( /*#__PURE__*/ContentRegion_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, sourceIdsArray, statuses, _d2, _sourceIdsArray, _statuses;
+      var _window, _window$data, d, sourceIdsArray, statuses, _window2, _window2$data, _d2, _sourceIdsArray, _statuses;
 
       return ContentRegion_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
@@ -15567,7 +15660,7 @@ var ContentRegion = function ContentRegion() {
               setIsLoading(true); // backup for local environment
 
               if (!(func == 'fb')) {
-                _context.next = 26;
+                _context.next = 27;
                 break;
               }
 
@@ -15600,29 +15693,34 @@ var ContentRegion = function ContentRegion() {
               statuses = _context.sent;
               //console.log('Statuses:', statuses);
               setHubStatuses(statuses);
-              _context.next = 21;
+
+              if (((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) == 'UCOMM') {
+                checkStatus(statuses);
+              }
+
+              _context.next = 22;
               break;
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               _context.t0 = _context["catch"](2);
               console.error('Error fetching data:', _context.t0);
 
-            case 21:
-              _context.prev = 21;
+            case 22:
+              _context.prev = 22;
               setIsLoading(false);
-              return _context.finish(21);
+              return _context.finish(22);
 
-            case 24:
-              _context.next = 48;
+            case 25:
+              _context.next = 50;
               break;
 
-            case 26:
-              _context.prev = 26;
-              _context.next = 29;
+            case 27:
+              _context.prev = 27;
+              _context.next = 30;
               return getSearchData(url);
 
-            case 29:
+            case 30:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -15644,32 +15742,37 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 38;
+              _context.next = 39;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 38:
+            case 39:
               _statuses = _context.sent;
               // console.log('Statuses2:', statuses);
               setHubStatuses(_statuses);
-              _context.next = 45;
+
+              if (((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'UCOMM') {
+                checkStatus(_statuses);
+              }
+
+              _context.next = 47;
               break;
 
-            case 42:
-              _context.prev = 42;
-              _context.t1 = _context["catch"](26);
+            case 44:
+              _context.prev = 44;
+              _context.t1 = _context["catch"](27);
               console.error('Error fetching data:', _context.t1);
 
-            case 45:
-              _context.prev = 45;
+            case 47:
+              _context.prev = 47;
               setIsLoading(false);
-              return _context.finish(45);
+              return _context.finish(47);
 
-            case 48:
+            case 50:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 18, 21, 24], [26, 42, 45, 48]]);
+      }, _callee, null, [[2, 19, 22, 25], [27, 44, 47, 50]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -15678,10 +15781,10 @@ var ContentRegion = function ContentRegion() {
   }();
 
   (0,react.useEffect)(function () {
-    var _window, _window$data, _window2, _window2$data, _window2$data$content;
+    var _window3, _window3$data, _window4, _window4$data, _window4$data$content;
 
-    var userType = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType;
-    var urlCheck = (_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : (_window2$data$content = _window2$data.contentHubAPI) === null || _window2$data$content === void 0 ? void 0 : _window2$data$content.search;
+    var userType = (_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.userType;
+    var urlCheck = (_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$content = _window4$data.contentHubAPI) === null || _window4$data$content === void 0 ? void 0 : _window4$data$content.search;
 
     if (urlCheck) {
       var url = userType == 'CP' ? window.data.contentHubAPI.search.myContent : window.data.contentHubAPI.search.newContent;
@@ -15692,6 +15795,22 @@ var ContentRegion = function ContentRegion() {
       setDataLocation('fb');
     }
   }, []);
+
+  var checkStatus = function checkStatus(statuses) {
+    setIsLoading(false);
+
+    for (var i = 0; i < statuses.length; i++) {
+      console.log(statuses[i].hubStatus);
+
+      if (statuses[i].hubStatus !== 'submitted') {
+        results.splice(i, 1);
+        setResults(results);
+        console.log('results', results);
+      }
+    }
+
+    setIsLoading(false);
+  };
 
   var onChange = function onChange(name, value, selectedVal) {
     // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
@@ -15722,13 +15841,13 @@ var ContentRegion = function ContentRegion() {
     className: "su-flex su-flex-col md:su-flex-row su-justify-between md:su-items-center su-mb-20 su-gap-xs"
   }, /*#__PURE__*/react.createElement("h2", {
     className: "su-text-h4 md:su-text-h3 su-font-serif su-mb-0"
-  }, ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$user = _window3$data.user) === null || _window3$data$user === void 0 ? void 0 : _window3$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
-    href: ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' ? window.globalData.pageHrefs.newContent : window.globalData.pageHrefs.myContent,
+  }, ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest content for review' : 'My Recent Content'), /*#__PURE__*/react.createElement("div", null, /*#__PURE__*/react.createElement("a", {
+    href: ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? window.globalData.pageHrefs.newContent : window.globalData.pageHrefs.myContent,
     className: "su-flex su-items-center su-text-[18px] hover:su-underline"
-  }, "View all ", ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
+  }, "View all ", ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(1205)
-  })))), ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'CP' && results.length > 1 ? /*#__PURE__*/react.createElement("div", {
+  })))), ((_window8 = window) === null || _window8 === void 0 ? void 0 : (_window8$data = _window8.data) === null || _window8$data === void 0 ? void 0 : (_window8$data$user = _window8$data.user) === null || _window8$data$user === void 0 ? void 0 : _window8$data$user.userType) === 'CP' && results.length > 1 ? /*#__PURE__*/react.createElement("div", {
     className: "su-mb-60"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"
@@ -15739,17 +15858,19 @@ var ContentRegion = function ContentRegion() {
   })), /*#__PURE__*/react.createElement(SelectedFacets, {
     onChange: onChange,
     facets: facets,
-    page: ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : _window7$data.user.userType) == 'CP' ? 'myContent' : 'newContent'
+    page: ((_window9 = window) === null || _window9 === void 0 ? void 0 : (_window9$data = _window9.data) === null || _window9$data === void 0 ? void 0 : _window9$data.user.userType) == 'CP' ? 'myContent' : 'newContent'
   })) : null, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-20"
-  }, ((_window8 = window) === null || _window8 === void 0 ? void 0 : (_window8$data = _window8.data) === null || _window8$data === void 0 ? void 0 : (_window8$data$user = _window8$data.user) === null || _window8$data$user === void 0 ? void 0 : _window8$data$user.userType) === 'UCOMM' ? "1-".concat(resultsSummary.totalMatching > 5 ? '5' : resultsSummary.totalMatching, " of ").concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
+  }, ((_window10 = window) === null || _window10 === void 0 ? void 0 : (_window10$data = _window10.data) === null || _window10$data === void 0 ? void 0 : (_window10$data$user = _window10$data.user) === null || _window10$data$user === void 0 ? void 0 : _window10$data$user.userType) === 'UCOMM' ? "1-".concat(resultsSummary.totalMatching > 5 ? '5' : resultsSummary.totalMatching, " of ").concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
   }, results.length > 0 ? results.slice(0, 5).map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
-      statuses: hubStatuses
+      statuses: hubStatuses,
+      fetchData: fetchData,
+      page: "home"
     });
   }) : /*#__PURE__*/react.createElement(NoContent, null)));
 };

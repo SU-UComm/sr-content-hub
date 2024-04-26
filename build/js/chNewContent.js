@@ -9798,7 +9798,7 @@ var CardButtons = function CardButtons(props) {
     // // IF it is then we need to trigger loading one additional result instead of current item
     // if (latestNewsEl !== null) {
 
-    if (props.page == 'newContent') {
+    if (props.page == 'home') {
       var _window3, _window3$data, _window3$data$content;
 
       props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);

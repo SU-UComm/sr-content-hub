@@ -46,6 +46,9 @@ export const ContentRegion = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 //console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
+                if (window?.data?.user.userType == 'UCOMM') {
+                    checkStatus(statuses);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -74,6 +77,9 @@ export const ContentRegion = () => {
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
                 // console.log('Statuses2:', statuses);
                 setHubStatuses(statuses);
+                if (window?.data?.user.userType == 'UCOMM') {
+                    checkStatus(statuses);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -99,6 +105,19 @@ export const ContentRegion = () => {
             setDataLocation('fb');
         }
     }, []);
+
+    const checkStatus = (statuses) => {
+        setIsLoading(false);
+        for (let i = 0; i < statuses.length; i++) {
+            console.log(statuses[i].hubStatus);
+            if (statuses[i].hubStatus !== 'submitted') {
+                results.splice(i, 1);
+                setResults(results);
+                console.log('results', results);
+            }
+        }
+        setIsLoading(false);
+    };
 
     const onChange = (name, value, selectedVal) => {
         // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
@@ -148,7 +167,11 @@ export const ContentRegion = () => {
             </p>
 
             <ul className="su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0" id="latest-content">
-                {results.length > 0 ? results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} />) : <NoContent />}
+                {results.length > 0 ? (
+                    results.slice(0, 5).map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="home" />)
+                ) : (
+                    <NoContent />
+                )}
             </ul>
         </section>
     );

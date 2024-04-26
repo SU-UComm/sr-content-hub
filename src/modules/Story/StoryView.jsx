@@ -44,7 +44,11 @@ export const StoryView = () => {
     let jsApi = window.jsApi ?? {};
 
     const copyUrl = () => {
-        navigator.clipboard.writeText(data.url);
+        if (data.metadata.debugTeaserId[0].length > 1) {
+            navigator.clipboard.writeText(data.metadata.srcUrl);
+        } else {
+            navigator.clipboard.writeText(data.url);
+        }
     };
 
     useEffect(() => {
@@ -269,7 +273,7 @@ export const StoryView = () => {
                         <a
                             id="story-mtx-link"
                             className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
-                            href={data.url}
+                            href={data.metadata.debugTeaserId[0].length > 1 ? data.metadata.srcUrl : data.url}
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -325,11 +329,13 @@ export const StoryView = () => {
                         <a
                             id="story-mtx-link"
                             className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
-                            href={`https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=${data.id}`}
+                            href={`https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=${
+                                data.metadata.debugTeaserId[0].length > 1 ? data.metadata.debugTeaserId : data.id
+                            }`}
                             target="_blank"
                             rel="noreferrer"
                         >
-                            View story on Matrix
+                            {data.metadata.debugTeaserId[0].length > 1 ? 'View teaser on Matrix' : 'View story on Matrix'}
                             <svg
                                 className="su-ml-5 su-transition-colors su-text-red group-hover:su-text-white"
                                 width="18"

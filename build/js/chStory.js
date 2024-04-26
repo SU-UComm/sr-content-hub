@@ -13616,7 +13616,11 @@ var StoryView = function StoryView() {
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
 
   var copyUrl = function copyUrl() {
-    navigator.clipboard.writeText(data.url);
+    if (data.metadata.debugTeaserId[0].length > 1) {
+      navigator.clipboard.writeText(data.metadata.srcUrl);
+    } else {
+      navigator.clipboard.writeText(data.url);
+    }
   };
 
   (0,react.useEffect)(function () {
@@ -13900,7 +13904,7 @@ var StoryView = function StoryView() {
   }, /*#__PURE__*/react.createElement("a", {
     id: "story-mtx-link",
     className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
-    href: data.url,
+    href: data.metadata.debugTeaserId[0].length > 1 ? data.metadata.srcUrl : data.url,
     target: "_blank",
     rel: "noreferrer"
   }, "View full story", /*#__PURE__*/react.createElement("svg", {
@@ -13944,10 +13948,10 @@ var StoryView = function StoryView() {
   }))), /*#__PURE__*/react.createElement("a", {
     id: "story-mtx-link",
     className: "button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start",
-    href: "https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=".concat(data.id),
+    href: "https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=".concat(data.metadata.debugTeaserId[0].length > 1 ? data.metadata.debugTeaserId : data.id),
     target: "_blank",
     rel: "noreferrer"
-  }, "View story on Matrix", /*#__PURE__*/react.createElement("svg", {
+  }, data.metadata.debugTeaserId[0].length > 1 ? 'View teaser on Matrix' : 'View story on Matrix', /*#__PURE__*/react.createElement("svg", {
     className: "su-ml-5 su-transition-colors su-text-red group-hover:su-text-white",
     width: "18",
     height: "18",

@@ -4,38 +4,6 @@ import {releaseAsStory, releaseAsTeaser} from '../Helpers/srStoryHelpers';
 import {contentHubAPI} from '../Helpers/requests';
 import {Oval} from 'react-loader-spinner';
 
-// const mockData = {
-//     name: 'Mockup name',
-//     short_name: 'Mockup name',
-//     asset_id: 'inputQuery.id',
-//     id: 'inputQuery.id',
-//     type_code: 'folder',
-//     type: 'Folder',
-//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-//     web_path: 'https://mockup.url/mockup_name',
-//     urls: ['https://mockup.url/mockup_name'],
-//     status: 'Under Construction',
-//     statusId: '2',
-//     created: 1637857729,
-//     created_userid: '65',
-//     created_username: 'John Doe (Squiz)',
-//     updated: 1637857730,
-//     updated_userid: '65',
-//     updated_username: 'John Doe (Squiz)',
-//     published: 'Never Published',
-//     published_userid: 'Never Published',
-//     published_username: 'Never Published',
-//     status_changed: 1637857729,
-//     status_changed_userid: '65',
-//     status_changed_username: 'John Doe (Squiz)',
-//     maximum_perm_on_asset: 'Admin Access',
-//     can_live_edit: true,
-//     effective_write: true,
-//     attribute_contextualised: true,
-//     metadata_contextualised: true,
-//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
-// };
-
 const chCfg = {
     metaFields: {
         hubStatusDescription: 31823,
@@ -74,7 +42,6 @@ export const CardButtons = (props) => {
     const [fixedHubStatus, setFixedHubStatus] = useState(null);
     const [hubStatusDesc, setHubStatusDesc] = useState('');
     const [isLoading, setIsLoading] = useState(false); // Loader flag
-    //let jsApi = window?.jsApi ? window.jsApi : mockData;
     let jsApi = window.jsApi ?? {};
 
     const onTextAreaValueChange = (val) => {
@@ -107,7 +74,6 @@ export const CardButtons = (props) => {
         }
         !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
         setHubStatusDesc(props.hubStatusDesc);
-        // console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
     }, [hubStatus]);
 
     // Set temp status when action "Send to Stanford Report" action is fired
@@ -143,8 +109,6 @@ export const CardButtons = (props) => {
     };
 
     const handleSendFullContent = () => {
-        // setHubStatus('sent-to-sr');
-        // setFixedHubStatus('sent-to-sr');
         setIsLoading(true);
         jsApi.getMetadata({
             asset_id: props.assetId,
@@ -160,8 +124,6 @@ export const CardButtons = (props) => {
     };
 
     const handleSendTeaser = () => {
-        // setHubStatus('sent-to-sr');
-        // setFixedHubStatus('sent-to-sr');
         setIsLoading(true);
         jsApi.getMetadata({
             asset_id: props.assetId,
@@ -177,8 +139,6 @@ export const CardButtons = (props) => {
     };
 
     const handleDecline = (id) => {
-        // setHubStatus('reviewed');
-        // setFixedHubStatus('reviewed');
         setIsLoading(true);
         // Handle sending decline info
         jsApi.getMetadata({
@@ -265,9 +225,6 @@ export const CardButtons = (props) => {
     };
 
     const prepareApproveUpdate = (storyId, pageType, currentState) => {
-        // disable button
-        // setHubStatus('sent-to-sr');
-        // setFixedHubStatus('sent-to-sr');
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
 
@@ -282,9 +239,20 @@ export const CardButtons = (props) => {
 
         // Action #3: Update Version History
         const currentHistory = getHistoryState(currentState);
+
+        // Generate date and accept message
+        const thisDate = new Date().getTime();
+        const userEl = document.querySelector('#user-status');
+        const userDetails = userEl.getAttribute('data-fullname');
+        const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
+        const newEntry = {date: thisDate, message: historyMessage};
+        currentHistory.unshift(newEntry);
+
         const currentHistoryStr = JSON.stringify(currentHistory);
         const historyField = chCfg.metaFields.hubVersionHistory;
         fieldsActions[historyField] = currentHistoryStr;
+
+        props.listMetadata.hubStatusDescription = historyMessage;
 
         // Action #4: Clear Reviewed/Hub Description field
         const descField = chCfg.metaFields.hubStatusDescription;
@@ -295,40 +263,27 @@ export const CardButtons = (props) => {
         const pageTypeValue = pageType.toLowerCase();
         fieldsActions[pageTypeField] = pageTypeValue;
 
-        // Get Published Date from Metadata :: Needed for publishing on SR
-        const pubDate = props.listMetadata.publishedDate[0] || '';
+        // // Get Published Date from Metadata :: Needed for publishing on SR
+        // const pubDate = props.listMetadata.publishedDate[0] || '';
 
-        // Create Asset Details to pass to callback
-        const thisStory = {
-            id: storyId,
-            pageType: pageType,
-            pubDate: pubDate,
-        };
+        // // Create Asset Details to pass to callback
+        // const thisStory = {
+        //     id: storyId,
+        //     pageType: pageType,
+        //     pubDate: pubDate,
+        // };
 
         // All fields in place :: Update metadata
         jsApi.setMetadataAllFields({
             asset_id: storyId,
             field_info: fieldsActions,
-            dataCallback: (resp) => {
-                updateUi(thisStory, pageType, resp);
+            dataCallback: () => {
+                updateUi(historyMessage);
             },
         });
     };
-    const updateUi = (storyObj, pageType) => {
-        // Finalize publishing process with additional functions :: Depending from the page type
-        // storyObj.pageType = storyObj.pageType || 'story';
-        // if (storyObj.pageType.toLowerCase() === 'teaser') {
-        //     sendAsTeaser(storyObj);
-        // } else {
-        //     sendAsStory(storyObj);
-        // }
-
-        // We need to update the Button on the front-end :: and remove actions
-        const userEl = document.querySelector('#user-status');
-        const userDetails = userEl.getAttribute('data-fullname');
-        const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
-        props.listMetadata.hubStatusDescription = historyMessage;
-        setHubStatusDesc(historyMessage);
+    const updateUi = (historyMsg) => {
+        setHubStatusDesc(historyMsg);
         setHubStatus('sent-to-sr');
         setFixedHubStatus('sent-to-sr');
         setIsLoading(false);
@@ -338,12 +293,6 @@ export const CardButtons = (props) => {
             props.fetchData(window?.data?.contentHubAPI?.search.newContent);
         }
     };
-    // const sendAsStory = (storyObj) => {
-    //     // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
-    // };
-    // const sendAsTeaser = (storyObj) => {
-    //     // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
-    // };
 
     const clearReviewState = () => {
         if (typeof navigator.sendBeacon !== 'function') {

@@ -14167,37 +14167,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // const mockData = {
-//     name: 'Mockup name',
-//     short_name: 'Mockup name',
-//     asset_id: 'inputQuery.id',
-//     id: 'inputQuery.id',
-//     type_code: 'folder',
-//     type: 'Folder',
-//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-//     web_path: 'https://mockup.url/mockup_name',
-//     urls: ['https://mockup.url/mockup_name'],
-//     status: 'Under Construction',
-//     statusId: '2',
-//     created: 1637857729,
-//     created_userid: '65',
-//     created_username: 'John Doe (Squiz)',
-//     updated: 1637857730,
-//     updated_userid: '65',
-//     updated_username: 'John Doe (Squiz)',
-//     published: 'Never Published',
-//     published_userid: 'Never Published',
-//     published_username: 'Never Published',
-//     status_changed: 1637857729,
-//     status_changed_userid: '65',
-//     status_changed_username: 'John Doe (Squiz)',
-//     maximum_perm_on_asset: 'Admin Access',
-//     can_live_edit: true,
-//     effective_write: true,
-//     attribute_contextualised: true,
-//     metadata_contextualised: true,
-//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
-// };
 
 var chCfg = {
   metaFields: {
@@ -14274,7 +14243,6 @@ var CardButtons = function CardButtons(props) {
       _useState18 = _slicedToArray(_useState17, 2),
       isLoading = _useState18[0],
       setIsLoading = _useState18[1]; // Loader flag
-  //let jsApi = window?.jsApi ? window.jsApi : mockData;
 
 
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
@@ -14313,7 +14281,7 @@ var CardButtons = function CardButtons(props) {
 
     !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
 
-    setHubStatusDesc(props.hubStatusDesc); // console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+    setHubStatusDesc(props.hubStatusDesc);
   }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
   // This will get updated by real status on page refresh
 
@@ -14346,8 +14314,6 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleSendFullContent = function handleSendFullContent() {
-    // setHubStatus('sent-to-sr');
-    // setFixedHubStatus('sent-to-sr');
     setIsLoading(true);
     jsApi.getMetadata({
       asset_id: props.assetId,
@@ -14361,8 +14327,6 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleSendTeaser = function handleSendTeaser() {
-    // setHubStatus('sent-to-sr');
-    // setFixedHubStatus('sent-to-sr');
     setIsLoading(true);
     jsApi.getMetadata({
       asset_id: props.assetId,
@@ -14376,8 +14340,6 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleDecline = function handleDecline(id) {
-    // setHubStatus('reviewed');
-    // setFixedHubStatus('reviewed');
     setIsLoading(true); // Handle sending decline info
 
     jsApi.getMetadata({
@@ -14458,9 +14420,6 @@ var CardButtons = function CardButtons(props) {
   };
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
-    // disable button
-    // setHubStatus('sent-to-sr');
-    // setFixedHubStatus('sent-to-sr');
     // Define Metadata Fields Actions Object
     var fieldsActions = {}; // Action #1: Status Update:
 
@@ -14471,49 +14430,48 @@ var CardButtons = function CardButtons(props) {
     var msgField = chCfg.metaFields.hubReviewMsg;
     fieldsActions[msgField] = ''; // Action #3: Update Version History
 
-    var currentHistory = getHistoryState(currentState);
+    var currentHistory = getHistoryState(currentState); // Generate date and accept message
+
+    var thisDate = new Date().getTime();
+    var userEl = document.querySelector('#user-status');
+    var userDetails = userEl.getAttribute('data-fullname');
+    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
+    var newEntry = {
+      date: thisDate,
+      message: historyMessage
+    };
+    currentHistory.unshift(newEntry);
     var currentHistoryStr = JSON.stringify(currentHistory);
     var historyField = chCfg.metaFields.hubVersionHistory;
-    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
+    fieldsActions[historyField] = currentHistoryStr;
+    props.listMetadata.hubStatusDescription = historyMessage; // Action #4: Clear Reviewed/Hub Description field
 
     var descField = chCfg.metaFields.hubStatusDescription;
     fieldsActions[descField] = ''; // Action #5: Set page type
 
     var pageTypeField = chCfg.metaFields.pageType;
     var pageTypeValue = pageType.toLowerCase();
-    fieldsActions[pageTypeField] = pageTypeValue; // Get Published Date from Metadata :: Needed for publishing on SR
-
-    var pubDate = props.listMetadata.publishedDate[0] || ''; // Create Asset Details to pass to callback
-
-    var thisStory = {
-      id: storyId,
-      pageType: pageType,
-      pubDate: pubDate
-    }; // All fields in place :: Update metadata
+    fieldsActions[pageTypeField] = pageTypeValue; // // Get Published Date from Metadata :: Needed for publishing on SR
+    // const pubDate = props.listMetadata.publishedDate[0] || '';
+    // // Create Asset Details to pass to callback
+    // const thisStory = {
+    //     id: storyId,
+    //     pageType: pageType,
+    //     pubDate: pubDate,
+    // };
+    // All fields in place :: Update metadata
 
     jsApi.setMetadataAllFields({
       asset_id: storyId,
       field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        updateUi(thisStory, pageType, resp);
+      dataCallback: function dataCallback() {
+        updateUi(historyMessage);
       }
     });
   };
 
-  var updateUi = function updateUi(storyObj, pageType) {
-    // Finalize publishing process with additional functions :: Depending from the page type
-    // storyObj.pageType = storyObj.pageType || 'story';
-    // if (storyObj.pageType.toLowerCase() === 'teaser') {
-    //     sendAsTeaser(storyObj);
-    // } else {
-    //     sendAsStory(storyObj);
-    // }
-    // We need to update the Button on the front-end :: and remove actions
-    var userEl = document.querySelector('#user-status');
-    var userDetails = userEl.getAttribute('data-fullname');
-    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
-    props.listMetadata.hubStatusDescription = historyMessage;
-    setHubStatusDesc(historyMessage);
+  var updateUi = function updateUi(historyMsg) {
+    setHubStatusDesc(historyMsg);
     setHubStatus('sent-to-sr');
     setFixedHubStatus('sent-to-sr');
     setIsLoading(false);
@@ -14524,13 +14482,7 @@ var CardButtons = function CardButtons(props) {
 
       props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
     }
-  }; // const sendAsStory = (storyObj) => {
-  //     // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
-  // };
-  // const sendAsTeaser = (storyObj) => {
-  //     // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
-  // };
-
+  };
 
   var clearReviewState = function clearReviewState() {
     if (typeof navigator.sendBeacon !== 'function') {

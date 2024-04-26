@@ -9248,1120 +9248,6 @@ var postData = /*#__PURE__*/(/* unused pure expression or super */ null && (func
     return _ref9.apply(this, arguments);
   };
 }()));
-;// CONCATENATED MODULE: ./src/modules/Card/CardButtons.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function CardButtons_typeof(obj) { "@babel/helpers - typeof"; return CardButtons_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, CardButtons_typeof(obj); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
- // const mockData = {
-//     name: 'Mockup name',
-//     short_name: 'Mockup name',
-//     asset_id: 'inputQuery.id',
-//     id: 'inputQuery.id',
-//     type_code: 'folder',
-//     type: 'Folder',
-//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
-//     web_path: 'https://mockup.url/mockup_name',
-//     urls: ['https://mockup.url/mockup_name'],
-//     status: 'Under Construction',
-//     statusId: '2',
-//     created: 1637857729,
-//     created_userid: '65',
-//     created_username: 'John Doe (Squiz)',
-//     updated: 1637857730,
-//     updated_userid: '65',
-//     updated_username: 'John Doe (Squiz)',
-//     published: 'Never Published',
-//     published_userid: 'Never Published',
-//     published_username: 'Never Published',
-//     status_changed: 1637857729,
-//     status_changed_userid: '65',
-//     status_changed_username: 'John Doe (Squiz)',
-//     maximum_perm_on_asset: 'Admin Access',
-//     can_live_edit: true,
-//     effective_write: true,
-//     attribute_contextualised: true,
-//     metadata_contextualised: true,
-//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
-// };
-
-var chCfg = {
-  metaFields: {
-    hubStatusDescription: 31823,
-    hubStatus: 31822,
-    hubVersionHistory: 31825,
-    hubReviewMsg: 32284,
-    pageType: 4857
-  },
-  hubStatuses: {
-    reviewed: 'reviewed',
-    approved: 'sent-to-sr'
-  },
-  pageTypes: {
-    story: 'story',
-    teaser: 'teaser'
-  },
-  badges: {
-    reviewed: "<p class=\"su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Reviewed</p>",
-    approved: "<p class=\"su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Publishing soon on Stanford Report</p>"
-  },
-  endpoints: {
-    beacon: "".concat(window.globalData.urls.contentHub, "/r/h/ch/beacon"),
-    loadNext: "".concat(window.globalData.urls.contentHub, "/r/h/ch/next")
-  }
-};
-var CardButtons = function CardButtons(props) {
-  var _window$jsApi, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
-
-  var _useState = (0,react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isSendDialogOpen = _useState2[0],
-      setSendDialogOpen = _useState2[1];
-
-  var _useState3 = (0,react.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isDeclineDialogOpen = _useState4[0],
-      setDeclineDialogOpen = _useState4[1];
-
-  var sendDialogRef = (0,react.useRef)(null);
-  var declineDialogRef = (0,react.useRef)(null);
-
-  var _useState5 = (0,react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      beaconSent = _useState6[0],
-      setBeaconSent = _useState6[1];
-
-  var _useState7 = (0,react.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      textArea = _useState8[0],
-      setTextAreaValue = _useState8[1];
-
-  var _useState9 = (0,react.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      userMatch = _useState10[0],
-      setUserMatch = _useState10[1];
-
-  var _useState11 = (0,react.useState)(''),
-      _useState12 = _slicedToArray(_useState11, 2),
-      hubStatus = _useState12[0],
-      setHubStatus = _useState12[1];
-
-  var _useState13 = (0,react.useState)(null),
-      _useState14 = _slicedToArray(_useState13, 2),
-      fixedHubStatus = _useState14[0],
-      setFixedHubStatus = _useState14[1];
-
-  var _useState15 = (0,react.useState)(''),
-      _useState16 = _slicedToArray(_useState15, 2),
-      hubStatusDesc = _useState16[0],
-      setHubStatusDesc = _useState16[1]; //let jsApi = window?.jsApi ? window.jsApi : mockData;
-
-
-  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
-
-  var onTextAreaValueChange = function onTextAreaValueChange(val) {
-    setTextAreaValue(val);
-  };
-
-  var isJson = function isJson(str) {
-    // Check if we need to parse it
-    if (CardButtons_typeof(str) === 'object') {
-      return str;
-    } // Check if obj is json and return object if succesful
-
-
-    try {
-      var data = JSON.parse(str);
-    } catch (e) {
-      return false;
-    }
-
-    return data;
-  }; // Update status when hubStatus change
-
-
-  (0,react.useEffect)(function () {
-    var _window, _window$data, _window2, _window2$data;
-
-    var userDetails = ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.firstName) + ' ' + window.data + ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.lastName);
-    var userEl = document.querySelector('#user-status');
-    var pageUserDetails = userEl.getAttribute('data-fullname');
-
-    if (userDetails === pageUserDetails) {
-      setUserMatch(true);
-    }
-
-    !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
-
-    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
-  }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
-  // This will get updated by real status on page refresh
-
-  (0,react.useEffect)(function () {
-    setHubStatus(fixedHubStatus);
-  }, [fixedHubStatus]);
-
-  var openSendDialog = function openSendDialog(id) {
-    setSendDialogOpen(true);
-    var dialog = document.getElementById(id);
-    dialog.showModal();
-  };
-
-  var closeSendDialog = function closeSendDialog(id) {
-    setSendDialogOpen(false);
-    var dialog = document.getElementById(id);
-    dialog.close();
-  };
-
-  var openDeclineDialog = function openDeclineDialog(id) {
-    setDeclineDialogOpen(true);
-    var dialog = document.getElementById(id);
-    dialog.showModal();
-  };
-
-  var closeDeclineDialog = function closeDeclineDialog(id) {
-    setDeclineDialogOpen(false);
-    var dialog = document.getElementById(id);
-    dialog.close();
-  };
-
-  var handleSendFullContent = function handleSendFullContent() {
-    setHubStatus('sent-to-sr');
-    setFixedHubStatus('sent-to-sr');
-    jsApi.getMetadata({
-      asset_id: props.assetId,
-      dataCallback: function dataCallback(resp) {
-        // As a callback :: Prepare an update for the asset
-        prepareApproveUpdate(props.assetId, 'Story', resp);
-      }
-    });
-    releaseAsStory.init(props.assetId, contentHubAPI);
-    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-  };
-
-  var handleSendTeaser = function handleSendTeaser() {
-    setHubStatus('sent-to-sr');
-    setFixedHubStatus('sent-to-sr');
-    jsApi.getMetadata({
-      asset_id: props.assetId,
-      dataCallback: function dataCallback(resp) {
-        // As a callback :: Prepare an update for the asset
-        prepareApproveUpdate(props.assetId, 'Teaser', resp);
-      }
-    });
-    releaseAsTeaser.init(props.assetId, contentHubAPI);
-    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-  };
-
-  var handleDecline = function handleDecline(id) {
-    // Handle sending decline info
-    jsApi.getMetadata({
-      asset_id: props.assetId,
-      dataCallback: function dataCallback(resp) {
-        // As a callback :: Prepare an update for the asset
-        prepareDeclineUpdate(props.assetId, resp);
-      }
-    });
-    closeDeclineDialog(id);
-  }; // Helper Function to get state
-
-
-  var getHistoryState = function getHistoryState(currentState) {
-    // Get current history state
-    var currentHistory = []; // Check if current state is JSON
-
-    currentState = isJson(currentState);
-
-    if (currentState !== false) {
-      // If it is: Get current version history
-      var currentVersionMeta = isJson(currentState['hubVersionHistory']);
-
-      if (currentVersionMeta !== false) {
-        currentHistory = currentVersionMeta;
-      }
-    }
-
-    return currentHistory;
-  };
-
-  var prepareDeclineUpdate = function prepareDeclineUpdate(id, currentState) {
-    // Define Metadata Fields Actions Object
-    var fieldsActions = {}; // Action #1: Status Update:
-
-    var statusField = chCfg.metaFields.hubStatus;
-    var statusFieldValue = chCfg.hubStatuses.reviewed;
-    fieldsActions[statusField] = statusFieldValue; // Action #2: Decline Message Update
-
-    var msgTxt = textArea;
-    var msgField = chCfg.metaFields.hubReviewMsg;
-    fieldsActions[msgField] = msgTxt; // Action #3: Update Version History
-
-    var currentHistory = getHistoryState(currentState); // Generate date and decline message
-
-    var thisDate = new Date().getTime();
-    var userEl = document.querySelector('#user-status');
-    var userDetails = userEl.getAttribute('data-fullname');
-
-    if (msgTxt.length === 0) {
-      msgTxt = 'No message';
-    }
-
-    var historyMessage = "Reviewed by ".concat(userDetails, ", Message: ").concat(msgTxt); // Update status on front end
-
-    setHubStatusDesc(historyMessage);
-    setHubStatus('reviewed');
-    setFixedHubStatus('reviewed');
-    var newEntry = {
-      date: thisDate,
-      message: historyMessage
-    };
-    currentHistory.unshift(newEntry);
-    var currentHistoryStr = JSON.stringify(currentHistory);
-    var historyField = chCfg.metaFields.hubVersionHistory;
-    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
-
-    var descField = chCfg.metaFields.hubStatusDescription;
-    fieldsActions[descField] = ''; // All fields in place :: Update metadata
-
-    jsApi.setMetadataAllFields({
-      asset_id: id,
-      field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
-      }
-    });
-  };
-
-  var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
-    // disable button
-    // setHubStatus('sent-to-sr');
-    // setFixedHubStatus('sent-to-sr');
-    // Define Metadata Fields Actions Object
-    var fieldsActions = {}; // Action #1: Status Update:
-
-    var statusField = chCfg.metaFields.hubStatus;
-    var statusFieldValue = chCfg.hubStatuses.approved;
-    fieldsActions[statusField] = statusFieldValue; // Action #2: Clear Decline message :: In case it was there before
-
-    var msgField = chCfg.metaFields.hubReviewMsg;
-    fieldsActions[msgField] = ''; // Action #3: Update Version History
-
-    var currentHistory = getHistoryState(currentState);
-    var currentHistoryStr = JSON.stringify(currentHistory);
-    var historyField = chCfg.metaFields.hubVersionHistory;
-    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
-
-    var descField = chCfg.metaFields.hubStatusDescription;
-    fieldsActions[descField] = ''; // Action #5: Set page type
-
-    var pageTypeField = chCfg.metaFields.pageType;
-    var pageTypeValue = pageType.toLowerCase();
-    fieldsActions[pageTypeField] = pageTypeValue; // Get Published Date from Metadata :: Needed for publishing on SR
-
-    var pubDate = props.listMetadata.publishedDate[0] || ''; // Create Asset Details to pass to callback
-
-    var thisStory = {
-      id: storyId,
-      pageType: pageType,
-      pubDate: pubDate
-    }; // All fields in place :: Update metadata
-
-    jsApi.setMetadataAllFields({
-      asset_id: storyId,
-      field_info: fieldsActions,
-      dataCallback: function dataCallback(resp) {
-        updateUi(thisStory, pageType, resp);
-      }
-    });
-  };
-
-  var updateUi = function updateUi(storyObj, pageType) {
-    // Finalize publishing process with additional functions :: Depending from the page type
-    // storyObj.pageType = storyObj.pageType || 'story';
-    // if (storyObj.pageType.toLowerCase() === 'teaser') {
-    //     sendAsTeaser(storyObj);
-    // } else {
-    //     sendAsStory(storyObj);
-    // }
-    // We need to update the Button on the front-end :: and remove actions
-    var userEl = document.querySelector('#user-status');
-    var userDetails = userEl.getAttribute('data-fullname');
-    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
-    props.listMetadata.hubStatusDescription = historyMessage;
-    setHubStatusDesc(historyMessage); // setHubStatus('sent-to-sr');
-    // setFixedHubStatus('sent-to-sr');
-
-    clearReviewState();
-
-    if (props.page == 'home') {
-      var _window3, _window3$data, _window3$data$content;
-
-      props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
-    }
-  }; // const sendAsStory = (storyObj) => {
-  //     // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
-  // };
-  // const sendAsTeaser = (storyObj) => {
-  //     // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
-  // };
-
-
-  var clearReviewState = function clearReviewState() {
-    if (typeof navigator.sendBeacon !== 'function') {
-      return false;
-    } // Use Beacon API to send update :: on page unload
-
-
-    setBeaconSent(false);
-    window.addEventListener('unload', function () {
-      sendBeacon();
-    }, {
-      capture: true
-    });
-    window.addEventListener('beforeunload', function () {
-      sendBeacon();
-    }, {
-      capture: true
-    });
-    window.addEventListener('pagehide', function () {
-      sendBeacon();
-    }, {
-      capture: true
-    });
-  };
-
-  var sendBeacon = function sendBeacon() {
-    var _contentHubAPI$module;
-
-    // console.log('Send Beacon!');
-    if (beaconSent !== false) {
-      return;
-    }
-
-    var beaconUrl = contentHubAPI !== null && contentHubAPI !== void 0 && (_contentHubAPI$module = contentHubAPI.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? contentHubAPI === null || contentHubAPI === void 0 ? void 0 : contentHubAPI.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
-
-    var data = {
-      id: props.assetId
-    }; // Send beacon to update the state
-
-    navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-    // console.log('Beacon triggered...');
-    // Store beacon state
-
-    setBeaconSent(true);
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
-  }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
-    className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
-    "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
-    className: "js-action--send-to-sr button-green c-button-send",
-    onClick: function onClick() {
-      return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-    }
-  }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react.createElement("p", {
-    className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
-    className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
-    className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
-    "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
-    className: "js-action--send-to-sr button-green c-button-send",
-    onClick: function onClick() {
-      return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-    }
-  }, "Send to Stanford Report"), /*#__PURE__*/react.createElement("button", {
-    "data-id": "dialogTitle-".concat(props.assetId, "-decline"),
-    className: "js-action--decline c-button-decline",
-    onClick: function onClick() {
-      return openDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
-    }
-  }, "Decline")) : null, /*#__PURE__*/react.createElement("dialog", {
-    ref: sendDialogRef,
-    "data-id": props.assetId,
-    id: "dialogTitle-".concat(props.assetId, "-approve"),
-    role: "dialog",
-    open: isSendDialogOpen,
-    className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
-    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-approve")
-  }, /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-    },
-    className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
-    "aria-label": "close"
-  }, /*#__PURE__*/react.createElement("svg", {
-    className: "",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "13",
-    height: "13",
-    fill: "none"
-  }, /*#__PURE__*/react.createElement("path", {
-    d: "M12.0554 1.9502L1.94434 11.0502",
-    stroke: "#E50808",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react.createElement("path", {
-    d: "M1.94434 1.9502L12.0554 11.0502",
-    stroke: "#E50808",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }))), /*#__PURE__*/react.createElement("div", {
-    className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react.createElement("h3", {
-    id: "dialogTitle-".concat(props.assetId, "-approve"),
-    className: "su-mb-0 su-font-serif su-text-center su-tracking-normal"
-  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react.createElement("div", {
-    className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return handleSendTeaser();
-    },
-    "aria-label": "Send Teaser",
-    className: "button-green js-send-teaser"
-  }, "Send Teaser"), /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return handleSendFullContent();
-    },
-    "aria-label": "Send Full Content",
-    className: "button-green js-send-content"
-  }, "Send Full Content"), /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
-    },
-    "aria-label": "Cancel",
-    className: "js-decline"
-  }, "Cancel")))), /*#__PURE__*/react.createElement("dialog", {
-    ref: declineDialogRef,
-    role: "dialog",
-    open: isDeclineDialogOpen,
-    "data-id": props.assetId,
-    className: "c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
-    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-decline"),
-    id: "dialogTitle-".concat(props.assetId, "-decline")
-  }, /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
-    },
-    className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
-    "aria-label": "close"
-  }, /*#__PURE__*/react.createElement("svg", {
-    className: "",
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "13",
-    height: "13",
-    fill: "none"
-  }, /*#__PURE__*/react.createElement("path", {
-    d: "M12.0554 1.9502L1.94434 11.0502",
-    stroke: "#E50808",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }), /*#__PURE__*/react.createElement("path", {
-    d: "M1.94434 1.9502L12.0554 11.0502",
-    stroke: "#E50808",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }))), /*#__PURE__*/react.createElement("div", {
-    className: "c-dialog-body su-p-30 sm:su-p-60"
-  }, /*#__PURE__*/react.createElement("h3", {
-    id: "dialogTitle-".concat(props.assetId, "-decline"),
-    className: "su-mb-10 su-font-serif su-leading-[125%] su-text-center"
-  }, "You are declining this story"), /*#__PURE__*/react.createElement("p", {
-    id: "dialogDescription-".concat(props.assetId, "-decline"),
-    className: "su-mb-10 su-leading-[125%] su-text-center"
-  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react.createElement("label", {
-    className: "sr-only",
-    htmlFor: "message-textarea-".concat(props.assetId, "-decline")
-  }, "Optional note"), /*#__PURE__*/react.createElement("textarea", {
-    className: "su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]",
-    name: "message-".concat(props.assetId),
-    rows: "5",
-    autoComplete: "off",
-    "aria-label": "Optional note",
-    value: textArea,
-    id: "message-textarea-".concat(props.assetId, "-decline"),
-    onChange: function onChange(e) {
-      return onTextAreaValueChange(e.target.value);
-    }
-  }), /*#__PURE__*/react.createElement("div", {
-    className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
-  }, /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return handleDecline("dialogTitle-".concat(props.assetId, "-decline"));
-    },
-    "aria-label": "Decline",
-    className: "button-green js-decline-true"
-  }, "Yes, Decline"), /*#__PURE__*/react.createElement("button", {
-    onClick: function onClick() {
-      return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
-    },
-    "aria-label": "Cancel",
-    className: "js-decline-false"
-  }, "Cancel")))));
-};
-CardButtons.propTypes = {
-  listMetadata: prop_types_default().shape({
-    hubStatusDescription: (prop_types_default()).array,
-    hubStatus: (prop_types_default()).array,
-    assetId: (prop_types_default()).array,
-    publishedDate: (prop_types_default()).array,
-    hubReviewMsg: (prop_types_default()).array
-  }),
-  assetId: (prop_types_default()).string,
-  type: (prop_types_default()).string,
-  page: (prop_types_default()).string,
-  hubStatusDesc: (prop_types_default()).string,
-  hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array]),
-  fetchData: (prop_types_default()).func
-};
-;// CONCATENATED MODULE: ./src/modules/Helpers/dateHelpers.js
-
-var reformatDate = function reformatDate(ts) {
-  // Validate date
-  if (ts === undefined) {
-    return '';
-  }
-
-  ts = parseInt(ts, 10);
-
-  if (isNaN(ts) === true) {
-    return '';
-  } // Multiply date by 1000 to convert PHP vs JS date format (between seconds and miliseconds)
-
-
-  ts = ts * 1000;
-  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  var tsDate = new Date(ts); // Format: "April 30, 2023"
-
-  var month = monthNames[tsDate.getMonth()];
-  var day = tsDate.getDate();
-  var year = tsDate.getFullYear(); // If provided year is not accurate :: means invalid date or no date was provided :: return placeholder
-
-  if (year === 1970) {
-    return 'N/A';
-  }
-
-  return "".concat(month, " ").concat(day, ", ").concat(year);
-};
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
-var es_string_split = __webpack_require__(8649);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
-var es_string_replace = __webpack_require__(173);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.constructor.js
-var es_regexp_constructor = __webpack_require__(9073);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
-var es_regexp_to_string = __webpack_require__(6048);
-;// CONCATENATED MODULE: ./src/modules/Helpers/helperFunctions.js
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = helperFunctions_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function helperFunctions_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return helperFunctions_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return helperFunctions_arrayLikeToArray(o, minLen); }
-
-function helperFunctions_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var getQueryStringParams = function getQueryStringParams(url) {
-  var urlArr = url.split('?');
-  var query = urlArr[1] || '';
-  query = query.replace('?', '');
-  var queryArr = query.split('&');
-  var queryParams = [];
-  queryArr.forEach(function (thisParam) {
-    var thisParamArr = thisParam.split('=');
-
-    if (thisParamArr.length === 2) {
-      queryParams.push({
-        name: thisParamArr[0],
-        value: thisParamArr[1]
-      });
-    }
-  });
-  return queryParams;
-};
-var createUrl = function createUrl(queryParams) {
-  var queryStringArray = [];
-
-  var _iterator = _createForOfIteratorHelper(queryParams),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var entry = _step.value;
-      var encodedKey = entry.name;
-      var encodedValue = entry.value;
-      queryStringArray.push("".concat(encodedKey, "=").concat(encodedValue));
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-
-  var queryString = queryStringArray.join('&');
-  return queryString;
-};
-var getLabel = function getLabel(value) {
-  var label = value;
-
-  if (value.toLowerCase() == 'sent-to-sr') {
-    label = 'Publishing soon on Stanford Report';
-  } else if (value == 'published') {
-    label = 'Published on Stanford Report';
-  } else if (value == '') {
-    label = 'All';
-  } else {
-    label = value[0].toUpperCase() + value.substring(1);
-  }
-
-  return label;
-};
-var decodeHTML = function decodeHTML(string) {
-  var entityMap = HtmlEntities;
-
-  for (var key in entityMap) {
-    var entity = entityMap[key];
-    var regex = new RegExp(entity, 'g');
-    string = string.replace(regex, key);
-  }
-
-  string = string.replace(/&quot;/g, '"');
-  string = string.replace(/&amp;/g, '&');
-  string = string.replace(' [...]', '...');
-  string = string.replace(' […]', '...');
-  string = string.replace(/(<([^>]+)>)/gi, '');
-  return string;
-};
-var HtmlEntities = {
-  "'": '&apos;',
-  '<': '&lt;',
-  '>': '&gt;',
-  ' ': '&nbsp;',
-  '¡': '&iexcl;',
-  '¢': '&cent;',
-  '£': '&pound;',
-  '¤': '&curren;',
-  '¥': '&yen;',
-  '¦': '&brvbar;',
-  '§': '&sect;',
-  '¨': '&uml;',
-  '©': '&copy;',
-  ª: '&ordf;',
-  '«': '&laquo;',
-  '¬': '&not;',
-  '®': '&reg;',
-  '¯': '&macr;',
-  '°': '&deg;',
-  '±': '&plusmn;',
-  '²': '&sup2;',
-  '³': '&sup3;',
-  '´': '&acute;',
-  µ: '&micro;',
-  '¶': '&para;',
-  '·': '&middot;',
-  '¸': '&cedil;',
-  '¹': '&sup1;',
-  º: '&ordm;',
-  '»': '&raquo;',
-  '¼': '&frac14;',
-  '½': '&frac12;',
-  '¾': '&frac34;',
-  '¿': '&iquest;',
-  À: '&Agrave;',
-  Á: '&Aacute;',
-  Â: '&Acirc;',
-  Ã: '&Atilde;',
-  Ä: '&Auml;',
-  Å: '&Aring;',
-  Æ: '&AElig;',
-  Ç: '&Ccedil;',
-  È: '&Egrave;',
-  É: '&Eacute;',
-  Ê: '&Ecirc;',
-  Ë: '&Euml;',
-  Ì: '&Igrave;',
-  Í: '&Iacute;',
-  Î: '&Icirc;',
-  Ï: '&Iuml;',
-  Ð: '&ETH;',
-  Ñ: '&Ntilde;',
-  Ò: '&Ograve;',
-  Ó: '&Oacute;',
-  Ô: '&Ocirc;',
-  Õ: '&Otilde;',
-  Ö: '&Ouml;',
-  '×': '&times;',
-  Ø: '&Oslash;',
-  Ù: '&Ugrave;',
-  Ú: '&Uacute;',
-  Û: '&Ucirc;',
-  Ü: '&Uuml;',
-  Ý: '&Yacute;',
-  Þ: '&THORN;',
-  ß: '&szlig;',
-  à: '&agrave;',
-  á: '&aacute;',
-  â: '&acirc;',
-  ã: '&atilde;',
-  ä: '&auml;',
-  å: '&aring;',
-  æ: '&aelig;',
-  ç: '&ccedil;',
-  è: '&egrave;',
-  é: '&eacute;',
-  ê: '&ecirc;',
-  ë: '&euml;',
-  ì: '&igrave;',
-  í: '&iacute;',
-  î: '&icirc;',
-  ï: '&iuml;',
-  ð: '&eth;',
-  ñ: '&ntilde;',
-  ò: '&ograve;',
-  ó: '&oacute;',
-  ô: '&ocirc;',
-  õ: '&otilde;',
-  ö: '&ouml;',
-  '÷': '&divide;',
-  ø: '&oslash;',
-  ù: '&ugrave;',
-  ú: '&uacute;',
-  û: '&ucirc;',
-  ü: '&uuml;',
-  ý: '&yacute;',
-  þ: '&thorn;',
-  ÿ: '&yuml;',
-  Œ: '&OElig;',
-  œ: '&oelig;',
-  Š: '&Scaron;',
-  š: '&scaron;',
-  Ÿ: '&Yuml;',
-  ƒ: '&fnof;',
-  ˆ: '&circ;',
-  '˜': '&tilde;',
-  Α: '&Alpha;',
-  Β: '&Beta;',
-  Γ: '&Gamma;',
-  Δ: '&Delta;',
-  Ε: '&Epsilon;',
-  Ζ: '&Zeta;',
-  Η: '&Eta;',
-  Θ: '&Theta;',
-  Ι: '&Iota;',
-  Κ: '&Kappa;',
-  Λ: '&Lambda;',
-  Μ: '&Mu;',
-  Ν: '&Nu;',
-  Ξ: '&Xi;',
-  Ο: '&Omicron;',
-  Π: '&Pi;',
-  Ρ: '&Rho;',
-  Σ: '&Sigma;',
-  Τ: '&Tau;',
-  Υ: '&Upsilon;',
-  Φ: '&Phi;',
-  Χ: '&Chi;',
-  Ψ: '&Psi;',
-  Ω: '&Omega;',
-  α: '&alpha;',
-  β: '&beta;',
-  γ: '&gamma;',
-  δ: '&delta;',
-  ε: '&epsilon;',
-  ζ: '&zeta;',
-  η: '&eta;',
-  θ: '&theta;',
-  ι: '&iota;',
-  κ: '&kappa;',
-  λ: '&lambda;',
-  μ: '&mu;',
-  ν: '&nu;',
-  ξ: '&xi;',
-  ο: '&omicron;',
-  π: '&pi;',
-  ρ: '&rho;',
-  ς: '&sigmaf;',
-  σ: '&sigma;',
-  τ: '&tau;',
-  υ: '&upsilon;',
-  φ: '&phi;',
-  χ: '&chi;',
-  ψ: '&psi;',
-  ω: '&omega;',
-  ϑ: '&thetasym;',
-  ϒ: '&Upsih;',
-  ϖ: '&piv;',
-  '–': '&ndash;',
-  '—': '&mdash;',
-  '‘': '&lsquo;',
-  '’': '&rsquo;',
-  '‚': '&sbquo;',
-  '“': '&ldquo;',
-  '”': '&rdquo;',
-  '„': '&bdquo;',
-  '†': '&dagger;',
-  '‡': '&Dagger;',
-  '•': '&bull;',
-  '…': '&hellip;',
-  '‰': '&permil;',
-  '′': '&prime;',
-  '″': '&Prime;',
-  '‹': '&lsaquo;',
-  '›': '&rsaquo;',
-  '‾': '&oline;',
-  '⁄': '&frasl;',
-  '€': '&euro;',
-  ℑ: '&image;',
-  '℘': '&weierp;',
-  ℜ: '&real;',
-  '™': '&trade;',
-  ℵ: '&alefsym;',
-  '←': '&larr;',
-  '↑': '&uarr;',
-  '→': '&rarr;',
-  '↓': '&darr;',
-  '↔': '&harr;',
-  '↵': '&crarr;',
-  '⇐': '&lArr;',
-  '⇑': '&UArr;',
-  '⇒': '&rArr;',
-  '⇓': '&dArr;',
-  '⇔': '&hArr;',
-  '∀': '&forall;',
-  '∂': '&part;',
-  '∃': '&exist;',
-  '∅': '&empty;',
-  '∇': '&nabla;',
-  '∈': '&isin;',
-  '∉': '&notin;',
-  '∋': '&ni;',
-  '∏': '&prod;',
-  '∑': '&sum;',
-  '−': '&minus;',
-  '∗': '&lowast;',
-  '√': '&radic;',
-  '∝': '&prop;',
-  '∞': '&infin;',
-  '∠': '&ang;',
-  '∧': '&and;',
-  '∨': '&or;',
-  '∩': '&cap;',
-  '∪': '&cup;',
-  '∫': '&int;',
-  '∴': '&there4;',
-  '∼': '&sim;',
-  '≅': '&cong;',
-  '≈': '&asymp;',
-  '≠': '&ne;',
-  '≡': '&equiv;',
-  '≤': '&le;',
-  '≥': '&ge;',
-  '⊂': '&sub;',
-  '⊃': '&sup;',
-  '⊄': '&nsub;',
-  '⊆': '&sube;',
-  '⊇': '&supe;',
-  '⊕': '&oplus;',
-  '⊗': '&otimes;',
-  '⊥': '&perp;',
-  '⋅': '&sdot;',
-  '⌈': '&lceil;',
-  '⌉': '&rceil;',
-  '⌊': '&lfloor;',
-  '⌋': '&rfloor;',
-  '⟨': '&lang;',
-  '⟩': '&rang;',
-  '◊': '&loz;',
-  '♠': '&spades;',
-  '♣': '&clubs;',
-  '♥': '&hearts;',
-  '♦': '&diams;'
-};
-;// CONCATENATED MODULE: ./src/modules/Card/Card.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-function Card_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Card_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function Card_slicedToArray(arr, i) { return Card_arrayWithHoles(arr) || Card_iterableToArrayLimit(arr, i) || Card_unsupportedIterableToArray(arr, i) || Card_nonIterableRest(); }
-
-function Card_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function Card_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Card_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Card_arrayLikeToArray(o, minLen); }
-
-function Card_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function Card_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var Card = function Card(props) {
-  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window2, _window2$data, _window3, _window3$data, _window4, _window4$data;
-
-  var _useState = (0,react.useState)(props.data.listMetadata.hubStatus),
-      _useState2 = Card_slicedToArray(_useState, 2),
-      hubStatus = _useState2[0],
-      setHubStatus = _useState2[1];
-
-  var _useState3 = (0,react.useState)(''),
-      _useState4 = Card_slicedToArray(_useState3, 2),
-      hubStatusDesc = _useState4[0],
-      setHubStatusDesc = _useState4[1];
-
-  var _useState5 = (0,react.useState)(''),
-      _useState6 = Card_slicedToArray(_useState5, 2),
-      hubReviewMsg = _useState6[0],
-      setHubReviewMsg = _useState6[1];
-
-  var url = "".concat(window.globalData.urls.contentHub, "/story-view-react?storyId=");
-  var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
-  desc = decodeHTML(desc);
-  (0,react.useEffect)(function () {
-    if (props.statuses) {
-      var _iterator = Card_createForOfIteratorHelper(props.statuses),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var item = _step.value;
-
-          if (item.id == props.data.listMetadata.assetId) {
-            //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
-            setHubStatus(item.hubStatus);
-            setHubStatusDesc(item.hubStatusDesc);
-            setHubReviewMsg(item.hubReviewMsg);
-            return;
-          }
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    }
-  }, [props.statuses]);
-  return props.data.listMetadata && /*#__PURE__*/react.createElement("li", {
-    className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
-    "data-id": props.data.listMetadata.assetId
-  }, /*#__PURE__*/react.createElement("a", {
-    href: url + props.data.listMetadata.assetId,
-    className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
-  }, /*#__PURE__*/react.createElement("img", {
-    className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
-    src: props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
-    alt: props.data.title + ' image'
-  })), /*#__PURE__*/react.createElement("div", {
-    className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"
-  }, /*#__PURE__*/react.createElement("p", {
-    className: "su-text-16 su-mb-0 su-leading-none su-text-red-darker"
-  }, props.data.listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react.createElement("h3", {
-    className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
-  }, /*#__PURE__*/react.createElement("a", {
-    href: url + props.data.listMetadata.assetId,
-    title: "View ".concat(props.data.title),
-    className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
-  }, props.data.title)), /*#__PURE__*/react.createElement("p", {
-    className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
-  }, desc), /*#__PURE__*/react.createElement("p", {
-    className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
-  }, "Submitted on ", reformatDate(props.data.listMetadata.mtxCreated), " | First published on ", reformatDate(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react.createElement(CardButtons, {
-    listMetadata: props.data.listMetadata,
-    assetId: props.data.listMetadata.assetId[0],
-    type: "card",
-    hubStatus: hubStatus,
-    hubStatusDesc: hubStatusDesc,
-    fetchData: props.fetchData,
-    page: props.page
-  }), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'CP' && props.page == 'myContent' && props.data.listMetadata.taxonomyContentPartnerId == ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.contentPartner) || ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'UCOMM' ? hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
-    className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
-  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null : null));
-};
-Card.propTypes = {
-  data: prop_types_default().shape({
-    imageUrl: (prop_types_default()).string,
-    title: (prop_types_default()).string,
-    description: (prop_types_default()).string,
-    date: (prop_types_default()).number,
-    listMetadata: prop_types_default().shape({
-      canonicalUrl: (prop_types_default()).array,
-      relatedImageURL: (prop_types_default()).array,
-      srcFeaturedImageUrl: (prop_types_default()).string,
-      taxonomyContentPartnerText: (prop_types_default()).array,
-      descriptionPlain: (prop_types_default()).array,
-      mtxCreated: (prop_types_default()).array,
-      srcPublishedDate: (prop_types_default()).array,
-      assetId: (prop_types_default()).array,
-      hubStatusDescription: (prop_types_default()).array,
-      hubStatus: (prop_types_default()).array,
-      taxonomyContentPartnerId: (prop_types_default()).array
-    })
-  }),
-  page: (prop_types_default()).string,
-  statuses: (prop_types_default()).array,
-  fetchData: (prop_types_default()).func
-};
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
 var jsx_runtime = __webpack_require__(4848);
 ;// CONCATENATED MODULE: ./node_modules/styled-components/node_modules/tslib/tslib.es6.js
@@ -15248,6 +14134,1141 @@ const $1e82ee682f5b64b8$export$f3c41beb83007357 = ({ visible: visible = true, wi
 
 //# sourceMappingURL=module.js.map
 
+;// CONCATENATED MODULE: ./src/modules/Card/CardButtons.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function CardButtons_typeof(obj) { "@babel/helpers - typeof"; return CardButtons_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, CardButtons_typeof(obj); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+ // const mockData = {
+//     name: 'Mockup name',
+//     short_name: 'Mockup name',
+//     asset_id: 'inputQuery.id',
+//     id: 'inputQuery.id',
+//     type_code: 'folder',
+//     type: 'Folder',
+//     icon_path: 'https://mockup.url/__data/asset_types/folder/icon.png',
+//     web_path: 'https://mockup.url/mockup_name',
+//     urls: ['https://mockup.url/mockup_name'],
+//     status: 'Under Construction',
+//     statusId: '2',
+//     created: 1637857729,
+//     created_userid: '65',
+//     created_username: 'John Doe (Squiz)',
+//     updated: 1637857730,
+//     updated_userid: '65',
+//     updated_username: 'John Doe (Squiz)',
+//     published: 'Never Published',
+//     published_userid: 'Never Published',
+//     published_username: 'Never Published',
+//     status_changed: 1637857729,
+//     status_changed_userid: '65',
+//     status_changed_username: 'John Doe (Squiz)',
+//     maximum_perm_on_asset: 'Admin Access',
+//     can_live_edit: true,
+//     effective_write: true,
+//     attribute_contextualised: true,
+//     metadata_contextualised: true,
+//     contextualable_screens: {details: 'attribute', metadata: 'metadata'},
+// };
+
+var chCfg = {
+  metaFields: {
+    hubStatusDescription: 31823,
+    hubStatus: 31822,
+    hubVersionHistory: 31825,
+    hubReviewMsg: 32284,
+    pageType: 4857
+  },
+  hubStatuses: {
+    reviewed: 'reviewed',
+    approved: 'sent-to-sr'
+  },
+  pageTypes: {
+    story: 'story',
+    teaser: 'teaser'
+  },
+  badges: {
+    reviewed: "<p class=\"su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Reviewed</p>",
+    approved: "<p class=\"su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-8 su-px-15\">Publishing soon on Stanford Report</p>"
+  },
+  endpoints: {
+    beacon: "".concat(window.globalData.urls.contentHub, "/r/h/ch/beacon"),
+    loadNext: "".concat(window.globalData.urls.contentHub, "/r/h/ch/next")
+  }
+};
+var CardButtons = function CardButtons(props) {
+  var _window$jsApi, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
+
+  var _useState = (0,react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isSendDialogOpen = _useState2[0],
+      setSendDialogOpen = _useState2[1];
+
+  var _useState3 = (0,react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isDeclineDialogOpen = _useState4[0],
+      setDeclineDialogOpen = _useState4[1];
+
+  var sendDialogRef = (0,react.useRef)(null);
+  var declineDialogRef = (0,react.useRef)(null);
+
+  var _useState5 = (0,react.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      beaconSent = _useState6[0],
+      setBeaconSent = _useState6[1];
+
+  var _useState7 = (0,react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      textArea = _useState8[0],
+      setTextAreaValue = _useState8[1];
+
+  var _useState9 = (0,react.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      userMatch = _useState10[0],
+      setUserMatch = _useState10[1];
+
+  var _useState11 = (0,react.useState)(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      hubStatus = _useState12[0],
+      setHubStatus = _useState12[1];
+
+  var _useState13 = (0,react.useState)(null),
+      _useState14 = _slicedToArray(_useState13, 2),
+      fixedHubStatus = _useState14[0],
+      setFixedHubStatus = _useState14[1];
+
+  var _useState15 = (0,react.useState)(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      hubStatusDesc = _useState16[0],
+      setHubStatusDesc = _useState16[1];
+
+  var _useState17 = (0,react.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      isLoading = _useState18[0],
+      setIsLoading = _useState18[1]; // Loader flag
+  //let jsApi = window?.jsApi ? window.jsApi : mockData;
+
+
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
+
+  var onTextAreaValueChange = function onTextAreaValueChange(val) {
+    setTextAreaValue(val);
+  };
+
+  var isJson = function isJson(str) {
+    // Check if we need to parse it
+    if (CardButtons_typeof(str) === 'object') {
+      return str;
+    } // Check if obj is json and return object if succesful
+
+
+    try {
+      var data = JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+
+    return data;
+  }; // Update status when hubStatus change
+
+
+  (0,react.useEffect)(function () {
+    var _window, _window$data, _window2, _window2$data;
+
+    var userDetails = ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.firstName) + ' ' + window.data + ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.lastName);
+    var userEl = document.querySelector('#user-status');
+    var pageUserDetails = userEl.getAttribute('data-fullname');
+
+    if (userDetails === pageUserDetails) {
+      setUserMatch(true);
+    }
+
+    !fixedHubStatus && setHubStatus(props.hubStatus); // don't update when there is a temp status
+
+    setHubStatusDesc(props.hubStatusDesc); //// console.log('Card status: desc:', props.hubStatusDesc, ' || status: ', props.hubStatus);
+  }, [hubStatus]); // Set temp status when action "Send to Stanford Report" action is fired
+  // This will get updated by real status on page refresh
+
+  (0,react.useEffect)(function () {
+    setHubStatus(fixedHubStatus);
+  }, [fixedHubStatus]);
+
+  var openSendDialog = function openSendDialog(id) {
+    setSendDialogOpen(true);
+    var dialog = document.getElementById(id);
+    dialog.showModal();
+  };
+
+  var closeSendDialog = function closeSendDialog(id) {
+    setSendDialogOpen(false);
+    var dialog = document.getElementById(id);
+    dialog.close();
+  };
+
+  var openDeclineDialog = function openDeclineDialog(id) {
+    setDeclineDialogOpen(true);
+    var dialog = document.getElementById(id);
+    dialog.showModal();
+  };
+
+  var closeDeclineDialog = function closeDeclineDialog(id) {
+    setDeclineDialogOpen(false);
+    var dialog = document.getElementById(id);
+    dialog.close();
+  };
+
+  var handleSendFullContent = function handleSendFullContent() {
+    // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+    setIsLoading(true);
+    jsApi.getMetadata({
+      asset_id: props.assetId,
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareApproveUpdate(props.assetId, 'Story', resp);
+      }
+    });
+    releaseAsStory.init(props.assetId, contentHubAPI);
+    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+  };
+
+  var handleSendTeaser = function handleSendTeaser() {
+    // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+    setIsLoading(true);
+    jsApi.getMetadata({
+      asset_id: props.assetId,
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareApproveUpdate(props.assetId, 'Teaser', resp);
+      }
+    });
+    releaseAsTeaser.init(props.assetId, contentHubAPI);
+    closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+  };
+
+  var handleDecline = function handleDecline(id) {
+    // setHubStatus('reviewed');
+    // setFixedHubStatus('reviewed');
+    setIsLoading(true); // Handle sending decline info
+
+    jsApi.getMetadata({
+      asset_id: props.assetId,
+      dataCallback: function dataCallback(resp) {
+        // As a callback :: Prepare an update for the asset
+        prepareDeclineUpdate(props.assetId, resp);
+      }
+    });
+    closeDeclineDialog(id);
+  }; // Helper Function to get state
+
+
+  var getHistoryState = function getHistoryState(currentState) {
+    // Get current history state
+    var currentHistory = []; // Check if current state is JSON
+
+    currentState = isJson(currentState);
+
+    if (currentState !== false) {
+      // If it is: Get current version history
+      var currentVersionMeta = isJson(currentState['hubVersionHistory']);
+
+      if (currentVersionMeta !== false) {
+        currentHistory = currentVersionMeta;
+      }
+    }
+
+    return currentHistory;
+  };
+
+  var prepareDeclineUpdate = function prepareDeclineUpdate(id, currentState) {
+    // Define Metadata Fields Actions Object
+    var fieldsActions = {}; // Action #1: Status Update:
+
+    var statusField = chCfg.metaFields.hubStatus;
+    var statusFieldValue = chCfg.hubStatuses.reviewed;
+    fieldsActions[statusField] = statusFieldValue; // Action #2: Decline Message Update
+
+    var msgTxt = textArea;
+    var msgField = chCfg.metaFields.hubReviewMsg;
+    fieldsActions[msgField] = msgTxt; // Action #3: Update Version History
+
+    var currentHistory = getHistoryState(currentState); // Generate date and decline message
+
+    var thisDate = new Date().getTime();
+    var userEl = document.querySelector('#user-status');
+    var userDetails = userEl.getAttribute('data-fullname');
+
+    if (msgTxt.length === 0) {
+      msgTxt = 'No message';
+    }
+
+    var historyMessage = "Reviewed by ".concat(userDetails, ", Message: ").concat(msgTxt); // Update status on front end
+
+    setHubStatusDesc(historyMessage);
+    setHubStatus('reviewed');
+    setFixedHubStatus('reviewed');
+    setIsLoading(false);
+    var newEntry = {
+      date: thisDate,
+      message: historyMessage
+    };
+    currentHistory.unshift(newEntry);
+    var currentHistoryStr = JSON.stringify(currentHistory);
+    var historyField = chCfg.metaFields.hubVersionHistory;
+    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
+
+    var descField = chCfg.metaFields.hubStatusDescription;
+    fieldsActions[descField] = ''; // All fields in place :: Update metadata
+
+    jsApi.setMetadataAllFields({
+      asset_id: id,
+      field_info: fieldsActions,
+      dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
+      }
+    });
+  };
+
+  var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
+    // disable button
+    // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+    // Define Metadata Fields Actions Object
+    var fieldsActions = {}; // Action #1: Status Update:
+
+    var statusField = chCfg.metaFields.hubStatus;
+    var statusFieldValue = chCfg.hubStatuses.approved;
+    fieldsActions[statusField] = statusFieldValue; // Action #2: Clear Decline message :: In case it was there before
+
+    var msgField = chCfg.metaFields.hubReviewMsg;
+    fieldsActions[msgField] = ''; // Action #3: Update Version History
+
+    var currentHistory = getHistoryState(currentState);
+    var currentHistoryStr = JSON.stringify(currentHistory);
+    var historyField = chCfg.metaFields.hubVersionHistory;
+    fieldsActions[historyField] = currentHistoryStr; // Action #4: Clear Reviewed/Hub Description field
+
+    var descField = chCfg.metaFields.hubStatusDescription;
+    fieldsActions[descField] = ''; // Action #5: Set page type
+
+    var pageTypeField = chCfg.metaFields.pageType;
+    var pageTypeValue = pageType.toLowerCase();
+    fieldsActions[pageTypeField] = pageTypeValue; // Get Published Date from Metadata :: Needed for publishing on SR
+
+    var pubDate = props.listMetadata.publishedDate[0] || ''; // Create Asset Details to pass to callback
+
+    var thisStory = {
+      id: storyId,
+      pageType: pageType,
+      pubDate: pubDate
+    }; // All fields in place :: Update metadata
+
+    jsApi.setMetadataAllFields({
+      asset_id: storyId,
+      field_info: fieldsActions,
+      dataCallback: function dataCallback(resp) {
+        updateUi(thisStory, pageType, resp);
+      }
+    });
+  };
+
+  var updateUi = function updateUi(storyObj, pageType) {
+    // Finalize publishing process with additional functions :: Depending from the page type
+    // storyObj.pageType = storyObj.pageType || 'story';
+    // if (storyObj.pageType.toLowerCase() === 'teaser') {
+    //     sendAsTeaser(storyObj);
+    // } else {
+    //     sendAsStory(storyObj);
+    // }
+    // We need to update the Button on the front-end :: and remove actions
+    var userEl = document.querySelector('#user-status');
+    var userDetails = userEl.getAttribute('data-fullname');
+    var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
+    props.listMetadata.hubStatusDescription = historyMessage;
+    setHubStatusDesc(historyMessage);
+    setHubStatus('sent-to-sr');
+    setFixedHubStatus('sent-to-sr');
+    setIsLoading(false);
+    clearReviewState();
+
+    if (props.page == 'home') {
+      var _window3, _window3$data, _window3$data$content;
+
+      props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
+    }
+  }; // const sendAsStory = (storyObj) => {
+  //     // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
+  // };
+  // const sendAsTeaser = (storyObj) => {
+  //     // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
+  // };
+
+
+  var clearReviewState = function clearReviewState() {
+    if (typeof navigator.sendBeacon !== 'function') {
+      return false;
+    } // Use Beacon API to send update :: on page unload
+
+
+    setBeaconSent(false);
+    window.addEventListener('unload', function () {
+      sendBeacon();
+    }, {
+      capture: true
+    });
+    window.addEventListener('beforeunload', function () {
+      sendBeacon();
+    }, {
+      capture: true
+    });
+    window.addEventListener('pagehide', function () {
+      sendBeacon();
+    }, {
+      capture: true
+    });
+  };
+
+  var sendBeacon = function sendBeacon() {
+    var _contentHubAPI$module;
+
+    // console.log('Send Beacon!');
+    if (beaconSent !== false) {
+      return;
+    }
+
+    var beaconUrl = contentHubAPI !== null && contentHubAPI !== void 0 && (_contentHubAPI$module = contentHubAPI.modules) !== null && _contentHubAPI$module !== void 0 && _contentHubAPI$module.beaconEndpoint ? contentHubAPI === null || contentHubAPI === void 0 ? void 0 : contentHubAPI.modules.beaconEndpoint : chCfg.endpoints.beacon; // Build data for beacon
+
+    var data = {
+      id: props.assetId
+    }; // Send beacon to update the state
+
+    navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
+    // console.log('Beacon triggered...');
+    // Store beacon state
+
+    setBeaconSent(true);
+  };
+
+  return isLoading ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
+    visible: true,
+    height: "50",
+    width: "50",
+    color: "#B1040E",
+    secondaryColor: "gray",
+    ariaLabel: "oval-loading"
+  }) : /*#__PURE__*/react.createElement("div", {
+    className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
+  }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
+    "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
+    className: "js-action--send-to-sr button-green c-button-send",
+    onClick: function onClick() {
+      return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+    }
+  }, "Send to Stanford Report") : null) : hubStatus == 'sent-to-sr' ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
+  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
+    "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
+    className: "js-action--send-to-sr button-green c-button-send",
+    onClick: function onClick() {
+      return openSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+    }
+  }, "Send to Stanford Report"), /*#__PURE__*/react.createElement("button", {
+    "data-id": "dialogTitle-".concat(props.assetId, "-decline"),
+    className: "js-action--decline c-button-decline",
+    onClick: function onClick() {
+      return openDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
+    }
+  }, "Decline")) : null, /*#__PURE__*/react.createElement("dialog", {
+    ref: sendDialogRef,
+    "data-id": props.assetId,
+    id: "dialogTitle-".concat(props.assetId, "-approve"),
+    role: "dialog",
+    open: isSendDialogOpen,
+    className: "c-dialog-send su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
+    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-approve")
+  }, /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+    },
+    className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
+    "aria-label": "close"
+  }, /*#__PURE__*/react.createElement("svg", {
+    className: "",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "13",
+    height: "13",
+    fill: "none"
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M12.0554 1.9502L1.94434 11.0502",
+    stroke: "#E50808",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M1.94434 1.9502L12.0554 11.0502",
+    stroke: "#E50808",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))), /*#__PURE__*/react.createElement("div", {
+    className: "c-dialog-body su-p-30 sm:su-p-60"
+  }, /*#__PURE__*/react.createElement("h3", {
+    id: "dialogTitle-".concat(props.assetId, "-approve"),
+    className: "su-mb-0 su-font-serif su-text-center su-tracking-normal"
+  }, "You are accepting this story for publication on Stanford Report"), /*#__PURE__*/react.createElement("div", {
+    className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
+  }, /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return handleSendTeaser();
+    },
+    "aria-label": "Send Teaser",
+    className: "button-green js-send-teaser"
+  }, "Send Teaser"), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return handleSendFullContent();
+    },
+    "aria-label": "Send Full Content",
+    className: "button-green js-send-content"
+  }, "Send Full Content"), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return closeSendDialog("dialogTitle-".concat(props.assetId, "-approve"));
+    },
+    "aria-label": "Cancel",
+    className: "js-decline"
+  }, "Cancel")))), /*#__PURE__*/react.createElement("dialog", {
+    ref: declineDialogRef,
+    role: "dialog",
+    open: isDeclineDialogOpen,
+    "data-id": props.assetId,
+    className: "c-dialog-decline su-fixed su-p-0 su-rounded su-border-gray su-bg-white su-w-full su-max-w-[57.4rem]",
+    "aria-labelledby": "dialogTitle-".concat(props.assetId, "-decline"),
+    id: "dialogTitle-".concat(props.assetId, "-decline")
+  }, /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
+    },
+    className: "su-w-[23px] su-h-[23px] su-p-0 su-absolute su-right-15 su-top-15 su-border-none su-flex su-items-center su-justify-center hover:su-bg-transparent",
+    "aria-label": "close"
+  }, /*#__PURE__*/react.createElement("svg", {
+    className: "",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "13",
+    height: "13",
+    fill: "none"
+  }, /*#__PURE__*/react.createElement("path", {
+    d: "M12.0554 1.9502L1.94434 11.0502",
+    stroke: "#E50808",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/react.createElement("path", {
+    d: "M1.94434 1.9502L12.0554 11.0502",
+    stroke: "#E50808",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }))), /*#__PURE__*/react.createElement("div", {
+    className: "c-dialog-body su-p-30 sm:su-p-60"
+  }, /*#__PURE__*/react.createElement("h3", {
+    id: "dialogTitle-".concat(props.assetId, "-decline"),
+    className: "su-mb-10 su-font-serif su-leading-[125%] su-text-center"
+  }, "You are declining this story"), /*#__PURE__*/react.createElement("p", {
+    id: "dialogDescription-".concat(props.assetId, "-decline"),
+    className: "su-mb-10 su-leading-[125%] su-text-center"
+  }, "Add optional note (viewable by content partner)"), /*#__PURE__*/react.createElement("label", {
+    className: "sr-only",
+    htmlFor: "message-textarea-".concat(props.assetId, "-decline")
+  }, "Optional note"), /*#__PURE__*/react.createElement("textarea", {
+    className: "su-resize-none su-leading-display su-mx-2 su-p-16 su-text-16 su-bg-gray-bg su-rounded su-border-gray su-w-full su-max-w-[450px] su-max-h     -[100px]",
+    name: "message-".concat(props.assetId),
+    rows: "5",
+    autoComplete: "off",
+    "aria-label": "Optional note",
+    value: textArea,
+    id: "message-textarea-".concat(props.assetId, "-decline"),
+    onChange: function onChange(e) {
+      return onTextAreaValueChange(e.target.value);
+    }
+  }), /*#__PURE__*/react.createElement("div", {
+    className: "su-mt-40 su-flex su-flex-col sm:su-flex-row su-gap-[15px] su-justify-center"
+  }, /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return handleDecline("dialogTitle-".concat(props.assetId, "-decline"));
+    },
+    "aria-label": "Decline",
+    className: "button-green js-decline-true"
+  }, "Yes, Decline"), /*#__PURE__*/react.createElement("button", {
+    onClick: function onClick() {
+      return closeDeclineDialog("dialogTitle-".concat(props.assetId, "-decline"));
+    },
+    "aria-label": "Cancel",
+    className: "js-decline-false"
+  }, "Cancel")))));
+};
+CardButtons.propTypes = {
+  listMetadata: prop_types_default().shape({
+    hubStatusDescription: (prop_types_default()).array,
+    hubStatus: (prop_types_default()).array,
+    assetId: (prop_types_default()).array,
+    publishedDate: (prop_types_default()).array,
+    hubReviewMsg: (prop_types_default()).array
+  }),
+  assetId: (prop_types_default()).string,
+  type: (prop_types_default()).string,
+  page: (prop_types_default()).string,
+  hubStatusDesc: (prop_types_default()).string,
+  hubStatus: prop_types_default().oneOfType([(prop_types_default()).string, (prop_types_default()).array]),
+  fetchData: (prop_types_default()).func
+};
+;// CONCATENATED MODULE: ./src/modules/Helpers/dateHelpers.js
+
+var reformatDate = function reformatDate(ts) {
+  // Validate date
+  if (ts === undefined) {
+    return '';
+  }
+
+  ts = parseInt(ts, 10);
+
+  if (isNaN(ts) === true) {
+    return '';
+  } // Multiply date by 1000 to convert PHP vs JS date format (between seconds and miliseconds)
+
+
+  ts = ts * 1000;
+  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var tsDate = new Date(ts); // Format: "April 30, 2023"
+
+  var month = monthNames[tsDate.getMonth()];
+  var day = tsDate.getDate();
+  var year = tsDate.getFullYear(); // If provided year is not accurate :: means invalid date or no date was provided :: return placeholder
+
+  if (year === 1970) {
+    return 'N/A';
+  }
+
+  return "".concat(month, " ").concat(day, ", ").concat(year);
+};
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
+var es_string_split = __webpack_require__(8649);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.replace.js
+var es_string_replace = __webpack_require__(173);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.constructor.js
+var es_regexp_constructor = __webpack_require__(9073);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
+var es_regexp_to_string = __webpack_require__(6048);
+;// CONCATENATED MODULE: ./src/modules/Helpers/helperFunctions.js
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = helperFunctions_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function helperFunctions_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return helperFunctions_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return helperFunctions_arrayLikeToArray(o, minLen); }
+
+function helperFunctions_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var getQueryStringParams = function getQueryStringParams(url) {
+  var urlArr = url.split('?');
+  var query = urlArr[1] || '';
+  query = query.replace('?', '');
+  var queryArr = query.split('&');
+  var queryParams = [];
+  queryArr.forEach(function (thisParam) {
+    var thisParamArr = thisParam.split('=');
+
+    if (thisParamArr.length === 2) {
+      queryParams.push({
+        name: thisParamArr[0],
+        value: thisParamArr[1]
+      });
+    }
+  });
+  return queryParams;
+};
+var createUrl = function createUrl(queryParams) {
+  var queryStringArray = [];
+
+  var _iterator = _createForOfIteratorHelper(queryParams),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var entry = _step.value;
+      var encodedKey = entry.name;
+      var encodedValue = entry.value;
+      queryStringArray.push("".concat(encodedKey, "=").concat(encodedValue));
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  var queryString = queryStringArray.join('&');
+  return queryString;
+};
+var getLabel = function getLabel(value) {
+  var label = value;
+
+  if (value.toLowerCase() == 'sent-to-sr') {
+    label = 'Publishing soon on Stanford Report';
+  } else if (value == 'published') {
+    label = 'Published on Stanford Report';
+  } else if (value == '') {
+    label = 'All';
+  } else {
+    label = value[0].toUpperCase() + value.substring(1);
+  }
+
+  return label;
+};
+var decodeHTML = function decodeHTML(string) {
+  var entityMap = HtmlEntities;
+
+  for (var key in entityMap) {
+    var entity = entityMap[key];
+    var regex = new RegExp(entity, 'g');
+    string = string.replace(regex, key);
+  }
+
+  string = string.replace(/&quot;/g, '"');
+  string = string.replace(/&amp;/g, '&');
+  string = string.replace(' [...]', '...');
+  string = string.replace(' […]', '...');
+  string = string.replace(/(<([^>]+)>)/gi, '');
+  return string;
+};
+var HtmlEntities = {
+  "'": '&apos;',
+  '<': '&lt;',
+  '>': '&gt;',
+  ' ': '&nbsp;',
+  '¡': '&iexcl;',
+  '¢': '&cent;',
+  '£': '&pound;',
+  '¤': '&curren;',
+  '¥': '&yen;',
+  '¦': '&brvbar;',
+  '§': '&sect;',
+  '¨': '&uml;',
+  '©': '&copy;',
+  ª: '&ordf;',
+  '«': '&laquo;',
+  '¬': '&not;',
+  '®': '&reg;',
+  '¯': '&macr;',
+  '°': '&deg;',
+  '±': '&plusmn;',
+  '²': '&sup2;',
+  '³': '&sup3;',
+  '´': '&acute;',
+  µ: '&micro;',
+  '¶': '&para;',
+  '·': '&middot;',
+  '¸': '&cedil;',
+  '¹': '&sup1;',
+  º: '&ordm;',
+  '»': '&raquo;',
+  '¼': '&frac14;',
+  '½': '&frac12;',
+  '¾': '&frac34;',
+  '¿': '&iquest;',
+  À: '&Agrave;',
+  Á: '&Aacute;',
+  Â: '&Acirc;',
+  Ã: '&Atilde;',
+  Ä: '&Auml;',
+  Å: '&Aring;',
+  Æ: '&AElig;',
+  Ç: '&Ccedil;',
+  È: '&Egrave;',
+  É: '&Eacute;',
+  Ê: '&Ecirc;',
+  Ë: '&Euml;',
+  Ì: '&Igrave;',
+  Í: '&Iacute;',
+  Î: '&Icirc;',
+  Ï: '&Iuml;',
+  Ð: '&ETH;',
+  Ñ: '&Ntilde;',
+  Ò: '&Ograve;',
+  Ó: '&Oacute;',
+  Ô: '&Ocirc;',
+  Õ: '&Otilde;',
+  Ö: '&Ouml;',
+  '×': '&times;',
+  Ø: '&Oslash;',
+  Ù: '&Ugrave;',
+  Ú: '&Uacute;',
+  Û: '&Ucirc;',
+  Ü: '&Uuml;',
+  Ý: '&Yacute;',
+  Þ: '&THORN;',
+  ß: '&szlig;',
+  à: '&agrave;',
+  á: '&aacute;',
+  â: '&acirc;',
+  ã: '&atilde;',
+  ä: '&auml;',
+  å: '&aring;',
+  æ: '&aelig;',
+  ç: '&ccedil;',
+  è: '&egrave;',
+  é: '&eacute;',
+  ê: '&ecirc;',
+  ë: '&euml;',
+  ì: '&igrave;',
+  í: '&iacute;',
+  î: '&icirc;',
+  ï: '&iuml;',
+  ð: '&eth;',
+  ñ: '&ntilde;',
+  ò: '&ograve;',
+  ó: '&oacute;',
+  ô: '&ocirc;',
+  õ: '&otilde;',
+  ö: '&ouml;',
+  '÷': '&divide;',
+  ø: '&oslash;',
+  ù: '&ugrave;',
+  ú: '&uacute;',
+  û: '&ucirc;',
+  ü: '&uuml;',
+  ý: '&yacute;',
+  þ: '&thorn;',
+  ÿ: '&yuml;',
+  Œ: '&OElig;',
+  œ: '&oelig;',
+  Š: '&Scaron;',
+  š: '&scaron;',
+  Ÿ: '&Yuml;',
+  ƒ: '&fnof;',
+  ˆ: '&circ;',
+  '˜': '&tilde;',
+  Α: '&Alpha;',
+  Β: '&Beta;',
+  Γ: '&Gamma;',
+  Δ: '&Delta;',
+  Ε: '&Epsilon;',
+  Ζ: '&Zeta;',
+  Η: '&Eta;',
+  Θ: '&Theta;',
+  Ι: '&Iota;',
+  Κ: '&Kappa;',
+  Λ: '&Lambda;',
+  Μ: '&Mu;',
+  Ν: '&Nu;',
+  Ξ: '&Xi;',
+  Ο: '&Omicron;',
+  Π: '&Pi;',
+  Ρ: '&Rho;',
+  Σ: '&Sigma;',
+  Τ: '&Tau;',
+  Υ: '&Upsilon;',
+  Φ: '&Phi;',
+  Χ: '&Chi;',
+  Ψ: '&Psi;',
+  Ω: '&Omega;',
+  α: '&alpha;',
+  β: '&beta;',
+  γ: '&gamma;',
+  δ: '&delta;',
+  ε: '&epsilon;',
+  ζ: '&zeta;',
+  η: '&eta;',
+  θ: '&theta;',
+  ι: '&iota;',
+  κ: '&kappa;',
+  λ: '&lambda;',
+  μ: '&mu;',
+  ν: '&nu;',
+  ξ: '&xi;',
+  ο: '&omicron;',
+  π: '&pi;',
+  ρ: '&rho;',
+  ς: '&sigmaf;',
+  σ: '&sigma;',
+  τ: '&tau;',
+  υ: '&upsilon;',
+  φ: '&phi;',
+  χ: '&chi;',
+  ψ: '&psi;',
+  ω: '&omega;',
+  ϑ: '&thetasym;',
+  ϒ: '&Upsih;',
+  ϖ: '&piv;',
+  '–': '&ndash;',
+  '—': '&mdash;',
+  '‘': '&lsquo;',
+  '’': '&rsquo;',
+  '‚': '&sbquo;',
+  '“': '&ldquo;',
+  '”': '&rdquo;',
+  '„': '&bdquo;',
+  '†': '&dagger;',
+  '‡': '&Dagger;',
+  '•': '&bull;',
+  '…': '&hellip;',
+  '‰': '&permil;',
+  '′': '&prime;',
+  '″': '&Prime;',
+  '‹': '&lsaquo;',
+  '›': '&rsaquo;',
+  '‾': '&oline;',
+  '⁄': '&frasl;',
+  '€': '&euro;',
+  ℑ: '&image;',
+  '℘': '&weierp;',
+  ℜ: '&real;',
+  '™': '&trade;',
+  ℵ: '&alefsym;',
+  '←': '&larr;',
+  '↑': '&uarr;',
+  '→': '&rarr;',
+  '↓': '&darr;',
+  '↔': '&harr;',
+  '↵': '&crarr;',
+  '⇐': '&lArr;',
+  '⇑': '&UArr;',
+  '⇒': '&rArr;',
+  '⇓': '&dArr;',
+  '⇔': '&hArr;',
+  '∀': '&forall;',
+  '∂': '&part;',
+  '∃': '&exist;',
+  '∅': '&empty;',
+  '∇': '&nabla;',
+  '∈': '&isin;',
+  '∉': '&notin;',
+  '∋': '&ni;',
+  '∏': '&prod;',
+  '∑': '&sum;',
+  '−': '&minus;',
+  '∗': '&lowast;',
+  '√': '&radic;',
+  '∝': '&prop;',
+  '∞': '&infin;',
+  '∠': '&ang;',
+  '∧': '&and;',
+  '∨': '&or;',
+  '∩': '&cap;',
+  '∪': '&cup;',
+  '∫': '&int;',
+  '∴': '&there4;',
+  '∼': '&sim;',
+  '≅': '&cong;',
+  '≈': '&asymp;',
+  '≠': '&ne;',
+  '≡': '&equiv;',
+  '≤': '&le;',
+  '≥': '&ge;',
+  '⊂': '&sub;',
+  '⊃': '&sup;',
+  '⊄': '&nsub;',
+  '⊆': '&sube;',
+  '⊇': '&supe;',
+  '⊕': '&oplus;',
+  '⊗': '&otimes;',
+  '⊥': '&perp;',
+  '⋅': '&sdot;',
+  '⌈': '&lceil;',
+  '⌉': '&rceil;',
+  '⌊': '&lfloor;',
+  '⌋': '&rfloor;',
+  '⟨': '&lang;',
+  '⟩': '&rang;',
+  '◊': '&loz;',
+  '♠': '&spades;',
+  '♣': '&clubs;',
+  '♥': '&hearts;',
+  '♦': '&diams;'
+};
+;// CONCATENATED MODULE: ./src/modules/Card/Card.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+function Card_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = Card_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function Card_slicedToArray(arr, i) { return Card_arrayWithHoles(arr) || Card_iterableToArrayLimit(arr, i) || Card_unsupportedIterableToArray(arr, i) || Card_nonIterableRest(); }
+
+function Card_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function Card_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return Card_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return Card_arrayLikeToArray(o, minLen); }
+
+function Card_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function Card_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var Card = function Card(props) {
+  var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window2, _window2$data, _window3, _window3$data, _window4, _window4$data;
+
+  var _useState = (0,react.useState)(props.data.listMetadata.hubStatus),
+      _useState2 = Card_slicedToArray(_useState, 2),
+      hubStatus = _useState2[0],
+      setHubStatus = _useState2[1];
+
+  var _useState3 = (0,react.useState)(''),
+      _useState4 = Card_slicedToArray(_useState3, 2),
+      hubStatusDesc = _useState4[0],
+      setHubStatusDesc = _useState4[1];
+
+  var _useState5 = (0,react.useState)(''),
+      _useState6 = Card_slicedToArray(_useState5, 2),
+      hubReviewMsg = _useState6[0],
+      setHubReviewMsg = _useState6[1];
+
+  var url = "".concat(window.globalData.urls.contentHub, "/story-view-react?storyId=");
+  var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
+  desc = decodeHTML(desc);
+  (0,react.useEffect)(function () {
+    if (props.statuses) {
+      var _iterator = Card_createForOfIteratorHelper(props.statuses),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var item = _step.value;
+
+          if (item.id == props.data.listMetadata.assetId) {
+            //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
+            setHubStatus(item.hubStatus);
+            setHubStatusDesc(item.hubStatusDesc);
+            setHubReviewMsg(item.hubReviewMsg);
+            return;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+  }, [props.statuses]);
+  return props.data.listMetadata && /*#__PURE__*/react.createElement("li", {
+    className: "su-flex su-flex-col su-mb-0 md:su-flex-row su-rounded su-shadow-md su-bg-white su-border su-border-gray su-border-b-2 su-overflow-hidden su-min-h-[334px]",
+    "data-id": props.data.listMetadata.assetId
+  }, /*#__PURE__*/react.createElement("a", {
+    href: url + props.data.listMetadata.assetId,
+    className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
+  }, /*#__PURE__*/react.createElement("img", {
+    className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
+    src: props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
+    alt: props.data.title + ' image'
+  })), /*#__PURE__*/react.createElement("div", {
+    className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"
+  }, /*#__PURE__*/react.createElement("p", {
+    className: "su-text-16 su-mb-0 su-leading-none su-text-red-darker"
+  }, props.data.listMetadata.taxonomyContentPartnerText), /*#__PURE__*/react.createElement("h3", {
+    className: "su-mb-0 su-line-clamp-2 sm:su-line-clamp-2"
+  }, /*#__PURE__*/react.createElement("a", {
+    href: url + props.data.listMetadata.assetId,
+    title: "View ".concat(props.data.title),
+    className: "su-block su-text-h4 su-leading-[34px] su-font-bold su-mb-0 su-line-clamp-2 sm:su-line-clamp-2 hover:su-underline"
+  }, props.data.title)), /*#__PURE__*/react.createElement("p", {
+    className: "su-mb-0 su-line-clamp-5 sm:su-line-clamp-3 su-leading-[1.3em]"
+  }, desc), /*#__PURE__*/react.createElement("p", {
+    className: "su-text-16 su-text-gray-dark su-mb-0 su-leading-[1.45em] su-mt-auto"
+  }, "Submitted on ", reformatDate(props.data.listMetadata.mtxCreated), " | First published on ", reformatDate(props.data.listMetadata.srcPublishedDate)), props.page === 'allContent' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) === 'CP' ? null : /*#__PURE__*/react.createElement(CardButtons, {
+    listMetadata: props.data.listMetadata,
+    assetId: props.data.listMetadata.assetId[0],
+    type: "card",
+    hubStatus: hubStatus,
+    hubStatusDesc: hubStatusDesc,
+    fetchData: props.fetchData,
+    page: props.page
+  }), ((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'CP' && props.page == 'myContent' && props.data.listMetadata.taxonomyContentPartnerId == ((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : _window3$data.user.contentPartner) || ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : _window4$data.user.userType) == 'UCOMM' ? hubStatus === 'reviewed' && hubReviewMsg !== '' && hubReviewMsg.length > 0 ? /*#__PURE__*/react.createElement("p", {
+    className: "su-rounded su-text-gray-dark su-text-16 su-mb-0"
+  }, /*#__PURE__*/react.createElement("b", null, "Review Note:"), " ", hubReviewMsg.length > 70 ? "".concat(hubReviewMsg.substring(0, 70), "...") : hubReviewMsg) : null : null));
+};
+Card.propTypes = {
+  data: prop_types_default().shape({
+    imageUrl: (prop_types_default()).string,
+    title: (prop_types_default()).string,
+    description: (prop_types_default()).string,
+    date: (prop_types_default()).number,
+    listMetadata: prop_types_default().shape({
+      canonicalUrl: (prop_types_default()).array,
+      relatedImageURL: (prop_types_default()).array,
+      srcFeaturedImageUrl: (prop_types_default()).string,
+      taxonomyContentPartnerText: (prop_types_default()).array,
+      descriptionPlain: (prop_types_default()).array,
+      mtxCreated: (prop_types_default()).array,
+      srcPublishedDate: (prop_types_default()).array,
+      assetId: (prop_types_default()).array,
+      hubStatusDescription: (prop_types_default()).array,
+      hubStatus: (prop_types_default()).array,
+      taxonomyContentPartnerId: (prop_types_default()).array
+    })
+  }),
+  page: (prop_types_default()).string,
+  statuses: (prop_types_default()).array,
+  fetchData: (prop_types_default()).func
+};
 ;// CONCATENATED MODULE: ./src/modules/Filters/StatusFilter.jsx
 
 

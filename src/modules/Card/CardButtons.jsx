@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {releaseAsStory, releaseAsTeaser} from '../Helpers/srStoryHelpers';
 import {contentHubAPI} from '../Helpers/requests';
+import {Oval} from 'react-loader-spinner';
 
 // const mockData = {
 //     name: 'Mockup name',
@@ -72,6 +73,7 @@ export const CardButtons = (props) => {
     const [hubStatus, setHubStatus] = useState('');
     const [fixedHubStatus, setFixedHubStatus] = useState(null);
     const [hubStatusDesc, setHubStatusDesc] = useState('');
+    const [isLoading, setIsLoading] = useState(false); // Loader flag
     //let jsApi = window?.jsApi ? window.jsApi : mockData;
     let jsApi = window.jsApi ?? {};
 
@@ -141,8 +143,9 @@ export const CardButtons = (props) => {
     };
 
     const handleSendFullContent = () => {
-        setHubStatus('sent-to-sr');
-        setFixedHubStatus('sent-to-sr');
+        // setHubStatus('sent-to-sr');
+        // setFixedHubStatus('sent-to-sr');
+        setIsLoading(true);
         jsApi.getMetadata({
             asset_id: props.assetId,
             dataCallback: (resp) => {
@@ -157,8 +160,9 @@ export const CardButtons = (props) => {
     };
 
     const handleSendTeaser = () => {
-        setHubStatus('sent-to-sr');
-        setFixedHubStatus('sent-to-sr');
+        // setHubStatus('sent-to-sr');
+        // setFixedHubStatus('sent-to-sr');
+        setIsLoading(true);
         jsApi.getMetadata({
             asset_id: props.assetId,
             dataCallback: (resp) => {
@@ -173,6 +177,9 @@ export const CardButtons = (props) => {
     };
 
     const handleDecline = (id) => {
+        // setHubStatus('reviewed');
+        // setFixedHubStatus('reviewed');
+        setIsLoading(true);
         // Handle sending decline info
         jsApi.getMetadata({
             asset_id: props.assetId,
@@ -234,6 +241,7 @@ export const CardButtons = (props) => {
         setHubStatusDesc(historyMessage);
         setHubStatus('reviewed');
         setFixedHubStatus('reviewed');
+        setIsLoading(false);
 
         const newEntry = {date: thisDate, message: historyMessage};
         currentHistory.unshift(newEntry);
@@ -321,8 +329,9 @@ export const CardButtons = (props) => {
         const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
         props.listMetadata.hubStatusDescription = historyMessage;
         setHubStatusDesc(historyMessage);
-        // setHubStatus('sent-to-sr');
-        // setFixedHubStatus('sent-to-sr');
+        setHubStatus('sent-to-sr');
+        setFixedHubStatus('sent-to-sr');
+        setIsLoading(false);
         clearReviewState();
 
         if (props.page == 'home') {
@@ -388,7 +397,9 @@ export const CardButtons = (props) => {
         setBeaconSent(true);
     };
 
-    return (
+    return isLoading ? (
+        <Oval visible={true} height="50" width="50" color="#B1040E" secondaryColor="gray" ariaLabel="oval-loading" />
+    ) : (
         <div className="su-flex su-flex-col sm:su-flex-row su-gap-[10px]">
             {hubStatus == 'reviewed' ? (
                 <>

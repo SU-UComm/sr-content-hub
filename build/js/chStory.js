@@ -12327,6 +12327,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
  // const mockData = {
 //     name: 'Mockup name',
 //     short_name: 'Mockup name',
@@ -12428,7 +12429,13 @@ var CardButtons = function CardButtons(props) {
   var _useState15 = (0,react.useState)(''),
       _useState16 = _slicedToArray(_useState15, 2),
       hubStatusDesc = _useState16[0],
-      setHubStatusDesc = _useState16[1]; //let jsApi = window?.jsApi ? window.jsApi : mockData;
+      setHubStatusDesc = _useState16[1];
+
+  var _useState17 = (0,react.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      isLoading = _useState18[0],
+      setIsLoading = _useState18[1]; // Loader flag
+  //let jsApi = window?.jsApi ? window.jsApi : mockData;
 
 
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
@@ -12500,8 +12507,9 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleSendFullContent = function handleSendFullContent() {
-    setHubStatus('sent-to-sr');
-    setFixedHubStatus('sent-to-sr');
+    // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+    setIsLoading(true);
     jsApi.getMetadata({
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
@@ -12514,8 +12522,9 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleSendTeaser = function handleSendTeaser() {
-    setHubStatus('sent-to-sr');
-    setFixedHubStatus('sent-to-sr');
+    // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+    setIsLoading(true);
     jsApi.getMetadata({
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
@@ -12528,7 +12537,10 @@ var CardButtons = function CardButtons(props) {
   };
 
   var handleDecline = function handleDecline(id) {
-    // Handle sending decline info
+    // setHubStatus('reviewed');
+    // setFixedHubStatus('reviewed');
+    setIsLoading(true); // Handle sending decline info
+
     jsApi.getMetadata({
       asset_id: props.assetId,
       dataCallback: function dataCallback(resp) {
@@ -12585,6 +12597,7 @@ var CardButtons = function CardButtons(props) {
     setHubStatusDesc(historyMessage);
     setHubStatus('reviewed');
     setFixedHubStatus('reviewed');
+    setIsLoading(false);
     var newEntry = {
       date: thisDate,
       message: historyMessage
@@ -12661,9 +12674,10 @@ var CardButtons = function CardButtons(props) {
     var userDetails = userEl.getAttribute('data-fullname');
     var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
     props.listMetadata.hubStatusDescription = historyMessage;
-    setHubStatusDesc(historyMessage); // setHubStatus('sent-to-sr');
-    // setFixedHubStatus('sent-to-sr');
-
+    setHubStatusDesc(historyMessage);
+    setHubStatus('sent-to-sr');
+    setFixedHubStatus('sent-to-sr');
+    setIsLoading(false);
     clearReviewState();
 
     if (props.page == 'home') {
@@ -12724,7 +12738,14 @@ var CardButtons = function CardButtons(props) {
     setBeaconSent(true);
   };
 
-  return /*#__PURE__*/react.createElement("div", {
+  return isLoading ? /*#__PURE__*/react.createElement($a5fa864d4dd36deb$export$67ad50c48ca3ede4, {
+    visible: true,
+    height: "50",
+    width: "50",
+    color: "#B1040E",
+    secondaryColor: "gray",
+    ariaLabel: "oval-loading"
+  }) : /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"

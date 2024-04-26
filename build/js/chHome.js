@@ -836,6 +836,22 @@ module.exports = function (NAME) {
 
 /***/ }),
 
+/***/ 4881:
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var tryToString = __webpack_require__(3838);
+
+var $TypeError = TypeError;
+
+module.exports = function (O, P) {
+  if (!delete O[P]) throw $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
+};
+
+
+/***/ }),
+
 /***/ 5077:
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
@@ -4058,6 +4074,80 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
     for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
     result.length = n;
     return result;
+  }
+});
+
+
+/***/ }),
+
+/***/ 8763:
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(1605);
+var toObject = __webpack_require__(2612);
+var toAbsoluteIndex = __webpack_require__(6539);
+var toIntegerOrInfinity = __webpack_require__(9328);
+var lengthOfArrayLike = __webpack_require__(3493);
+var doesNotExceedSafeInteger = __webpack_require__(7242);
+var arraySpeciesCreate = __webpack_require__(2998);
+var createProperty = __webpack_require__(2057);
+var deletePropertyOrThrow = __webpack_require__(4881);
+var arrayMethodHasSpeciesSupport = __webpack_require__(5634);
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
+
+var max = Math.max;
+var min = Math.min;
+
+// `Array.prototype.splice` method
+// https://tc39.es/ecma262/#sec-array.prototype.splice
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+  splice: function splice(start, deleteCount /* , ...items */) {
+    var O = toObject(this);
+    var len = lengthOfArrayLike(O);
+    var actualStart = toAbsoluteIndex(start, len);
+    var argumentsLength = arguments.length;
+    var insertCount, actualDeleteCount, A, k, from, to;
+    if (argumentsLength === 0) {
+      insertCount = actualDeleteCount = 0;
+    } else if (argumentsLength === 1) {
+      insertCount = 0;
+      actualDeleteCount = len - actualStart;
+    } else {
+      insertCount = argumentsLength - 2;
+      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
+    }
+    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
+    A = arraySpeciesCreate(O, actualDeleteCount);
+    for (k = 0; k < actualDeleteCount; k++) {
+      from = actualStart + k;
+      if (from in O) createProperty(A, k, O[from]);
+    }
+    A.length = actualDeleteCount;
+    if (insertCount < actualDeleteCount) {
+      for (k = actualStart; k < len - actualDeleteCount; k++) {
+        from = k + actualDeleteCount;
+        to = k + insertCount;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
+    } else if (insertCount > actualDeleteCount) {
+      for (k = len - actualDeleteCount; k > actualStart; k--) {
+        from = k + actualDeleteCount - 1;
+        to = k + insertCount - 1;
+        if (from in O) O[to] = O[from];
+        else deletePropertyOrThrow(O, to);
+      }
+    }
+    for (k = 0; k < insertCount; k++) {
+      O[k + actualStart] = arguments[k + 2];
+    }
+    O.length = len - actualDeleteCount + insertCount;
+    return A;
   }
 });
 
@@ -8247,8 +8337,8 @@ var es_array_join = __webpack_require__(475);
 var es_regexp_exec = __webpack_require__(7136);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
 var es_string_search = __webpack_require__(785);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
-var es_array_filter = __webpack_require__(17);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.splice.js
+var es_array_splice = __webpack_require__(8763);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__(115);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
@@ -15049,6 +15139,8 @@ StatusFilter.propTypes = {
   onChange: prop_types.PropTypes.func,
   selectedValue: prop_types.PropTypes.string
 };
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
+var es_array_filter = __webpack_require__(17);
 ;// CONCATENATED MODULE: ./src/modules/Filters/SelectedFilters.jsx
 
 
@@ -15450,22 +15542,18 @@ var ContentRegion = function ContentRegion() {
   }, []);
 
   var checkStatus = function checkStatus(statuses) {
-    setIsLoading(true); // for (let i = 0; i < statuses.length; i++) {
-    //     console.log('statuses[i].hubStatus', statuses[i].hubStatus);
-    //     if (statuses[i].hubStatus !== 'submitted') {
-    //         results.splice(i, 1);
-    //         setResults(results);
-    //         console.log('results',results);
-    //     }
-    // }
+    setIsLoading(false);
 
-    console.log('results', results);
-    console.log('statuses', statuses);
-    var filteredResults = statuses.filter(function (result) {
-      return result.hubStatus === 'submitted';
-    });
-    setResults(filteredResults);
-    console.log('setRESULTS', filteredResults);
+    for (var i = 0; i < statuses.length; i++) {
+      console.log('statuses[i].hubStatus', statuses[i].hubStatus);
+
+      if (statuses[i].hubStatus !== 'submitted') {
+        results.splice(i, 1);
+        setResults(results);
+        console.log('results', results);
+      }
+    }
+
     setIsLoading(false);
   };
 

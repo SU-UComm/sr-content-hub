@@ -101,21 +101,15 @@ export const ContentRegion = () => {
     }, []);
 
     const checkStatus = (statuses) => {
-        setIsLoading(true);
-        // for (let i = 0; i < statuses.length; i++) {
-        //     console.log('statuses[i].hubStatus', statuses[i].hubStatus);
-        //     if (statuses[i].hubStatus !== 'submitted') {
-        //         results.splice(i, 1);
-        //         setResults(results);
-        //         console.log('results',results);
-
-        //     }
-        // }
-        console.log('results', results);
-        console.log('statuses', statuses);
-        const filteredResults = statuses.filter((result) => result.hubStatus === 'submitted');
-        setResults(filteredResults);
-        console.log('setRESULTS', filteredResults);
+        setIsLoading(false);
+        for (let i = 0; i < statuses.length; i++) {
+            console.log('statuses[i].hubStatus', statuses[i].hubStatus);
+            if (statuses[i].hubStatus !== 'submitted') {
+                results.splice(i, 1);
+                setResults(results);
+                console.log('results', results);
+            }
+        }
         setIsLoading(false);
     };
 

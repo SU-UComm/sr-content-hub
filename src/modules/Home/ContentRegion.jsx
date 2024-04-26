@@ -32,10 +32,8 @@ export const ContentRegion = () => {
                     }
                 });
                 setFacets(d.response.facets);
-                // setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                //console.log('REQUEST FUNCTION data in home: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -44,7 +42,6 @@ export const ContentRegion = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                //console.log('Statuses:', statuses);
                 setHubStatuses(statuses);
                 if (window?.data?.user.userType == 'UCOMM') {
                     checkStatus(statuses);
@@ -63,10 +60,8 @@ export const ContentRegion = () => {
                     }
                 });
                 setFacets(d.response.facets);
-                // setData(d);
                 setResults(d.response.resultPacket.results);
                 setResultsSummary(d.response.resultPacket.resultsSummary);
-                //console.log('REQUEST FUNCTION data in home matrix: ', d);
                 let sourceIdsArray = [];
                 d.response.resultPacket.results.forEach((item) => {
                     if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -75,7 +70,6 @@ export const ContentRegion = () => {
                 });
 
                 const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses2:', statuses);
                 setHubStatuses(statuses);
                 if (window?.data?.user.userType == 'UCOMM') {
                     checkStatus(statuses);
@@ -126,7 +120,6 @@ export const ContentRegion = () => {
             setStatusSelected(selected);
         }
         if (name == 'unselect') {
-            // console.log('check');
             if (selectedVal == 'hubStatus') {
                 setStatusSelected('All');
             }

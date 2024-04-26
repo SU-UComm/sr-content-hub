@@ -253,6 +253,9 @@ export const CardButtons = (props) => {
     };
 
     const prepareApproveUpdate = (storyId, pageType, currentState) => {
+        // disable button
+        setHubStatus('sent-to-sr');
+        setFixedHubStatus('sent-to-sr');
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
 
@@ -301,12 +304,12 @@ export const CardButtons = (props) => {
     };
     const updateUi = (storyObj, pageType) => {
         // Finalize publishing process with additional functions :: Depending from the page type
-        storyObj.pageType = storyObj.pageType || 'story';
-        if (storyObj.pageType.toLowerCase() === 'teaser') {
-            sendAsTeaser(storyObj);
-        } else {
-            sendAsStory(storyObj);
-        }
+        // storyObj.pageType = storyObj.pageType || 'story';
+        // if (storyObj.pageType.toLowerCase() === 'teaser') {
+        //     sendAsTeaser(storyObj);
+        // } else {
+        //     sendAsStory(storyObj);
+        // }
 
         // We need to update the Button on the front-end :: and remove actions
         const userEl = document.querySelector('#user-status');
@@ -314,25 +317,20 @@ export const CardButtons = (props) => {
         const historyMessage = `Sent to Stanford Report by ${userDetails}, Published as: ${pageType}`;
         props.listMetadata.hubStatusDescription = historyMessage;
         setHubStatusDesc(historyMessage);
-        setHubStatus('sent-to-sr');
-        setFixedHubStatus('sent-to-sr');
+        // setHubStatus('sent-to-sr');
+        // setFixedHubStatus('sent-to-sr');
         clearReviewState();
 
-        // // Check if this is Home Page or New Content
-        // const latestNewsEl = document.querySelector('#latest-content');
-        // // IF it is then we need to trigger loading one additional result instead of current item
-        // if (latestNewsEl !== null) {
         if (props.page == 'home') {
             props.fetchData(window?.data?.contentHubAPI?.search.newContent);
         }
-        // }
     };
-    const sendAsStory = (storyObj) => {
-        // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
-    };
-    const sendAsTeaser = (storyObj) => {
-        // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
-    };
+    // const sendAsStory = (storyObj) => {
+    //     // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
+    // };
+    // const sendAsTeaser = (storyObj) => {
+    //     // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
+    // };
 
     const clearReviewState = () => {
         if (typeof navigator.sendBeacon !== 'function') {

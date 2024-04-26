@@ -9555,7 +9555,10 @@ var CardButtons = function CardButtons(props) {
   };
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
-    // Define Metadata Fields Actions Object
+    // disable button
+    setHubStatus('sent-to-sr');
+    setFixedHubStatus('sent-to-sr'); // Define Metadata Fields Actions Object
+
     var fieldsActions = {}; // Action #1: Status Update:
 
     var statusField = chCfg.metaFields.hubStatus;
@@ -9596,40 +9599,34 @@ var CardButtons = function CardButtons(props) {
 
   var updateUi = function updateUi(storyObj, pageType) {
     // Finalize publishing process with additional functions :: Depending from the page type
-    storyObj.pageType = storyObj.pageType || 'story';
-
-    if (storyObj.pageType.toLowerCase() === 'teaser') {
-      sendAsTeaser(storyObj);
-    } else {
-      sendAsStory(storyObj);
-    } // We need to update the Button on the front-end :: and remove actions
-
-
+    // storyObj.pageType = storyObj.pageType || 'story';
+    // if (storyObj.pageType.toLowerCase() === 'teaser') {
+    //     sendAsTeaser(storyObj);
+    // } else {
+    //     sendAsStory(storyObj);
+    // }
+    // We need to update the Button on the front-end :: and remove actions
     var userEl = document.querySelector('#user-status');
     var userDetails = userEl.getAttribute('data-fullname');
     var historyMessage = "Sent to Stanford Report by ".concat(userDetails, ", Published as: ").concat(pageType);
     props.listMetadata.hubStatusDescription = historyMessage;
-    setHubStatusDesc(historyMessage);
-    setHubStatus('sent-to-sr');
-    setFixedHubStatus('sent-to-sr');
-    clearReviewState(); // // Check if this is Home Page or New Content
-    // const latestNewsEl = document.querySelector('#latest-content');
-    // // IF it is then we need to trigger loading one additional result instead of current item
-    // if (latestNewsEl !== null) {
+    setHubStatusDesc(historyMessage); // setHubStatus('sent-to-sr');
+    // setFixedHubStatus('sent-to-sr');
+
+    clearReviewState();
 
     if (props.page == 'home') {
       var _window3, _window3$data, _window3$data$content;
 
       props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
-    } // }
+    }
+  }; // const sendAsStory = (storyObj) => {
+  //     // console.log(`Published as story: ${JSON.stringify(storyObj)}`);
+  // };
+  // const sendAsTeaser = (storyObj) => {
+  //     // console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
+  // };
 
-  };
-
-  var sendAsStory = function sendAsStory(storyObj) {// console.log(`Published as story: ${JSON.stringify(storyObj)}`);
-  };
-
-  var sendAsTeaser = function sendAsTeaser(storyObj) {// console.log(`Published as teaser: ${JSON.stringify(storyObj)}`);
-  };
 
   var clearReviewState = function clearReviewState() {
     if (typeof navigator.sendBeacon !== 'function') {
@@ -15675,11 +15672,9 @@ var ContentRegion = function ContentRegion() {
                   setStatusLabels(item.allValues);
                 }
               });
-              setFacets(d.response.facets); // setData(d);
-
+              setFacets(d.response.facets);
               setResults(d.response.resultPacket.results);
-              setResultsSummary(d.response.resultPacket.resultsSummary); //console.log('REQUEST FUNCTION data in home: ', d);
-
+              setResultsSummary(d.response.resultPacket.resultsSummary);
               sourceIdsArray = [];
               d.response.resultPacket.results.forEach(function (item) {
                 if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
@@ -15691,7 +15686,6 @@ var ContentRegion = function ContentRegion() {
 
             case 14:
               statuses = _context.sent;
-              //console.log('Statuses:', statuses);
               setHubStatuses(statuses);
 
               if (((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : _window$data.user.userType) == 'UCOMM') {
@@ -15729,11 +15723,9 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              setFacets(_d2.response.facets); // setData(d);
-
+              setFacets(_d2.response.facets);
               setResults(_d2.response.resultPacket.results);
-              setResultsSummary(_d2.response.resultPacket.resultsSummary); //console.log('REQUEST FUNCTION data in home matrix: ', d);
-
+              setResultsSummary(_d2.response.resultPacket.resultsSummary);
               _sourceIdsArray = [];
 
               _d2.response.resultPacket.results.forEach(function (item) {
@@ -15747,7 +15739,6 @@ var ContentRegion = function ContentRegion() {
 
             case 39:
               _statuses = _context.sent;
-              // console.log('Statuses2:', statuses);
               setHubStatuses(_statuses);
 
               if (((_window2 = window) === null || _window2 === void 0 ? void 0 : (_window2$data = _window2.data) === null || _window2$data === void 0 ? void 0 : _window2$data.user.userType) == 'UCOMM') {
@@ -15820,7 +15811,6 @@ var ContentRegion = function ContentRegion() {
     }
 
     if (name == 'unselect') {
-      // console.log('check');
       if (selectedVal == 'hubStatus') {
         setStatusSelected('All');
       }

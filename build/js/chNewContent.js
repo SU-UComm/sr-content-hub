@@ -14375,7 +14375,7 @@ var chCfg = {
   }
 };
 var CardButtons = function CardButtons(props) {
-  var _window$jsApi, _window4, _window4$data, _window4$data$user, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user;
+  var _window$jsApi, _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window7$data$user;
 
   var _useState = (0,react.useState)(false),
       _useState2 = CardButtons_slicedToArray(_useState, 2),
@@ -14598,6 +14598,12 @@ var CardButtons = function CardButtons(props) {
       dataCallback: function dataCallback(resp) {// console.log('Decline resp: ', resp);
       }
     });
+
+    if (props.page == 'home') {
+      var _window3, _window3$data, _window3$data$content;
+
+      props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
+    }
   };
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
@@ -14632,15 +14638,7 @@ var CardButtons = function CardButtons(props) {
 
     var pageTypeField = chCfg.metaFields.pageType;
     var pageTypeValue = pageType.toLowerCase();
-    fieldsActions[pageTypeField] = pageTypeValue; // // Get Published Date from Metadata :: Needed for publishing on SR
-    // const pubDate = props.listMetadata.publishedDate[0] || '';
-    // // Create Asset Details to pass to callback
-    // const thisStory = {
-    //     id: storyId,
-    //     pageType: pageType,
-    //     pubDate: pubDate,
-    // };
-    // All fields in place :: Update metadata
+    fieldsActions[pageTypeField] = pageTypeValue; // All fields in place :: Update metadata
 
     jsApi.setMetadataAllFields({
       asset_id: storyId,
@@ -14659,9 +14657,9 @@ var CardButtons = function CardButtons(props) {
     clearReviewState();
 
     if (props.page == 'home') {
-      var _window3, _window3$data, _window3$data$content;
+      var _window4, _window4$data, _window4$data$content;
 
-      props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
+      props.fetchData((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$content = _window4$data.contentHubAPI) === null || _window4$data$content === void 0 ? void 0 : _window4$data$content.search.newContent);
     }
   };
 
@@ -14692,7 +14690,6 @@ var CardButtons = function CardButtons(props) {
   var sendBeacon = function sendBeacon() {
     var _contentHubAPI$module;
 
-    // console.log('Send Beacon!');
     if (beaconSent !== false) {
       return;
     }
@@ -14703,9 +14700,7 @@ var CardButtons = function CardButtons(props) {
       id: props.assetId
     }; // Send beacon to update the state
 
-    navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Add log msg to see if this was triggered
-    // console.log('Beacon triggered...');
-    // Store beacon state
+    navigator.sendBeacon(beaconUrl, JSON.stringify(data)); // Store beacon state
 
     setBeaconSent(true);
   };
@@ -14721,7 +14716,7 @@ var CardButtons = function CardButtons(props) {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-[10px]"
   }, hubStatus == 'reviewed' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-red-dark su-bg-red-dark/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Reviewed"), ((_window4 = window) === null || _window4 === void 0 ? void 0 : (_window4$data = _window4.data) === null || _window4$data === void 0 ? void 0 : (_window4$data$user = _window4$data.user) === null || _window4$data$user === void 0 ? void 0 : _window4$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
+  }, "Reviewed"), ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' && props.type == 'story' ? /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {
@@ -14731,9 +14726,9 @@ var CardButtons = function CardButtons(props) {
     className: "su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15"
   }, "Publishing soon on Stanford Report") : hubStatus == 'published' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-green su-bg-green/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window5 = window) === null || _window5 === void 0 ? void 0 : (_window5$data = _window5.data) === null || _window5$data === void 0 ? void 0 : (_window5$data$user = _window5$data.user) === null || _window5$data$user === void 0 ? void 0 : _window5$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
+  }, "Published on Stanford Report") : hubStatusDesc && hubStatusDesc.length > 0 && !userMatch && props.type !== 'story' && ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement("p", {
     className: "su-rounded su-text-blue su-bg-blue/10 su-text-16 su-mb-0 su-py-9 su-px-15"
-  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window6 = window) === null || _window6 === void 0 ? void 0 : (_window6$data = _window6.data) === null || _window6$data === void 0 ? void 0 : (_window6$data$user = _window6$data.user) === null || _window6$data$user === void 0 ? void 0 : _window6$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
+  }, props.hubStatusDesc ? props.hubStatusDesc : props.listMetadata.hubStatusDescription) : ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("button", {
     "data-id": "dialogTitle-".concat(props.assetId, "-approve"),
     className: "js-action--send-to-sr button-green c-button-send",
     onClick: function onClick() {

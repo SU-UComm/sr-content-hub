@@ -222,6 +222,10 @@ export const CardButtons = (props) => {
                 // console.log('Decline resp: ', resp);
             },
         });
+
+        if (props.page == 'home') {
+            props.fetchData(window?.data?.contentHubAPI?.search.newContent);
+        }
     };
 
     const prepareApproveUpdate = (storyId, pageType, currentState) => {
@@ -262,16 +266,6 @@ export const CardButtons = (props) => {
         const pageTypeField = chCfg.metaFields.pageType;
         const pageTypeValue = pageType.toLowerCase();
         fieldsActions[pageTypeField] = pageTypeValue;
-
-        // // Get Published Date from Metadata :: Needed for publishing on SR
-        // const pubDate = props.listMetadata.publishedDate[0] || '';
-
-        // // Create Asset Details to pass to callback
-        // const thisStory = {
-        //     id: storyId,
-        //     pageType: pageType,
-        //     pubDate: pubDate,
-        // };
 
         // All fields in place :: Update metadata
         jsApi.setMetadataAllFields({
@@ -327,7 +321,6 @@ export const CardButtons = (props) => {
     };
 
     const sendBeacon = () => {
-        // console.log('Send Beacon!');
         if (beaconSent !== false) {
             return;
         }
@@ -338,9 +331,6 @@ export const CardButtons = (props) => {
 
         // Send beacon to update the state
         navigator.sendBeacon(beaconUrl, JSON.stringify(data));
-
-        // Add log msg to see if this was triggered
-        // console.log('Beacon triggered...');
 
         // Store beacon state
         setBeaconSent(true);
@@ -362,9 +352,6 @@ export const CardButtons = (props) => {
                             Send to Stanford Report
                         </button>
                     ) : null}
-                    {/* {props.listMetadata.hubReviewMsg && props.listMetadata.hubReviewMsg.length > 0 ? (
-                        <p className="su-text-red-dark su-text-16 su-mb-0 su-py-9 ">{props.listMetadata.hubReviewMsg}</p>
-                    ) : null} */}
                 </>
             ) : hubStatus == 'sent-to-sr' ? (
                 <p className="su-rounded su-text-orange su-bg-orange/10 su-text-16 su-mb-0 su-py-9 su-px-15">Publishing soon on Stanford Report</p>

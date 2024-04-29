@@ -18,7 +18,7 @@ export const MyContent = () => {
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
-    const [baseUrl, setUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
+    const [baseUrl, setBaseUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
     const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
     const [dataLocation, setDataLocation] = useState('');
@@ -95,7 +95,7 @@ export const MyContent = () => {
         let url = window?.data?.contentHubAPI?.search.myContent;
         if (url) {
             fetchData('matrix', url);
-            setUrl(url);
+            setBaseUrl(url);
             setDataLocation('matrix');
         } else {
             fetchData(
@@ -107,7 +107,7 @@ export const MyContent = () => {
     }, []);
 
     const onChange = (name, value, selectedVal) => {
-        // console.log('ON CHANGE: ', name, ' || ', value);
+        console.log('ON CHANGE: ', name, ' || ', value);
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -156,6 +156,8 @@ export const MyContent = () => {
                 setStatusSelected(selected);
             }
             let fetchUrl = baseUrl + value;
+            console.log('baseUrl: ', baseUrl);
+            console.log('fetchUrl: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         }
     };

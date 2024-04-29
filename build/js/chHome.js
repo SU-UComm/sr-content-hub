@@ -15262,50 +15262,53 @@ function ContentRegion_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr;
 var ContentRegion = function ContentRegion() {
   var _window5, _window5$data, _window5$data$user, _window6, _window6$data, _window6$data$user, _window7, _window7$data, _window7$data$user, _window8, _window8$data, _window8$data$user, _window9, _window9$data, _window10, _window10$data, _window10$data$user;
 
-  var baseUrl = "".concat(window.globalData.urls.fb, "/s/search.json");
-
-  var _useState = (0,react.useState)(false),
+  var _useState = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState2 = ContentRegion_slicedToArray(_useState, 2),
-      isLoading = _useState2[0],
-      setIsLoading = _useState2[1]; // Loader flag
-  // const [data, setData] = useState([]); // data from endpoint
+      baseUrl = _useState2[0],
+      setBaseUrl = _useState2[1];
 
-
-  var _useState3 = (0,react.useState)([]),
+  var _useState3 = (0,react.useState)(false),
       _useState4 = ContentRegion_slicedToArray(_useState3, 2),
-      results = _useState4[0],
-      setResults = _useState4[1]; // data from endpoint
+      isLoading = _useState4[0],
+      setIsLoading = _useState4[1]; // Loader flag
+  // const [data, setData] = useState([]); // data from endpoint
 
 
   var _useState5 = (0,react.useState)([]),
       _useState6 = ContentRegion_slicedToArray(_useState5, 2),
-      resultsSummary = _useState6[0],
-      setResultsSummary = _useState6[1];
+      results = _useState6[0],
+      setResults = _useState6[1]; // data from endpoint
+
 
   var _useState7 = (0,react.useState)([]),
       _useState8 = ContentRegion_slicedToArray(_useState7, 2),
-      statusLabel = _useState8[0],
-      setStatusLabels = _useState8[1];
+      resultsSummary = _useState8[0],
+      setResultsSummary = _useState8[1];
 
   var _useState9 = (0,react.useState)([]),
       _useState10 = ContentRegion_slicedToArray(_useState9, 2),
-      facets = _useState10[0],
-      setFacets = _useState10[1];
+      statusLabel = _useState10[0],
+      setStatusLabels = _useState10[1];
 
-  var _useState11 = (0,react.useState)('All'),
+  var _useState11 = (0,react.useState)([]),
       _useState12 = ContentRegion_slicedToArray(_useState11, 2),
-      statusSelected = _useState12[0],
-      setStatusSelected = _useState12[1];
+      facets = _useState12[0],
+      setFacets = _useState12[1];
 
-  var _useState13 = (0,react.useState)(''),
+  var _useState13 = (0,react.useState)('All'),
       _useState14 = ContentRegion_slicedToArray(_useState13, 2),
-      dataLocation = _useState14[0],
-      setDataLocation = _useState14[1];
+      statusSelected = _useState14[0],
+      setStatusSelected = _useState14[1];
 
-  var _useState15 = (0,react.useState)([]),
+  var _useState15 = (0,react.useState)(''),
       _useState16 = ContentRegion_slicedToArray(_useState15, 2),
-      hubStatuses = _useState16[0],
-      setHubStatuses = _useState16[1];
+      dataLocation = _useState16[0],
+      setDataLocation = _useState16[1];
+
+  var _useState17 = (0,react.useState)([]),
+      _useState18 = ContentRegion_slicedToArray(_useState17, 2),
+      hubStatuses = _useState18[0],
+      setHubStatuses = _useState18[1];
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = ContentRegion_asyncToGenerator( /*#__PURE__*/ContentRegion_regeneratorRuntime().mark(function _callee(url, func) {
@@ -15441,6 +15444,7 @@ var ContentRegion = function ContentRegion() {
 
     if (urlCheck) {
       var url = userType == 'CP' ? window.data.contentHubAPI.search.myContent : window.data.contentHubAPI.search.newContent;
+      setBaseUrl(url);
       fetchData(url, 'matrix');
       setDataLocation('matrix');
     } else {

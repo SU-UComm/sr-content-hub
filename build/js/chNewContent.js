@@ -16503,7 +16503,7 @@ var MyContent = function MyContent() {
   var _useState15 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState16 = MyContent_slicedToArray(_useState15, 2),
       baseUrl = _useState16[0],
-      setUrl = _useState16[1];
+      setBaseUrl = _useState16[1];
 
   var _useState17 = (0,react.useState)('Newest to Oldest'),
       _useState18 = MyContent_slicedToArray(_useState17, 2),
@@ -16657,7 +16657,7 @@ var MyContent = function MyContent() {
 
     if (url) {
       fetchData('matrix', url);
-      setUrl(url);
+      setBaseUrl(url);
       setDataLocation('matrix');
     } else {
       fetchData('fb', "".concat(window.globalData.urls.fb, "/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"));
@@ -16666,7 +16666,8 @@ var MyContent = function MyContent() {
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
-    // console.log('ON CHANGE: ', name, ' || ', value);
+    console.log('ON CHANGE: ', name, ' || ', value);
+
     if (name == 'search') {
       var newParams = queryParams;
       var queryParam = newParams.find(function (param) {
@@ -16745,6 +16746,8 @@ var MyContent = function MyContent() {
 
       var _fetchUrl3 = baseUrl + value;
 
+      console.log('baseUrl: ', baseUrl);
+      console.log('fetchUrl: ', _fetchUrl3);
       fetchData(_fetchUrl3, dataLocation);
     }
   };

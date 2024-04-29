@@ -8,8 +8,7 @@ import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const ContentRegion = () => {
-    const baseUrl = `${window.globalData.urls.fb}/s/search.json`;
-
+    const [baseUrl, setBaseUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     // const [data, setData] = useState([]); // data from endpoint
     const [results, setResults] = useState([]); // data from endpoint
@@ -89,7 +88,7 @@ export const ContentRegion = () => {
 
         if (urlCheck) {
             let url = userType == 'CP' ? window.data.contentHubAPI.search.myContent : window.data.contentHubAPI.search.newContent;
-
+            setBaseUrl(url);
             fetchData(url, 'matrix');
             setDataLocation('matrix');
         } else {

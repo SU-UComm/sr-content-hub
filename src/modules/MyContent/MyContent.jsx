@@ -18,13 +18,13 @@ export const MyContent = () => {
     const [results, setResults] = useState([]); // data from endpoint
     const [queryParams, setQueryParams] = useState([]);
     const [facets, setFacets] = useState([]);
-    const [baseUrl, setUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
+    const [baseUrl, setBaseUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
     const [sortBySelected, setSortBySelected] = useState('Newest to Oldest');
     const [statusSelected, setStatusSelected] = useState('All');
     const [dataLocation, setDataLocation] = useState('');
     const [hubStatuses, setHubStatuses] = useState([]);
 
-    const fetchData = async (func, url) => {
+    const fetchData = async (url, func) => {
         setIsLoading(true);
         // backup for local environment
         if (func == 'fb') {
@@ -94,13 +94,13 @@ export const MyContent = () => {
     useEffect(() => {
         let url = window?.data?.contentHubAPI?.search.myContent;
         if (url) {
-            fetchData('matrix', url);
-            setUrl(url);
+            fetchData(url, 'matrix');
+            setBaseUrl(url);
             setDataLocation('matrix');
         } else {
             fetchData(
-                'fb',
                 `${window.globalData.urls.fb}/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery`,
+                'fb',
             );
             setDataLocation('fb');
         }
@@ -122,7 +122,6 @@ export const MyContent = () => {
             }
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            // console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         } else if (name == 'pagination') {
             let newParams = queryParams;
@@ -134,7 +133,6 @@ export const MyContent = () => {
             }
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            // console.log('CREATED URL: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         } else if (name == 'sortBy') {
             let newParams = queryParams;
@@ -148,7 +146,6 @@ export const MyContent = () => {
             }
             setQueryParams(newParams);
             let fetchUrl = baseUrl + '?' + createUrl(queryParams);
-            // console.log('CREATED URL sort: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         } else {
             if (name == 'status') {
@@ -173,7 +170,7 @@ export const MyContent = () => {
                 </div>
                 <SelectedFacets onChange={onChange} facets={facets} page="myContent" />
 
-                {results && results.length > 1 ? (
+                {results && results.length > 0 ? (
                     <>
                         <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
                             <p className="su-leading-[2] su-mb-0">

@@ -8,8 +8,7 @@ import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const ContentRegion = () => {
-    const baseUrl = `${window.globalData.urls.fb}/s/search.json`;
-
+    const [baseUrl, setBaseUrl] = useState(`${window.globalData.urls.fb}/s/search.json`);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     // const [data, setData] = useState([]); // data from endpoint
     const [results, setResults] = useState([]); // data from endpoint
@@ -88,7 +87,7 @@ export const ContentRegion = () => {
 
         if (urlCheck) {
             let url = userType == 'CP' ? window.data.contentHubAPI.search.myContent : window.data.contentHubAPI.search.newContent;
-
+            setBaseUrl(url);
             fetchData(url, 'matrix');
             setDataLocation('matrix');
         } else {
@@ -99,17 +98,6 @@ export const ContentRegion = () => {
             setDataLocation('fb');
         }
     }, []);
-
-    // const checkStatus = (statuses) => {
-    //     setIsLoading(true);
-    //     for (let i = 0; i < statuses.length; i++) {
-    //         if (statuses[i].hubStatus !== 'submitted') {
-    //             results.splice(i, 1);
-    //             setResults(results);
-    //         }
-    //     }
-    //     setIsLoading(false);
-    // };
 
     const checkStatus = (statuses, resultsArray) => {
         // console.log('1 results', resultsArray);
@@ -158,7 +146,7 @@ export const ContentRegion = () => {
                     </a>
                 </div>
             </div>
-            {window?.data?.user?.userType === 'CP' && results.length > 1 ? (
+            {window?.data?.user?.userType === 'CP' && results.length > 0 ? (
                 <div className="su-mb-60">
                     <div className="su-w-full md:su-w-1/2">
                         <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />

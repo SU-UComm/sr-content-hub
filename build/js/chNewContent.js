@@ -16503,7 +16503,7 @@ var MyContent = function MyContent() {
   var _useState15 = (0,react.useState)("".concat(window.globalData.urls.fb, "/s/search.json")),
       _useState16 = MyContent_slicedToArray(_useState15, 2),
       baseUrl = _useState16[0],
-      setUrl = _useState16[1];
+      setBaseUrl = _useState16[1];
 
   var _useState17 = (0,react.useState)('Newest to Oldest'),
       _useState18 = MyContent_slicedToArray(_useState17, 2),
@@ -16526,7 +16526,7 @@ var MyContent = function MyContent() {
       setHubStatuses = _useState24[1];
 
   var fetchData = /*#__PURE__*/function () {
-    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(func, url) {
+    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(url, func) {
       var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray, _statuses;
 
       return MyContent_regeneratorRuntime().wrap(function _callee$(_context) {
@@ -16656,11 +16656,11 @@ var MyContent = function MyContent() {
     var url = (_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$contentH = _window$data.contentHubAPI) === null || _window$data$contentH === void 0 ? void 0 : _window$data$contentH.search.myContent;
 
     if (url) {
-      fetchData('matrix', url);
-      setUrl(url);
+      fetchData(url, 'matrix');
+      setBaseUrl(url);
       setDataLocation('matrix');
     } else {
-      fetchData('fb', "".concat(window.globalData.urls.fb, "/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"));
+      fetchData("".concat(window.globalData.urls.fb, "/s/search.json?profile=search&collection=sug~sp-stanford-university-content-hub&num_ranks=10&start_rank=1&sort=dmetamtxCreated&&query=!nullquery"), 'fb');
       setDataLocation('fb');
     }
   }, []);
@@ -16687,8 +16687,7 @@ var MyContent = function MyContent() {
       }
 
       setQueryParams(newParams);
-      var fetchUrl = baseUrl + '?' + createUrl(queryParams); // console.log('CREATED URL: ', fetchUrl);
-
+      var fetchUrl = baseUrl + '?' + createUrl(queryParams);
       fetchData(fetchUrl, dataLocation);
     } else if (name == 'pagination') {
       var _newParams = queryParams;
@@ -16708,8 +16707,7 @@ var MyContent = function MyContent() {
 
       setQueryParams(_newParams);
 
-      var _fetchUrl = baseUrl + '?' + createUrl(queryParams); // console.log('CREATED URL: ', fetchUrl);
-
+      var _fetchUrl = baseUrl + '?' + createUrl(queryParams);
 
       fetchData(_fetchUrl, dataLocation);
     } else if (name == 'sortBy') {
@@ -16732,8 +16730,7 @@ var MyContent = function MyContent() {
 
       setQueryParams(_newParams2);
 
-      var _fetchUrl2 = baseUrl + '?' + createUrl(queryParams); // console.log('CREATED URL sort: ', fetchUrl);
-
+      var _fetchUrl2 = baseUrl + '?' + createUrl(queryParams);
 
       fetchData(_fetchUrl2, dataLocation);
     } else {
@@ -16774,7 +16771,7 @@ var MyContent = function MyContent() {
     onChange: onChange,
     facets: facets,
     page: "myContent"
-  }), results && results.length > 1 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
+  }), results && results.length > 0 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-0"

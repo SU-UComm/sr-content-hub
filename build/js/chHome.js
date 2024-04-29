@@ -15370,16 +15370,15 @@ var ContentRegion = function ContentRegion() {
               return _context.finish(22);
 
             case 25:
-              _context.next = 51;
+              _context.next = 50;
               break;
 
             case 27:
               _context.prev = 27;
-              console.log('url: ', url);
-              _context.next = 31;
+              _context.next = 30;
               return getSearchData(url);
 
-            case 31:
+            case 30:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -15399,10 +15398,10 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 40;
+              _context.next = 39;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 40:
+            case 39:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
 
@@ -15410,25 +15409,25 @@ var ContentRegion = function ContentRegion() {
                 checkStatus(_statuses, _d2.response.resultPacket.results);
               }
 
-              _context.next = 48;
+              _context.next = 47;
               break;
 
-            case 45:
-              _context.prev = 45;
+            case 44:
+              _context.prev = 44;
               _context.t1 = _context["catch"](27);
               console.error('Error fetching data:', _context.t1);
 
-            case 48:
-              _context.prev = 48;
+            case 47:
+              _context.prev = 47;
               setIsLoading(false);
-              return _context.finish(48);
+              return _context.finish(47);
 
-            case 51:
+            case 50:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 19, 22, 25], [27, 45, 48, 51]]);
+      }, _callee, null, [[2, 19, 22, 25], [27, 44, 47, 50]]);
     }));
 
     return function fetchData(_x, _x2) {

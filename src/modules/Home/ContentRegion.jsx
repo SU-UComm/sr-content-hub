@@ -52,7 +52,6 @@ export const ContentRegion = () => {
             }
         } else {
             try {
-                console.log('url: ', url);
                 const d = await getSearchData(url);
                 d.response.facets.map((item) => {
                     if (item.name == 'hubStatus') {

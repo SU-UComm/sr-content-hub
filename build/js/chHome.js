@@ -15516,7 +15516,7 @@ var ContentRegion = function ContentRegion() {
   }, "View all ", ((_window7 = window) === null || _window7 === void 0 ? void 0 : (_window7$data = _window7.data) === null || _window7$data === void 0 ? void 0 : (_window7$data$user = _window7$data.user) === null || _window7$data$user === void 0 ? void 0 : _window7$data$user.userType) === 'UCOMM' ? 'Latest Content' : 'My Content', /*#__PURE__*/react.createElement("img", {
     className: "su-inline su-ml-6",
     src: __webpack_require__(1205)
-  })))), ((_window8 = window) === null || _window8 === void 0 ? void 0 : (_window8$data = _window8.data) === null || _window8$data === void 0 ? void 0 : (_window8$data$user = _window8$data.user) === null || _window8$data$user === void 0 ? void 0 : _window8$data$user.userType) === 'CP' && results.length > 1 ? /*#__PURE__*/react.createElement("div", {
+  })))), ((_window8 = window) === null || _window8 === void 0 ? void 0 : (_window8$data = _window8.data) === null || _window8$data === void 0 ? void 0 : (_window8$data$user = _window8$data.user) === null || _window8$data$user === void 0 ? void 0 : _window8$data$user.userType) === 'CP' && results.length > 0 ? /*#__PURE__*/react.createElement("div", {
     className: "su-mb-60"
   }, /*#__PURE__*/react.createElement("div", {
     className: "su-w-full md:su-w-1/2"

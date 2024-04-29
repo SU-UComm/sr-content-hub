@@ -160,7 +160,7 @@ export const ContentRegion = () => {
                     </a>
                 </div>
             </div>
-            {window?.data?.user?.userType === 'CP' && results.length > 1 ? (
+            {window?.data?.user?.userType === 'CP' && results.length > 0 ? (
                 <div className="su-mb-60">
                     <div className="su-w-full md:su-w-1/2">
                         <StatusFilter facets={statusLabel} onChange={onChange} selectedValue={statusSelected} />

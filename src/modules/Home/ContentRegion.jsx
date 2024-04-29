@@ -53,6 +53,7 @@ export const ContentRegion = () => {
             }
         } else {
             try {
+                console.log('url: ', url);
                 const d = await getSearchData(url);
                 d.response.facets.map((item) => {
                     if (item.name == 'hubStatus') {
@@ -128,7 +129,7 @@ export const ContentRegion = () => {
     };
 
     const onChange = (name, value, selectedVal) => {
-        // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
         if (name == 'status') {
             let selected = getLabel(selectedVal);
             setStatusSelected(selected);
@@ -139,6 +140,8 @@ export const ContentRegion = () => {
             }
         }
         let fetchUrl = baseUrl + value;
+        console.log('baseUrl: ', baseUrl);
+        console.log('fetchUrl: ', fetchUrl);
         fetchData(fetchUrl, dataLocation);
     };
 

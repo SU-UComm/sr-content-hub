@@ -15367,15 +15367,16 @@ var ContentRegion = function ContentRegion() {
               return _context.finish(22);
 
             case 25:
-              _context.next = 50;
+              _context.next = 51;
               break;
 
             case 27:
               _context.prev = 27;
-              _context.next = 30;
+              console.log('url: ', url);
+              _context.next = 31;
               return getSearchData(url);
 
-            case 30:
+            case 31:
               _d2 = _context.sent;
 
               _d2.response.facets.map(function (item) {
@@ -15395,10 +15396,10 @@ var ContentRegion = function ContentRegion() {
                 }
               });
 
-              _context.next = 39;
+              _context.next = 40;
               return getHubStatus(_sourceIdsArray.join(','));
 
-            case 39:
+            case 40:
               _statuses = _context.sent;
               setHubStatuses(_statuses);
 
@@ -15406,25 +15407,25 @@ var ContentRegion = function ContentRegion() {
                 checkStatus(_statuses, _d2.response.resultPacket.results);
               }
 
-              _context.next = 47;
+              _context.next = 48;
               break;
 
-            case 44:
-              _context.prev = 44;
+            case 45:
+              _context.prev = 45;
               _context.t1 = _context["catch"](27);
               console.error('Error fetching data:', _context.t1);
 
-            case 47:
-              _context.prev = 47;
+            case 48:
+              _context.prev = 48;
               setIsLoading(false);
-              return _context.finish(47);
+              return _context.finish(48);
 
-            case 50:
+            case 51:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 19, 22, 25], [27, 44, 47, 50]]);
+      }, _callee, null, [[2, 19, 22, 25], [27, 45, 48, 51]]);
     }));
 
     return function fetchData(_x, _x2) {
@@ -15475,7 +15476,8 @@ var ContentRegion = function ContentRegion() {
   };
 
   var onChange = function onChange(name, value, selectedVal) {
-    // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+    console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+
     if (name == 'status') {
       var selected = getLabel(selectedVal);
       setStatusSelected(selected);
@@ -15488,6 +15490,8 @@ var ContentRegion = function ContentRegion() {
     }
 
     var fetchUrl = baseUrl + value;
+    console.log('baseUrl: ', baseUrl);
+    console.log('fetchUrl: ', fetchUrl);
     fetchData(fetchUrl, dataLocation);
   };
 

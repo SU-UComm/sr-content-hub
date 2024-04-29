@@ -107,7 +107,7 @@ export const MyContent = () => {
     }, []);
 
     const onChange = (name, value, selectedVal) => {
-        console.log('ON CHANGE: ', name, ' || ', value);
+        // console.log('ON CHANGE: ', name, ' || ', value);
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -153,8 +153,6 @@ export const MyContent = () => {
                 setStatusSelected(selected);
             }
             let fetchUrl = baseUrl + value;
-            console.log('baseUrl: ', baseUrl);
-            console.log('fetchUrl: ', fetchUrl);
             fetchData(fetchUrl, dataLocation);
         }
     };

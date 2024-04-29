@@ -100,17 +100,6 @@ export const ContentRegion = () => {
         }
     }, []);
 
-    // const checkStatus = (statuses) => {
-    //     setIsLoading(true);
-    //     for (let i = 0; i < statuses.length; i++) {
-    //         if (statuses[i].hubStatus !== 'submitted') {
-    //             results.splice(i, 1);
-    //             setResults(results);
-    //         }
-    //     }
-    //     setIsLoading(false);
-    // };
-
     const checkStatus = (statuses, resultsArray) => {
         // console.log('1 results', resultsArray);
         setIsLoading(true);
@@ -128,7 +117,7 @@ export const ContentRegion = () => {
     };
 
     const onChange = (name, value, selectedVal) => {
-        console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
         if (name == 'status') {
             let selected = getLabel(selectedVal);
             setStatusSelected(selected);
@@ -139,8 +128,6 @@ export const ContentRegion = () => {
             }
         }
         let fetchUrl = baseUrl + value;
-        console.log('baseUrl: ', baseUrl);
-        console.log('fetchUrl: ', fetchUrl);
         fetchData(fetchUrl, dataLocation);
     };
 

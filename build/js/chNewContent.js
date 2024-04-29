@@ -16666,8 +16666,7 @@ var MyContent = function MyContent() {
   }, []);
 
   var onChange = function onChange(name, value, selectedVal) {
-    console.log('ON CHANGE: ', name, ' || ', value);
-
+    // console.log('ON CHANGE: ', name, ' || ', value);
     if (name == 'search') {
       var newParams = queryParams;
       var queryParam = newParams.find(function (param) {
@@ -16743,8 +16742,6 @@ var MyContent = function MyContent() {
 
       var _fetchUrl3 = baseUrl + value;
 
-      console.log('baseUrl: ', baseUrl);
-      console.log('fetchUrl: ', _fetchUrl3);
       fetchData(_fetchUrl3, dataLocation);
     }
   };

@@ -15451,16 +15451,7 @@ var ContentRegion = function ContentRegion() {
       fetchData("".concat(window.globalData.urls.fb, "/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated"), 'fb');
       setDataLocation('fb');
     }
-  }, []); // const checkStatus = (statuses) => {
-  //     setIsLoading(true);
-  //     for (let i = 0; i < statuses.length; i++) {
-  //         if (statuses[i].hubStatus !== 'submitted') {
-  //             results.splice(i, 1);
-  //             setResults(results);
-  //         }
-  //     }
-  //     setIsLoading(false);
-  // };
+  }, []);
 
   var checkStatus = function checkStatus(statuses, resultsArray) {
     // console.log('1 results', resultsArray);
@@ -15480,8 +15471,7 @@ var ContentRegion = function ContentRegion() {
   };
 
   var onChange = function onChange(name, value, selectedVal) {
-    console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
-
+    // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
     if (name == 'status') {
       var selected = getLabel(selectedVal);
       setStatusSelected(selected);
@@ -15494,8 +15484,6 @@ var ContentRegion = function ContentRegion() {
     }
 
     var fetchUrl = baseUrl + value;
-    console.log('baseUrl: ', baseUrl);
-    console.log('fetchUrl: ', fetchUrl);
     fetchData(fetchUrl, dataLocation);
   };
 

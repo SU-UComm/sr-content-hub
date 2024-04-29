@@ -16774,7 +16774,7 @@ var MyContent = function MyContent() {
     onChange: onChange,
     facets: facets,
     page: "myContent"
-  }), results && results.length > 1 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
+  }), results && results.length > 0 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-0"

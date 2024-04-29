@@ -172,7 +172,7 @@ export const MyContent = () => {
                 </div>
                 <SelectedFacets onChange={onChange} facets={facets} page="myContent" />
 
-                {results && results.length > 1 ? (
+                {results && results.length > 0 ? (
                     <>
                         <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
                             <p className="su-leading-[2] su-mb-0">

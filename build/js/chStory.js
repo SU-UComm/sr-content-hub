@@ -13833,7 +13833,7 @@ var StoryView = function StoryView() {
     className: "su-leading-[3.6rem] su-font-semibold su-text-16 su-mb-8"
   }, "Other keywords"), /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[3.6rem] su-mb-0"
-  }, data.metadata.srcKeywords.length > 0 ? data.metadata.srcKeywords : /*#__PURE__*/react.createElement("em", null, "N/A"))))), "d", /*#__PURE__*/react.createElement("div", {
+  }, data.metadata.srcKeywords.length > 0 ? decodeHTML(data.metadata.srcKeywords[0]) : /*#__PURE__*/react.createElement("em", null, "N/A"))))), /*#__PURE__*/react.createElement("div", {
     className: "su-mb-15 su-pb-45 su su-border-b su-flex su-flex-col su-gap-[10px] su-border-gray"
   }, /*#__PURE__*/react.createElement("p", {
     className: "small-heading su-m-0 su-p-0"

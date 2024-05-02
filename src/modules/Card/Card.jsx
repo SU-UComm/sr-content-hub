@@ -9,7 +9,7 @@ export const Card = (props) => {
     const [hubStatusDesc, setHubStatusDesc] = useState('');
     const [hubReviewMsg, setHubReviewMsg] = useState('');
 
-    let url = `${window.globalData.urls.contentHub}/story-view-react?storyId=`;
+    let url = `${window.globalData.urls.contentHub}/story-view?storyId=`;
     let desc = props.data.listMetadata?.descriptionPlain?.[0] || '';
     desc = decodeHTML(desc);
 

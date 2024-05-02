@@ -15216,7 +15216,7 @@ var Card = function Card(props) {
       hubReviewMsg = _useState6[0],
       setHubReviewMsg = _useState6[1];
 
-  var url = "".concat(window.globalData.urls.contentHub, "/story-view-react?storyId=");
+  var url = "".concat(window.globalData.urls.contentHub, "/story-view?storyId=");
   var desc = ((_props$data$listMetad = props.data.listMetadata) === null || _props$data$listMetad === void 0 ? void 0 : (_props$data$listMetad2 = _props$data$listMetad.descriptionPlain) === null || _props$data$listMetad2 === void 0 ? void 0 : _props$data$listMetad2[0]) || '';
   desc = decodeHTML(desc);
   (0,react.useEffect)(function () {

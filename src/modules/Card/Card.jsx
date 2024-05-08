@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {CardButtons} from './CardButtons.jsx';
 import {reformatDate} from '../Helpers/dateHelpers.js';
 import {decodeHTML} from '../Helpers/helperFunctions.js';
+import {contentHubAPI} from '../Helpers/requests.js';
 
 export const Card = (props) => {
     const [hubStatus, setHubStatus] = useState(props.data.listMetadata.hubStatus);
@@ -36,11 +37,7 @@ export const Card = (props) => {
                 <a href={url + props.data.listMetadata.assetId} className="su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]">
                     <img
                         className="su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center"
-                        src={
-                            props.data.listMetadata.relatedImageURL
-                                ? props.data.listMetadata.relatedImageURL
-                                : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png'
-                        }
+                        src={props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : contentHubAPI.vars.placeholderImg}
                         alt={props.data.title + ' image'}
                     />
                 </a>

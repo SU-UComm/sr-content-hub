@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Oval} from 'react-loader-spinner';
-import {getMedia} from '../Helpers/requests';
+import {contentHubAPI, getMedia} from '../Helpers/requests';
 
 export const FullStory = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -102,11 +102,7 @@ export const FullStory = (props) => {
                         data.map((item, index) => (
                             <div key={index} className="su-mt-40 su-pt-30 first:su-mt-0 first:su-pt-0 su-flex su-flex-col lg:su-flex-row su-gap-xl">
                                 <div className="su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]">
-                                    <img
-                                        src={item.url ? item.url : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png'}
-                                        alt={item.title}
-                                        className="su-aspect-[3/2] su-object-cover"
-                                    />
+                                    <img src={item.url ? item.url : contentHubAPI.vars.placeholderImg} alt={item.title} className="su-aspect-[3/2] su-object-cover" />
                                 </div>
 
                                 <ul className="su-m-0 su-p-0 su-list-none su-gap-[15px] su-grid su-grid-cols-1 lg:su-grid-cols-1 sm:su-grid-cols-2">

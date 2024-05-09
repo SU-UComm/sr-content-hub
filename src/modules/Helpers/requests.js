@@ -17,6 +17,7 @@ export const contentHubAPI = {
     },
     vars: {
         srDrafts: '130757',
+        placeholderImg: '%globals_asset_url:33510%',
     },
 };
 

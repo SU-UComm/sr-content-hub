@@ -1,4 +1,4 @@
-export let contentHubAPI = {
+export const contentHubAPI = {
     search: {
         allContent: `${window.globalData.urls.contentHub}/r/api/a/all-content`,
         newContent: `${window.globalData.urls.contentHub}/r/api/cm/new-content`,
@@ -17,7 +17,6 @@ export let contentHubAPI = {
     },
     vars: {
         srDrafts: '130757',
-        placeholderImg: '%globals_asset_url:33510%',
     },
 };
 

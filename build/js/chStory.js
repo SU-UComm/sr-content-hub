@@ -6760,8 +6760,7 @@ var contentHubAPI = {
     authorization: "".concat(window.globalData.urls.contentHub, "/r/api/a/authorization")
   },
   vars: {
-    srDrafts: '130757',
-    placeholderImg: '%globals_asset_url:33510%'
+    srDrafts: '130757'
   }
 };
 var requestOptions = {

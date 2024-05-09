@@ -8597,7 +8597,8 @@ var contentHubAPI = {
     authorization: "".concat(window.globalData.urls.contentHub, "/r/api/a/authorization")
   },
   vars: {
-    srDrafts: '130757'
+    srDrafts: '130757',
+    placeholderImg: '%globals_asset_url:33510%'
   }
 };
 var requestOptions = {
@@ -15198,6 +15199,7 @@ function Card_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Card = function Card(props) {
   var _props$data$listMetad, _props$data$listMetad2, _window, _window$data, _window2, _window2$data, _window3, _window3$data, _window4, _window4$data;
 
@@ -15251,7 +15253,7 @@ var Card = function Card(props) {
     className: "su-w-full md:su-min-w-[160px] md:su-max-w-[160px] lg:su-min-w-[375px] lg:su-max-w-[375px]"
   }, /*#__PURE__*/react.createElement("img", {
     className: "su-align-top su-w-full su-aspect-[3/2] md:su-aspect-[unset] md:su-h-full lg:su-aspect-[8/6] su-object-cover su-object-center",
-    src: props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
+    src: props.data.listMetadata.relatedImageURL ? props.data.listMetadata.relatedImageURL : contentHubAPI.vars.placeholderImg,
     alt: props.data.title + ' image'
   })), /*#__PURE__*/react.createElement("div", {
     className: "su-p-15 su-pb-20 sm:su-p-30 sm:su-pb-40 su-flex su-flex-col su-gap-[15px] sm:su-gap-[20px]"

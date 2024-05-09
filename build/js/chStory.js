@@ -6760,7 +6760,8 @@ var contentHubAPI = {
     authorization: "".concat(window.globalData.urls.contentHub, "/r/api/a/authorization")
   },
   vars: {
-    srDrafts: '130757'
+    srDrafts: '130757',
+    placeholderImg: '%globals_asset_url:33510%'
   }
 };
 var requestOptions = {
@@ -13053,7 +13054,7 @@ var FullStory = function FullStory(props) {
     }, /*#__PURE__*/react.createElement("div", {
       className: "su-flex su-items-center su-justify-center su-w-full lg:su-max-w-[610px] lg:su-max-h-[402px]"
     }, /*#__PURE__*/react.createElement("img", {
-      src: item.url ? item.url : 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
+      src: item.url ? item.url : contentHubAPI.vars.placeholderImg,
       alt: item.title,
       className: "su-aspect-[3/2] su-object-cover"
     })), /*#__PURE__*/react.createElement("ul", {

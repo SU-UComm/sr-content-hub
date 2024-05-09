@@ -9238,7 +9238,12 @@ var contentHubAPI = {
     authorization: "".concat(window.globalData.urls.contentHub, "/r/api/a/authorization")
   },
   vars: {
-    srDrafts: '130757'
+    srDrafts: '130757',
+    matrixUrl: 'https://sug-web.matrix.squiz.cloud/',
+    placeholderImg: 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png'
+  },
+  icons: {
+    search: 'https://sug-web.matrix.squiz.cloud/__data/assets/file/0023/31982/search.svg'
   }
 };
 var requestOptions = {
@@ -15857,6 +15862,7 @@ Pagination.propTypes = {
 
 
 
+
 function SearchBar_slicedToArray(arr, i) { return SearchBar_arrayWithHoles(arr) || SearchBar_iterableToArrayLimit(arr, i) || SearchBar_unsupportedIterableToArray(arr, i) || SearchBar_nonIterableRest(); }
 
 function SearchBar_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -15868,6 +15874,7 @@ function SearchBar_arrayLikeToArray(arr, len) { if (len == null || len > arr.len
 function SearchBar_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function SearchBar_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -15913,8 +15920,8 @@ var SearchBar = function SearchBar(props) {
     "aria-label": "submit"
   }, /*#__PURE__*/react.createElement("img", {
     className: "su-bg-red su-p-7 su-rounded-full",
-    src: "https://sug-web.matrix.squiz.cloud/__data/assets/file/0023/31982/search.svg",
-    alt: ""
+    src: contentHubAPI.icons.search,
+    alt: "search icon"
   })));
 };
 SearchBar.propTypes = {

@@ -17,6 +17,11 @@ export const contentHubAPI = {
     },
     vars: {
         srDrafts: '130757',
+        matrixUrl: 'https://sug-web.matrix.squiz.cloud/',
+        placeholderImg: 'https://sug-web.matrix.squiz.cloud/_media/content-hub-images/placeholder-images/fallback-image.png',
+    },
+    icons: {
+        search: 'https://sug-web.matrix.squiz.cloud/__data/assets/file/0023/31982/search.svg',
     },
 };
 

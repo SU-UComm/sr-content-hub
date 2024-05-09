@@ -12,6 +12,7 @@ import {getSearchData} from '../Helpers/requests.js';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {createUrl, getLabel, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
+import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const AllContent = () => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
@@ -220,9 +221,11 @@ export const AllContent = () => {
                 </div>
                 {/* Cards */}
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results.map((contentItem, index) => (
-                        <Card key={index} data={contentItem} page="allContent" statuses={hubStatuses} />
-                    ))}
+                    {results && results.length > 0 ? (
+                        results.map((contentItem, index) => <Card key={index} data={contentItem} page="allContent" statuses={hubStatuses} />)
+                    ) : (
+                        <NoContent />
+                    )}
                 </ul>
                 {/* Cards end */}
                 {/* Pagination */}

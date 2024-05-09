@@ -16077,6 +16077,15 @@ SelectedFacets.propTypes = {
   onChange: prop_types.PropTypes.func,
   page: prop_types.PropTypes.string
 };
+;// CONCATENATED MODULE: ./src/modules/NoContent/NoContent.jsx
+
+var NoContent = function NoContent() {
+  return /*#__PURE__*/react.createElement("div", {
+    className: "su-mt-100 su-min-h-[35vh] su-mb-50 md:su-mt-100 md:su-mb-120 su-text-center"
+  }, /*#__PURE__*/react.createElement("h2", {
+    className: "su-mb-12"
+  }, "No results found"), /*#__PURE__*/react.createElement("p", null, "Please search again using different keywords and filters."));
+};
 ;// CONCATENATED MODULE: ./src/modules/AllContent/AllContent.jsx
 function AllContent_typeof(obj) { "@babel/helpers - typeof"; return AllContent_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, AllContent_typeof(obj); }
 
@@ -16120,6 +16129,7 @@ function AllContent_arrayLikeToArray(arr, len) { if (len == null || len > arr.le
 function AllContent_iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function AllContent_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -16518,14 +16528,14 @@ var AllContent = function AllContent() {
     selectedValue: sortBySelected
   }))), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
-  }, results.map(function (contentItem, index) {
+  }, results && results.length > 0 ? results.map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
       page: "allContent",
       statuses: hubStatuses
     });
-  })), /*#__PURE__*/react.createElement(Pagination, {
+  }) : /*#__PURE__*/react.createElement(NoContent, null)), /*#__PURE__*/react.createElement(Pagination, {
     data: data,
     summary: resultsSummary,
     onChange: onChange

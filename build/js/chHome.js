@@ -15526,7 +15526,7 @@ var ContentRegion = function ContentRegion() {
   }, ((_window10 = window) === null || _window10 === void 0 ? void 0 : (_window10$data = _window10.data) === null || _window10$data === void 0 ? void 0 : (_window10$data$user = _window10$data.user) === null || _window10$data$user === void 0 ? void 0 : _window10$data$user.userType) === 'UCOMM' ? "1-".concat(resultsSummary.totalMatching > 5 ? '5' : resultsSummary.totalMatching, " of ").concat(resultsSummary.totalMatching, " results waiting for review") : ''), /*#__PURE__*/react.createElement("ul", {
     className: "su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0",
     id: "latest-content"
-  }, results.length > 0 ? results.slice(0, 5).map(function (contentItem, index) {
+  }, results && results.length > 0 ? results.slice(0, 5).map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,

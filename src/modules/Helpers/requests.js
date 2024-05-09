@@ -1,4 +1,4 @@
-export const contentHubAPI = {
+export let contentHubAPI = {
     search: {
         allContent: `${window.globalData.urls.contentHub}/r/api/a/all-content`,
         newContent: `${window.globalData.urls.contentHub}/r/api/cm/new-content`,

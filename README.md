@@ -1,17 +1,23 @@
 [[_TOC_]]
+ # Content Hub Repository 
+ - All modules can be found in src/modules
 
-# Features
-This boilerplate is based on [Squiz Webpack Boilerplate](https://gitlab.squiz.net/boilerplate/webpack-boilerplate/wikis/home).
-The main differences are:
-* Webpack version upgraded to 5+
-* Most of the dependencies have been upgraded to the latest version
-* You can create multiple, independent React apps within one repo. Each of them will have a separate JS/CSS chunk.
-* Jest unit testing
-* Cypress E2E testing
+## To run locally
+- ```git clone git@github.com:SU-UComm/sr-content-hub.git```
+- navigate to folder sr-content-hub locally
+- ```npm install```
+- ```npm run build``` to run build locally
+- ```npm run serve``` to run locally
+- make changes
 
-# ToDo
-* add [husky](https://www.npmjs.com/package/husky) to integrate tests with git flow
-
+## Push changes
+- ```npm run build```
+- continue git process from here
+    -  ```git add .```
+    -  ```git commit -m```
+    -  ```git push origin master/yourbranchname```
+ 
+  
 # Requirements
 This version is tested under:
 * Node v18

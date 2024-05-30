@@ -17,7 +17,11 @@ export const contentHubAPI = {
     },
     vars: {
         srDrafts: '130757',
-        placeholderImg: '%globals_asset_url:33510%',
+        matrixUrl: `${window.globalData.urls.contentHub.replace('content', '')}`,
+        placeholderImg: `${window.globalData.urls.contentHub.replace('content', '')}_media/content-hub-images/placeholder-images/fallback-image.png`,
+    },
+    icons: {
+        search: `${window.globalData.urls.contentHub.replace('content', '')}__data/assets/file/0023/31982/search.svg`,
     },
 };
 

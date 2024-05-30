@@ -9,6 +9,7 @@ import {createUrl, getQueryStringParams} from '../Helpers/helperFunctions.js';
 import {Oval} from 'react-loader-spinner';
 import {SelectedFacets} from '../Filters/SelectedFilters.jsx';
 import {DateRangeFilter} from '../Filters/DateFilter.jsx';
+import {NoContent} from '../NoContent/NoContent.jsx';
 
 export const NewContent = () => {
     const [CPLabels, setCPLabels] = useState([]);
@@ -212,9 +213,11 @@ export const NewContent = () => {
                     <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                 </div>
                 <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results.map((contentItem, index) => (
-                        <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="newContent" />
-                    ))}
+                    {results && results.length > 0 ? (
+                        results.map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="newContent" />)
+                    ) : (
+                        <NoContent />
+                    )}
                 </ul>
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>

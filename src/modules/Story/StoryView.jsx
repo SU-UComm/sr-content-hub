@@ -323,8 +323,8 @@ export const StoryView = () => {
                             className="button su-group su-flex -su-tracking-[0.176px] su-items-center su-justify-center sm:su-justify-start"
                             href={`${
                                 data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0
-                                    ? 'https://sug-web.matrix.squiz.cloud/_admin/?screen=details&assetid=' + data.metadata.debugTeaserId
-                                    : 'https://sug-web.matrix.squiz.cloud/_admin/?screen=contents&assetid=' + data.id
+                                    ? contentHubAPI.vars.matrixUrl + '_admin/?screen=details&assetid=' + data.metadata.debugTeaserId
+                                    : contentHubAPI.vars.matrixUrl + '_admin/?screen=contents&assetid=' + data.id
                             }`}
                             target="_blank"
                             rel="noreferrer"

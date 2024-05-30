@@ -64,15 +64,6 @@ Entry file is located in src/js/tailwind.js which just imports src/css/input.css
 Some portions of the defauls tailwind includes are commented out as this would duplicate the global styles.
 Main configuration file can be found in the root directory - tailwind.config.js
 
-## Using Contexts and Reducers
-[Contexts](https://reactjs.org/docs/context.html) and [Reducers](https://reactjs.org/docs/hooks-reference.html#usereducer) are used to set and get application data being the source of truth for all initial configurations and data being input by the user while using the app. This is similar to using [Redux](https://redux.js.org/) but without a need for external library.
-
-There are two contexts present:
-* AppState - this is used to store initial data like translations, application steps etc. This data is stored in localStorage
-* DataState - this is where data input from the user is stored
-
-Example code can be found in [ReactContexts](http://127.0.0.1:3000/reactContexts.html)
-
 ## Property validation
 [prop-types](https://www.npmjs.com/package/prop-types) is used for that. It comes in handy when debuging as is considered good practice overall.
 
@@ -202,20 +193,3 @@ Gitlab continuous integration flow consists of two stages:
 * build - in this stage npm packages are being installed, lint and jest tests run and after that build-min creates the deploy folder
 * deploy - deploy folder is being pushed to a separate repository to be used in Matrix via GitBridge
 
-Additional configuration needs to be done on GitLab side under **Settings => CI/CD => Variables**:
-* BUILD_REPOSITORY
-```
-git@gitlab.squiz.net:XXX/YYY/ZZZ.git
-```
-* SSH_KNOWN_HOSTS
-```
-# gitlab.squiz.net:22 SSH-2.0-OpenSSH_5.3
-gitlab.squiz.net ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAt4E9aVQ/yd31Su8zW1RrlJ/lP81wldfF7hILuOBuUQ5SUZPPOiKAnT71k98V6W+PyLKjJJEYaQEUdOMsXijP3PfuZtx24XDVFHGh5V8w/RLf+0Df68wCEWNVCWPw2Lc6tB2iJyYlb1dJW3ZauzRyoA79stS+q0DOH3C+ogu6CdlAmrYAlen5pUEmB8wQFxGmsUu8VreeEss64NR6LiLHeRg6k6CfNWx1LfV6aQO0DG4nE6G9VB4n1QRtSTKSlGTBAM+gNiAj0RmZ8q+N0TDwK2tU9Wv7TSgPSeSfn0PaZRhvh1EN1qhl2B/NgOMKu1kTFaWxBk7SSK4IA+GxQ5GoYw==
-# gitlab.squiz.net:22 SSH-2.0-OpenSSH_5.3
-```
-* SSH_PRIVATE_KEY
-```
------BEGIN OPENSSH PRIVATE KEY-----
-{KEY FOR BUILD_REPOSITORY GOES HERE}
------END OPENSSH PRIVATE KEY-----
-```

@@ -43,14 +43,6 @@ export const StoryView = () => {
 
     let jsApi = window.jsApi ?? {};
 
-    const copyUrl = () => {
-        if (data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0) {
-            navigator.clipboard.writeText(data.metadata.srcUrl);
-        } else {
-            navigator.clipboard.writeText(data.url);
-        }
-    };
-
     useEffect(() => {
         let id = window.location.search;
         let match = id.match(/=(\d+)/);
@@ -61,15 +53,34 @@ export const StoryView = () => {
         if (id) {
             fetchData(id);
         } else {
-            // fetchData('33190');
-            // console.log('default load');
-            // let summary = decodeHTML(data.metadata.srcSummary[0]);
-            // setSummary(summary);
-            // setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
             throw new Error('No ?storyId not supported');
         }
     }, []);
 
+    useEffect(() => {
+        if (data?.metadata && storyId) {
+            // if user is ucomm & status is submitted, send in review status
+            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType === 'UCOMM') {
+                sendInReview(storyId);
+            }
+        }
+    }, [data, storyId]);
+
+    // copies the current url to clipboard
+    const copyUrl = () => {
+        if (data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0) {
+            navigator.clipboard.writeText(data.metadata.srcUrl);
+        } else {
+            navigator.clipboard.writeText(data.url);
+        }
+    };
+
+    /**
+     * @function fetchData
+     * @description - Fetches data for the story page
+     *
+     * @param {string} id - Story ID
+     */
     const fetchData = async (id) => {
         setIsLoading(true);
         try {
@@ -93,21 +104,19 @@ export const StoryView = () => {
         }
     };
 
-    useEffect(() => {
-        if (data?.metadata && storyId) {
-            // if user is ucomm & status is submitted, send in review status
-            if (data.metadata.hubStatus[0] === 'submitted' && window?.data?.user?.userType === 'UCOMM') {
-                sendInReview(storyId);
-            }
-        }
-    }, [data, storyId]);
-
+    //  date helper function
     const convertISOToReadableDate = (isoDate) => {
         const date = new Date(isoDate);
         const options = {month: 'long', day: '2-digit', year: 'numeric'};
         return date.toLocaleDateString('en-US', options);
     };
 
+    /**
+     * @function sendInReview
+     * @description - function to set 'user is reviewing' status on current story if a user with rights is on story page
+     *
+     * @param {string} id - The story ID
+     */
     const sendInReview = (id) => {
         // Check if we can get user's name
         const userStatusEl = document.querySelector('#user-status');
@@ -139,6 +148,12 @@ export const StoryView = () => {
         });
     };
 
+    /**
+     * @function clearReviewState
+     * @description - function to clear 'user is reviewing' status on current story once user leaves page
+     *
+     * @param {string} id - The story ID
+     */
     const clearReviewState = (id) => {
         if (typeof navigator.sendBeacon !== 'function') {
             return false;

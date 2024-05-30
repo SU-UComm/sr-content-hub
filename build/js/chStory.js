@@ -12413,28 +12413,7 @@ var CardButtons = function CardButtons(props) {
       setIsLoading = _useState18[1]; // Loader flag
 
 
-  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
-
-  var onTextAreaValueChange = function onTextAreaValueChange(val) {
-    setTextAreaValue(val);
-  };
-
-  var isJson = function isJson(str) {
-    // Check if we need to parse it
-    if (CardButtons_typeof(str) === 'object') {
-      return str;
-    } // Check if obj is json and return object if succesful
-
-
-    try {
-      var data = JSON.parse(str);
-    } catch (e) {
-      return false;
-    }
-
-    return data;
-  }; // Update status when hubStatus change
-
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {}; // Update status when hubStatus change
 
   (0,react.useEffect)(function () {
     var _window, _window$data, _window2, _window2$data;
@@ -12456,6 +12435,33 @@ var CardButtons = function CardButtons(props) {
   (0,react.useEffect)(function () {
     setHubStatus(fixedHubStatus);
   }, [fixedHubStatus]);
+
+  var onTextAreaValueChange = function onTextAreaValueChange(val) {
+    setTextAreaValue(val);
+  };
+  /**
+   * @function isJson
+   * @description - Function that checks if a given string is JSON
+   *
+   * @param {String} str - string object to check
+   */
+
+
+  var isJson = function isJson(str) {
+    // Check if we need to parse it
+    if (CardButtons_typeof(str) === 'object') {
+      return str;
+    } // Check if obj is json and return object if succesful
+
+
+    try {
+      var data = JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+
+    return data;
+  };
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -12538,6 +12544,15 @@ var CardButtons = function CardButtons(props) {
 
     return currentHistory;
   };
+  /**
+   * @function prepareDeclineUpdate
+   * @description - Prepares all information required to submit 'Declined' status for story/teaser to Matrix
+   * JS API used here is Matrix's JS API. On local dev environment, there is a mock file that handles this.
+   *
+   * @param {Number} id - story or teaser ID
+   * @param {Object} currentState - current state object
+   */
+
 
   var prepareDeclineUpdate = function prepareDeclineUpdate(id, currentState) {
     // Define Metadata Fields Actions Object
@@ -12592,6 +12607,16 @@ var CardButtons = function CardButtons(props) {
       props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
     }
   };
+  /**
+   * @function prepareApproveUpdate
+   * @description - Prepares all information required to submit 'Declined' status for story/teaser to Matrix
+   * JS API used here is Matrix's JS API. On local dev environment, there is a mock file that handles this.
+   *
+   * @param {Number} storyId - story or teaser ID
+   * @param {String} pageType - story or teaser ID
+   * @param {Object} currentState - current state object
+   */
+
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
     // Define Metadata Fields Actions Object
@@ -12634,7 +12659,8 @@ var CardButtons = function CardButtons(props) {
         updateUi(historyMessage);
       }
     });
-  };
+  }; // Update front end with correct status
+
 
   var updateUi = function updateUi(historyMsg) {
     setHubStatusDesc(historyMsg);
@@ -12931,6 +12957,13 @@ var FullStory = function FullStory(props) {
       isLoading = _useState6[0],
       setIsLoading = _useState6[1]; // Loader flag
 
+  /**
+   * @function fetchData
+   * @description - Fetches data for the story page
+   *
+   * @param {string} id - Story ID
+   */
+
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = FullStory_asyncToGenerator( /*#__PURE__*/FullStory_regeneratorRuntime().mark(function _callee(id) {
@@ -12939,16 +12972,14 @@ var FullStory = function FullStory(props) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              setIsLoading(true); // replace with getSearchData from requests.js with blank query once CORS is resolved
-
+              setIsLoading(true);
               _context.prev = 1;
               _context.next = 4;
               return getMedia(id);
 
             case 4:
               d = _context.sent;
-              setData(d); // console.log('full story fetched media: ', d);
-
+              setData(d);
               _context.next = 11;
               break;
 
@@ -12982,8 +13013,8 @@ var FullStory = function FullStory(props) {
 
     if (url) {
       fetchData(props.data.id);
-    } else {// setData(dataObj);
-      // console.log('full story data: ', data);
+    } else {
+      console.log('unable to load story information from Matrix on dev environment');
     }
   }, []);
 
@@ -13566,15 +13597,6 @@ var StoryView = function StoryView() {
       setStoryId = _useState14[1];
 
   var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
-
-  var copyUrl = function copyUrl() {
-    if (data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0) {
-      navigator.clipboard.writeText(data.metadata.srcUrl);
-    } else {
-      navigator.clipboard.writeText(data.url);
-    }
-  };
-
   (0,react.useEffect)(function () {
     var id = window.location.search;
     var match = id.match(/=(\d+)/);
@@ -13587,14 +13609,34 @@ var StoryView = function StoryView() {
     if (id) {
       fetchData(id);
     } else {
-      // fetchData('33190');
-      // console.log('default load');
-      // let summary = decodeHTML(data.metadata.srcSummary[0]);
-      // setSummary(summary);
-      // setVersionHistory(JSON.parse(data.metadata.hubVersionHistory));
       throw new Error('No ?storyId not supported');
     }
   }, []);
+  (0,react.useEffect)(function () {
+    if (data !== null && data !== void 0 && data.metadata && storyId) {
+      var _window, _window$data, _window$data$user;
+
+      // if user is ucomm & status is submitted, send in review status
+      if (data.metadata.hubStatus[0] === 'submitted' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM') {
+        sendInReview(storyId);
+      }
+    }
+  }, [data, storyId]); // copies the current url to clipboard
+
+  var copyUrl = function copyUrl() {
+    if (data.metadata.debugTeaserId && data.metadata.debugTeaserId.length > 0) {
+      navigator.clipboard.writeText(data.metadata.srcUrl);
+    } else {
+      navigator.clipboard.writeText(data.url);
+    }
+  };
+  /**
+   * @function fetchData
+   * @description - Fetches data for the story page
+   *
+   * @param {string} id - Story ID
+   */
+
 
   var fetchData = /*#__PURE__*/function () {
     var _ref = StoryView_asyncToGenerator( /*#__PURE__*/StoryView_regeneratorRuntime().mark(function _callee(id) {
@@ -13661,18 +13703,8 @@ var StoryView = function StoryView() {
     return function fetchData(_x) {
       return _ref.apply(this, arguments);
     };
-  }();
+  }(); //  date helper function
 
-  (0,react.useEffect)(function () {
-    if (data !== null && data !== void 0 && data.metadata && storyId) {
-      var _window, _window$data, _window$data$user;
-
-      // if user is ucomm & status is submitted, send in review status
-      if (data.metadata.hubStatus[0] === 'submitted' && ((_window = window) === null || _window === void 0 ? void 0 : (_window$data = _window.data) === null || _window$data === void 0 ? void 0 : (_window$data$user = _window$data.user) === null || _window$data$user === void 0 ? void 0 : _window$data$user.userType) === 'UCOMM') {
-        sendInReview(storyId);
-      }
-    }
-  }, [data, storyId]);
 
   var convertISOToReadableDate = function convertISOToReadableDate(isoDate) {
     var date = new Date(isoDate);
@@ -13683,6 +13715,13 @@ var StoryView = function StoryView() {
     };
     return date.toLocaleDateString('en-US', options);
   };
+  /**
+   * @function sendInReview
+   * @description - function to set 'user is reviewing' status on current story if a user with rights is on story page
+   *
+   * @param {string} id - The story ID
+   */
+
 
   var sendInReview = function sendInReview(id) {
     // Check if we can get user's name
@@ -13713,6 +13752,13 @@ var StoryView = function StoryView() {
       }
     });
   };
+  /**
+   * @function clearReviewState
+   * @description - function to clear 'user is reviewing' status on current story once user leaves page
+   *
+   * @param {string} id - The story ID
+   */
+
 
   var clearReviewState = function clearReviewState(id) {
     if (typeof navigator.sendBeacon !== 'function') {

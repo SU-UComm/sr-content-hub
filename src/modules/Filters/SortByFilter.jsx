@@ -9,7 +9,6 @@ export const SortByFilter = (props) => {
     const handleChange = (value, e) => {
         setSelectedRange(value);
         handleClose();
-        // console.log('SORT BY FilTER', e.target.value);
         let type = e.target.value == 1 ? 'dmetamtxCreated' : 'metamtxCreated';
         props.onChange('sortBy', type);
     };

@@ -3,17 +3,11 @@ import {Oval} from 'react-loader-spinner';
 import {PropTypes} from 'prop-types';
 
 export const Pagination = (props) => {
-    // const [summaryData, setSummaryData] = useState([]);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     const [pagesData, setPagesData] = useState([]);
 
-    const onButtonClick = (e) => {
-        props.onChange('pagination', e.target.value);
-    };
-
     useEffect(() => {
         if (props.summary) {
-            // setSummaryData(props.summary);
             setIsLoading(false);
             getPages(props.summary);
         } else {
@@ -21,10 +15,30 @@ export const Pagination = (props) => {
         }
     }, [props.summary]);
 
+    /**
+     * @function onButtonClick
+     * @description - Function to handle onClick for pagination
+     *
+     * @param {Object} e - event object from onClick event
+     */
+    const onButtonClick = (e) => {
+        props.onChange('pagination', e.target.value);
+    };
+
+    /**
+     * @function addPage
+     * @description - Function to push to the output array for pagination
+     */
     const addPage = (pagesOutput, itemRank, label, isActive, isLast) => {
         return pagesOutput.push({itemRank, label, isActive, isLast});
     };
 
+    /**
+     * @function getPages
+     * @description - Function to push to the output array for pagination
+     *
+     * @param {Object} summary - Results summary object from data fetched earlier
+     */
     const getPages = (summary) => {
         let pagesOutput = [];
 
@@ -123,6 +137,7 @@ export const Pagination = (props) => {
             <ul className="su-flex su-p-0 su-m-0 su-list-none">
                 {props.summary.prevStart !== null && (
                     <li className="su-mb-0 su-rounded-l su-border su-border-r-0 su-border-gray su-bg-white hover:su-bg-gray-light">
+                        {/* Prev button */}
                         <button
                             onClick={(e) => onButtonClick(e)}
                             data-rank={props.summary.prevStart}
@@ -147,6 +162,7 @@ export const Pagination = (props) => {
                         </button>
                     </li>
                 )}
+                {/* Page numbers for pagination */}
                 {pagesData &&
                     pagesData.map((item, index) => {
                         if (item.label === '...') {
@@ -183,6 +199,7 @@ export const Pagination = (props) => {
 
                 {props.summary.nextStart !== null && (
                     <li className="su-mb-0 su-rounded-r su-border su-border-gray su-bg-white hover:su-bg-gray-light">
+                        {/* Next button */}
                         <button
                             onClick={(e) => onButtonClick(e)}
                             data-rank={props.summary.nextStart}

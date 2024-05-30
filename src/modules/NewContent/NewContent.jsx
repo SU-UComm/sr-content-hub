@@ -26,76 +26,6 @@ export const NewContent = () => {
     const [dateSelected, setDateSelected] = useState('All');
     const [dateLabel, setDateLabels] = useState([]);
 
-    const fetchData = async (url, func) => {
-        setIsLoading(true);
-        // backup for local environment
-        if (func == 'fb') {
-            try {
-                const d = await fetchFBData(url);
-                d.response.facets.map((item) => {
-                    if (item.name == 'contentPartner') {
-                        setCPLabels(item.allValues);
-                    } else if (item.name == 'date') {
-                        setDateLabels(item.allValues);
-                    }
-                });
-                setFacets(d.response.facets);
-                setData(d);
-                setResults(d.response.resultPacket.results);
-                setResultsSummary(d.response.resultPacket.resultsSummary);
-                let params = getQueryStringParams(url);
-                setQueryParams(params);
-                let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
-
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
-                // checkStatus(statuses);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        } else {
-            try {
-                const d = await getSearchData(url);
-                setFacets(d.response.facets);
-                d.response.facets.map((item) => {
-                    if (item.name == 'contentPartner') {
-                        setCPLabels(item.allValues);
-                    } else if (item.name == 'date') {
-                        setDateLabels(item.allValues);
-                    }
-                });
-                setData(d);
-                setResults(d.response.resultPacket.results);
-                setResultsSummary(d.response.resultPacket.resultsSummary);
-                let params = getQueryStringParams(url);
-                setQueryParams(params);
-                let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
-
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
-                // checkStatus(statuses);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-    };
-
     useEffect(() => {
         let url = window?.data?.contentHubAPI?.search.newContent;
         if (url) {
@@ -103,6 +33,7 @@ export const NewContent = () => {
             setDataLocation('matrix');
             setUrl(url);
         } else {
+            // backup for local dev environment data
             fetchData(
                 `${window.globalData.urls.fb}/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated`,
                 'fb',
@@ -111,20 +42,84 @@ export const NewContent = () => {
         }
     }, []);
 
-    // const checkStatus = (statuses) => {
-    //     setIsLoading(false);
-    //     for (let i = 0; i < statuses.length; i++) {
-    //         if (statuses[i].hubStatus === 'sent-to-sr') {
-    //             results.splice(i, 1);
-    //             setResults(results);
-    //             // console.log('results', results);
-    //         }
-    //     }
-    //     setIsLoading(false);
-    // };
+    /**
+     * @function fetchData
+     * @description - Fetches data for the page
+     *
+     * @param {string} url - The url to fetch data from. Must be in JSON format.
+     * @param {string} func - Checks the source
+     */
+    const fetchData = async (url, func) => {
+        setIsLoading(true);
+        // backup required to fetch data for local environment using FB
+        if (func == 'fb') {
+            try {
+                const d = await fetchFBData(url);
+                let sourceIdsArray = setDataValues(d, url);
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                setHubStatuses(statuses);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            try {
+                const d = await getSearchData(url);
+                let sourceIdsArray = setDataValues(d, url);
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                setHubStatuses(statuses);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    };
 
+    /**
+     * @function setDataValues
+     * @description - Allocates values to different state objects from fetched data
+     *
+     * @param {Object} d - JSON data object passed in through fetchData()
+     * @param {string} url - The url data is fetched from
+     * returns array of source IDs to fetchData for further requests
+     */
+    const setDataValues = (d, url) => {
+        d.response.facets.map((item) => {
+            if (item.name == 'contentPartner') {
+                setCPLabels(item.allValues);
+            } else if (item.name == 'date') {
+                setDateLabels(item.allValues);
+            }
+        });
+        setFacets(d.response.facets);
+        setData(d);
+        setResults(d.response.resultPacket.results);
+        setResultsSummary(d.response.resultPacket.resultsSummary);
+        let params = getQueryStringParams(url);
+        setQueryParams(params);
+        // Get live Hub Status using IDs from data just fetched
+        let sourceIdsArray = [];
+        d.response.resultPacket.results.forEach((item) => {
+            if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                sourceIdsArray.push(item.listMetadata.assetId[0]);
+            }
+        });
+        return sourceIdsArray;
+    };
+
+    /**
+     * @function onChange
+     * @description - Handles all filtering and searching functionality
+     *
+     * @param {string} name - Name of the filter being used
+     * @param {string} value - Value of the changed filter field (eg: 'sent-to-sr)
+     * @param {string} selectedValue - Value of the changed filter field for display on page (eg: 'Sent to Stanford Report')
+     * returns array of source IDs to fetchData for further requests
+     */
     const onChange = (name, value, selectedVal) => {
-        // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+        // console.log('OnChange: ', name, ' || ', value, '    ||    ', selectedVal);
         let fetchUrl;
         if (name == 'search') {
             let newParams = queryParams;
@@ -204,21 +199,28 @@ export const NewContent = () => {
                 </div>
 
                 <SelectedFacets onChange={onChange} facets={facets} page="newContent" />
+                {results && results.length > 0 ? (
+                    <>
+                        <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
+                            <p className="su-leading-[2] su-mb-0">
+                                {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
+                            </p>
 
-                <div className="su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20">
-                    <p className="su-leading-[2] su-mb-0">
-                        {resultsSummary.currStart}-{resultsSummary.currEnd} of {resultsSummary.totalMatching} results
-                    </p>
+                            <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
+                        </div>
+                        {/* Cards */}
+                        <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
+                            {results.map((contentItem, index) => (
+                                <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="newContent" />
+                            ))}
+                        </ul>
+                        {/* Cards end */}
+                    </>
+                ) : (
+                    <NoContent />
+                )}
 
-                    <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
-                </div>
-                <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
-                    {results && results.length > 0 ? (
-                        results.map((contentItem, index) => <Card key={index} data={contentItem} statuses={hubStatuses} fetchData={fetchData} page="newContent" />)
-                    ) : (
-                        <NoContent />
-                    )}
-                </ul>
+                {/* Pagination */}
                 <Pagination data={data} summary={resultsSummary} onChange={onChange} />
             </section>
         </div>

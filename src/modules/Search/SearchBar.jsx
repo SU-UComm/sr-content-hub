@@ -5,12 +5,24 @@ import {contentHubAPI} from '../Helpers/requests';
 export const SearchBar = (props) => {
     const [searchQuery, setSearchQuery] = useState(props.selectedValue);
 
+    /**
+     * @function handleInputChange
+     * @description - Function to handle input change for search bar
+     *
+     * @param {Object} event - event object from onClick event
+     */
     const handleInputChange = (event) => {
         setSearchQuery(event.target.value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    /**
+     * @function handleSubmit
+     * @description - Function to handle submit for the searchbar
+     *
+     * @param {Object} event - event object from onClick event
+     */
+    const handleSubmit = (event) => {
+        event.preventDefault();
         setSearchQuery(event.target.value);
         props.onChange('search', searchQuery);
     };
@@ -30,7 +42,6 @@ export const SearchBar = (props) => {
             />
 
             <button className="su-bg-transparent su-p-0 su-border-none hover:su-bg-transparent hover:su-border-none" type="submit" aria-label="submit">
-                {/* <span className="sr-only">Search</span> */}
                 <img className="su-bg-red su-p-7 su-rounded-full" src={contentHubAPI.icons.search} alt="search icon" />
             </button>
         </form>

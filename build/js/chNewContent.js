@@ -8274,6 +8274,12 @@ var __webpack_exports__ = {};
 var react = __webpack_require__(6540);
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
 var react_dom = __webpack_require__(961);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
+var es_regexp_exec = __webpack_require__(7136);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
+var es_string_search = __webpack_require__(785);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
+var es_array_join = __webpack_require__(475);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__(9581);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
@@ -8282,12 +8288,6 @@ var es_function_name = __webpack_require__(8741);
 var es_object_to_string = __webpack_require__(5086);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
 var web_dom_collections_for_each = __webpack_require__(8379);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
-var es_array_join = __webpack_require__(475);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.exec.js
-var es_regexp_exec = __webpack_require__(7136);
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.search.js
-var es_string_search = __webpack_require__(785);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.find.js
 var es_array_find = __webpack_require__(8636);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.symbol.js
@@ -8495,8 +8495,7 @@ var CPFilter = function CPFilter(props) {
     className: "su-opacity-0 su-float-right su-border-0 su-w-0 su-h-0 su-p-0 su-m-0",
     name: "f.contentPartner%7CtaxonomyContentPartnerText",
     id: "cp-filter",
-    value: selectedPartner // onChange={(e) => handleChange(e.target.value, e)}
-
+    value: selectedPartner
   }, /*#__PURE__*/react.createElement("option", {
     value: ""
   }, "-- Choose Content Partner --"), statusOptions.map(function (partner) {
@@ -8998,8 +8997,7 @@ var SortByFilter = function SortByFilter(props) {
 
   var handleChange = function handleChange(value, e) {
     setSelectedRange(value);
-    handleClose(); // console.log('SORT BY FilTER', e.target.value);
-
+    handleClose();
     var type = e.target.value == 1 ? 'dmetamtxCreated' : 'metamtxCreated';
     props.onChange('sortBy', type);
   };
@@ -14339,28 +14337,7 @@ var CardButtons = function CardButtons(props) {
       setIsLoading = _useState18[1]; // Loader flag
 
 
-  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {};
-
-  var onTextAreaValueChange = function onTextAreaValueChange(val) {
-    setTextAreaValue(val);
-  };
-
-  var isJson = function isJson(str) {
-    // Check if we need to parse it
-    if (CardButtons_typeof(str) === 'object') {
-      return str;
-    } // Check if obj is json and return object if succesful
-
-
-    try {
-      var data = JSON.parse(str);
-    } catch (e) {
-      return false;
-    }
-
-    return data;
-  }; // Update status when hubStatus change
-
+  var jsApi = (_window$jsApi = window.jsApi) !== null && _window$jsApi !== void 0 ? _window$jsApi : {}; // Update status when hubStatus change
 
   (0,react.useEffect)(function () {
     var _window, _window$data, _window2, _window2$data;
@@ -14382,6 +14359,33 @@ var CardButtons = function CardButtons(props) {
   (0,react.useEffect)(function () {
     setHubStatus(fixedHubStatus);
   }, [fixedHubStatus]);
+
+  var onTextAreaValueChange = function onTextAreaValueChange(val) {
+    setTextAreaValue(val);
+  };
+  /**
+   * @function isJson
+   * @description - Function that checks if a given string is JSON
+   *
+   * @param {String} str - string object to check
+   */
+
+
+  var isJson = function isJson(str) {
+    // Check if we need to parse it
+    if (CardButtons_typeof(str) === 'object') {
+      return str;
+    } // Check if obj is json and return object if succesful
+
+
+    try {
+      var data = JSON.parse(str);
+    } catch (e) {
+      return false;
+    }
+
+    return data;
+  };
 
   var openSendDialog = function openSendDialog(id) {
     setSendDialogOpen(true);
@@ -14464,6 +14468,15 @@ var CardButtons = function CardButtons(props) {
 
     return currentHistory;
   };
+  /**
+   * @function prepareDeclineUpdate
+   * @description - Prepares all information required to submit 'Declined' status for story/teaser to Matrix
+   * JS API used here is Matrix's JS API. On local dev environment, there is a mock file that handles this.
+   *
+   * @param {Number} id - story or teaser ID
+   * @param {Object} currentState - current state object
+   */
+
 
   var prepareDeclineUpdate = function prepareDeclineUpdate(id, currentState) {
     // Define Metadata Fields Actions Object
@@ -14518,6 +14531,16 @@ var CardButtons = function CardButtons(props) {
       props.fetchData((_window3 = window) === null || _window3 === void 0 ? void 0 : (_window3$data = _window3.data) === null || _window3$data === void 0 ? void 0 : (_window3$data$content = _window3$data.contentHubAPI) === null || _window3$data$content === void 0 ? void 0 : _window3$data$content.search.newContent);
     }
   };
+  /**
+   * @function prepareApproveUpdate
+   * @description - Prepares all information required to submit 'Declined' status for story/teaser to Matrix
+   * JS API used here is Matrix's JS API. On local dev environment, there is a mock file that handles this.
+   *
+   * @param {Number} storyId - story or teaser ID
+   * @param {String} pageType - story or teaser ID
+   * @param {Object} currentState - current state object
+   */
+
 
   var prepareApproveUpdate = function prepareApproveUpdate(storyId, pageType, currentState) {
     // Define Metadata Fields Actions Object
@@ -14560,7 +14583,8 @@ var CardButtons = function CardButtons(props) {
         updateUi(historyMessage);
       }
     });
-  };
+  }; // Update front end with correct status
+
 
   var updateUi = function updateUi(historyMsg) {
     setHubStatusDesc(historyMsg);
@@ -15235,7 +15259,6 @@ var Card = function Card(props) {
           var item = _step.value;
 
           if (item.id == props.data.listMetadata.assetId) {
-            //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
             setHubStatus(item.hubStatus);
             setHubStatusDesc(item.hubStatusDesc);
             setHubReviewMsg(item.hubReviewMsg);
@@ -15339,7 +15362,6 @@ function Pagination_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Pagination = function Pagination(props) {
-  // const [summaryData, setSummaryData] = useState([]);
   var _useState = (0,react.useState)(false),
       _useState2 = Pagination_slicedToArray(_useState, 2),
       isLoading = _useState2[0],
@@ -15351,19 +15373,29 @@ var Pagination = function Pagination(props) {
       pagesData = _useState4[0],
       setPagesData = _useState4[1];
 
-  var onButtonClick = function onButtonClick(e) {
-    props.onChange('pagination', e.target.value);
-  };
-
   (0,react.useEffect)(function () {
     if (props.summary) {
-      // setSummaryData(props.summary);
       setIsLoading(false);
       getPages(props.summary);
     } else {
       setIsLoading(true);
     }
   }, [props.summary]);
+  /**
+   * @function onButtonClick
+   * @description - Function to handle onClick for pagination
+   *
+   * @param {Object} e - event object from onClick event
+   */
+
+  var onButtonClick = function onButtonClick(e) {
+    props.onChange('pagination', e.target.value);
+  };
+  /**
+   * @function addPage
+   * @description - Function to push to the output array for pagination
+   */
+
 
   var addPage = function addPage(pagesOutput, itemRank, label, isActive, isLast) {
     return pagesOutput.push({
@@ -15373,6 +15405,13 @@ var Pagination = function Pagination(props) {
       isLast: isLast
     });
   };
+  /**
+   * @function getPages
+   * @description - Function to push to the output array for pagination
+   *
+   * @param {Object} summary - Results summary object from data fetched earlier
+   */
+
 
   var getPages = function getPages(summary) {
     var pagesOutput = []; // Calculate basic information
@@ -15586,7 +15625,6 @@ function SelectedFilters_arrayWithHoles(arr) { if (Array.isArray(arr)) return ar
 
 
 var SelectedFacets = function SelectedFacets(props) {
-  // const [facets, setFacets] = useState([]);
   var _useState = (0,react.useState)(null),
       _useState2 = SelectedFilters_slicedToArray(_useState, 2),
       selectedFacets = _useState2[0],
@@ -15617,7 +15655,6 @@ var SelectedFacets = function SelectedFacets(props) {
           var thisFacet = facetItem.selectedValues[i]; // Check if it is selected
 
           if (thisFacet.selected === true) {
-            // XX
             // const thisToggle = thisFacet.toggleUrl.split('profile=')[0];
             var facetDispName = thisFacet.label.charAt(0).toUpperCase() + thisFacet.label.slice(1); // If selected :: push to output
 
@@ -15856,32 +15893,32 @@ function NewContent_typeof(obj) { "@babel/helpers - typeof"; return NewContent_t
 
 function NewContent_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ NewContent_regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == NewContent_typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator.return && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, catch: function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function NewContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function NewContent_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { NewContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { NewContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function NewContent_slicedToArray(arr, i) { return NewContent_arrayWithHoles(arr) || NewContent_iterableToArrayLimit(arr, i) || NewContent_unsupportedIterableToArray(arr, i) || NewContent_nonIterableRest(); }
 
@@ -15978,135 +16015,6 @@ var NewContent = function NewContent() {
       dateLabel = _useState26[0],
       setDateLabels = _useState26[1];
 
-  var fetchData = /*#__PURE__*/function () {
-    var _ref = NewContent_asyncToGenerator( /*#__PURE__*/NewContent_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray, _statuses;
-
-      return NewContent_regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              setIsLoading(true); // backup for local environment
-
-              if (!(func == 'fb')) {
-                _context.next = 29;
-                break;
-              }
-
-              _context.prev = 2;
-              _context.next = 5;
-              return fetchFBData(url);
-
-            case 5:
-              d = _context.sent;
-              d.response.facets.map(function (item) {
-                if (item.name == 'contentPartner') {
-                  setCPLabels(item.allValues);
-                } else if (item.name == 'date') {
-                  setDateLabels(item.allValues);
-                }
-              });
-              setFacets(d.response.facets);
-              setData(d);
-              setResults(d.response.resultPacket.results);
-              setResultsSummary(d.response.resultPacket.resultsSummary);
-              params = getQueryStringParams(url);
-              setQueryParams(params);
-              sourceIdsArray = [];
-              d.response.resultPacket.results.forEach(function (item) {
-                if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                  sourceIdsArray.push(item.listMetadata.assetId[0]);
-                }
-              });
-              _context.next = 17;
-              return getHubStatus(sourceIdsArray.join(','));
-
-            case 17:
-              statuses = _context.sent;
-              // console.log('Statuses:', statuses);
-              setHubStatuses(statuses); // checkStatus(statuses);
-
-              _context.next = 24;
-              break;
-
-            case 21:
-              _context.prev = 21;
-              _context.t0 = _context["catch"](2);
-              console.error('Error fetching data:', _context.t0);
-
-            case 24:
-              _context.prev = 24;
-              setIsLoading(false);
-              return _context.finish(24);
-
-            case 27:
-              _context.next = 54;
-              break;
-
-            case 29:
-              _context.prev = 29;
-              _context.next = 32;
-              return getSearchData(url);
-
-            case 32:
-              _d2 = _context.sent;
-              setFacets(_d2.response.facets);
-
-              _d2.response.facets.map(function (item) {
-                if (item.name == 'contentPartner') {
-                  setCPLabels(item.allValues);
-                } else if (item.name == 'date') {
-                  setDateLabels(item.allValues);
-                }
-              });
-
-              setData(_d2);
-              setResults(_d2.response.resultPacket.results);
-              setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              _params = getQueryStringParams(url);
-              setQueryParams(_params);
-              _sourceIdsArray = [];
-
-              _d2.response.resultPacket.results.forEach(function (item) {
-                if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                  _sourceIdsArray.push(item.listMetadata.assetId[0]);
-                }
-              });
-
-              _context.next = 44;
-              return getHubStatus(_sourceIdsArray.join(','));
-
-            case 44:
-              _statuses = _context.sent;
-              // console.log('Statuses:', statuses);
-              setHubStatuses(_statuses); // checkStatus(statuses);
-
-              _context.next = 51;
-              break;
-
-            case 48:
-              _context.prev = 48;
-              _context.t1 = _context["catch"](29);
-              console.error('Error fetching data:', _context.t1);
-
-            case 51:
-              _context.prev = 51;
-              setIsLoading(false);
-              return _context.finish(51);
-
-            case 54:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
-    }));
-
-    return function fetchData(_x, _x2) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
   (0,react.useEffect)(function () {
     var _window, _window$data, _window$data$contentH;
 
@@ -16117,23 +16025,149 @@ var NewContent = function NewContent() {
       setDataLocation('matrix');
       setUrl(url);
     } else {
+      // backup for local dev environment data
       fetchData("".concat(window.globalData.urls.fb, "/s/search.json?f.hubStatus%7ChubStatus=submitted&profile=search&num_ranks=10&query=%21nullquery&collection=sug%7Esp-stanford-university-content-hub&sort=dmetamtxCreated"), 'fb');
       setDataLocation('fb');
     }
-  }, []); // const checkStatus = (statuses) => {
-  //     setIsLoading(false);
-  //     for (let i = 0; i < statuses.length; i++) {
-  //         if (statuses[i].hubStatus === 'sent-to-sr') {
-  //             results.splice(i, 1);
-  //             setResults(results);
-  //             // console.log('results', results);
-  //         }
-  //     }
-  //     setIsLoading(false);
-  // };
+  }, []);
+  /**
+   * @function fetchData
+   * @description - Fetches data for the page
+   *
+   * @param {string} url - The url to fetch data from. Must be in JSON format.
+   * @param {string} func - Checks the source
+   */
+
+  var fetchData = /*#__PURE__*/function () {
+    var _ref = NewContent_asyncToGenerator( /*#__PURE__*/NewContent_regeneratorRuntime().mark(function _callee(url, func) {
+      var d, sourceIdsArray, statuses, _d2, _sourceIdsArray, _statuses;
+
+      return NewContent_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              setIsLoading(true); // backup required to fetch data for local environment using FB
+
+              if (!(func == 'fb')) {
+                _context.next = 21;
+                break;
+              }
+
+              _context.prev = 2;
+              _context.next = 5;
+              return fetchFBData(url);
+
+            case 5:
+              d = _context.sent;
+              sourceIdsArray = setDataValues(d, url);
+              _context.next = 9;
+              return getHubStatus(sourceIdsArray.join(','));
+
+            case 9:
+              statuses = _context.sent;
+              setHubStatuses(statuses);
+              _context.next = 16;
+              break;
+
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](2);
+              console.error('Error fetching data:', _context.t0);
+
+            case 16:
+              _context.prev = 16;
+              setIsLoading(false);
+              return _context.finish(16);
+
+            case 19:
+              _context.next = 38;
+              break;
+
+            case 21:
+              _context.prev = 21;
+              _context.next = 24;
+              return getSearchData(url);
+
+            case 24:
+              _d2 = _context.sent;
+              _sourceIdsArray = setDataValues(_d2, url);
+              _context.next = 28;
+              return getHubStatus(_sourceIdsArray.join(','));
+
+            case 28:
+              _statuses = _context.sent;
+              setHubStatuses(_statuses);
+              _context.next = 35;
+              break;
+
+            case 32:
+              _context.prev = 32;
+              _context.t1 = _context["catch"](21);
+              console.error('Error fetching data:', _context.t1);
+
+            case 35:
+              _context.prev = 35;
+              setIsLoading(false);
+              return _context.finish(35);
+
+            case 38:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[2, 13, 16, 19], [21, 32, 35, 38]]);
+    }));
+
+    return function fetchData(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  /**
+   * @function setDataValues
+   * @description - Allocates values to different state objects from fetched data
+   *
+   * @param {Object} d - JSON data object passed in through fetchData()
+   * @param {string} url - The url data is fetched from
+   * returns array of source IDs to fetchData for further requests
+   */
+
+
+  var setDataValues = function setDataValues(d, url) {
+    d.response.facets.map(function (item) {
+      if (item.name == 'contentPartner') {
+        setCPLabels(item.allValues);
+      } else if (item.name == 'date') {
+        setDateLabels(item.allValues);
+      }
+    });
+    setFacets(d.response.facets);
+    setData(d);
+    setResults(d.response.resultPacket.results);
+    setResultsSummary(d.response.resultPacket.resultsSummary);
+    var params = getQueryStringParams(url);
+    setQueryParams(params); // Get live Hub Status using IDs from data just fetched
+
+    var sourceIdsArray = [];
+    d.response.resultPacket.results.forEach(function (item) {
+      if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+        sourceIdsArray.push(item.listMetadata.assetId[0]);
+      }
+    });
+    return sourceIdsArray;
+  };
+  /**
+   * @function onChange
+   * @description - Handles all filtering and searching functionality
+   *
+   * @param {string} name - Name of the filter being used
+   * @param {string} value - Value of the changed filter field (eg: 'sent-to-sr)
+   * @param {string} selectedValue - Value of the changed filter field for display on page (eg: 'Sent to Stanford Report')
+   * returns array of source IDs to fetchData for further requests
+   */
+
 
   var onChange = function onChange(name, value, selectedVal) {
-    // console.log('ON CHANGE: ', name, ' || ', value, '    ||    ', selectedVal);
+    // console.log('OnChange: ', name, ' || ', value, '    ||    ', selectedVal);
     var fetchUrl;
 
     if (name == 'search') {
@@ -16247,7 +16281,7 @@ var NewContent = function NewContent() {
     onChange: onChange,
     facets: facets,
     page: "newContent"
-  }), /*#__PURE__*/react.createElement("div", {
+  }), results && results.length > 0 ? /*#__PURE__*/react.createElement(react.Fragment, null, /*#__PURE__*/react.createElement("div", {
     className: "su-flex su-flex-col sm:su-flex-row su-gap-y-xs su-justify-between su-mb-20"
   }, /*#__PURE__*/react.createElement("p", {
     className: "su-leading-[2] su-mb-0"
@@ -16256,7 +16290,7 @@ var NewContent = function NewContent() {
     selectedValue: sortBySelected
   })), /*#__PURE__*/react.createElement("ul", {
     className: "searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60"
-  }, results && results.length > 0 ? results.map(function (contentItem, index) {
+  }, results.map(function (contentItem, index) {
     return /*#__PURE__*/react.createElement(Card, {
       key: index,
       data: contentItem,
@@ -16264,7 +16298,7 @@ var NewContent = function NewContent() {
       fetchData: fetchData,
       page: "newContent"
     });
-  }) : /*#__PURE__*/react.createElement(NoContent, null)), /*#__PURE__*/react.createElement(Pagination, {
+  }))) : /*#__PURE__*/react.createElement(NoContent, null), /*#__PURE__*/react.createElement(Pagination, {
     data: data,
     summary: resultsSummary,
     onChange: onChange
@@ -16352,7 +16386,7 @@ var StatusFilter = function StatusFilter(props) {
   (0,react.useEffect)(function () {
     if (props.facets) {
       setStatusOptions(props.facets);
-      setIsLoading(false); // getFormattedFacet(facets.facets);
+      setIsLoading(false);
     } else {
       setIsLoading(true);
     }
@@ -16416,32 +16450,32 @@ function MyContent_typeof(obj) { "@babel/helpers - typeof"; return MyContent_typ
 
 function MyContent_regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ MyContent_regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == MyContent_typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator.return && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, catch: function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function MyContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function MyContent_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { MyContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { MyContent_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function MyContent_slicedToArray(arr, i) { return MyContent_arrayWithHoles(arr) || MyContent_iterableToArrayLimit(arr, i) || MyContent_unsupportedIterableToArray(arr, i) || MyContent_nonIterableRest(); }
 
@@ -16532,131 +16566,6 @@ var MyContent = function MyContent() {
       hubStatuses = _useState24[0],
       setHubStatuses = _useState24[1];
 
-  var fetchData = /*#__PURE__*/function () {
-    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(url, func) {
-      var d, params, sourceIdsArray, statuses, _d2, _params, _sourceIdsArray, _statuses;
-
-      return MyContent_regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              setIsLoading(true); // backup for local environment
-
-              if (!(func == 'fb')) {
-                _context.next = 29;
-                break;
-              }
-
-              _context.prev = 2;
-              _context.next = 5;
-              return fetchFBData(url);
-
-            case 5:
-              d = _context.sent;
-              setFacets(d.response.facets);
-              d.response.facets.map(function (item) {
-                if (item.name == 'hubStatus') {
-                  setStatusLabels(item.allValues);
-                }
-              });
-              setData(d);
-              setResults(d.response.resultPacket.results);
-              setResultsSummary(d.response.resultPacket.resultsSummary);
-              params = getQueryStringParams(url);
-              setQueryParams(params); // console.log('REQUEST FUNCTION data in MY content: ', d);
-
-              sourceIdsArray = [];
-              d.response.resultPacket.results.forEach(function (item) {
-                if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                  sourceIdsArray.push(item.listMetadata.assetId[0]);
-                }
-              });
-              _context.next = 17;
-              return getHubStatus(sourceIdsArray.join(','));
-
-            case 17:
-              statuses = _context.sent;
-              // console.log('Statuses:', statuses);
-              setHubStatuses(statuses);
-              _context.next = 24;
-              break;
-
-            case 21:
-              _context.prev = 21;
-              _context.t0 = _context["catch"](2);
-              console.error('Error fetching data:', _context.t0);
-
-            case 24:
-              _context.prev = 24;
-              setIsLoading(false);
-              return _context.finish(24);
-
-            case 27:
-              _context.next = 54;
-              break;
-
-            case 29:
-              _context.prev = 29;
-              _context.next = 32;
-              return getSearchData(url);
-
-            case 32:
-              _d2 = _context.sent;
-              setFacets(_d2.response.facets);
-
-              _d2.response.facets.map(function (item) {
-                if (item.name == 'hubStatus') {
-                  setStatusLabels(item.allValues);
-                }
-              });
-
-              setData(_d2);
-              setResults(_d2.response.resultPacket.results);
-              setResultsSummary(_d2.response.resultPacket.resultsSummary);
-              _params = getQueryStringParams(url);
-              setQueryParams(_params); // console.log('MY content MATRIX FETCH: ', d);
-
-              _sourceIdsArray = [];
-
-              _d2.response.resultPacket.results.forEach(function (item) {
-                if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                  _sourceIdsArray.push(item.listMetadata.assetId[0]);
-                }
-              });
-
-              _context.next = 44;
-              return getHubStatus(_sourceIdsArray.join(','));
-
-            case 44:
-              _statuses = _context.sent;
-              // console.log('Statuses:', statuses);
-              setHubStatuses(_statuses);
-              _context.next = 51;
-              break;
-
-            case 48:
-              _context.prev = 48;
-              _context.t1 = _context["catch"](29);
-              console.error('Error fetching data:', _context.t1);
-
-            case 51:
-              _context.prev = 51;
-              setIsLoading(false);
-              return _context.finish(51);
-
-            case 54:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[2, 21, 24, 27], [29, 48, 51, 54]]);
-    }));
-
-    return function fetchData(_x, _x2) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
   (0,react.useEffect)(function () {
     var _window, _window$data, _window$data$contentH;
 
@@ -16671,9 +16580,141 @@ var MyContent = function MyContent() {
       setDataLocation('fb');
     }
   }, []);
+  /**
+   * @function fetchData
+   * @description - Fetches data for the page
+   *
+   * @param {string} url - The url to fetch data from. Must be in JSON format.
+   * @param {string} func - Checks the source
+   */
+
+  var fetchData = /*#__PURE__*/function () {
+    var _ref = MyContent_asyncToGenerator( /*#__PURE__*/MyContent_regeneratorRuntime().mark(function _callee(url, func) {
+      var d, sourceIdsArray, statuses, _d2, _sourceIdsArray, _statuses;
+
+      return MyContent_regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              setIsLoading(true); // backup for local environment
+
+              if (!(func == 'fb')) {
+                _context.next = 21;
+                break;
+              }
+
+              _context.prev = 2;
+              _context.next = 5;
+              return fetchFBData(url);
+
+            case 5:
+              d = _context.sent;
+              sourceIdsArray = setDataValues(d, url);
+              _context.next = 9;
+              return getHubStatus(sourceIdsArray.join(','));
+
+            case 9:
+              statuses = _context.sent;
+              setHubStatuses(statuses);
+              _context.next = 16;
+              break;
+
+            case 13:
+              _context.prev = 13;
+              _context.t0 = _context["catch"](2);
+              console.error('Error fetching data:', _context.t0);
+
+            case 16:
+              _context.prev = 16;
+              setIsLoading(false);
+              return _context.finish(16);
+
+            case 19:
+              _context.next = 38;
+              break;
+
+            case 21:
+              _context.prev = 21;
+              _context.next = 24;
+              return getSearchData(url);
+
+            case 24:
+              _d2 = _context.sent;
+              _sourceIdsArray = setDataValues(_d2, url);
+              _context.next = 28;
+              return getHubStatus(_sourceIdsArray.join(','));
+
+            case 28:
+              _statuses = _context.sent;
+              setHubStatuses(_statuses);
+              _context.next = 35;
+              break;
+
+            case 32:
+              _context.prev = 32;
+              _context.t1 = _context["catch"](21);
+              console.error('Error fetching data:', _context.t1);
+
+            case 35:
+              _context.prev = 35;
+              setIsLoading(false);
+              return _context.finish(35);
+
+            case 38:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[2, 13, 16, 19], [21, 32, 35, 38]]);
+    }));
+
+    return function fetchData(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  /**
+   * @function setDataValues
+   * @description - Allocates values to different state objects from fetched data
+   *
+   * @param {Object} d - JSON data object passed in through fetchData()
+   * @param {string} url - The url data is fetched from
+   * returns array of source IDs to fetchData for further requests
+   */
+
+
+  var setDataValues = function setDataValues(d, url) {
+    setFacets(d.response.facets);
+    d.response.facets.map(function (item) {
+      if (item.name == 'hubStatus') {
+        setStatusLabels(item.allValues);
+      }
+    });
+    setData(d);
+    setResults(d.response.resultPacket.results);
+    setResultsSummary(d.response.resultPacket.resultsSummary);
+    var params = getQueryStringParams(url);
+    setQueryParams(params);
+    var sourceIdsArray = [];
+    d.response.resultPacket.results.forEach(function (item) {
+      if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+        sourceIdsArray.push(item.listMetadata.assetId[0]);
+      }
+    });
+    return sourceIdsArray;
+  };
+  /**
+   * @function onChange
+   * @description - Handles all filtering and searching functionality
+   *
+   * @param {string} name - Name of the filter being used
+   * @param {string} value - Value of the changed filter field (eg: 'sent-to-sr)
+   * @param {string} selectedValue - Value of the changed filter field for display on page (eg: 'Sent to Stanford Report')
+   * returns array of source IDs to fetchData for further requests
+   */
+
 
   var onChange = function onChange(name, value, selectedVal) {
-    // console.log('ON CHANGE: ', name, ' || ', value);
+    // console.log('OnChange: ', name, ' || ', value);
     if (name == 'search') {
       var newParams = queryParams;
       var queryParam = newParams.find(function (param) {

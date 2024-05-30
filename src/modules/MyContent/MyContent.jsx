@@ -24,73 +24,6 @@ export const MyContent = () => {
     const [dataLocation, setDataLocation] = useState('');
     const [hubStatuses, setHubStatuses] = useState([]);
 
-    const fetchData = async (url, func) => {
-        setIsLoading(true);
-        // backup for local environment
-        if (func == 'fb') {
-            try {
-                const d = await fetchFBData(url);
-                setFacets(d.response.facets);
-
-                d.response.facets.map((item) => {
-                    if (item.name == 'hubStatus') {
-                        setStatusLabels(item.allValues);
-                    }
-                });
-                setData(d);
-                setResults(d.response.resultPacket.results);
-                setResultsSummary(d.response.resultPacket.resultsSummary);
-                let params = getQueryStringParams(url);
-                setQueryParams(params);
-                // console.log('REQUEST FUNCTION data in MY content: ', d);
-                let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
-
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        } else {
-            try {
-                const d = await getSearchData(url);
-                setFacets(d.response.facets);
-                d.response.facets.map((item) => {
-                    if (item.name == 'hubStatus') {
-                        setStatusLabels(item.allValues);
-                    }
-                });
-                setData(d);
-                setResults(d.response.resultPacket.results);
-                setResultsSummary(d.response.resultPacket.resultsSummary);
-                let params = getQueryStringParams(url);
-                setQueryParams(params);
-                // console.log('MY content MATRIX FETCH: ', d);
-                let sourceIdsArray = [];
-                d.response.resultPacket.results.forEach((item) => {
-                    if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
-                        sourceIdsArray.push(item.listMetadata.assetId[0]);
-                    }
-                });
-
-                const statuses = await getHubStatus(sourceIdsArray.join(','));
-                // console.log('Statuses:', statuses);
-                setHubStatuses(statuses);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-    };
-
     useEffect(() => {
         let url = window?.data?.contentHubAPI?.search.myContent;
         if (url) {
@@ -106,8 +39,82 @@ export const MyContent = () => {
         }
     }, []);
 
+    /**
+     * @function fetchData
+     * @description - Fetches data for the page
+     *
+     * @param {string} url - The url to fetch data from. Must be in JSON format.
+     * @param {string} func - Checks the source
+     */
+    const fetchData = async (url, func) => {
+        setIsLoading(true);
+        // backup for local environment
+        if (func == 'fb') {
+            try {
+                const d = await fetchFBData(url);
+                let sourceIdsArray = setDataValues(d, url);
+
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                setHubStatuses(statuses);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            try {
+                const d = await getSearchData(url);
+                let sourceIdsArray = setDataValues(d, url);
+                const statuses = await getHubStatus(sourceIdsArray.join(','));
+                setHubStatuses(statuses);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    };
+
+    /**
+     * @function setDataValues
+     * @description - Allocates values to different state objects from fetched data
+     *
+     * @param {Object} d - JSON data object passed in through fetchData()
+     * @param {string} url - The url data is fetched from
+     * returns array of source IDs to fetchData for further requests
+     */
+    const setDataValues = (d, url) => {
+        setFacets(d.response.facets);
+        d.response.facets.map((item) => {
+            if (item.name == 'hubStatus') {
+                setStatusLabels(item.allValues);
+            }
+        });
+        setData(d);
+        setResults(d.response.resultPacket.results);
+        setResultsSummary(d.response.resultPacket.resultsSummary);
+        let params = getQueryStringParams(url);
+        setQueryParams(params);
+        let sourceIdsArray = [];
+        d.response.resultPacket.results.forEach((item) => {
+            if (item.listMetadata.assetId && item.listMetadata.assetId.length > 0) {
+                sourceIdsArray.push(item.listMetadata.assetId[0]);
+            }
+        });
+        return sourceIdsArray;
+    };
+
+    /**
+     * @function onChange
+     * @description - Handles all filtering and searching functionality
+     *
+     * @param {string} name - Name of the filter being used
+     * @param {string} value - Value of the changed filter field (eg: 'sent-to-sr)
+     * @param {string} selectedValue - Value of the changed filter field for display on page (eg: 'Sent to Stanford Report')
+     * returns array of source IDs to fetchData for further requests
+     */
     const onChange = (name, value, selectedVal) => {
-        // console.log('ON CHANGE: ', name, ' || ', value);
+        // console.log('OnChange: ', name, ' || ', value);
         if (name == 'search') {
             let newParams = queryParams;
             const queryParam = newParams.find((param) => param.name === 'query');
@@ -164,9 +171,11 @@ export const MyContent = () => {
             <PageHeading headingText={window?.data?.texts?.mycontent?.headingText} subHeadingText={window?.data?.texts?.mycontent?.subHeadingText} homeButton={true} />
             <section>
                 <div className="su-mb-20">
+                    {/* Status Filter */}
                     <div className="su-w-full md:su-w-1/2">
                         <StatusFilter onChange={onChange} facets={statusLabel} selectedValue={statusSelected} />
                     </div>
+                    {/* Status Filter */}
                 </div>
                 <SelectedFacets onChange={onChange} facets={facets} page="myContent" />
 
@@ -179,11 +188,13 @@ export const MyContent = () => {
 
                             <SortByFilter onChange={onChange} selectedValue={sortBySelected} />
                         </div>
+                        {/* Cards */}
                         <ul className="searchResults__items su-flex su-flex-col su-gap-y-xs su-list-none su-p-0 su-m-0 su-mb-60">
                             {results.map((contentItem, index) => (
                                 <Card key={index} data={contentItem} page="myContent" statuses={hubStatuses} />
                             ))}
                         </ul>
+                        {/* Cards end */}
                     </>
                 ) : (
                     <NoContent />

@@ -44,26 +44,6 @@ export const CardButtons = (props) => {
     const [isLoading, setIsLoading] = useState(false); // Loader flag
     let jsApi = window.jsApi ?? {};
 
-    const onTextAreaValueChange = (val) => {
-        setTextAreaValue(val);
-    };
-
-    const isJson = (str) => {
-        // Check if we need to parse it
-        if (typeof str === 'object') {
-            return str;
-        }
-
-        // Check if obj is json and return object if succesful
-        try {
-            var data = JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-
-        return data;
-    };
-
     // Update status when hubStatus change
     useEffect(() => {
         let userDetails = window?.data?.user.firstName + ' ' + window.data + window?.data?.user.lastName;
@@ -81,6 +61,32 @@ export const CardButtons = (props) => {
     useEffect(() => {
         setHubStatus(fixedHubStatus);
     }, [fixedHubStatus]);
+
+    const onTextAreaValueChange = (val) => {
+        setTextAreaValue(val);
+    };
+
+    /**
+     * @function isJson
+     * @description - Function that checks if a given string is JSON
+     *
+     * @param {String} str - string object to check
+     */
+    const isJson = (str) => {
+        // Check if we need to parse it
+        if (typeof str === 'object') {
+            return str;
+        }
+
+        // Check if obj is json and return object if succesful
+        try {
+            var data = JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+
+        return data;
+    };
 
     const openSendDialog = (id) => {
         setSendDialogOpen(true);
@@ -169,6 +175,14 @@ export const CardButtons = (props) => {
         return currentHistory;
     };
 
+    /**
+     * @function prepareDeclineUpdate
+     * @description - Prepares all information required to submit 'Declined' status for story/teaser to Matrix
+     * JS API used here is Matrix's JS API. On local dev environment, there is a mock file that handles this.
+     *
+     * @param {Number} id - story or teaser ID
+     * @param {Object} currentState - current state object
+     */
     const prepareDeclineUpdate = (id, currentState) => {
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
@@ -228,6 +242,15 @@ export const CardButtons = (props) => {
         }
     };
 
+    /**
+     * @function prepareApproveUpdate
+     * @description - Prepares all information required to submit 'Declined' status for story/teaser to Matrix
+     * JS API used here is Matrix's JS API. On local dev environment, there is a mock file that handles this.
+     *
+     * @param {Number} storyId - story or teaser ID
+     * @param {String} pageType - story or teaser ID
+     * @param {Object} currentState - current state object
+     */
     const prepareApproveUpdate = (storyId, pageType, currentState) => {
         // Define Metadata Fields Actions Object
         const fieldsActions = {};
@@ -276,6 +299,8 @@ export const CardButtons = (props) => {
             },
         });
     };
+
+    // Update front end with correct status
     const updateUi = (historyMsg) => {
         setHubStatusDesc(historyMsg);
         setHubStatus('sent-to-sr');

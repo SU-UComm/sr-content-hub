@@ -3,7 +3,6 @@ import {PropTypes} from 'prop-types';
 import {getLabel} from '../Helpers/helperFunctions';
 
 export const SelectedFacets = (props) => {
-    // const [facets, setFacets] = useState([]);
     const [selectedFacets, setSelectedFacets] = useState(null);
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
@@ -28,7 +27,6 @@ export const SelectedFacets = (props) => {
 
                     // Check if it is selected
                     if (thisFacet.selected === true) {
-                        // XX
                         // const thisToggle = thisFacet.toggleUrl.split('profile=')[0];
                         let facetDispName = thisFacet.label.charAt(0).toUpperCase() + thisFacet.label.slice(1);
 

@@ -8,13 +8,17 @@ export const FullStory = (props) => {
     const [data, setData] = useState(false); // data from endpoint
     const [isLoading, setIsLoading] = useState(false); // Loader flag
 
+    /**
+     * @function fetchData
+     * @description - Fetches data for the story page
+     *
+     * @param {string} id - Story ID
+     */
     const fetchData = async (id) => {
         setIsLoading(true);
-        // replace with getSearchData from requests.js with blank query once CORS is resolved
         try {
             const d = await getMedia(id);
             setData(d);
-            // console.log('full story fetched media: ', d);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -27,8 +31,7 @@ export const FullStory = (props) => {
         if (url) {
             fetchData(props.data.id);
         } else {
-            // setData(dataObj);
-            // console.log('full story data: ', data);
+            console.log('unable to load story information from Matrix on dev environment');
         }
     }, []);
 

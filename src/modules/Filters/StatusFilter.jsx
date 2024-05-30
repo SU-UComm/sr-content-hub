@@ -34,7 +34,6 @@ export const StatusFilter = (props) => {
         if (props.facets) {
             setStatusOptions(props.facets);
             setIsLoading(false);
-            // getFormattedFacet(facets.facets);
         } else {
             setIsLoading(true);
         }

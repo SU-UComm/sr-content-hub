@@ -54,7 +54,6 @@ export const CPFilter = (props) => {
                     name="f.contentPartner%7CtaxonomyContentPartnerText"
                     id="cp-filter"
                     value={selectedPartner}
-                    // onChange={(e) => handleChange(e.target.value, e)}
                 >
                     <option value="">-- Choose Content Partner --</option>
                     {statusOptions.map((partner) => (

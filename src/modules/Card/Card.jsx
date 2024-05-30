@@ -18,7 +18,6 @@ export const Card = (props) => {
         if (props.statuses) {
             for (let item of props.statuses) {
                 if (item.id == props.data.listMetadata.assetId) {
-                    //console.log('HERE', item.hubStatus, item.hubStatusDesc, item.hubReviewMsg);
                     setHubStatus(item.hubStatus);
                     setHubStatusDesc(item.hubStatusDesc);
                     setHubReviewMsg(item.hubReviewMsg);
